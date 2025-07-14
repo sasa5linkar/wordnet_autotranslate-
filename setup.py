@@ -44,4 +44,9 @@ setup(
             "mypy>=0.900",
         ],
     },
+    entry_points={
+        "console_scripts": [
+            "wordnet-autotranslate=wordnet_autotranslate.cli:main",
+        ],
+    },
 )

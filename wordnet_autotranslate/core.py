@@ -29,15 +29,25 @@ class WordNetAutoTranslator:
     
     def _setup_integrations(self) -> None:
         """Set up integrations based on configuration."""
-        # Initialize DSPy integration if configured
+        # Initialize DSPy integration if configured or as default
         dspy_config = self.config.get_dspy_config()
-        if dspy_config or self._has_dspy_providers():
-            self.integrations['dspy'] = DSPyIntegration(self.config)
+        if dspy_config or self._has_dspy_providers() or not self.config.providers:
+            try:
+                self.integrations['dspy'] = DSPyIntegration(self.config)
+            except Exception as e:
+                logger.warning(f"Failed to initialize DSPy integration: {e}")
         
-        # Initialize Princeton WordNet integration if configured
+        # Initialize Princeton WordNet integration if configured or as default
         princeton_config = self.config.get_princeton_config()
-        if princeton_config or self._has_princeton_providers():
-            self.integrations['princeton'] = PrincetonWordNetIntegration(self.config)
+        if princeton_config or self._has_princeton_providers() or not self.config.providers:
+            try:
+                self.integrations['princeton'] = PrincetonWordNetIntegration(self.config)
+            except Exception as e:
+                logger.warning(f"Failed to initialize Princeton integration: {e}")
+        
+        # If no integrations succeeded, log a warning
+        if not self.integrations:
+            logger.warning("No integrations could be initialized")
     
     def _has_dspy_providers(self) -> bool:
         """Check if any DSPy providers are configured."""

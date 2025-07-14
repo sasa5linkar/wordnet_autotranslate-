@@ -16,6 +16,7 @@ def main():
     )
     parser.add_argument(
         "text",
+        nargs='?',  # Make text optional
         help="Text to translate"
     )
     parser.add_argument(
@@ -91,6 +92,10 @@ def main():
     
     # Handle synsets command
     if args.synsets:
+        if not args.text:
+            print("Error: text is required for synsets command", file=sys.stderr)
+            return 1
+            
         words = args.text.split()
         synsets = translator.get_wordnet_synsets(args.text, args.source_lang, args.provider)
         
@@ -112,6 +117,10 @@ def main():
         return 0
     
     # Perform translation
+    if not args.text:
+        print("Error: text is required for translation", file=sys.stderr)
+        return 1
+        
     try:
         result = translator.translate(
             args.text,
