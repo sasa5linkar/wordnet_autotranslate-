@@ -1,0 +1,1 @@
+"""Translation pipelines for WordNet auto-translation."""
