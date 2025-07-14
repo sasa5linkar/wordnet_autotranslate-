@@ -1,0 +1,20 @@
+# French WordNet Examples
+
+## Precision Words
+chien
+chat
+maison
+eau
+arbre
+livre
+heureux
+triste
+grand
+petit
+
+## Context Examples
+Le chien aboie dans le jardin.
+La maison a de grandes fenêtres.
+Les enfants lisent des livres intéressants.
+L'eau de la rivière est cristalline.
+Les arbres donnent de l'ombre en été.
