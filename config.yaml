@@ -1,0 +1,43 @@
+# Example configuration for WordNet AutoTranslate with NWO format support
+
+# Providers using NWO format
+providers:
+  # DSPy provider with NWO format
+  dspy_wordnet:
+    nwo: "@dspy/wordnet@2.0.0"
+    model: "gpt-3.5-turbo"
+    temperature: 0.3
+    
+  # Princeton WordNet provider with NWO format  
+  princeton_wordnet:
+    nwo: "@princeton/wordnet@3.0"
+    data_path: "~/nltk_data/corpora/wordnet"
+    
+  # Legacy format for backward compatibility
+  legacy_wordnet: "wordnet"
+
+# DSPy-specific configuration
+dspy:
+  default_model: "gpt-3.5-turbo"
+  temperature: 0.3
+  max_tokens: 1000
+  wordnet_enhancement: true
+  
+# Princeton WordNet configuration  
+princeton:
+  data_path: "~/nltk_data/corpora/wordnet"
+  enable_multilingual: true
+  download_missing: true
+
+# General WordNet configuration
+wordnet:
+  default_language: "en"
+  cache_synsets: true
+  max_synsets_per_word: 5
+  
+# Translation settings
+translation:
+  default_source_lang: "en"
+  default_target_lang: "es"
+  preserve_formatting: true
+  enhance_with_synsets: true
