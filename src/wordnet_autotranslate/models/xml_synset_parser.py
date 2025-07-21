@@ -64,11 +64,11 @@ class XmlSynsetParser:
             return synsets
             
         except ET.ParseError as e:
-            print(f"Error parsing XML file {xml_file_path}: {e}")
-            return []
+            logger.error(f"Error parsing XML file {xml_file_path}: {e}")
+            raise
         except FileNotFoundError:
-            print(f"XML file not found: {xml_file_path}")
-            return []
+            logger.error(f"XML file not found: {xml_file_path}")
+            raise
     
     def parse_xml_string(self, xml_content: str) -> List[Synset]:
         """
