@@ -325,7 +325,10 @@ class SynsetBrowserApp:
                 
                 # Try to get English synset data
                 try:
-                    english_synsets = self.synset_handler.get_synsets(english_id.replace('ENG30-', '').replace('-n', '').replace('-v', '').replace('-a', '').replace('-r', ''))
+                    import re
+                    numeric_id_match = re.match(r"ENG30-(\d+)-[nvar]", english_id)
+                    numeric_id = numeric_id_match.group(1) if numeric_id_match else None
+                    english_synsets = self.synset_handler.get_synsets(numeric_id)
                     
                     if english_synsets:
                         english_synset = english_synsets[0]
