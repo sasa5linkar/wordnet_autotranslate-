@@ -10,10 +10,13 @@ __author__ = "WordNet Auto-Translation Contributors"
 
 from .pipelines.translation_pipeline import TranslationPipeline
 from .models.synset_handler import SynsetHandler
+from .models.xml_synset_parser import XmlSynsetParser, Synset
 from .utils.language_utils import LanguageUtils
 
 __all__ = [
     "TranslationPipeline",
     "SynsetHandler", 
+    "XmlSynsetParser",
+    "Synset",
     "LanguageUtils"
 ]
