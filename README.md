@@ -15,6 +15,7 @@ This project aims to bridge the gap in WordNet coverage for less-resourced langu
 - **DSPy Integration**: Uses DSPy pipelines and prompt optimization for robust translation
 - **Multi-language Support**: Handles English as source and various target languages
 - **Example-based Learning**: Utilizes examples from target languages for better context
+- **Serbian WordNet GUI**: Interactive browser for Serbian synsets with English pairing functionality
 - **Jupyter Notebook Support**: Interactive development and experimentation environment
 - **Extensible Architecture**: Modular design for easy addition of new languages and models
 
@@ -37,6 +38,26 @@ jupyter notebook
 ```
 
 ## Usage
+
+### Serbian WordNet Synset Browser (GUI)
+
+Launch the interactive GUI for browsing and pairing Serbian synsets:
+
+```bash
+# Using the launcher script
+python launch_gui.py
+
+# Or directly with Streamlit
+streamlit run src/wordnet_autotranslate/gui/synset_browser.py
+```
+
+The GUI provides:
+- Interactive browsing of Serbian synsets from XML files
+- Hyperlink navigation between related synsets
+- Automatic and manual pairing with English synsets
+- Export functionality for training data
+
+See [GUI_README.md](GUI_README.md) for detailed usage instructions.
 
 ### Basic Translation Pipeline
 
@@ -68,6 +89,19 @@ from wordnet_autotranslate import SerbianWordnetPipeline
 
 pipeline = SerbianWordnetPipeline(pilot_limit=100)
 pipeline.run(Path("./output/srpwn_generated.xml"))
+
+### Serbian Synset Parsing
+
+```python
+from wordnet_autotranslate import XmlSynsetParser
+
+# Parse Serbian synsets from XML
+parser = XmlSynsetParser()
+synsets = parser.parse_xml_file('serbian_synsets.xml')
+
+# Search and browse synsets
+results = parser.search_synsets('ustanova')
+related = parser.get_related_synsets(synsets[0])
 ```
 
 ### Using Examples
@@ -100,11 +134,18 @@ wordnet_autotranslate/
 ├── src/                    # Core source code
 │   ├── pipelines/         # DSPy translation pipelines
 │   ├── models/            # Language models and synset handlers
+│   │   ├── synset_handler.py      # English WordNet interface
+│   │   └── xml_synset_parser.py   # Serbian synset XML parser
+│   ├── gui/               # Graphical user interface
+│   │   └── synset_browser.py      # Streamlit browser app
 │   └── utils/             # Utility functions
 ├── examples/              # Target language examples
 ├── notebooks/             # Jupyter notebooks
 ├── tests/                 # Unit tests
+├── launch_gui.py          # GUI launcher script
+├── GUI_README.md          # GUI documentation
 ├── requirements.txt       # Python dependencies
+├── requirements-gui.txt   # GUI-specific dependencies
 └── README.md             # This file
 ```
 

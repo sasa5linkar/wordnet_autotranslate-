@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serbian WordNet Synset Browser - Demo</title>
+    <style>
+        body { font-family: 'Source Sans Pro', sans-serif; margin: 0; background: #fafafa; }
+        .header { background: #ff4b4b; color: white; padding: 1rem 2rem; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; padding: 2rem; gap: 2rem; }
+        .sidebar { width: 300px; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); height: fit-content; }
+        .main-content { flex: 1; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .right-panel { width: 300px; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); height: fit-content; }
+        h1, h2, h3 { margin-top: 0; }
+        .button { background: #ff4b4b; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin: 0.25rem 0; }
+        .button:hover { background: #e53e3e; }
+        .button.secondary { background: #f0f2f6; color: #262730; }
+        .success-button { background: #09ab3b; }
+        .search-box { width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; margin: 0.5rem 0; }
+        .synset-card { border: 1px solid #ddd; border-radius: 4px; padding: 1rem; margin: 0.5rem 0; }
+        .synset-id { font-weight: bold; color: #ff4b4b; }
+        .synset-def { color: #666; font-size: 0.9em; margin: 0.5rem 0; }
+        .link-button { background: none; border: none; color: #ff4b4b; text-decoration: underline; cursor: pointer; font-size: 0.9em; }
+        .metric { text-align: center; margin: 0.5rem 0; }
+        .metric-value { font-size: 1.5em; font-weight: bold; color: #ff4b4b; }
+        .metric-label { font-size: 0.8em; color: #666; }
+        .pair-display { background: #f8f9fa; border-left: 4px solid #09ab3b; padding: 1rem; margin: 0.5rem 0; border-radius: 4px; }
+        .flag { font-size: 1.2em; margin-right: 0.5rem; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 Serbian WordNet Synset Browser</h1>
+        <p>Browse Serbian synsets and pair them with English synsets for translation training.</p>
+    </div>
+    
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3>🔧 Controls</h3>
+            
+            <h4>📁 Load Synsets</h4>
+            <input type="file" style="margin: 0.5rem 0;">
+            <button class="button">Load Synsets</button>
+            
+            <h4>📝 Use Sample Data</h4>
+            <button class="success-button button">Load Sample Serbian Synsets</button>
+            <p style="font-size: 0.8em; color: #09ab3b;">✅ Loaded 3 sample synsets!</p>
+            
+            <h4>🔍 Search</h4>
+            <input type="text" class="search-box" placeholder="Search synsets..." value="ustanova">
+            <p><strong>Search Results:</strong></p>
+            <button class="link-button">ENG30-03574555-n: ustanova</button>
+            
+            <h4>🏷️ Filter by POS</h4>
+            <select class="search-box">
+                <option>All</option>
+                <option selected>n</option>
+                <option>v</option>
+                <option>a</option>
+                <option>r</option>
+            </select>
+            <p style="font-size: 0.9em;">3 synsets with POS 'n'</p>
+            
+            <h4>📋 Selected Pairs</h4>
+            <p>Selected pairs: <strong>1</strong></p>
+            <button class="button">📥 Export Pairs</button>
+            <button class="button secondary">🗑️ Clear All Pairs</button>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <h2>📖 Synset Details: ENG30-03574555-n</h2>
+            <button class="button secondary">← Back to List</button>
+            
+            <div style="display: flex; gap: 2rem; margin: 1rem 0;">
+                <div class="metric">
+                    <div class="metric-value">n</div>
+                    <div class="metric-label">Part of Speech</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">1</div>
+                    <div class="metric-label">BCS</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">yes</div>
+                    <div class="metric-label">Natural Language</div>
+                </div>
+            </div>
+            
+            <h3>🔤 Synonyms</h3>
+            <div class="synset-card">
+                <strong>Synonym 1: ustanova</strong><br>
+                <strong>Literal:</strong> ustanova<br>
+                <strong>Sense:</strong> 1y<br>
+                <strong>Note:</strong> N600
+            </div>
+            
+            <h3>📝 Definition</h3>
+            <p>zgrada u kojoj se nalazi organizaciona jedinica neke grane javnog poslovanja</p>
+            
+            <h3>🔗 Related Synsets</h3>
+            <div style="display: flex; gap: 1rem; align-items: center; margin: 0.5rem 0;">
+                <strong>hypernym</strong>
+                <span>ENG30-03297735-n</span>
+                <button class="button">→ View</button>
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center; margin: 0.5rem 0;">
+                <strong>hyponym</strong>
+                <span>ENG30-03907654-n</span>
+                <span style="color: #999;">(Not loaded)</span>
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center; margin: 0.5rem 0;">
+                <strong>hyponym</strong>
+                <span>ENG30-03528100-n</span>
+                <span style="color: #999;">(Not loaded)</span>
+            </div>
+            
+            <details style="margin: 1rem 0;">
+                <summary>ℹ️ Additional Information</summary>
+                <p><strong>SUMO:</strong> StationaryArtifact (+)</p>
+                <p><strong>Sentiment:</strong> Positive: 0.0, Negative: 0.0</p>
+                <p><strong>Domain:</strong> factotum</p>
+                <p><strong>Stamp:</strong> Cvetana 20.7.2006. 00.00.00</p>
+            </details>
+        </div>
+        
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <h3>🎯 Synset Pairing</h3>
+            
+            <h4><span class="flag">🇷🇸</span>Selected Serbian Synset</h4>
+            <p><strong>ID:</strong> ENG30-03574555-n</p>
+            <p><strong>Synonyms:</strong> ustanova</p>
+            <p><strong>Definition:</strong> zgrada u kojoj se nalazi organizaciona jedinica neke grane javnog poslovanja</p>
+            
+            <h4><span class="flag">🇺🇸</span>Linked English Synset</h4>
+            <p><strong>English ID:</strong> ENG30-03574555-n</p>
+            <p><strong>Definition:</strong> a building that houses an administrative unit of some government</p>
+            <p><strong>Lemmas:</strong> institution, establishment</p>
+            
+            <button class="success-button button">✅ Add to Pairs</button>
+            
+            <h4>📋 Selected Pairs</h4>
+            <div class="pair-display">
+                <strong>Pair 1: ENG30-03574555-n ↔ ENG30-03574555-n</strong><br><br>
+                <div style="display: flex; gap: 1rem;">
+                    <div style="flex: 1;">
+                        <strong><span class="flag">🇷🇸</span>Serbian:</strong><br>
+                        ID: ENG30-03574555-n<br>
+                        Synonyms: ustanova<br>
+                        Definition: zgrada u kojoj se nalazi...
+                    </div>
+                    <div style="flex: 1;">
+                        <strong><span class="flag">🇺🇸</span>English:</strong><br>
+                        ID: ENG30-03574555-n<br>
+                        Lemmas: institution, establishment<br>
+                        Definition: a building that houses...
+                    </div>
+                </div>
+                <button class="button secondary" style="margin-top: 0.5rem;">🗑️ Remove Pair 1</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
