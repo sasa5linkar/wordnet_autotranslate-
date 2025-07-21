@@ -147,11 +147,13 @@ class SerbianWordnetPipeline:
     # ------------------------------------------------------------------
     def run(self, output_xml: Path) -> None:
         """Run the end-to-end generation and export process."""
-        english = self.load_english_synsets()
-        generated: List[SerbianSynset] = []
-        for syn in english:
-            srp = self.generate_serbian_synset(syn)
-            if self.judge_synset(syn, srp):
-                generated.append(srp)
-        self.export_to_xml(generated, output_xml)
-
+        try:
+            english = self.load_english_synsets()
+            generated: List[SerbianSynset] = []
+            for syn in english:
+                srp = self.generate_serbian_synset(syn)
+                if self.judge_synset(syn, srp):
+                    generated.append(srp)
+            self.export_to_xml(generated, output_xml)
+        except Exception as e:
+            raise RuntimeError(f"Pipeline execution failed: {e}") from e
