@@ -57,6 +57,19 @@ target_synsets = pipeline.load_target_synsets()
 translated_synsets = pipeline.translate(english_synsets)
 ```
 
+### Serbian WordNet Expansion
+
+For Serbian-specific experiments, use `SerbianWordnetPipeline` which bundles
+English synset loading, placeholder generation and XML export:
+
+```python
+from pathlib import Path
+from wordnet_autotranslate import SerbianWordnetPipeline
+
+pipeline = SerbianWordnetPipeline(pilot_limit=100)
+pipeline.run(Path("./output/srpwn_generated.xml"))
+```
+
 ### Using Examples
 
 Place your target language examples in the `examples/` folder:
