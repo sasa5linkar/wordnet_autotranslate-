@@ -86,7 +86,7 @@ class SerbianWordnetPipeline:
         if DSPY_AVAILABLE:
             # In a real scenario, DSPy would be used to craft a prompt and call
             # the underlying LLM. This placeholder shows the intended API usage.
-            _ = dspy.Example  # reference to keep linters quiet
+            self._placeholder_dspy_usage()
             # TODO: implement DSPy generation logic
 
         return SerbianSynset(
