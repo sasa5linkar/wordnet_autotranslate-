@@ -149,4 +149,4 @@ To extend the application:
 
 ## License
 
-This application is part of the WordNet Auto-Translation project and follows the same MIT license.
+This application is part of the WordNet Auto-Translation project and follows the same CC0 1.0 Universal License (Public Domain).

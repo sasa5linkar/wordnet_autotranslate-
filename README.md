@@ -164,7 +164,7 @@ This project supports expansion to any language. Current examples include:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the CC0 1.0 Universal License (Public Domain) - see the LICENSE file for details.
 
 ## Acknowledgments
 
