@@ -94,7 +94,7 @@ class SerbianWordnetPipeline:
             pos=str(syn.get("pos")),
             literals=literals,
             gloss=gloss,
-            examples=[f"Primer upotrebe za {literals[0]}."],
+            examples=[f"Primer upotrebe za {literals[0]}." if literals else "Primer upotrebe nije dostupan."],
             ilr=[h for h in syn.get("hypernyms", []) if isinstance(h, str)],
         )
 
