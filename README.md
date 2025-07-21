@@ -27,13 +27,19 @@ git clone https://github.com/sasa5linkar/wordnet_autotranslate-.git
 cd wordnet_autotranslate-
 ```
 
-2. Install dependencies:
+2. Install the package with dependencies:
 ```bash
-pip install -r requirements.txt
+# Basic installation
+pip install -e .
+
+# Or with optional dependencies
+pip install -e ".[notebooks,gui,dev]"
 ```
 
 3. Set up Jupyter environment (optional):
 ```bash
+# Install with notebook dependencies
+pip install -e ".[notebooks]"
 jupyter notebook
 ```
 
@@ -132,8 +138,7 @@ wordnet_autotranslate/
 ├── tests/                 # Unit tests
 ├── launch_gui.py          # GUI launcher script
 ├── GUI_README.md          # GUI documentation
-├── requirements.txt       # Python dependencies
-├── requirements-gui.txt   # GUI-specific dependencies
+├── pyproject.toml         # Project configuration and dependencies
 └── README.md             # This file
 ```
 
