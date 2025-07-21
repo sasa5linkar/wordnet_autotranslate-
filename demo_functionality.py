@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 # Add src to path for importing
+# Note: Modifying sys.path is done here for demonstration purposes only.
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from wordnet_autotranslate.models.xml_synset_parser import XmlSynsetParser, Synset
