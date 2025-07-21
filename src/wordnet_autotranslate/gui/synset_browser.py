@@ -11,13 +11,9 @@ import tempfile
 import sys
 import os
 
-# Add src to path for importing
-sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
-
-from wordnet_autotranslate.models.xml_synset_parser import XmlSynsetParser, Synset
-from wordnet_autotranslate.models.synset_handler import SynsetHandler
-
-
+# Use relative imports for accessing models
+from ..models.xml_synset_parser import XmlSynsetParser, Synset
+from ..models.synset_handler import SynsetHandler
 class SynsetBrowserApp:
     """Main Streamlit application for synset browsing."""
     
