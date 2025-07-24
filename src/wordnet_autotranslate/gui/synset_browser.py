@@ -722,10 +722,22 @@ class SynsetBrowserApp:
                                     'serbian_synonyms': [s.get('literal', '') for s in serbian_synset.synonyms],
                                     'serbian_definition': serbian_synset.definition,
                                     'serbian_usage': serbian_synset.usage,
+                                    'serbian_pos': serbian_synset.pos,
+                                    'serbian_domain': serbian_synset.domain,
+                                    'serbian_relations': self._extract_serbian_relations(serbian_synset),
                                     'english_id': english_id,
                                     'english_definition': english_synset.get('definition', ''),
                                     'english_lemmas': english_synset.get('lemmas', []),
-                                    'english_examples': english_synset.get('examples', [])
+                                    'english_examples': english_synset.get('examples', []),
+                                    'english_pos': english_synset.get('pos', ''),
+                                    'english_name': english_synset.get('name', ''),
+                                    'english_relations': english_synset.get('relations', {}),
+                                    'pairing_metadata': {
+                                        'pair_type': 'automatic',
+                                        'quality_score': quality_score,
+                                        'translator': stamp_parts[0] if serbian_synset.stamp and serbian_synset.stamp.split() else 'Unknown',
+                                        'translation_date': ' '.join(stamp_parts[1:]) if serbian_synset.stamp and len(serbian_synset.stamp.split()) > 1 else 'Unknown'
+                                    }
                                 }
                                 
                                 # Check if pair already exists
@@ -770,10 +782,22 @@ class SynsetBrowserApp:
                                             'serbian_synonyms': [s.get('literal', '') for s in serbian_synset.synonyms],
                                             'serbian_definition': serbian_synset.definition,
                                             'serbian_usage': serbian_synset.usage,
+                                            'serbian_pos': serbian_synset.pos,
+                                            'serbian_domain': serbian_synset.domain,
+                                            'serbian_relations': self._extract_serbian_relations(serbian_synset),
                                             'english_id': eng_synset['name'],
                                             'english_definition': eng_synset['definition'],
                                             'english_lemmas': eng_synset['lemmas'],
-                                            'english_examples': eng_synset.get('examples', [])
+                                            'english_examples': eng_synset.get('examples', []),
+                                            'english_pos': eng_synset.get('pos', ''),
+                                            'english_name': eng_synset['name'],
+                                            'english_relations': eng_synset.get('relations', {}),
+                                            'pairing_metadata': {
+                                                'pair_type': 'manual',
+                                                'quality_score': quality_score,
+                                                'translator': stamp_parts[0] if serbian_synset.stamp and serbian_synset.stamp.split() else 'Unknown',
+                                                'translation_date': ' '.join(stamp_parts[1:]) if serbian_synset.stamp and len(serbian_synset.stamp.split()) > 1 else 'Unknown'
+                                            }
                                         }
                                         
                                         existing = any(p['serbian_id'] == serbian_synset.id for p in st.session_state.selected_pairs)
@@ -794,23 +818,103 @@ class SynsetBrowserApp:
             
             for i, pair in enumerate(st.session_state.selected_pairs):
                 with st.expander(f"Pair {i+1}: {pair['serbian_id']} ↔ {pair['english_id']}"):
+                    # Header with metadata
+                    metadata = pair.get('pairing_metadata', {})
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.info(f"**Type:** {metadata.get('pair_type', 'unknown').title()}")
+                    with col2:
+                        st.info(f"**Quality:** {metadata.get('quality_score', 0):.1f}/2.5")
+                    with col3:
+                        st.info(f"**Translator:** {metadata.get('translator', 'Unknown')}")
+                    
+                    # Main content in two columns
                     col1, col2 = st.columns(2)
                     
                     with col1:
                         st.write("**🇷🇸 Serbian:**")
-                        st.write(f"ID: {pair['serbian_id']}")
-                        st.write(f"Synonyms: {', '.join(pair['serbian_synonyms'])}")
-                        st.write(f"Definition: {pair['serbian_definition']}")
+                        st.write(f"**ID:** {pair['serbian_id']}")
+                        st.write(f"**POS:** {pair.get('serbian_pos', 'N/A')}")
+                        st.write(f"**Domain:** {pair.get('serbian_domain', 'N/A')}")
+                        st.write(f"**Synonyms:** {', '.join(pair['serbian_synonyms'])}")
+                        st.write(f"**Definition:** {pair['serbian_definition']}")
                         if pair.get('serbian_usage'):
-                            st.write(f"Usage: *{pair['serbian_usage']}*")
+                            st.write(f"**Usage:** *{pair['serbian_usage']}*")
+                        
+                        # Serbian Relations Summary
+                        serbian_relations = pair.get('serbian_relations', {})
+                        if serbian_relations.get('total_relations', 0) > 0:
+                            st.write(f"**Relations:** {serbian_relations['total_relations']} total")
+                            relations_by_type = serbian_relations.get('relations_by_type', {})
+                            for rel_type, relations in relations_by_type.items():
+                                available_count = sum(1 for r in relations if r.get('available', False))
+                                st.write(f"  • {rel_type}: {available_count}/{len(relations)} available")
+                        else:
+                            st.write("**Relations:** None")
                     
                     with col2:
                         st.write("**🇺🇸 English:**")
-                        st.write(f"ID: {pair['english_id']}")
-                        st.write(f"Lemmas: {', '.join(pair['english_lemmas'])}")
-                        st.write(f"Definition: {pair['english_definition']}")
+                        st.write(f"**ID:** {pair['english_id']}")
+                        st.write(f"**Name:** {pair.get('english_name', 'N/A')}")
+                        st.write(f"**POS:** {pair.get('english_pos', 'N/A')}")
+                        st.write(f"**Lemmas:** {', '.join(pair['english_lemmas'])}")
+                        st.write(f"**Definition:** {pair['english_definition']}")
                         if pair.get('english_examples'):
-                            st.write(f"Examples: {'; '.join(pair['english_examples'])}")
+                            st.write(f"**Examples:** {'; '.join(pair['english_examples'])}")
+                        
+                        # English Relations Summary
+                        english_relations = pair.get('english_relations', {})
+                        if english_relations:
+                            total_eng_relations = 0
+                            for rel_type, rel_list in english_relations.items():
+                                if rel_type != 'lemma_relations' and rel_list:
+                                    total_eng_relations += len(rel_list)
+                            
+                            # Count lemma relations
+                            if english_relations.get('lemma_relations'):
+                                for lemma_data in english_relations['lemma_relations'].values():
+                                    for rel_list in lemma_data.values():
+                                        total_eng_relations += len(rel_list)
+                            
+                            st.write(f"**Princeton WordNet Relations:** {total_eng_relations} total")
+                            
+                            # Show relation types with counts
+                            for rel_type, rel_list in english_relations.items():
+                                if rel_type != 'lemma_relations' and rel_list:
+                                    st.write(f"  • {rel_type.replace('_', ' ').title()}: {len(rel_list)}")
+                        else:
+                            st.write("**Princeton WordNet Relations:** None")
+                    
+                    # Expandable sections for detailed relations
+                    if serbian_relations.get('available_relations') or english_relations:
+                        col1, col2 = st.columns(2)
+                        
+                        with col1:
+                            if serbian_relations.get('available_relations'):
+                                with st.expander(f"🔗 Serbian Relations Details ({len(serbian_relations['available_relations'])})"):
+                                    for rel in serbian_relations['available_relations']:
+                                        st.write(f"**{rel['type'].title()}:** {rel['target_id']}")
+                                        if rel.get('target_synonyms'):
+                                            st.write(f"  Synonyms: {', '.join(rel['target_synonyms'][:3])}")
+                                        if rel.get('target_definition'):
+                                            st.write(f"  Definition: {rel['target_definition'][:100]}...")
+                                        st.write("---")
+                        
+                        with col2:
+                            if english_relations:
+                                with st.expander(f"🔗 English Relations Details ({sum(len(v) for k, v in english_relations.items() if k != 'lemma_relations' and v)})"):
+                                    for rel_type, rel_list in english_relations.items():
+                                        if rel_type != 'lemma_relations' and rel_list:
+                                            st.write(f"**{rel_type.replace('_', ' ').title()}:**")
+                                            for rel in rel_list[:3]:  # Show first 3
+                                                if isinstance(rel, dict):
+                                                    st.write(f"  • {rel.get('name', 'N/A')}")
+                                                    st.write(f"    {rel.get('definition', 'N/A')[:80]}...")
+                                                else:
+                                                    st.write(f"  • {rel}")
+                                            if len(rel_list) > 3:
+                                                st.write(f"  ... and {len(rel_list) - 3} more")
+                                            st.write("---")
                     
                     if st.button(f"🗑️ Remove Pair {i+1}", key=f"remove_{i}"):
                         st.session_state.selected_pairs.pop(i)
@@ -882,6 +986,63 @@ class SynsetBrowserApp:
             return '✅'
         else:
             return '❌'
+    
+    def _extract_serbian_relations(self, synset: 'Synset') -> Dict:
+        """
+        Extract Serbian WordNet relations in a format useful for translators.
+        
+        Args:
+            synset: Serbian synset object
+            
+        Returns:
+            Dictionary with relation information for translation context
+        """
+        relations_info = {
+            'total_relations': len(synset.ilr) if synset.ilr else 0,
+            'relations_by_type': {},
+            'available_relations': [],
+            'external_relations': []
+        }
+        
+        if not synset.ilr:
+            return relations_info
+        
+        # Ensure parser is synced
+        self._ensure_parser_synced()
+        
+        # Group relations by type and extract useful information
+        for relation in synset.ilr:
+            rel_type = relation['type']
+            target_id = relation['target']
+            
+            if rel_type not in relations_info['relations_by_type']:
+                relations_info['relations_by_type'][rel_type] = []
+            
+            # Try to get target synset information
+            target_synset = self.parser.get_synset_by_id(target_id)
+            
+            relation_info = {
+                'type': rel_type,
+                'target_id': target_id,
+                'available': target_synset is not None
+            }
+            
+            if target_synset:
+                # Add detailed information for available relations
+                relation_info.update({
+                    'target_synonyms': [s.get('literal', '') for s in target_synset.synonyms] if target_synset.synonyms else [],
+                    'target_definition': target_synset.definition,
+                    'target_usage': target_synset.usage,
+                    'target_pos': target_synset.pos,
+                    'target_domain': target_synset.domain
+                })
+                relations_info['available_relations'].append(relation_info)
+            else:
+                relations_info['external_relations'].append(relation_info)
+            
+            relations_info['relations_by_type'][rel_type].append(relation_info)
+        
+        return relations_info
     
     def _display_english_relations(self, english_synset: Dict):
         """Display Princeton WordNet relations for an English synset."""
@@ -975,16 +1136,20 @@ class SynsetBrowserApp:
                 'metadata': {
                     'total_pairs': len(st.session_state.selected_pairs),
                     'created_by': 'Serbian WordNet Synset Browser',
-                    'format_version': '1.0'
+                    'format_version': '2.0',  # Updated version with relations
+                    'export_timestamp': pd.Timestamp.now().isoformat(),
+                    'includes_relations': True,
+                    'includes_metadata': True,
+                    'description': 'Enhanced export with Serbian and English relations for translation context'
                 }
             }
             
             json_str = json.dumps(data, indent=2, ensure_ascii=False)
             
             st.download_button(
-                label="📥 Download Pairs (JSON)",
+                label="📥 Download Enhanced Pairs (JSON)",
                 data=json_str,
-                file_name="serbian_english_synset_pairs.json",
+                file_name="serbian_english_synset_pairs_enhanced.json",
                 mime="application/json"
             )
     
