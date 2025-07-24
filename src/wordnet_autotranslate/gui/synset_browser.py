@@ -1,15 +1,35 @@
 """
 Streamlit GUI for browsing Serbian WordNet synsets and pairing with English synsets.
+
+This module provides a comprehensive interface for:
+- Loading and browsing Serbian WordNet synsets from XML files
+- Searching and filtering synsets by various criteria
+- Viewing detailed synset information including relations and quality metrics
+- Pairing Serbian synsets with English WordNet synsets
+- Exporting paired data for machine learning applications
+
+The application follows best practices including:
+- Modular design with small, focused methods
+- Constants for magic numbers and strings
+- Proper error handling and logging
+- Session state management with named constants
+- Type hints and comprehensive documentation
+
+Author: Serbian WordNet Team
+Version: 2.0 (Refactored)
 """
 
-import streamlit as st
-import pandas as pd
-from typing import List, Dict, Optional, Set
-from pathlib import Path
 import json
-import tempfile
-import sys
+import logging
 import os
+import re
+import sys
+import tempfile
+from pathlib import Path
+from typing import Dict, List, Optional
+
+import pandas as pd
+import streamlit as st
 
 # Add the src directory to the Python path for imports
 current_dir = Path(__file__).parent
@@ -25,6 +45,28 @@ except ImportError:
     # Fallback for when running as script
     from wordnet_autotranslate.models.xml_synset_parser import XmlSynsetParser, Synset
     from wordnet_autotranslate.models.synset_handler import SynsetHandler
+
+# Constants
+SYNSETS_PER_PAGE = 50
+SEARCH_LIMIT = 10
+QUALITY_SCORE_HIGH = 2.0
+QUALITY_SCORE_MEDIUM = 1.0
+MAX_DEFINITION_LENGTH = 100
+MAX_DISPLAY_TEXT_LENGTH = 50
+MAX_DISPLAYED_SYNONYMS = 2
+MAX_DISPLAYED_RELATIONS = 3
+EXPORT_FORMAT_VERSION = "2.0"
+
+# Session state keys
+SESSION_CURRENT_SYNSET = 'current_synset'
+SESSION_SELECTED_PAIRS = 'selected_pairs'
+SESSION_LOADED_SYNSETS = 'loaded_synsets'
+SESSION_CURRENT_INDEX = 'current_synset_index'
+SESSION_LIST_PAGE = 'synset_list_page'
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 class SynsetBrowserApp:
     """Main Streamlit application for synset browsing."""
     
@@ -35,16 +77,21 @@ class SynsetBrowserApp:
         self.selected_pairs = []  # List of (serbian_synset, english_synset) pairs
         
         # Initialize session state
-        if 'current_synset' not in st.session_state:
-            st.session_state.current_synset = None
-        if 'selected_pairs' not in st.session_state:
-            st.session_state.selected_pairs = []
-        if 'loaded_synsets' not in st.session_state:
-            st.session_state.loaded_synsets = []
-        if 'current_synset_index' not in st.session_state:
-            st.session_state.current_synset_index = 0
-        if 'synset_list_page' not in st.session_state:
-            st.session_state.synset_list_page = 0
+        self._init_session_state()
+    
+    def _init_session_state(self):
+        """Initialize session state variables."""
+        session_defaults = {
+            SESSION_CURRENT_SYNSET: None,
+            SESSION_SELECTED_PAIRS: [],
+            SESSION_LOADED_SYNSETS: [],
+            SESSION_CURRENT_INDEX: 0,
+            SESSION_LIST_PAGE: 0,
+        }
+        
+        for key, default_value in session_defaults.items():
+            if key not in st.session_state:
+                st.session_state[key] = default_value
     
     def run(self):
         """Run the main application."""
@@ -62,21 +109,24 @@ class SynsetBrowserApp:
             self._render_sidebar()
         
         # Main content area
-        if st.session_state.loaded_synsets:
+        if st.session_state[SESSION_LOADED_SYNSETS]:
             self._render_main_content()
         else:
             self._render_welcome_screen()
     
     def _ensure_parser_synced(self):
         """Ensure parser's internal dictionary is synced with session state."""
-        if (st.session_state.loaded_synsets and 
-            len(self.parser.synsets) != len(st.session_state.loaded_synsets)):
-            
-            print(f"DEBUG: Syncing parser - session has {len(st.session_state.loaded_synsets)}, parser has {len(self.parser.synsets)}")
+        loaded_count = len(st.session_state[SESSION_LOADED_SYNSETS])
+        parser_count = len(self.parser.synsets)
+        
+        if st.session_state[SESSION_LOADED_SYNSETS] and parser_count != loaded_count:
+            logger.info(
+                f"Syncing parser - session has {loaded_count}, parser has {parser_count}"
+            )
             
             # Rebuild parser's internal dictionaries from session state
             self.parser.clear()
-            for synset in st.session_state.loaded_synsets:
+            for synset in st.session_state[SESSION_LOADED_SYNSETS]:
                 self.parser.synsets[synset.id] = synset
                 
                 # Rebuild English links
@@ -86,7 +136,7 @@ class SynsetBrowserApp:
                         self.parser.english_links[english_id] = []
                     self.parser.english_links[english_id].append(synset)
             
-            print(f"DEBUG: Parser synced - now has {len(self.parser.synsets)} synsets")
+            logger.info(f"Parser synced - now has {len(self.parser.synsets)} synsets")
     
     def _render_sidebar(self):
         """Render the sidebar with navigation and controls."""
@@ -94,11 +144,69 @@ class SynsetBrowserApp:
         self._ensure_parser_synced()
         
         st.header("🔧 Controls")
-        """Render the sidebar with navigation and controls."""
-        st.header("🔧 Controls")
         
-        # File upload section
-        st.subheader("📁 Load Synsets")
+        # File loading sections
+        self._render_file_upload_section()
+        self._render_sample_data_section()
+        self._render_local_file_section()
+        
+        # Search and filtering sections
+        if st.session_state[SESSION_LOADED_SYNSETS]:
+            self._render_search_section()
+            self._render_pos_filter_section()
+        
+        # Selected pairs management
+        self._render_pairs_management_section()
+    
+    def _load_synsets_from_content(self, content: str, source_name: str) -> bool:
+        """
+        Load synsets from XML content with error handling.
+        
+        Args:
+            content: XML content as string
+            source_name: Name of the source for error messages
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            self.parser.clear()
+            synsets = self.parser.parse_xml_string(content)
+            st.session_state[SESSION_LOADED_SYNSETS] = synsets
+            st.success(f"Loaded {len(synsets)} synsets from {source_name}!")
+            st.rerun()
+            return True
+        except Exception as e:
+            logger.error(f"Error loading {source_name}: {e}")
+            st.error(f"Error loading {source_name}: {e}")
+            return False
+    
+    def _load_synsets_from_file(self, file_path: str, source_name: str) -> bool:
+        """
+        Load synsets from XML file with error handling.
+        
+        Args:
+            file_path: Path to XML file
+            source_name: Name of the source for error messages
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            self.parser.clear()
+            synsets = self.parser.parse_xml_file(file_path)
+            st.session_state[SESSION_LOADED_SYNSETS] = synsets
+            st.success(f"Loaded {len(synsets)} synsets from {source_name}!")
+            st.rerun()
+            return True
+        except Exception as e:
+            logger.error(f"Error loading {source_name}: {e}")
+            st.error(f"Error loading {source_name}: {e}")
+            return False
+    
+    def _render_file_upload_section(self):
+        """Render the file upload section."""
+        st.subheader("� Load Synsets")
         uploaded_file = st.file_uploader(
             "Upload XML file with Serbian synsets",
             type=['xml'],
@@ -108,33 +216,19 @@ class SynsetBrowserApp:
         if uploaded_file is not None:
             if st.button("Load Synsets"):
                 with st.spinner("Parsing XML file..."):
-                    try:
-                        # Clear parser before loading new data
-                        self.parser.clear()
-                        content = uploaded_file.read().decode('utf-8')
-                        synsets = self.parser.parse_xml_string(content)
-                        st.session_state.loaded_synsets = synsets
-                        st.success(f"Loaded {len(synsets)} synsets!")
-                        st.rerun()
-                    except Exception as e:
-                        st.error(f"Error loading file: {e}")
-        
-        # Sample data option
+                    content = uploaded_file.read().decode('utf-8')
+                    self._load_synsets_from_content(content, "uploaded file")
+    
+    def _render_sample_data_section(self):
+        """Render the sample data section."""
         st.subheader("📝 Use Sample Data")
         if st.button("Load Sample Serbian Synsets"):
             sample_xml = self._get_sample_xml()
             with st.spinner("Loading sample data..."):
-                try:
-                    # Clear parser before loading new data
-                    self.parser.clear()
-                    synsets = self.parser.parse_xml_string(sample_xml)
-                    st.session_state.loaded_synsets = synsets
-                    st.success(f"Loaded {len(synsets)} sample synsets!")
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"Error loading sample data: {e}")
-        
-        # Local XML file option
+                self._load_synsets_from_content(sample_xml, "sample data")
+    
+    def _render_local_file_section(self):
+        """Render the local file loading section."""
         st.subheader("📁 Load Local XML File")
         st.write("Load XML file from your local data directory:")
         data_dir = Path(__file__).parent.parent.parent.parent / "data"
@@ -150,63 +244,73 @@ class SynsetBrowserApp:
                 
                 if st.button("Load Selected XML File"):
                     with st.spinner(f"Loading {selected_file.name}..."):
-                        try:
-                            # Clear parser before loading new data
-                            self.parser.clear()
-                            synsets = self.parser.parse_xml_file(str(selected_file))
-                            st.session_state.loaded_synsets = synsets
-                            st.success(f"Loaded {len(synsets)} synsets from {selected_file.name}!")
-                            st.rerun()
-                        except Exception as e:
-                            st.error(f"Error loading {selected_file.name}: {e}")
+                        self._load_synsets_from_file(str(selected_file), selected_file.name)
             else:
                 st.info("No XML files found in data directory. Place your XML files in the 'data' folder.")
         else:
             st.info("Data directory not found. Create a 'data' folder in the project root and place your XML files there.")
+    
+    def _render_search_section(self):
+        """Render the search section."""
+        st.subheader("🔍 Search")
+        search_query = st.text_input("Search synsets", placeholder="Enter search term...")
         
-        # Search and navigation
-        if st.session_state.loaded_synsets:
-            st.subheader("� Search")
-            search_query = st.text_input("Search synsets", placeholder="Enter search term...")
-            
-            if search_query:
-                search_results = self.parser.search_synsets(search_query, limit=10)
-                if search_results:
-                    st.write("Search Results:")
-                    for i, synset in enumerate(search_results):
-                        display_text = f"{synset.id}: {synset.synonyms[0]['literal'] if synset.synonyms else 'No synonyms'}"
-                        if st.button(display_text, key=f"search_{i}"):
-                            st.session_state.current_synset = synset
-                            # Find the index of this synset in the loaded_synsets
-                            try:
-                                st.session_state.current_synset_index = st.session_state.loaded_synsets.index(synset)
-                            except ValueError:
-                                st.session_state.current_synset_index = 0
-                            st.rerun()
-                else:
-                    st.write("No results found")
-            
-            # Part of speech filter
-            st.subheader("🏷️ Filter by POS")
-            pos_options = list(set(s.pos for s in st.session_state.loaded_synsets))
-            selected_pos = st.selectbox("Part of Speech", ["All"] + sorted(pos_options))
-            
-            if selected_pos != "All":
-                filtered_synsets = [s for s in st.session_state.loaded_synsets if s.pos == selected_pos]
-                st.write(f"{len(filtered_synsets)} synsets with POS '{selected_pos}'")
+        if search_query:
+            search_results = self.parser.search_synsets(search_query, limit=SEARCH_LIMIT)
+            if search_results:
+                st.write("Search Results:")
+                for i, synset in enumerate(search_results):
+                    display_text = self._get_synset_display_text(synset)
+                    if st.button(display_text, key=f"search_{i}"):
+                        self._navigate_to_synset(synset)
+            else:
+                st.write("No results found")
+    
+    def _render_pos_filter_section(self):
+        """Render the part-of-speech filter section."""
+        st.subheader("🏷️ Filter by POS")
+        pos_options = list(set(s.pos for s in st.session_state[SESSION_LOADED_SYNSETS]))
+        selected_pos = st.selectbox("Part of Speech", ["All"] + sorted(pos_options))
         
-        # Selected pairs management
+        if selected_pos != "All":
+            filtered_synsets = [
+                s for s in st.session_state[SESSION_LOADED_SYNSETS] 
+                if s.pos == selected_pos
+            ]
+            st.write(f"{len(filtered_synsets)} synsets with POS '{selected_pos}'")
+    
+    def _render_pairs_management_section(self):
+        """Render the selected pairs management section."""
         st.subheader("📋 Selected Pairs")
-        st.write(f"Selected pairs: {len(st.session_state.selected_pairs)}")
+        st.write(f"Selected pairs: {len(st.session_state[SESSION_SELECTED_PAIRS])}")
         
-        if st.session_state.selected_pairs:
+        if st.session_state[SESSION_SELECTED_PAIRS]:
             if st.button("📥 Export Pairs"):
                 self._export_pairs()
             
             if st.button("🗑️ Clear All Pairs"):
-                st.session_state.selected_pairs = []
+                st.session_state[SESSION_SELECTED_PAIRS] = []
                 st.success("All pairs cleared!")
                 st.rerun()
+    
+    def _get_synset_display_text(self, synset: Synset) -> str:
+        """Get display text for a synset."""
+        if synset.synonyms:
+            synonym = synset.synonyms[0]['literal']
+        else:
+            synonym = 'No synonyms'
+        return f"{synset.id}: {synonym}"
+    
+    def _navigate_to_synset(self, synset: Synset):
+        """Navigate to a specific synset."""
+        st.session_state[SESSION_CURRENT_SYNSET] = synset
+        # Find the index of this synset in the loaded_synsets
+        try:
+            index = st.session_state[SESSION_LOADED_SYNSETS].index(synset)
+            st.session_state[SESSION_CURRENT_INDEX] = index
+        except ValueError:
+            st.session_state[SESSION_CURRENT_INDEX] = 0
+        st.rerun()
     
     def _render_welcome_screen(self):
         """Render the welcome screen when no synsets are loaded."""
@@ -274,8 +378,8 @@ class SynsetBrowserApp:
         st.header("🔍 Browse Synsets")
         
         # Display current synset or synset list
-        if st.session_state.current_synset:
-            self._render_synset_details(st.session_state.current_synset)
+        if st.session_state[SESSION_CURRENT_SYNSET]:
+            self._render_synset_details(st.session_state[SESSION_CURRENT_SYNSET])
         else:
             self._render_synset_list()
     
@@ -284,92 +388,107 @@ class SynsetBrowserApp:
         st.subheader("📋 All Synsets")
         
         # Show total count
-        total_synsets = len(st.session_state.loaded_synsets)
+        total_synsets = len(st.session_state[SESSION_LOADED_SYNSETS])
         st.write(f"Total loaded synsets: {total_synsets}")
         
         if total_synsets == 0:
             return
         
         # Pagination settings
-        synsets_per_page = 50
-        total_pages = (total_synsets + synsets_per_page - 1) // synsets_per_page
-        current_page = st.session_state.synset_list_page
+        total_pages = (total_synsets + SYNSETS_PER_PAGE - 1) // SYNSETS_PER_PAGE
+        current_page = st.session_state[SESSION_LIST_PAGE]
         
         # Ensure current page is valid
         if current_page >= total_pages:
-            st.session_state.synset_list_page = 0
+            st.session_state[SESSION_LIST_PAGE] = 0
             current_page = 0
         
         # Calculate range for current page
-        start_idx = current_page * synsets_per_page
-        end_idx = min(start_idx + synsets_per_page, total_synsets)
+        start_idx = current_page * SYNSETS_PER_PAGE
+        end_idx = min(start_idx + SYNSETS_PER_PAGE, total_synsets)
         
-        # Pagination controls
+        # Render pagination controls
+        self._render_pagination_controls(current_page, total_pages, start_idx, end_idx, total_synsets)
+        
+        # Create and display synset table
+        self._render_synset_table(start_idx, end_idx)
+    
+    def _render_pagination_controls(self, current_page: int, total_pages: int, 
+                                   start_idx: int, end_idx: int, total_synsets: int):
+        """Render pagination controls."""
         col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])
         
         with col1:
             if st.button("⏮️ First", disabled=(current_page == 0)):
-                st.session_state.synset_list_page = 0
+                st.session_state[SESSION_LIST_PAGE] = 0
                 st.rerun()
         
         with col2:
             if st.button("◀️ Previous", disabled=(current_page == 0)):
-                st.session_state.synset_list_page = current_page - 1
+                st.session_state[SESSION_LIST_PAGE] = current_page - 1
                 st.rerun()
         
         with col3:
-            st.write(f"Page {current_page + 1} of {total_pages} (showing {start_idx + 1}-{end_idx} of {total_synsets})")
+            st.write(f"Page {current_page + 1} of {total_pages} "
+                    f"(showing {start_idx + 1}-{end_idx} of {total_synsets})")
         
         with col4:
             if st.button("Next ▶️", disabled=(current_page >= total_pages - 1)):
-                st.session_state.synset_list_page = current_page + 1
+                st.session_state[SESSION_LIST_PAGE] = current_page + 1
                 st.rerun()
         
         with col5:
             if st.button("Last ⏭️", disabled=(current_page >= total_pages - 1)):
-                st.session_state.synset_list_page = total_pages - 1
+                st.session_state[SESSION_LIST_PAGE] = total_pages - 1
                 st.rerun()
-        
+    
+    def _render_synset_table(self, start_idx: int, end_idx: int):
+        """Render the synset table for the current page."""
         # Create a DataFrame for current page
         synset_data = []
-        for i, synset in enumerate(st.session_state.loaded_synsets[start_idx:end_idx]):
+        for i, synset in enumerate(st.session_state[SESSION_LOADED_SYNSETS][start_idx:end_idx]):
             usage_indicator = " 💡" if synset.usage else ""
+            definition = synset.definition
+            if len(definition) > MAX_DEFINITION_LENGTH:
+                definition = definition[:MAX_DEFINITION_LENGTH] + "..."
+            
             synset_data.append({
                 'Index': start_idx + i,
                 'ID': synset.id,
                 'POS': synset.pos,
                 'Synonyms': ', '.join([s.get('literal', '') for s in synset.synonyms]),
-                'Definition': synset.definition[:100] + "..." if len(synset.definition) > 100 else synset.definition,
+                'Definition': definition,
                 'Usage': "Yes" + usage_indicator if synset.usage else "No"
             })
         
-        df = pd.DataFrame(synset_data)
-        
-        # Quick selection dropdown for current page
         if synset_data:
+            # Quick selection dropdown for current page
             selected_idx = st.selectbox(
                 "Select a synset to view details:",
                 range(len(synset_data)),
-                format_func=lambda x: f"{synset_data[x]['ID']}: {synset_data[x]['Synonyms'][:50]}..."
+                format_func=lambda x: f"{synset_data[x]['ID']}: {synset_data[x]['Synonyms'][:MAX_DISPLAY_TEXT_LENGTH]}..."
             )
             
             col1, col2 = st.columns([1, 3])
             with col1:
                 if st.button("👁️ View Selected Synset"):
                     global_idx = start_idx + selected_idx
-                    st.session_state.current_synset = st.session_state.loaded_synsets[global_idx]
-                    st.session_state.current_synset_index = global_idx
-                    st.rerun()
+                    self._navigate_to_synset_by_index(global_idx)
             
             with col2:
                 if st.button("🚀 Start Sequential Review from Selected"):
                     global_idx = start_idx + selected_idx
-                    st.session_state.current_synset = st.session_state.loaded_synsets[global_idx]
-                    st.session_state.current_synset_index = global_idx
-                    st.rerun()
-        
-        # Display the table
-        st.dataframe(df, use_container_width=True)
+                    self._navigate_to_synset_by_index(global_idx)
+            
+            # Display the table
+            df = pd.DataFrame(synset_data)
+            st.dataframe(df, use_container_width=True)
+    
+    def _navigate_to_synset_by_index(self, index: int):
+        """Navigate to a synset by its index."""
+        st.session_state[SESSION_CURRENT_SYNSET] = st.session_state[SESSION_LOADED_SYNSETS][index]
+        st.session_state[SESSION_CURRENT_INDEX] = index
+        st.rerun()
     
     def _render_synset_details(self, synset: Synset):
         """Render detailed view of a synset with navigation."""
@@ -379,45 +498,55 @@ class SynsetBrowserApp:
         st.subheader(f"📖 Synset Details: {synset.id}")
         
         # Navigation controls
-        total_synsets = len(st.session_state.loaded_synsets)
-        current_idx = st.session_state.current_synset_index
+        self._render_synset_navigation()
+        
+        # Quick jump functionality
+        self._render_quick_jump()
+        
+        # Synset information sections
+        self._render_synset_basic_info(synset)
+        self._render_synset_quality_info(synset)
+        self._render_synset_content(synset)
+        self._render_synset_relations(synset)
+        self._render_synset_technical_info(synset)
+    
+    def _render_synset_navigation(self):
+        """Render navigation controls for synset browsing."""
+        total_synsets = len(st.session_state[SESSION_LOADED_SYNSETS])
+        current_idx = st.session_state[SESSION_CURRENT_INDEX]
         
         # Navigation buttons
         col1, col2, col3, col4, col5, col6 = st.columns([1, 1, 2, 1, 1, 1])
         
         with col1:
             if st.button("← Back to List"):
-                st.session_state.current_synset = None
+                st.session_state[SESSION_CURRENT_SYNSET] = None
                 st.rerun()
         
         with col2:
             if st.button("⏮️ First", disabled=(current_idx == 0)):
-                st.session_state.current_synset_index = 0
-                st.session_state.current_synset = st.session_state.loaded_synsets[0]
-                st.rerun()
+                self._navigate_to_synset_by_index(0)
         
         with col3:
             st.write(f"Synset {current_idx + 1} of {total_synsets}")
         
         with col4:
             if st.button("◀️ Previous", disabled=(current_idx == 0)):
-                st.session_state.current_synset_index = current_idx - 1
-                st.session_state.current_synset = st.session_state.loaded_synsets[current_idx - 1]
-                st.rerun()
+                self._navigate_to_synset_by_index(current_idx - 1)
         
         with col5:
             if st.button("Next ▶️", disabled=(current_idx >= total_synsets - 1)):
-                st.session_state.current_synset_index = current_idx + 1
-                st.session_state.current_synset = st.session_state.loaded_synsets[current_idx + 1]
-                st.rerun()
+                self._navigate_to_synset_by_index(current_idx + 1)
         
         with col6:
             if st.button("Last ⏭️", disabled=(current_idx >= total_synsets - 1)):
-                st.session_state.current_synset_index = total_synsets - 1
-                st.session_state.current_synset = st.session_state.loaded_synsets[total_synsets - 1]
-                st.rerun()
+                self._navigate_to_synset_by_index(total_synsets - 1)
+    
+    def _render_quick_jump(self):
+        """Render quick jump functionality."""
+        total_synsets = len(st.session_state[SESSION_LOADED_SYNSETS])
+        current_idx = st.session_state[SESSION_CURRENT_INDEX]
         
-        # Quick jump
         with st.expander("🎯 Quick Jump"):
             jump_to_idx = st.number_input(
                 "Jump to synset number:",
@@ -428,11 +557,10 @@ class SynsetBrowserApp:
             ) - 1  # Convert to 0-based index
             
             if st.button("Jump"):
-                st.session_state.current_synset_index = jump_to_idx
-                st.session_state.current_synset = st.session_state.loaded_synsets[jump_to_idx]
-                st.rerun()
-        
-        # Basic information with quality indicators
+                self._navigate_to_synset_by_index(jump_to_idx)
+    
+    def _render_synset_basic_info(self, synset: Synset):
+        """Render basic synset information."""
         col1, col2, col3, col4 = st.columns(4)
         with col1:
             st.metric("Part of Speech", synset.pos)
@@ -441,57 +569,65 @@ class SynsetBrowserApp:
         with col3:
             st.metric("Natural Language", synset.nl)
         with col4:
-            if synset.domain:
-                st.metric("Domain", synset.domain)
-            else:
-                st.metric("Domain", "Not specified")
-        
-        # Quality and provenance information (prominently displayed)
+            domain = synset.domain if synset.domain else "Not specified"
+            st.metric("Domain", domain)
+    
+    def _render_synset_quality_info(self, synset: Synset):
+        """Render quality and provenance information."""
         st.subheader("👤 Translation Quality Info")
         col1, col2 = st.columns(2)
         
         with col1:
-            if synset.stamp:
-                # Parse stamp to extract translator and date
-                stamp_parts = synset.stamp.split()
-                if len(stamp_parts) >= 2:
-                    translator = stamp_parts[0]
-                    date_info = ' '.join(stamp_parts[1:])
-                    st.info(f"**Translator:** {translator}")
-                    st.info(f"**Date:** {date_info}")
-                else:
-                    st.info(f"**Stamp:** {synset.stamp}")
-            else:
-                st.warning("**No translation stamp available**")
+            self._render_translator_info(synset)
         
         with col2:
-            # Sentiment analysis if available
-            if synset.sentiment:
-                positive = synset.sentiment.get('positive', 0)
-                negative = synset.sentiment.get('negative', 0)
-                
-                if positive > 0 or negative > 0:
-                    st.write("**Sentiment Analysis:**")
-                    sentiment_text = f"Positive: {positive:.3f}, Negative: {negative:.3f}"
-                    
-                    # Color code based on sentiment
-                    if positive > negative:
-                        st.success(f"😊 {sentiment_text}")
-                    elif negative > positive:
-                        st.error(f"😞 {sentiment_text}")
-                    else:
-                        st.info(f"😐 {sentiment_text}")
-                else:
-                    st.info("😐 **Neutral sentiment**")
-            else:
-                st.info("**No sentiment data**")
+            self._render_sentiment_info(synset)
         
         # Usage indicator
         if synset.usage:
             st.success("💡 **Has usage example** - High quality synset")
         else:
             st.warning("⚠️ **No usage example** - Consider verifying translation")
-        
+    
+    def _render_translator_info(self, synset: Synset):
+        """Render translator information."""
+        if synset.stamp:
+            # Parse stamp to extract translator and date
+            stamp_parts = synset.stamp.split()
+            if len(stamp_parts) >= 2:
+                translator = stamp_parts[0]
+                date_info = ' '.join(stamp_parts[1:])
+                st.info(f"**Translator:** {translator}")
+                st.info(f"**Date:** {date_info}")
+            else:
+                st.info(f"**Stamp:** {synset.stamp}")
+        else:
+            st.warning("**No translation stamp available**")
+    
+    def _render_sentiment_info(self, synset: Synset):
+        """Render sentiment analysis information."""
+        if synset.sentiment:
+            positive = synset.sentiment.get('positive', 0)
+            negative = synset.sentiment.get('negative', 0)
+            
+            if positive > 0 or negative > 0:
+                st.write("**Sentiment Analysis:**")
+                sentiment_text = f"Positive: {positive:.3f}, Negative: {negative:.3f}"
+                
+                # Color code based on sentiment
+                if positive > negative:
+                    st.success(f"😊 {sentiment_text}")
+                elif negative > positive:
+                    st.error(f"😞 {sentiment_text}")
+                else:
+                    st.info(f"😐 {sentiment_text}")
+            else:
+                st.info("😐 **Neutral sentiment**")
+        else:
+            st.info("**No sentiment data**")
+    
+    def _render_synset_content(self, synset: Synset):
+        """Render synset content (synonyms, definition, usage)."""
         # Synonyms
         st.subheader("🔤 Synonyms")
         if synset.synonyms:
@@ -511,48 +647,15 @@ class SynsetBrowserApp:
         if synset.usage:
             st.subheader("💡 Usage Example")
             st.write(f"*{synset.usage}*")
-        
-        # Serbian WordNet Relations (with enhanced information display)
+    
+    def _render_synset_relations(self, synset: Synset):
+        """Render Serbian WordNet relations section."""
         st.subheader("🔗 Serbian WordNet Relations")
         if synset.ilr:
             st.write(f"Found {len(synset.ilr)} relations:")
             
-            # Create table data for relations
-            relation_data = []
-            available_relations = []
-            
-            for relation in synset.ilr:
-                target_id = relation['target']
-                rel_type = relation['type']
-                
-                # Check if target synset is loaded
-                target_synset = self.parser.get_synset_by_id(target_id)
-                
-                if target_synset:
-                    # Get synonyms (literals) from target synset
-                    target_literals = ', '.join([s.get('literal', '') for s in target_synset.synonyms]) if target_synset.synonyms else 'No synonyms'
-                    
-                    # Truncate definition if too long
-                    target_definition = target_synset.definition
-                    if len(target_definition) > 100:
-                        target_definition = target_definition[:100] + "..."
-                    
-                    relation_data.append({
-                        'Relation': rel_type,
-                        'Target ID': target_id,
-                        'Synonyms': target_literals,
-                        'Definition': target_definition,
-                        'Available': '✅'
-                    })
-                    available_relations.append((relation, target_synset))
-                else:
-                    relation_data.append({
-                        'Relation': rel_type,
-                        'Target ID': target_id,
-                        'Synonyms': 'Not loaded',
-                        'Definition': 'Not available',
-                        'Available': '❌'
-                    })
+            # Process relations data
+            relation_data, available_relations = self._process_synset_relations(synset)
             
             # Display relations table
             if relation_data:
@@ -561,66 +664,115 @@ class SynsetBrowserApp:
                 
                 # Navigation buttons for available relations
                 if available_relations:
-                    st.write("**Navigate to related synsets:**")
-                    
-                    # Group by relation type for better organization
-                    relations_by_type = {}
-                    for relation, target_synset in available_relations:
-                        rel_type = relation['type']
-                        if rel_type not in relations_by_type:
-                            relations_by_type[rel_type] = []
-                        relations_by_type[rel_type].append((relation, target_synset))
-                    
-                    # Display navigation buttons grouped by type
-                    for rel_type, type_relations in relations_by_type.items():
-                        with st.expander(f"🔗 {rel_type.title()} ({len(type_relations)} synsets)"):
-                            cols = st.columns(min(3, len(type_relations)))  # Max 3 columns
-                            for i, (relation, target_synset) in enumerate(type_relations):
-                                with cols[i % 3]:
-                                    target_literals = ', '.join([s.get('literal', '') for s in target_synset.synonyms][:2])  # First 2 synonyms
-                                    if len(target_literals) > 30:
-                                        target_literals = target_literals[:30] + "..."
-                                    
-                                    button_label = f"→ {target_literals}"
-                                    if st.button(button_label, key=f"nav_{relation['target']}", help=f"Go to {relation['target']}"):
-                                        st.session_state.current_synset = target_synset
-                                        # Find the index of this synset in the loaded_synsets
-                                        try:
-                                            st.session_state.current_synset_index = st.session_state.loaded_synsets.index(target_synset)
-                                        except ValueError:
-                                            st.session_state.current_synset_index = 0
-                                        st.rerun()
+                    self._render_relation_navigation(available_relations)
                 
                 # Show statistics
-                available_count = len(available_relations)
-                total_count = len(synset.ilr)
-                unavailable_count = total_count - available_count
-                
-                col1, col2, col3 = st.columns(3)
-                with col1:
-                    st.metric("Available Relations", available_count)
-                with col2:
-                    st.metric("External Relations", unavailable_count)
-                with col3:
-                    st.metric("Total Relations", total_count)
+                self._render_relation_statistics(available_relations, len(synset.ilr))
             
             # Debug information
-            with st.expander("� Debug Info"):
-                st.write(f"Parser has {len(self.parser.synsets)} synsets loaded")
-                st.write(f"Session state has {len(st.session_state.loaded_synsets)} synsets")
-                st.write("Sample of parser synset IDs:")
-                parser_ids = list(self.parser.synsets.keys())[:5]
-                for sid in parser_ids:
-                    st.write(f"  - {sid}")
-                st.write("Target IDs from relations:")
-                for relation in synset.ilr[:5]:  # Show first 5
-                    target_id = relation['target']
-                    found = target_id in self.parser.synsets
-                    st.write(f"  - {target_id} {'✓' if found else '✗'}")
+            self._render_debug_info()
         else:
             st.write("No relations available")
+    
+    def _process_synset_relations(self, synset: Synset) -> tuple:
+        """Process synset relations and return data for display."""
+        relation_data = []
+        available_relations = []
         
-        # Additional technical information
+        for relation in synset.ilr:
+            target_id = relation['target']
+            rel_type = relation['type']
+            
+            # Check if target synset is loaded
+            target_synset = self.parser.get_synset_by_id(target_id)
+            
+            if target_synset:
+                # Get synonyms (literals) from target synset
+                target_literals = ', '.join([
+                    s.get('literal', '') for s in target_synset.synonyms
+                ]) if target_synset.synonyms else 'No synonyms'
+                
+                # Truncate definition if too long
+                target_definition = target_synset.definition
+                if len(target_definition) > MAX_DEFINITION_LENGTH:
+                    target_definition = target_definition[:MAX_DEFINITION_LENGTH] + "..."
+                
+                relation_data.append({
+                    'Relation': rel_type,
+                    'Target ID': target_id,
+                    'Synonyms': target_literals,
+                    'Definition': target_definition,
+                    'Available': '✅'
+                })
+                available_relations.append((relation, target_synset))
+            else:
+                relation_data.append({
+                    'Relation': rel_type,
+                    'Target ID': target_id,
+                    'Synonyms': 'Not loaded',
+                    'Definition': 'Not available',
+                    'Available': '❌'
+                })
+        
+        return relation_data, available_relations
+    
+    def _render_relation_navigation(self, available_relations: List):
+        """Render navigation buttons for available relations."""
+        st.write("**Navigate to related synsets:**")
+        
+        # Group by relation type for better organization
+        relations_by_type = {}
+        for relation, target_synset in available_relations:
+            rel_type = relation['type']
+            if rel_type not in relations_by_type:
+                relations_by_type[rel_type] = []
+            relations_by_type[rel_type].append((relation, target_synset))
+        
+        # Display navigation buttons grouped by type
+        for rel_type, type_relations in relations_by_type.items():
+            with st.expander(f"🔗 {rel_type.title()} ({len(type_relations)} synsets)"):
+                cols = st.columns(min(3, len(type_relations)))  # Max 3 columns
+                for i, (relation, target_synset) in enumerate(type_relations):
+                    with cols[i % 3]:
+                        target_literals = ', '.join([
+                            s.get('literal', '') for s in target_synset.synonyms[:MAX_DISPLAYED_SYNONYMS]
+                        ])  # First 2 synonyms
+                        if len(target_literals) > MAX_DISPLAY_TEXT_LENGTH:
+                            target_literals = target_literals[:MAX_DISPLAY_TEXT_LENGTH] + "..."
+                        
+                        button_label = f"→ {target_literals}"
+                        if st.button(
+                            button_label, 
+                            key=f"nav_{relation['target']}", 
+                            help=f"Go to {relation['target']}"
+                        ):
+                            self._navigate_to_synset(target_synset)
+    
+    def _render_relation_statistics(self, available_relations: List, total_relations: int):
+        """Render relation statistics."""
+        available_count = len(available_relations)
+        unavailable_count = total_relations - available_count
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Available Relations", available_count)
+        with col2:
+            st.metric("External Relations", unavailable_count)
+        with col3:
+            st.metric("Total Relations", total_relations)
+    
+    def _render_debug_info(self):
+        """Render debug information."""
+        with st.expander("🐛 Debug Info"):
+            st.write(f"Parser has {len(self.parser.synsets)} synsets loaded")
+            st.write(f"Session state has {len(st.session_state[SESSION_LOADED_SYNSETS])} synsets")
+            st.write("Sample of parser synset IDs:")
+            parser_ids = list(self.parser.synsets.keys())[:5]
+            for sid in parser_ids:
+                st.write(f"  - {sid}")
+    
+    def _render_synset_technical_info(self, synset: Synset):
+        """Render technical information section."""
         with st.expander("🔧 Technical Information"):
             if synset.sumo:
                 st.write(f"**SUMO:** {synset.sumo['concept']} ({synset.sumo['type']})")
@@ -631,7 +783,7 @@ class SynsetBrowserApp:
             
             # Raw sentiment values
             if synset.sentiment:
-                st.write(f"**Raw Sentiment Values:**")
+                st.write("**Raw Sentiment Values:**")
                 st.write(f"  • Positive: {synset.sentiment['positive']}")
                 st.write(f"  • Negative: {synset.sentiment['negative']}")
     
@@ -639,8 +791,8 @@ class SynsetBrowserApp:
         """Render the pairing panel for selecting English/Serbian pairs."""
         st.header("🎯 Synset Pairing")
         
-        if st.session_state.current_synset:
-            serbian_synset = st.session_state.current_synset
+        if st.session_state[SESSION_CURRENT_SYNSET]:
+            serbian_synset = st.session_state[SESSION_CURRENT_SYNSET]
             
             st.subheader("🇷🇸 Selected Serbian Synset")
             st.write(f"**ID:** {serbian_synset.id}")
@@ -696,7 +848,6 @@ class SynsetBrowserApp:
                 
                 # Try to get English synset data
                 try:
-                    import re
                     numeric_id_match = re.match(r"ENG30-(\d+)-([nvar])", english_id)
                     if numeric_id_match:
                         numeric_id = numeric_id_match.group(1)
@@ -741,9 +892,9 @@ class SynsetBrowserApp:
                                 }
                                 
                                 # Check if pair already exists
-                                existing = any(p['serbian_id'] == serbian_synset.id for p in st.session_state.selected_pairs)
+                                existing = any(p['serbian_id'] == serbian_synset.id for p in st.session_state[SESSION_SELECTED_PAIRS])
                                 if not existing:
-                                    st.session_state.selected_pairs.append(pair)
+                                    st.session_state[SESSION_SELECTED_PAIRS].append(pair)
                                     st.success("Pair added!")
                                     st.rerun()
                                 else:
@@ -800,9 +951,9 @@ class SynsetBrowserApp:
                                             }
                                         }
                                         
-                                        existing = any(p['serbian_id'] == serbian_synset.id for p in st.session_state.selected_pairs)
+                                        existing = any(p['serbian_id'] == serbian_synset.id for p in st.session_state[SESSION_SELECTED_PAIRS])
                                         if not existing:
-                                            st.session_state.selected_pairs.append(pair)
+                                            st.session_state[SESSION_SELECTED_PAIRS].append(pair)
                                             st.success("Manual pair added!")
                                             st.rerun()
                                         else:
@@ -811,12 +962,13 @@ class SynsetBrowserApp:
                             st.write("No English synsets found")
                     except Exception as e:
                         st.error(f"Error searching English synsets: {e}")
-        
-        # Display current pairs
-        if st.session_state.selected_pairs:
+    
+    def _render_current_pairs(self):
+        """Render the current selected pairs."""
+        if st.session_state[SESSION_SELECTED_PAIRS]:
             st.subheader("📋 Selected Pairs")
             
-            for i, pair in enumerate(st.session_state.selected_pairs):
+            for i, pair in enumerate(st.session_state[SESSION_SELECTED_PAIRS]):
                 with st.expander(f"Pair {i+1}: {pair['serbian_id']} ↔ {pair['english_id']}"):
                     # Header with metadata
                     metadata = pair.get('pairing_metadata', {})
@@ -917,7 +1069,7 @@ class SynsetBrowserApp:
                                             st.write("---")
                     
                     if st.button(f"🗑️ Remove Pair {i+1}", key=f"remove_{i}"):
-                        st.session_state.selected_pairs.pop(i)
+                        st.session_state[SESSION_SELECTED_PAIRS].pop(i)
                         st.success("Pair removed!")
                         st.rerun()
     
@@ -1130,13 +1282,13 @@ class SynsetBrowserApp:
     
     def _export_pairs(self):
         """Export selected pairs to JSON."""
-        if st.session_state.selected_pairs:
+        if st.session_state[SESSION_SELECTED_PAIRS]:
             data = {
-                'pairs': st.session_state.selected_pairs,
+                'pairs': st.session_state[SESSION_SELECTED_PAIRS],
                 'metadata': {
-                    'total_pairs': len(st.session_state.selected_pairs),
+                    'total_pairs': len(st.session_state[SESSION_SELECTED_PAIRS]),
                     'created_by': 'Serbian WordNet Synset Browser',
-                    'format_version': '2.0',  # Updated version with relations
+                    'format_version': EXPORT_FORMAT_VERSION,
                     'export_timestamp': pd.Timestamp.now().isoformat(),
                     'includes_relations': True,
                     'includes_metadata': True,
