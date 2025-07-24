@@ -279,9 +279,6 @@ class SynsetHandler:
             result.append(synset_data)
         
         return result
-            result.append(synset_data)
-        
-        return result
     
     def search_synsets(self, query: str, limit: int = 10) -> List[Dict]:
         """
