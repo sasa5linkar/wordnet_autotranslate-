@@ -962,6 +962,9 @@ class SynsetBrowserApp:
                             st.write("No English synsets found")
                     except Exception as e:
                         st.error(f"Error searching English synsets: {e}")
+        
+        # Display current pairs - this was missing!
+        self._render_current_pairs()
     
     def _render_current_pairs(self):
         """Render the current selected pairs."""
@@ -1274,7 +1277,6 @@ class SynsetBrowserApp:
         
         # Display relations table if we have data
         if relation_data:
-            import pandas as pd
             df_relations = pd.DataFrame(relation_data)
             st.dataframe(df_relations, use_container_width=True, hide_index=True)
         else:
