@@ -512,13 +512,8 @@ class SynsetBrowserApp:
             st.subheader("💡 Usage Example")
             st.write(f"*{synset.usage}*")
         
-        # Relations (with hyperlinks) - show all with debug info
-        st.subheader("🔗 Related Synsets")
-        if synset.ilr:
-            st.write(f"Found {len(synset.ilr)} relations:")
-            
         # Relations (with enhanced information display)
-        st.subheader("🔗 Related Synsets")
+        st.subheader("🔗 Serbian WordNet Relations")
         if synset.ilr:
             st.write(f"Found {len(synset.ilr)} relations:")
             
@@ -717,6 +712,9 @@ class SynsetBrowserApp:
                                 st.write(f"**Examples:** {'; '.join(english_synset.get('examples', []))}")
                             st.write(f"**WordNet Name:** {english_synset.get('name', 'N/A')}")
                             
+                            # Display Princeton WordNet Relations
+                            self._display_english_relations(english_synset)
+                            
                             # Pairing button
                             if st.button("✅ Add to Pairs"):
                                 pair = {
@@ -824,6 +822,75 @@ class SynsetBrowserApp:
         if synset_id.startswith('ENG30-'):
             return synset_id
         return None
+    
+    def _display_english_relations(self, english_synset: Dict):
+        """Display Princeton WordNet relations for an English synset."""
+        relations = english_synset.get('relations', {})
+        
+        if not relations:
+            st.write("**Princeton WordNet Relations:** No relations found")
+            return
+        
+        # Count total relations
+        total_relations = 0
+        for rel_type, rel_list in relations.items():
+            if rel_type != 'lemma_relations' and rel_list:
+                total_relations += len(rel_list)
+        
+        # Count lemma relations
+        lemma_relations_count = 0
+        if relations.get('lemma_relations'):
+            for lemma_data in relations['lemma_relations'].values():
+                for rel_list in lemma_data.values():
+                    lemma_relations_count += len(rel_list)
+        
+        total_relations += lemma_relations_count
+        
+        if total_relations == 0:
+            st.write("**Princeton WordNet Relations:** No relations available")
+            return
+        
+        st.write(f"**🔗 Princeton WordNet Relations** ({total_relations} total):")
+        
+        # Create relation data for display
+        relation_data = []
+        
+        # Add synset-level relations
+        for rel_type, rel_list in relations.items():
+            if rel_type != 'lemma_relations' and rel_list:
+                for rel in rel_list:
+                    if isinstance(rel, dict):
+                        relation_data.append({
+                            'Type': rel_type.replace('_', ' ').title(),
+                            'Target': rel.get('name', 'N/A'),
+                            'Definition': rel.get('definition', 'N/A')[:80] + ('...' if len(rel.get('definition', '')) > 80 else '')
+                        })
+                    else:
+                        relation_data.append({
+                            'Type': rel_type.replace('_', ' ').title(),
+                            'Target': str(rel),
+                            'Definition': 'N/A'
+                        })
+        
+        # Add lemma-level relations
+        if relations.get('lemma_relations'):
+            for lemma, lemma_rels in relations['lemma_relations'].items():
+                for rel_type, rel_list in lemma_rels.items():
+                    for rel in rel_list:
+                        if isinstance(rel, dict):
+                            relation_data.append({
+                                'Type': f"Lemma {rel_type.replace('_', ' ').title()}",
+                                'Target': f"{rel.get('lemma', 'N/A')} ({rel.get('name', 'N/A')})",
+                                'Definition': rel.get('definition', 'N/A')[:80] + ('...' if len(rel.get('definition', '')) > 80 else '')
+                            })
+        
+        # Display relations table if we have data
+        if relation_data:
+            import pandas as pd
+            df_relations = pd.DataFrame(relation_data)
+            st.dataframe(df_relations, use_container_width=True, hide_index=True)
+        else:
+            st.write("No displayable relations found")
     
     def _export_pairs(self):
         """Export selected pairs to JSON."""

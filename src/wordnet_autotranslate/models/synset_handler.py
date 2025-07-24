@@ -86,32 +86,91 @@ class SynsetHandler:
         relations = {}
         
         # Hierarchical relations (is-a relationships)
-        relations['hypernyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.hypernyms()]
-        relations['hyponyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.hyponyms()]
-        relations['instance_hypernyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.instance_hypernyms()]
-        relations['instance_hyponyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.instance_hyponyms()]
+        try:
+            relations['hypernyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.hypernyms()]
+        except AttributeError:
+            relations['hypernyms'] = []
+        
+        try:
+            relations['hyponyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.hyponyms()]
+        except AttributeError:
+            relations['hyponyms'] = []
+        
+        try:
+            relations['instance_hypernyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.instance_hypernyms()]
+        except AttributeError:
+            relations['instance_hypernyms'] = []
+        
+        try:
+            relations['instance_hyponyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.instance_hyponyms()]
+        except AttributeError:
+            relations['instance_hyponyms'] = []
         
         # Part-whole relations (meronymy/holonymy)
-        relations['part_meronyms'] = [{'name': m.name(), 'definition': m.definition()} for m in synset.part_meronyms()]
-        relations['part_holonyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.part_holonyms()]
-        relations['member_meronyms'] = [{'name': m.name(), 'definition': m.definition()} for m in synset.member_meronyms()]
-        relations['member_holonyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.member_holonyms()]
-        relations['substance_meronyms'] = [{'name': m.name(), 'definition': m.definition()} for m in synset.substance_meronyms()]
-        relations['substance_holonyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.substance_holonyms()]
+        try:
+            relations['part_meronyms'] = [{'name': m.name(), 'definition': m.definition()} for m in synset.part_meronyms()]
+        except AttributeError:
+            relations['part_meronyms'] = []
+        
+        try:
+            relations['part_holonyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.part_holonyms()]
+        except AttributeError:
+            relations['part_holonyms'] = []
+        
+        try:
+            relations['member_meronyms'] = [{'name': m.name(), 'definition': m.definition()} for m in synset.member_meronyms()]
+        except AttributeError:
+            relations['member_meronyms'] = []
+        
+        try:
+            relations['member_holonyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.member_holonyms()]
+        except AttributeError:
+            relations['member_holonyms'] = []
+        
+        try:
+            relations['substance_meronyms'] = [{'name': m.name(), 'definition': m.definition()} for m in synset.substance_meronyms()]
+        except AttributeError:
+            relations['substance_meronyms'] = []
+        
+        try:
+            relations['substance_holonyms'] = [{'name': h.name(), 'definition': h.definition()} for h in synset.substance_holonyms()]
+        except AttributeError:
+            relations['substance_holonyms'] = []
         
         # Similarity and other semantic relations
-        relations['similar_tos'] = [{'name': s.name(), 'definition': s.definition()} for s in synset.similar_tos()]
-        relations['also'] = [{'name': a.name(), 'definition': a.definition()} for a in synset.also()]
+        try:
+            relations['similar_tos'] = [{'name': s.name(), 'definition': s.definition()} for s in synset.similar_tos()]
+        except AttributeError:
+            relations['similar_tos'] = []
+        
+        try:
+            relations['also'] = [{'name': a.name(), 'definition': a.definition()} for a in synset.also()]
+        except AttributeError:
+            relations['also'] = []
         
         # Verb-specific relations
         if synset.pos() == 'v':
-            relations['entailments'] = [{'name': e.name(), 'definition': e.definition()} for e in synset.entailments()]
-            relations['causes'] = [{'name': c.name(), 'definition': c.definition()} for c in synset.causes()]
-            relations['verb_groups'] = [{'name': v.name(), 'definition': v.definition()} for v in synset.verb_groups()]
+            try:
+                relations['entailments'] = [{'name': e.name(), 'definition': e.definition()} for e in synset.entailments()]
+            except AttributeError:
+                relations['entailments'] = []
+            
+            try:
+                relations['causes'] = [{'name': c.name(), 'definition': c.definition()} for c in synset.causes()]
+            except AttributeError:
+                relations['causes'] = []
+            
+            try:
+                relations['verb_groups'] = [{'name': v.name(), 'definition': v.definition()} for v in synset.verb_groups()]
+            except AttributeError:
+                relations['verb_groups'] = []
         
         # Adjective-specific relations
         if synset.pos() in ['a', 's']:
-            relations['attributes'] = [{'name': a.name(), 'definition': a.definition()} for a in synset.attributes()]
+            try:
+                relations['attributes'] = [{'name': a.name(), 'definition': a.definition()} for a in synset.attributes()]
+            except AttributeError:
+                relations['attributes'] = []
         
         # Lemma-level relations (antonyms, derivational forms, etc.)
         relations['lemma_relations'] = self._extract_lemma_relations(synset)
