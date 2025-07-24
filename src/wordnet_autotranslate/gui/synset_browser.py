@@ -823,6 +823,66 @@ class SynsetBrowserApp:
             return synset_id
         return None
     
+    def _generate_serbian_id_from_english(self, english_synset_name: str) -> str:
+        """
+        Generate Serbian WordNet ID format from English synset name.
+        
+        Args:
+            english_synset_name: English synset name like 'dog.n.01'
+            
+        Returns:
+            Serbian WordNet ID format like 'ENG30-{offset}-{pos}'
+        """
+        if not english_synset_name or english_synset_name == 'N/A':
+            return 'N/A'
+        
+        try:
+            # Parse the English synset name (e.g., 'dog.n.01')
+            parts = english_synset_name.split('.')
+            if len(parts) >= 2:
+                word = parts[0]
+                pos = parts[1]
+                sense = parts[2] if len(parts) > 2 else '01'
+                
+                # Try to get the synset to extract its offset
+                try:
+                    from nltk.corpus import wordnet as wn
+                    synset = wn.synset(english_synset_name)
+                    offset = synset.offset()
+                    
+                    # Format as Serbian WordNet ID
+                    serbian_id = f"ENG30-{offset:08d}-{pos}"
+                    return serbian_id
+                except:
+                    # If we can't get the synset, try to construct from the name
+                    return f"ENG30-????????-{pos}"
+            else:
+                return 'Invalid format'
+        except Exception as e:
+            return f'Error: {str(e)[:20]}...'
+    
+    def _check_serbian_synset_exists(self, serbian_id: str) -> str:
+        """
+        Check if a Serbian synset ID exists in the loaded data.
+        
+        Args:
+            serbian_id: Serbian WordNet ID to check
+            
+        Returns:
+            Status emoji and text
+        """
+        if serbian_id in ['N/A', 'Invalid format'] or serbian_id.startswith('Error:'):
+            return ''
+        
+        # Ensure parser is synced
+        self._ensure_parser_synced()
+        
+        # Check if the synset exists in loaded data
+        if serbian_id in self.parser.synsets:
+            return '✅'
+        else:
+            return '❌'
+    
     def _display_english_relations(self, english_synset: Dict):
         """Display Princeton WordNet relations for an English synset."""
         relations = english_synset.get('relations', {})
@@ -860,15 +920,25 @@ class SynsetBrowserApp:
             if rel_type != 'lemma_relations' and rel_list:
                 for rel in rel_list:
                     if isinstance(rel, dict):
+                        # Generate Serbian WordNet equivalent ID and check if it exists
+                        serbian_equivalent = self._generate_serbian_id_from_english(rel.get('name', ''))
+                        exists_status = self._check_serbian_synset_exists(serbian_equivalent)
+                        
                         relation_data.append({
                             'Type': rel_type.replace('_', ' ').title(),
                             'Target': rel.get('name', 'N/A'),
+                            'Serbian ID': f"{serbian_equivalent} {exists_status}",
                             'Definition': rel.get('definition', 'N/A')[:80] + ('...' if len(rel.get('definition', '')) > 80 else '')
                         })
                     else:
+                        # Generate Serbian WordNet equivalent ID and check if it exists
+                        serbian_equivalent = self._generate_serbian_id_from_english(str(rel))
+                        exists_status = self._check_serbian_synset_exists(serbian_equivalent)
+                        
                         relation_data.append({
                             'Type': rel_type.replace('_', ' ').title(),
                             'Target': str(rel),
+                            'Serbian ID': f"{serbian_equivalent} {exists_status}",
                             'Definition': 'N/A'
                         })
         
@@ -878,9 +948,14 @@ class SynsetBrowserApp:
                 for rel_type, rel_list in lemma_rels.items():
                     for rel in rel_list:
                         if isinstance(rel, dict):
+                            # Generate Serbian WordNet equivalent ID and check if it exists
+                            serbian_equivalent = self._generate_serbian_id_from_english(rel.get('name', ''))
+                            exists_status = self._check_serbian_synset_exists(serbian_equivalent)
+                            
                             relation_data.append({
                                 'Type': f"Lemma {rel_type.replace('_', ' ').title()}",
                                 'Target': f"{rel.get('lemma', 'N/A')} ({rel.get('name', 'N/A')})",
+                                'Serbian ID': f"{serbian_equivalent} {exists_status}",
                                 'Definition': rel.get('definition', 'N/A')[:80] + ('...' if len(rel.get('definition', '')) > 80 else '')
                             })
         
