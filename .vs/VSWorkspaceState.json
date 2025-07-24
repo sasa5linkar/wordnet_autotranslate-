@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\wordnet_autotranslate",
+    "\\src\\wordnet_autotranslate\\gui",
+    "\\tests"
+  ],
+  "SelectedNode": "\\src\\wordnet_autotranslate\\models",
+  "PreviewInSolutionExplorer": false
+}

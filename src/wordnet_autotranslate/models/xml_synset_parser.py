@@ -6,7 +6,11 @@ import xml.etree.ElementTree as ET
 from typing import List, Dict, Optional, Set
 from pathlib import Path
 import re
+import logging
 from dataclasses import dataclass
+
+# Set up logger
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -23,6 +27,7 @@ class Synset:
     sumo: Optional[Dict[str, str]] = None  # {'concept': str, 'type': str}
     sentiment: Optional[Dict[str, float]] = None  # {'positive': float, 'negative': float}
     domain: Optional[str] = None
+    usage: Optional[str] = None  # Usage example
 
 
 class XmlSynsetParser:
@@ -91,11 +96,18 @@ class XmlSynsetParser:
             root = ET.fromstring(xml_content)
             
             synsets = []
+            parsed_count = 0
             for synset_elem in root.findall('.//SYNSET'):
                 synset = self._parse_synset_element(synset_elem)
                 if synset:
                     synsets.append(synset)
                     self.synsets[synset.id] = synset
+                    parsed_count += 1
+                    
+                    # Debug: Log storage of target synset
+                    if synset.id == "ENG30-08621598-n":
+                        print(f"DEBUG: Successfully stored synset {synset.id} in parser.synsets")
+                        print(f"DEBUG: Can retrieve it: {self.synsets.get(synset.id) is not None}")
                     
                     # Index English links
                     english_id = self._extract_english_id(synset.id)
@@ -103,6 +115,10 @@ class XmlSynsetParser:
                         if english_id not in self.english_links:
                             self.english_links[english_id] = []
                         self.english_links[english_id].append(synset)
+                else:
+                    logger.warning("Failed to parse synset element")
+            
+            print(f"DEBUG: Parsed {parsed_count} synsets total")
             
             return synsets
             
@@ -119,11 +135,21 @@ class XmlSynsetParser:
             def_elem = synset_elem.find('DEF')
             
             if id_elem is None or pos_elem is None:
+                logger.warning(f"Missing required fields: ID={id_elem}, POS={pos_elem}")
                 return None
                 
             synset_id = id_elem.text.strip() if id_elem.text else ""
             pos = pos_elem.text.strip() if pos_elem.text else ""
             definition = def_elem.text.strip() if def_elem is not None and def_elem.text else ""
+            
+            if not synset_id:
+                logger.warning("Empty synset ID found")
+                return None
+                
+            # Debug: Log the synset being parsed
+            if synset_id == "ENG30-08621598-n":
+                logger.info(f"Parsing target synset: {synset_id}")
+                print(f"DEBUG: Parsing target synset: {synset_id}")
             
             # Parse synonyms
             synonyms = []
@@ -193,6 +219,12 @@ class XmlSynsetParser:
             if domain_elem is not None and domain_elem.text:
                 domain = domain_elem.text.strip()
             
+            # Parse USAGE if present
+            usage = None
+            usage_elem = synset_elem.find('USAGE')
+            if usage_elem is not None and usage_elem.text:
+                usage = usage_elem.text.strip()
+            
             return Synset(
                 id=synset_id,
                 pos=pos,
@@ -204,7 +236,8 @@ class XmlSynsetParser:
                 stamp=stamp,
                 sumo=sumo,
                 sentiment=sentiment,
-                domain=domain
+                domain=domain,
+                usage=usage
             )
             
         except Exception as e:
@@ -221,7 +254,16 @@ class XmlSynsetParser:
     
     def get_synset_by_id(self, synset_id: str) -> Optional[Synset]:
         """Get synset by ID."""
-        return self.synsets.get(synset_id)
+        result = self.synsets.get(synset_id)
+        
+        # Debug: Log lookup of target synset
+        if synset_id == "ENG30-08621598-n":
+            print(f"DEBUG: Looking up synset {synset_id}")
+            print(f"DEBUG: Found in parser.synsets: {result is not None}")
+            print(f"DEBUG: Total synsets in parser: {len(self.synsets)}")
+            print(f"DEBUG: Sample synset IDs: {list(self.synsets.keys())[:5]}")
+            
+        return result
     
     def get_related_synsets(self, synset: Synset) -> List[Synset]:
         """Get synsets related through ILR relations."""
@@ -239,7 +281,7 @@ class XmlSynsetParser:
     
     def search_synsets(self, query: str, limit: int = 20) -> List[Synset]:
         """
-        Search synsets by query in definition or synonyms.
+        Search synsets by query in definition, synonyms, or usage examples.
         
         Args:
             query: Search query
@@ -262,6 +304,10 @@ class XmlSynsetParser:
                 if query_lower in synonym.get('literal', '').lower():
                     results.append(synset)
                     break
+            else:
+                # Search in usage examples if no match found yet
+                if synset.usage and query_lower in synset.usage.lower():
+                    results.append(synset)
             
             if len(results) >= limit:
                 break

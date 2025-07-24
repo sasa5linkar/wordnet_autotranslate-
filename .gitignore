@@ -6,6 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
+# Data files (WordNet XML files, etc.)
+data/
+*.xml
+wnsrp30.xml
+
 # Distribution / packaging
 .Python
 build/
