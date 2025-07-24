@@ -260,6 +260,9 @@ class SynsetHandler:
         Returns:
             List of all synsets
         """
+        if not NLTK_AVAILABLE:
+            print("NLTK not available. Please install with: pip install nltk")
+            return []
         all_synsets = wn.all_synsets(pos=pos) if pos else wn.all_synsets()
         result = []
         
@@ -273,6 +276,9 @@ class SynsetHandler:
                 'offset': synset.offset(),
                 'relations': self._extract_all_relations(synset)
             }
+            result.append(synset_data)
+        
+        return result
             result.append(synset_data)
         
         return result

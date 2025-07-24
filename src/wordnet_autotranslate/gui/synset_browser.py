@@ -512,7 +512,7 @@ class SynsetBrowserApp:
             st.subheader("💡 Usage Example")
             st.write(f"*{synset.usage}*")
         
-        # Relations (with enhanced information display)
+        # Serbian WordNet Relations (with enhanced information display)
         st.subheader("🔗 Serbian WordNet Relations")
         if synset.ilr:
             st.write(f"Found {len(synset.ilr)} relations:")
