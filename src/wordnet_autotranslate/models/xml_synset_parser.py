@@ -12,6 +12,34 @@ from dataclasses import dataclass
 # Set up logger
 logger = logging.getLogger(__name__)
 
+# Constants for XML element names
+class XmlElements:
+    """XML element name constants."""
+    SYNSET = 'SYNSET'
+    ID = 'ID'
+    POS = 'POS'
+    DEF = 'DEF'
+    SYNONYM = 'SYNONYM'
+    LITERAL = 'LITERAL'
+    SENSE = 'SENSE'
+    LNOTE = 'LNOTE'
+    ILR = 'ILR'
+    TYPE = 'TYPE'
+    BCS = 'BCS'
+    NL = 'NL'
+    STAMP = 'STAMP'
+    SUMO = 'SUMO'
+    SENTIMENT = 'SENTIMENT'
+    POSITIVE = 'POSITIVE'
+    NEGATIVE = 'NEGATIVE'
+    DOMAIN = 'DOMAIN'
+    USAGE = 'USAGE'
+
+# Constants for patterns and defaults
+ENGLISH_ID_PATTERN = r'(ENG30-\d+-[a-z])'
+DEFAULT_RELATION_TYPE = "related"
+DEBUG_SYNSET_ID = "ENG30-08621598-n"
+
 
 @dataclass
 class Synset:
@@ -35,8 +63,8 @@ class XmlSynsetParser:
     
     def __init__(self):
         """Initialize the parser."""
-        self.synsets = {}
-        self.english_links = {}  # Map English IDs to Serbian synsets
+        self.synsets: Dict[str, Synset] = {}
+        self.english_links: Dict[str, List[Synset]] = {}  # Map English IDs to Serbian synsets
         
     def parse_xml_file(self, xml_file_path: str) -> List[Synset]:
         """
@@ -47,26 +75,15 @@ class XmlSynsetParser:
             
         Returns:
             List of parsed synsets
+            
+        Raises:
+            ET.ParseError: If XML parsing fails
+            FileNotFoundError: If file doesn't exist
         """
         try:
             tree = ET.parse(xml_file_path)
             root = tree.getroot()
-            
-            synsets = []
-            for synset_elem in root.findall('.//SYNSET'):
-                synset = self._parse_synset_element(synset_elem)
-                if synset:
-                    synsets.append(synset)
-                    self.synsets[synset.id] = synset
-                    
-                    # Index English links
-                    english_id = self._extract_english_id(synset.id)
-                    if english_id:
-                        if english_id not in self.english_links:
-                            self.english_links[english_id] = []
-                        self.english_links[english_id].append(synset)
-            
-            return synsets
+            return self._parse_synsets_from_root(root)
             
         except ET.ParseError as e:
             logger.error(f"Error parsing XML file {xml_file_path}: {e}")
@@ -86,144 +103,84 @@ class XmlSynsetParser:
             List of parsed synsets
         """
         try:
-            # Clean up the XML content - remove leading/trailing whitespace
-            xml_content = xml_content.strip()
+            root = self._prepare_xml_root(xml_content)
+            synsets = self._parse_synsets_from_root(root)
             
-            # Wrap content in root element if not already wrapped
-            if not xml_content.startswith('<root>'):
-                xml_content = f"<root>{xml_content}</root>"
-                
-            root = ET.fromstring(xml_content)
-            
-            synsets = []
-            parsed_count = 0
-            for synset_elem in root.findall('.//SYNSET'):
-                synset = self._parse_synset_element(synset_elem)
-                if synset:
-                    synsets.append(synset)
-                    self.synsets[synset.id] = synset
-                    parsed_count += 1
-                    
-                    # Debug: Log storage of target synset
-                    if synset.id == "ENG30-08621598-n":
-                        print(f"DEBUG: Successfully stored synset {synset.id} in parser.synsets")
-                        print(f"DEBUG: Can retrieve it: {self.synsets.get(synset.id) is not None}")
-                    
-                    # Index English links
-                    english_id = self._extract_english_id(synset.id)
-                    if english_id:
-                        if english_id not in self.english_links:
-                            self.english_links[english_id] = []
-                        self.english_links[english_id].append(synset)
-                else:
-                    logger.warning("Failed to parse synset element")
-            
-            print(f"DEBUG: Parsed {parsed_count} synsets total")
+            logger.debug(f"Parsed {len(synsets)} synsets total")
             
             return synsets
             
         except ET.ParseError as e:
-            print(f"Error parsing XML content: {e}")
+            logger.error(f"Error parsing XML content: {e}")
             return []
     
-    def _parse_synset_element(self, synset_elem) -> Optional[Synset]:
+    def _prepare_xml_root(self, xml_content: str) -> ET.Element:
+        """Prepare XML content and return root element."""
+        # Clean up the XML content - remove leading/trailing whitespace
+        xml_content = xml_content.strip()
+        
+        # Wrap content in root element if not already wrapped
+        if not xml_content.startswith('<root>'):
+            xml_content = f"<root>{xml_content}</root>"
+            
+        return ET.fromstring(xml_content)
+    
+    def _parse_synsets_from_root(self, root: ET.Element) -> List[Synset]:
+        """Parse synsets from XML root element."""
+        synsets = []
+        parsed_count = 0
+        
+        for synset_elem in root.findall(f'.//{XmlElements.SYNSET}'):
+            synset = self._parse_synset_element(synset_elem)
+            if synset:
+                synsets.append(synset)
+                self._store_synset(synset)
+                parsed_count += 1
+                
+                # Debug logging for specific synset
+                if synset.id == DEBUG_SYNSET_ID:
+                    logger.debug(f"Successfully stored synset {synset.id} in parser.synsets")
+                    logger.debug(f"Can retrieve it: {self.synsets.get(synset.id) is not None}")
+            else:
+                logger.warning("Failed to parse synset element")
+        
+        logger.debug(f"Parsed {parsed_count} synsets total")
+        return synsets
+    
+    def _store_synset(self, synset: Synset) -> None:
+        """Store synset in internal dictionaries."""
+        self.synsets[synset.id] = synset
+        
+        # Index English links
+        english_id = self._extract_english_id(synset.id)
+        if english_id:
+            if english_id not in self.english_links:
+                self.english_links[english_id] = []
+            self.english_links[english_id].append(synset)
+    
+    def _parse_synset_element(self, synset_elem: ET.Element) -> Optional[Synset]:
         """Parse a single SYNSET XML element."""
         try:
-            # Required fields
-            id_elem = synset_elem.find('ID')
-            pos_elem = synset_elem.find('POS')
-            def_elem = synset_elem.find('DEF')
-            
-            if id_elem is None or pos_elem is None:
-                logger.warning(f"Missing required fields: ID={id_elem}, POS={pos_elem}")
-                return None
-                
-            synset_id = id_elem.text.strip() if id_elem.text else ""
-            pos = pos_elem.text.strip() if pos_elem.text else ""
-            definition = def_elem.text.strip() if def_elem is not None and def_elem.text else ""
-            
+            # Parse required fields
+            synset_id, pos, definition = self._parse_required_fields(synset_elem)
             if not synset_id:
-                logger.warning("Empty synset ID found")
                 return None
                 
-            # Debug: Log the synset being parsed
-            if synset_id == "ENG30-08621598-n":
+            # Debug logging for specific synset
+            if synset_id == DEBUG_SYNSET_ID:
                 logger.info(f"Parsing target synset: {synset_id}")
-                print(f"DEBUG: Parsing target synset: {synset_id}")
+                logger.debug(f"Parsing target synset: {synset_id}")
             
-            # Parse synonyms
-            synonyms = []
-            synonym_elem = synset_elem.find('SYNONYM')
-            if synonym_elem is not None:
-                for literal_elem in synonym_elem.findall('LITERAL'):
-                    if literal_elem.text:
-                        literal_data = {'literal': literal_elem.text}
-                        
-                        # Parse SENSE and LNOTE if present
-                        sense_elem = literal_elem.find('SENSE')
-                        if sense_elem is not None and sense_elem.text:
-                            literal_data['sense'] = sense_elem.text
-                            
-                        lnote_elem = literal_elem.find('LNOTE')
-                        if lnote_elem is not None and lnote_elem.text:
-                            literal_data['lnote'] = lnote_elem.text
-                            
-                        synonyms.append(literal_data)
-            
-            # Parse ILR (Inter-Lingual Relations)
-            ilr_relations = []
-            for ilr_elem in synset_elem.findall('ILR'):
-                if ilr_elem.text:
-                    target = ilr_elem.text.strip()
-                    type_elem = ilr_elem.find('TYPE')
-                    rel_type = type_elem.text.strip() if type_elem is not None and type_elem.text else "related"
-                    ilr_relations.append({'target': target, 'type': rel_type})
-            
-            # Optional fields
-            bcs_elem = synset_elem.find('BCS')
-            bcs = bcs_elem.text.strip() if bcs_elem is not None and bcs_elem.text else ""
-            
-            nl_elem = synset_elem.find('NL')
-            nl = nl_elem.text.strip() if nl_elem is not None and nl_elem.text else ""
-            
-            stamp_elem = synset_elem.find('STAMP')
-            stamp = stamp_elem.text.strip() if stamp_elem is not None and stamp_elem.text else ""
-            
-            # Parse SUMO if present
-            sumo = None
-            sumo_elem = synset_elem.find('SUMO')
-            if sumo_elem is not None and sumo_elem.text:
-                sumo_text = sumo_elem.text.strip()
-                type_elem = sumo_elem.find('TYPE')
-                sumo_type = type_elem.text.strip() if type_elem is not None and type_elem.text else ""
-                sumo = {'concept': sumo_text, 'type': sumo_type}
-            
-            # Parse SENTIMENT if present
-            sentiment = None
-            sentiment_elem = synset_elem.find('SENTIMENT')
-            if sentiment_elem is not None:
-                pos_elem = sentiment_elem.find('POSITIVE')
-                neg_elem = sentiment_elem.find('NEGATIVE')
-                
-                if pos_elem is not None and neg_elem is not None:
-                    try:
-                        positive = float(pos_elem.text.replace(',', '.')) if pos_elem.text else 0.0
-                        negative = float(neg_elem.text.replace(',', '.')) if neg_elem.text else 0.0
-                        sentiment = {'positive': positive, 'negative': negative}
-                    except ValueError:
-                        sentiment = None
-            
-            # Parse DOMAIN if present
-            domain = None
-            domain_elem = synset_elem.find('DOMAIN')
-            if domain_elem is not None and domain_elem.text:
-                domain = domain_elem.text.strip()
-            
-            # Parse USAGE if present
-            usage = None
-            usage_elem = synset_elem.find('USAGE')
-            if usage_elem is not None and usage_elem.text:
-                usage = usage_elem.text.strip()
+            # Parse all components
+            synonyms = self._parse_synonyms(synset_elem)
+            ilr_relations = self._parse_ilr_relations(synset_elem)
+            bcs = self._get_element_text(synset_elem, XmlElements.BCS)
+            nl = self._get_element_text(synset_elem, XmlElements.NL)
+            stamp = self._get_element_text(synset_elem, XmlElements.STAMP)
+            sumo = self._parse_sumo(synset_elem)
+            sentiment = self._parse_sentiment(synset_elem)
+            domain = self._get_element_text(synset_elem, XmlElements.DOMAIN)
+            usage = self._get_element_text(synset_elem, XmlElements.USAGE)
             
             return Synset(
                 id=synset_id,
@@ -241,32 +198,134 @@ class XmlSynsetParser:
             )
             
         except Exception as e:
-            print(f"Error parsing synset element: {e}")
+            logger.error(f"Error parsing synset element: {e}")
             return None
+    
+    def _parse_required_fields(self, synset_elem: ET.Element) -> tuple[str, str, str]:
+        """Parse required fields from synset element."""
+        id_elem = synset_elem.find(XmlElements.ID)
+        pos_elem = synset_elem.find(XmlElements.POS)
+        def_elem = synset_elem.find(XmlElements.DEF)
+        
+        if id_elem is None or pos_elem is None:
+            logger.warning(f"Missing required fields: ID={id_elem}, POS={pos_elem}")
+            return "", "", ""
+            
+        synset_id = self._get_stripped_text(id_elem)
+        pos = self._get_stripped_text(pos_elem)
+        definition = self._get_stripped_text(def_elem) if def_elem is not None else ""
+        
+        if not synset_id:
+            logger.warning("Empty synset ID found")
+            return "", "", ""
+            
+        return synset_id, pos, definition
+    
+    def _get_stripped_text(self, element: Optional[ET.Element]) -> str:
+        """Get stripped text from XML element, handling None cases."""
+        return element.text.strip() if element is not None and element.text else ""
+    
+    def _get_element_text(self, parent: ET.Element, tag: str) -> str:
+        """Get text content from child element."""
+        elem = parent.find(tag)
+        return self._get_stripped_text(elem)
+    
+    def _parse_synonyms(self, synset_elem: ET.Element) -> List[Dict[str, str]]:
+        """Parse synonyms from synset element."""
+        synonyms = []
+        synonym_elem = synset_elem.find(XmlElements.SYNONYM)
+        
+        if synonym_elem is not None:
+            for literal_elem in synonym_elem.findall(XmlElements.LITERAL):
+                if literal_elem.text:
+                    literal_data = {'literal': literal_elem.text}
+                    
+                    # Parse SENSE and LNOTE if present
+                    sense_text = self._get_element_text(literal_elem, XmlElements.SENSE)
+                    if sense_text:
+                        literal_data['sense'] = sense_text
+                        
+                    lnote_text = self._get_element_text(literal_elem, XmlElements.LNOTE)
+                    if lnote_text:
+                        literal_data['lnote'] = lnote_text
+                        
+                    synonyms.append(literal_data)
+        
+        return synonyms
+    
+    def _parse_ilr_relations(self, synset_elem: ET.Element) -> List[Dict[str, str]]:
+        """Parse ILR (Inter-Lingual Relations) from synset element."""
+        ilr_relations = []
+        
+        for ilr_elem in synset_elem.findall(XmlElements.ILR):
+            if ilr_elem.text:
+                target = ilr_elem.text.strip()
+                rel_type = self._get_element_text(ilr_elem, XmlElements.TYPE) or DEFAULT_RELATION_TYPE
+                ilr_relations.append({'target': target, 'type': rel_type})
+        
+        return ilr_relations
+    
+    def _parse_sumo(self, synset_elem: ET.Element) -> Optional[Dict[str, str]]:
+        """Parse SUMO information from synset element."""
+        sumo_elem = synset_elem.find(XmlElements.SUMO)
+        if sumo_elem is not None and sumo_elem.text:
+            sumo_text = sumo_elem.text.strip()
+            sumo_type = self._get_element_text(sumo_elem, XmlElements.TYPE)
+            return {'concept': sumo_text, 'type': sumo_type}
+        return None
+    
+    def _parse_sentiment(self, synset_elem: ET.Element) -> Optional[Dict[str, float]]:
+        """Parse sentiment information from synset element."""
+        sentiment_elem = synset_elem.find(XmlElements.SENTIMENT)
+        if sentiment_elem is None:
+            return None
+            
+        pos_elem = sentiment_elem.find(XmlElements.POSITIVE)
+        neg_elem = sentiment_elem.find(XmlElements.NEGATIVE)
+        
+        if pos_elem is not None and neg_elem is not None:
+            try:
+                positive = self._parse_float_with_comma(pos_elem.text) if pos_elem.text else 0.0
+                negative = self._parse_float_with_comma(neg_elem.text) if neg_elem.text else 0.0
+                return {'positive': positive, 'negative': negative}
+            except ValueError:
+                logger.warning("Failed to parse sentiment values")
+                return None
+        
+        return None
+    
+    def _parse_float_with_comma(self, text: str) -> float:
+        """Parse float value, handling comma as decimal separator."""
+        return float(text.replace(',', '.'))
     
     def _extract_english_id(self, synset_id: str) -> Optional[str]:
         """Extract English WordNet ID from synset ID if present."""
-        # Look for ENG30-xxxxxxxx-x pattern
-        match = re.match(r'(ENG30-\d+-[a-z])', synset_id)
-        if match:
-            return match.group(1)
-        return None
+        match = re.match(ENGLISH_ID_PATTERN, synset_id)
+        return match.group(1) if match else None
     
     def get_synset_by_id(self, synset_id: str) -> Optional[Synset]:
         """Get synset by ID."""
         result = self.synsets.get(synset_id)
         
-        # Debug: Log lookup of target synset
-        if synset_id == "ENG30-08621598-n":
-            print(f"DEBUG: Looking up synset {synset_id}")
-            print(f"DEBUG: Found in parser.synsets: {result is not None}")
-            print(f"DEBUG: Total synsets in parser: {len(self.synsets)}")
-            print(f"DEBUG: Sample synset IDs: {list(self.synsets.keys())[:5]}")
+        # Debug logging for specific synset
+        if synset_id == DEBUG_SYNSET_ID:
+            logger.debug(f"Looking up synset {synset_id}")
+            logger.debug(f"Found in parser.synsets: {result is not None}")
+            logger.debug(f"Total synsets in parser: {len(self.synsets)}")
+            logger.debug(f"Sample synset IDs: {list(self.synsets.keys())[:5]}")
             
         return result
     
     def get_related_synsets(self, synset: Synset) -> List[Synset]:
-        """Get synsets related through ILR relations."""
+        """
+        Get synsets related through ILR relations.
+        
+        Args:
+            synset: Source synset
+            
+        Returns:
+            List of related synsets
+        """
         related = []
         for relation in synset.ilr:
             target_id = relation['target']
@@ -276,7 +335,15 @@ class XmlSynsetParser:
         return related
     
     def get_english_linked_synsets(self, english_id: str) -> List[Synset]:
-        """Get Serbian synsets linked to an English WordNet ID."""
+        """
+        Get Serbian synsets linked to an English WordNet ID.
+        
+        Args:
+            english_id: English WordNet ID
+            
+        Returns:
+            List of linked Serbian synsets
+        """
         return self.english_links.get(english_id, [])
     
     def search_synsets(self, query: str, limit: int = 20) -> List[Synset]:
@@ -290,39 +357,67 @@ class XmlSynsetParser:
         Returns:
             List of matching synsets
         """
+        if not query:
+            return []
+            
         query_lower = query.lower()
         results = []
         
         for synset in self.synsets.values():
-            # Search in definition
-            if query_lower in synset.definition.lower():
+            if self._synset_matches_query(synset, query_lower):
                 results.append(synset)
-                continue
-                
-            # Search in synonyms
-            for synonym in synset.synonyms:
-                if query_lower in synonym.get('literal', '').lower():
-                    results.append(synset)
+                if len(results) >= limit:
                     break
-            else:
-                # Search in usage examples if no match found yet
-                if synset.usage and query_lower in synset.usage.lower():
-                    results.append(synset)
-            
-            if len(results) >= limit:
-                break
         
-        return results[:limit]
+        return results
+    
+    def _synset_matches_query(self, synset: Synset, query_lower: str) -> bool:
+        """Check if synset matches the search query."""
+        # Search in definition
+        if query_lower in synset.definition.lower():
+            return True
+            
+        # Search in synonyms
+        for synonym in synset.synonyms:
+            if query_lower in synonym.get('literal', '').lower():
+                return True
+        
+        # Search in usage examples
+        if synset.usage and query_lower in synset.usage.lower():
+            return True
+            
+        return False
     
     def get_synsets_by_pos(self, pos: str) -> List[Synset]:
-        """Get all synsets with specific part of speech."""
+        """
+        Get all synsets with specific part of speech.
+        
+        Args:
+            pos: Part of speech to filter by
+            
+        Returns:
+            List of synsets with matching POS
+        """
         return [synset for synset in self.synsets.values() if synset.pos == pos]
     
     def get_all_synsets(self) -> List[Synset]:
-        """Get all loaded synsets."""
+        """
+        Get all loaded synsets.
+        
+        Returns:
+            List of all synsets
+        """
         return list(self.synsets.values())
     
-    def clear(self):
+    def clear(self) -> None:
         """Clear all loaded synsets."""
         self.synsets.clear()
         self.english_links.clear()
+    
+    def get_synset_count(self) -> int:
+        """Get the total number of loaded synsets."""
+        return len(self.synsets)
+    
+    def get_english_links_count(self) -> int:
+        """Get the total number of English links."""
+        return len(self.english_links)
