@@ -1,0 +1,48 @@
+# Project Overview
+WordNet Auto-Translation aims to expand WordNet resources in less-resourced languages. It uses DSPy pipelines and prompt optimization to translate synsets from English to a target language and offers a Streamlit GUI for browsing Serbian WordNet data.
+
+DSPy is a framework for prompt-optimized language model pipelines, enabling efficient and accurate processing of language tasks.
+
+# Key Concepts
+- **Synset**: Set of synonymous words with definition and relations.
+- **DSPy**: See the Project Overview section for an explanation of DSPy.
+- **ILR**: Inter-Lingual Relations linking synsets across languages.
+- **Examples directory**: Precision words and sentences that guide translations.
+
+# Architecture
+- `src/wordnet_autotranslate/` – main package.
+  - `pipelines/` – translation pipelines, including a Serbian pipeline.
+  - `models/` – handlers for WordNet synsets and XML parsing.
+  - `gui/` – Streamlit application for browsing and pairing synsets.
+  - `utils/` – helper utilities for language processing.
+- `launch_gui.py` – starts the Streamlit GUI.
+- `examples/` – example words and sentences for target languages.
+- `tests/` – unit tests for the parser, import/export, and basic functionality.
+
+# Usage Examples
+Launch the GUI browser:
+```bash
+python launch_gui.py
+```
+or
+```bash
+streamlit run src/wordnet_autotranslate/gui/synset_browser.py
+```
+Use the Serbian pipeline programmatically:
+```python
+from pathlib import Path
+from wordnet_autotranslate import SerbianWordnetPipeline
+
+# `pilot_limit` controls the maximum number of synsets to process in this pipeline run.
+pipeline = SerbianWordnetPipeline(pilot_limit=100)
+pipeline.run(Path("./output/srpwn_generated.xml"))
+```
+
+# Important Files and Directories
+- `README.md` – overall documentation and installation guide.
+- `GUI_README.md` – detailed GUI instructions.
+- `XML_FILE_SETUP.md` – guidance on handling Serbian WordNet XML files.
+- `src/wordnet_autotranslate/models/xml_synset_parser.py` – parses Serbian synset XML.
+- `src/wordnet_autotranslate/models/synset_handler.py` – interface to English WordNet via NLTK.
+- `src/wordnet_autotranslate/pipelines/serbian_wordnet_pipeline.py` – sample pipeline for generating Serbian synsets.
+- `tests/` – verify parser and GUI export functionality.
