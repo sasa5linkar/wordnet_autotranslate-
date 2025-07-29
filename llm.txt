@@ -1,9 +1,11 @@
 # Project Overview
 WordNet Auto-Translation aims to expand WordNet resources in less-resourced languages. It uses DSPy pipelines and prompt optimization to translate synsets from English to a target language and offers a Streamlit GUI for browsing Serbian WordNet data.
 
+DSPy is a framework for prompt-optimized language model pipelines, enabling efficient and accurate processing of language tasks.
+
 # Key Concepts
 - **Synset**: Set of synonymous words with definition and relations.
-- **DSPy**: Framework for prompt-optimized language model pipelines.
+- **DSPy**: See the Project Overview section for an explanation of DSPy.
 - **ILR**: Inter-Lingual Relations linking synsets across languages.
 - **Examples directory**: Precision words and sentences that guide translations.
 
