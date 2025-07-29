@@ -284,6 +284,9 @@ class SynsetBrowserApp:
         st.subheader("📋 Selected Pairs")
         st.write(f"Selected pairs: {len(st.session_state[SESSION_SELECTED_PAIRS])}")
         
+        # Import functionality
+        self._render_import_section()
+        
         if st.session_state[SESSION_SELECTED_PAIRS]:
             if st.button("📥 Export Pairs"):
                 self._export_pairs()
@@ -293,6 +296,153 @@ class SynsetBrowserApp:
                 st.success("All pairs cleared!")
                 st.rerun()
     
+    def _render_import_section(self):
+        """Render the import section for uploading JSON pairs."""
+        st.subheader("📤 Import Pairs")
+        
+        uploaded_file = st.file_uploader(
+            "Upload JSON file with previously exported pairs",
+            type=['json'],
+            help="Upload a JSON file containing synset pairs exported from this application"
+        )
+        
+        if uploaded_file is not None:
+            # Import options
+            col1, col2 = st.columns(2)
+            with col1:
+                import_mode = st.radio(
+                    "Import mode:",
+                    ["Merge with existing", "Replace existing"],
+                    help="Choose whether to add to current pairs or replace them entirely"
+                )
+            
+            with col2:
+                if st.button("📤 Import Pairs", type="primary"):
+                    self._import_pairs(uploaded_file, import_mode == "Replace existing")
+    
+    def _import_pairs(self, uploaded_file, replace_existing: bool):
+        """
+        Import pairs from uploaded JSON file.
+        
+        Args:
+            uploaded_file: Streamlit uploaded file object
+            replace_existing: Whether to replace existing pairs or merge
+        """
+        try:
+            # Read and parse JSON
+            content = uploaded_file.read().decode('utf-8')
+            data = json.loads(content)
+            
+            # Validate the imported data
+            validation_result = self._validate_import_data(data)
+            if not validation_result['valid']:
+                st.error(f"Invalid file format: {validation_result['error']}")
+                return
+            
+            # Extract pairs from the data
+            imported_pairs = data.get('pairs', [])
+            
+            if not imported_pairs:
+                st.warning("No pairs found in the uploaded file.")
+                return
+            
+            # Handle import mode
+            original_count = len(st.session_state[SESSION_SELECTED_PAIRS])
+            
+            if replace_existing:
+                st.session_state[SESSION_SELECTED_PAIRS] = imported_pairs
+                new_count = len(imported_pairs)
+                st.success(f"✅ Successfully imported {new_count} pairs (replaced existing pairs)")
+            else:
+                # Merge: avoid duplicates based on serbian_id
+                existing_ids = {pair['serbian_id'] for pair in st.session_state[SESSION_SELECTED_PAIRS]}
+                new_pairs = [pair for pair in imported_pairs if pair['serbian_id'] not in existing_ids]
+                duplicates = len(imported_pairs) - len(new_pairs)
+                
+                st.session_state[SESSION_SELECTED_PAIRS].extend(new_pairs)
+                new_count = len(st.session_state[SESSION_SELECTED_PAIRS])
+                
+                if duplicates > 0:
+                    st.success(f"✅ Successfully imported {len(new_pairs)} new pairs. "
+                             f"Skipped {duplicates} duplicates. Total pairs: {new_count}")
+                else:
+                    st.success(f"✅ Successfully imported {len(new_pairs)} pairs. Total pairs: {new_count}")
+            
+            # Show import metadata if available
+            metadata = data.get('metadata', {})
+            if metadata:
+                with st.expander("📊 Import Details"):
+                    if 'export_timestamp' in metadata:
+                        st.write(f"**Original export date:** {metadata['export_timestamp']}")
+                    if 'format_version' in metadata:
+                        st.write(f"**Format version:** {metadata['format_version']}")
+                    if 'total_pairs' in metadata:
+                        st.write(f"**Pairs in file:** {metadata['total_pairs']}")
+                    if 'created_by' in metadata:
+                        st.write(f"**Created by:** {metadata['created_by']}")
+            
+            st.rerun()
+            
+        except json.JSONDecodeError as e:
+            st.error(f"Invalid JSON file: {str(e)}")
+        except Exception as e:
+            logger.error(f"Error importing pairs: {e}")
+            st.error(f"Error importing pairs: {str(e)}")
+    
+    def _validate_import_data(self, data: Dict) -> Dict:
+        """
+        Validate the structure of imported JSON data.
+        
+        Args:
+            data: Parsed JSON data
+            
+        Returns:
+            Dictionary with 'valid' boolean and 'error' message if invalid
+        """
+        try:
+            # Check if data is a dictionary
+            if not isinstance(data, dict):
+                return {'valid': False, 'error': 'Root element must be a JSON object'}
+            
+            # Check for required top-level keys
+            if 'pairs' not in data:
+                return {'valid': False, 'error': 'Missing required "pairs" field'}
+            
+            # Check if pairs is a list
+            if not isinstance(data['pairs'], list):
+                return {'valid': False, 'error': '"pairs" field must be a list'}
+            
+            # Check format version compatibility if present
+            metadata = data.get('metadata', {})
+            if 'format_version' in metadata:
+                file_version = metadata['format_version']
+                
+                # For now, accept versions 1.0 and 2.0
+                supported_versions = ['1.0', '2.0']
+                if file_version not in supported_versions:
+                    return {
+                        'valid': False, 
+                        'error': f'Unsupported format version {file_version}. Supported versions: {", ".join(supported_versions)}'
+                    }
+            
+            # Validate each pair has required fields
+            required_pair_fields = ['serbian_id', 'english_id']
+            for i, pair in enumerate(data['pairs']):
+                if not isinstance(pair, dict):
+                    return {'valid': False, 'error': f'Pair {i+1} is not a valid object'}
+                
+                for field in required_pair_fields:
+                    if field not in pair:
+                        return {'valid': False, 'error': f'Pair {i+1} missing required field: {field}'}
+                    
+                    if not isinstance(pair[field], str):
+                        return {'valid': False, 'error': f'Pair {i+1} field "{field}" must be a string'}
+            
+            return {'valid': True, 'error': None}
+            
+        except Exception as e:
+            return {'valid': False, 'error': f'Validation error: {str(e)}'}
+
     def _get_synset_display_text(self, synset: Synset) -> str:
         """Get display text for a synset."""
         if synset.synonyms:
@@ -329,7 +479,8 @@ class SynsetBrowserApp:
         - 🔗 **Navigate hyperlinks** between related synsets
         - 🎯 **Pair Serbian and English synsets** for training data
         - � **View usage examples** when available (Serbian) and examples (English)
-        - �📊 **Export selected pairs** for machine learning with usage examples
+        - 📊 **Export selected pairs** for machine learning with usage examples
+        - 📤 **Import previously exported pairs** to resume work or share progress
         
         ### XML Format Expected:
         The tool expects XML files with Serbian synsets in the format containing:
