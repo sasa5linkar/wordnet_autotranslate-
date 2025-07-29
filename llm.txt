@@ -33,6 +33,7 @@ Use the Serbian pipeline programmatically:
 from pathlib import Path
 from wordnet_autotranslate import SerbianWordnetPipeline
 
+# `pilot_limit` controls the maximum number of synsets to process in this pipeline run.
 pipeline = SerbianWordnetPipeline(pilot_limit=100)
 pipeline.run(Path("./output/srpwn_generated.xml"))
 ```
