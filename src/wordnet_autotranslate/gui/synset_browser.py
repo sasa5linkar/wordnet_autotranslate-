@@ -416,7 +416,6 @@ class SynsetBrowserApp:
             metadata = data.get('metadata', {})
             if 'format_version' in metadata:
                 file_version = metadata['format_version']
-                current_version = EXPORT_FORMAT_VERSION
                 
                 # For now, accept versions 1.0 and 2.0
                 supported_versions = ['1.0', '2.0']
