@@ -28,8 +28,34 @@ import tempfile
 from pathlib import Path
 from typing import Dict, List, Optional
 
-import pandas as pd
-import streamlit as st
+# Optional dependencies: pandas for table rendering/export, streamlit for GUI.
+# Both are heavy and may not be installed in headless test environments.
+try:  # pragma: no cover - trivial import shim
+    import pandas as pd  # type: ignore
+except Exception:  # ImportError or other issues
+    pd = None  # type: ignore
+
+try:  # pragma: no cover - trivial import shim
+    import streamlit as st  # type: ignore
+except Exception:  # ImportError or runtime issues
+    class _StreamlitStub:
+        """Minimal stub used when Streamlit isn't installed.
+
+        Only exposes ``session_state`` and raises informative errors for
+        any other attribute access.  This allows unit tests that don't rely on
+        the GUI to run without the real dependency.
+        """
+
+        def __init__(self) -> None:
+            self.session_state: Dict[str, object] = {}
+
+        def __getattr__(self, name: str):  # pragma: no cover - simple helper
+            def _missing(*_args, **_kwargs):
+                raise ImportError("streamlit is required for GUI features")
+
+            return _missing
+
+    st = _StreamlitStub()  # type: ignore
 
 # Add the src directory to the Python path for imports
 current_dir = Path(__file__).parent
@@ -67,17 +93,40 @@ SESSION_LIST_PAGE = 'synset_list_page'
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+
+def _require_pandas() -> None:
+    """Ensure :mod:`pandas` is available before using table features."""
+    if pd is None:  # pragma: no cover - simple guard
+        raise ImportError("pandas is required for this feature; please install it")
 class SynsetBrowserApp:
     """Main Streamlit application for synset browsing."""
     
-    def __init__(self):
-        """Initialize the application."""
-        self.parser = XmlSynsetParser()
-        self.synset_handler = SynsetHandler()
+    def __init__(self, parser: Optional[XmlSynsetParser] = None, synset_handler: Optional[SynsetHandler] = None):
+        """Initialize the application.
+
+        Parameters
+        ----------
+        parser:
+            Optional pre-created ``XmlSynsetParser`` instance.
+        synset_handler:
+            Optional ``SynsetHandler``.  When ``None`` the handler is
+            initialised lazily on first access to avoid heavy WordNet
+            downloads during unit tests.
+        """
+        self.parser = parser or XmlSynsetParser()
+        self._synset_handler = synset_handler
         self.selected_pairs = []  # List of (serbian_synset, english_synset) pairs
-        
+
         # Initialize session state
         self._init_session_state()
+
+    @property
+    def synset_handler(self) -> SynsetHandler:
+        """Lazily instantiate :class:`SynsetHandler` when needed."""
+        if self._synset_handler is None:  # pragma: no cover - simple lazy init
+            self._synset_handler = SynsetHandler()
+        return self._synset_handler
     
     def _init_session_state(self):
         """Initialize session state variables."""
@@ -632,6 +681,7 @@ class SynsetBrowserApp:
                     self._navigate_to_synset_by_index(global_idx)
             
             # Display the table
+            _require_pandas()
             df = pd.DataFrame(synset_data)
             st.dataframe(df, use_container_width=True)
     
@@ -810,6 +860,7 @@ class SynsetBrowserApp:
             
             # Display relations table
             if relation_data:
+                _require_pandas()
                 df_relations = pd.DataFrame(relation_data)
                 st.dataframe(df_relations, use_container_width=True, hide_index=True)
                 
@@ -1428,6 +1479,7 @@ class SynsetBrowserApp:
         
         # Display relations table if we have data
         if relation_data:
+            _require_pandas()
             df_relations = pd.DataFrame(relation_data)
             st.dataframe(df_relations, use_container_width=True, hide_index=True)
         else:
@@ -1436,6 +1488,7 @@ class SynsetBrowserApp:
     def _export_pairs(self):
         """Export selected pairs to JSON."""
         if st.session_state[SESSION_SELECTED_PAIRS]:
+            _require_pandas()
             data = {
                 'pairs': st.session_state[SESSION_SELECTED_PAIRS],
                 'metadata': {
