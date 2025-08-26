@@ -17,6 +17,14 @@ The application follows best practices including:
 
 Author: Serbian WordNet Team
 Version: 2.0 (Refactored)
+
+Optional Dependencies
+---------------------
+The GUI relies on :mod:`streamlit` and uses :mod:`pandas` for table
+rendering and data export. These packages are optional; the rest of the
+project can run in headless environments. Features that require them
+will raise :class:`ImportError` when absent. Heavy WordNet resources are
+also loaded lazily to avoid unnecessary downloads during import.
 """
 
 import json
