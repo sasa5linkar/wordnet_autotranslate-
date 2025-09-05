@@ -77,6 +77,38 @@ class TranslationPipeline:
         self.target_lang = target_lang
         self.examples_path = Path(__file__).parent.parent.parent.parent / "examples"
         self._examples_cache = None  # type: Optional[Dict]
+        # Central language field map: customize per language to avoid hardcoded keys
+        # Keys: definition, lemmas (aka synonyms), examples, usage, relations, id
+        # Provide fallbacks to generic keys if language-specific ones are missing.
+        self.LANGUAGE_FIELD_MAP: Dict[str, Dict[str, Optional[str]]] = {
+            # English fields as found in enhanced example JSON
+            "en": {
+                "definition": "english_definition",
+                "lemmas": "english_lemmas",
+                "examples": "english_examples",
+                "usage": None,  # English side typically doesn't provide 'usage'
+                "relations": "english_relations",
+                "id": "english_id",
+            },
+            # Serbian fields as found in enhanced example JSON
+            "sr": {
+                "definition": "serbian_definition",
+                "lemmas": "serbian_synonyms",
+                "examples": None,  # Serbian side typically doesn't provide 'examples'
+                "usage": "serbian_usage",
+                "relations": "serbian_relations",
+                "id": "serbian_id",
+            },
+        }
+        # Generic fallbacks used for any language when language-specific keys are missing
+        self.GENERIC_FALLBACKS: Dict[str, List[str]] = {
+            "definition": ["definition"],
+            "lemmas": ["lemmas", "synonyms"],
+            "examples": ["examples"],
+            "usage": ["usage"],
+            "relations": ["relations"],
+            "id": ["id"],
+        }
         
     def load_english_synsets(self) -> List[Dict]:
         """Load English WordNet synsets."""
@@ -134,24 +166,27 @@ class TranslationPipeline:
 
         Tries definition, then lemmas/examples as fallback.
         """
-        # Common keys
-        definition = synset.get("definition") or synset.get("english_definition") or synset.get("serbian_definition")
-        if isinstance(definition, str) and definition.strip():
-            return definition.strip()
+        # Definition first
+        definition = self._get_text_field(synset, kind="definition", lang=self.source_lang)
+        if definition:
+            return definition
 
-        # Lemmas fallbacks
-        for key in ("lemmas", "english_lemmas", "serbian_synonyms"):
-            if isinstance(synset.get(key), list) and synset[key]:
-                return ", ".join([str(x) for x in synset[key] if isinstance(x, str)]).strip()
+        # Lemmas / synonyms next
+        lemmas = self._get_list_field(synset, kind="lemmas", lang=self.source_lang)
+        if lemmas:
+            return ", ".join([str(x) for x in lemmas if isinstance(x, str)]).strip()
 
-        # Examples fallback
-        for key in ("examples", "english_examples"):
-            if isinstance(synset.get(key), list) and synset[key]:
-                return str(synset[key][0]).strip()
+        # Examples next
+        examples = self._get_list_field(synset, kind="examples", lang=self.source_lang)
+        if examples:
+            first_ex = next((e for e in examples if isinstance(e, str) and e.strip()), None)
+            if first_ex:
+                return first_ex.strip()
 
-        # Usage fallback
-        if isinstance(synset.get("serbian_usage"), str) and synset["serbian_usage"].strip():
-            return synset["serbian_usage"].strip()
+        # Usage (if any) last
+        usage = self._get_text_field(synset, kind="usage", lang=self.source_lang)
+        if usage:
+            return usage
 
         return ""
 
@@ -163,42 +198,38 @@ class TranslationPipeline:
         """
         lines: List[str] = []
 
-        # Definition (explicit if present separate from source text)
-        for key in ("serbian_definition", "english_definition", "definition"):
-            val = synset.get(key)
-            if isinstance(val, str) and val.strip():
-                lines.append(f"Definition: {val.strip()}")
-                break
+        # Definitions for source and target if present
+        src_def = self._get_text_field(synset, kind="definition", lang=self.source_lang)
+        if src_def:
+            lines.append(f"Definition [{self.source_lang}]: {src_def}")
+        tgt_def = self._get_text_field(synset, kind="definition", lang=self.target_lang)
+        if tgt_def and tgt_def != src_def:
+            lines.append(f"Definition [{self.target_lang}]: {tgt_def}")
 
-        # Synonyms / lemmas
-        if isinstance(synset.get("serbian_synonyms"), list) and synset["serbian_synonyms"]:
-            syns = ", ".join([s for s in synset["serbian_synonyms"] if isinstance(s, str)])
-            if syns:
-                lines.append(f"Synonyms (SR): {syns}")
-        if isinstance(synset.get("english_lemmas"), list) and synset["english_lemmas"]:
-            lemmas = ", ".join([s for s in synset["english_lemmas"] if isinstance(s, str)])
-            if lemmas:
-                lines.append(f"Lemmas (EN): {lemmas}")
+        # Synonyms / lemmas (source and target)
+        src_lemmas = self._get_list_field(synset, kind="lemmas", lang=self.source_lang)
+        if src_lemmas:
+            lines.append(f"Lemmas/Synonyms [{self.source_lang}]: {', '.join([s for s in src_lemmas if isinstance(s, str)])}")
+        tgt_lemmas = self._get_list_field(synset, kind="lemmas", lang=self.target_lang)
+        if tgt_lemmas:
+            lines.append(f"Lemmas/Synonyms [{self.target_lang}]: {', '.join([s for s in tgt_lemmas if isinstance(s, str)])}")
 
         # Usage / examples
-        if isinstance(synset.get("serbian_usage"), str) and synset["serbian_usage"].strip():
-            lines.append(f"Usage (SR): {synset['serbian_usage'].strip()}")
-        if isinstance(synset.get("english_examples"), list) and synset["english_examples"]:
-            eg = next((e for e in synset["english_examples"] if isinstance(e, str) and e.strip()), None)
+        tgt_usage = self._get_text_field(synset, kind="usage", lang=self.target_lang)
+        if tgt_usage:
+            lines.append(f"Usage [{self.target_lang}]: {tgt_usage}")
+        src_examples = self._get_list_field(synset, kind="examples", lang=self.source_lang)
+        if src_examples:
+            eg = next((e for e in src_examples if isinstance(e, str) and e.strip()), None)
             if eg:
-                lines.append(f"Example (EN): {eg.strip()}")
+                lines.append(f"Example [{self.source_lang}]: {eg.strip()}")
 
-        # Relations summary
-        rel_obj = None
-        if isinstance(synset.get("serbian_relations"), dict):
-            rel_obj = synset["serbian_relations"]
-        elif isinstance(synset.get("english_relations"), dict):
-            rel_obj = synset["english_relations"]
+        # Relations summary (prefer target, fall back to source)
+        rel_obj = self._get_relations(synset, lang=self.target_lang) or self._get_relations(synset, lang=self.source_lang)
         if isinstance(rel_obj, dict):
             total = rel_obj.get("total_relations")
             by_type = rel_obj.get("relations_by_type") or {}
             parts = []
-            # Limit for brevity
             for k, v in list(by_type.items())[:5]:
                 try:
                     parts.append(f"{k}:{int(v)}")
@@ -219,6 +250,49 @@ class TranslationPipeline:
         an actual model call when integrating DSPy or another backend.
         """
         return text
+
+    # ---------------------------
+    # Language-field utilities
+    # ---------------------------
+    def _field_candidates(self, kind: str, lang: str) -> List[str]:
+        cfg = self.LANGUAGE_FIELD_MAP.get(lang, {})
+        primary = cfg.get(kind)
+        cands: List[str] = []
+        if primary:
+            cands.append(primary)
+        # Also consider the other side if commonly mirrored (e.g., definition)
+        # but avoid cross-language bleed by focusing on generic fallbacks next
+        cands.extend(self.GENERIC_FALLBACKS.get(kind, []))
+        return cands
+
+    def _get_text_field(self, obj: Dict, kind: str, lang: str) -> str:
+        for key in self._field_candidates(kind, lang):
+            val = obj.get(key)
+            if isinstance(val, str) and val.strip():
+                return val.strip()
+        return ""
+
+    def _get_list_field(self, obj: Dict, kind: str, lang: str) -> List[str]:
+        for key in self._field_candidates(kind, lang):
+            val = obj.get(key)
+            if isinstance(val, list) and val:
+                # keep only stringy entries
+                return [str(x) for x in val if isinstance(x, (str, int, float))]
+        return []
+
+    def _get_relations(self, obj: Dict, lang: str) -> Optional[Dict]:
+        for key in self._field_candidates("relations", lang):
+            val = obj.get(key)
+            if isinstance(val, dict):
+                return val
+        return None
+
+    def _get_id(self, obj: Dict, lang: str) -> Optional[str]:
+        for key in self._field_candidates("id", lang):
+            val = obj.get(key)
+            if isinstance(val, (str, int)):
+                return str(val)
+        return None
 
     # ---------------------------
     # Evaluation helpers and API
@@ -349,7 +423,7 @@ class TranslationPipeline:
             Translation record with fields: source_id, source_text, translated_text,
             and metadata.
         """
-        source_id = synset.get("id") or synset.get("serbian_id") or synset.get("english_id")
+        source_id = self._get_id(synset, self.source_lang) or self._get_id(synset, self.target_lang)
         source_text = self._build_source_text(synset)
         source_context = self._build_synset_context(synset)
 
@@ -454,10 +528,10 @@ class TranslationPipeline:
 
         # Score pairs to prefer those with richer context
         def _score_pair(p: Dict) -> Tuple[int, int]:
-            # (has_usage, has_examples) as tuple for sorting desc
-            has_usage = 1 if p.get("serbian_usage") else 0
-            has_eng_ex = 1 if (p.get("english_examples") or []) else 0
-            return has_usage, has_eng_ex
+            # Prefer items with target usage and source examples to enrich prompts
+            has_tgt_usage = 1 if self._get_text_field(p, kind="usage", lang=self.target_lang) else 0
+            has_src_examples = 1 if self._get_list_field(p, kind="examples", lang=self.source_lang) else 0
+            return has_tgt_usage, has_src_examples
 
         candidates = pairs[:]
         if prefer_with_usage:
@@ -472,32 +546,40 @@ class TranslationPipeline:
 
         # Build prompt-ready examples mapper
         def _to_example(p: Dict) -> Optional[Dict[str, str]]:
-            if self.source_lang.startswith("en") and self.target_lang.startswith("sr"):
-                source = p.get("english_definition") or " ".join(p.get("english_lemmas", []))
-                if not source and p.get("english_examples"):
-                    source = p["english_examples"][0]
-                target = p.get("serbian_definition") or ", ".join(p.get("serbian_synonyms", [])) or p.get("serbian_usage", "")
-            elif self.source_lang.startswith("sr") and self.target_lang.startswith("en"):
-                source = p.get("serbian_definition") or ", ".join(p.get("serbian_synonyms", [])) or p.get("serbian_usage", "")
-                target = p.get("english_definition") or " ".join(p.get("english_lemmas", []))
-                if not target and p.get("english_examples"):
-                    target = p["english_examples"][0]
-            else:
-                # Fallback generic mapping: use definitions or lemmas if available
-                source = p.get("english_definition") or " ".join(p.get("english_lemmas", []))
-                target = p.get("serbian_definition") or ", ".join(p.get("serbian_synonyms", []))
+            # Build source text: definition -> lemmas -> example
+            source = self._get_text_field(p, kind="definition", lang=self.source_lang)
+            if not source:
+                src_lemmas = self._get_list_field(p, kind="lemmas", lang=self.source_lang)
+                if src_lemmas:
+                    source = " ".join(src_lemmas)
+            if not source:
+                src_examples = self._get_list_field(p, kind="examples", lang=self.source_lang)
+                if src_examples:
+                    source = src_examples[0]
+
+            # Build target gold: definition -> lemmas/synonyms -> usage
+            target = self._get_text_field(p, kind="definition", lang=self.target_lang)
+            if not target:
+                tgt_lemmas = self._get_list_field(p, kind="lemmas", lang=self.target_lang)
+                if tgt_lemmas:
+                    target = ", ".join(tgt_lemmas)
+            if not target:
+                usage = self._get_text_field(p, kind="usage", lang=self.target_lang)
+                if usage:
+                    target = usage
 
             if not source or not target:
                 return None
 
+            # Provide a minimal, language-agnostic context
             return {
                 "input": source,
                 "output": target,
                 "context": {
-                    "english_lemmas": p.get("english_lemmas", []),
-                    "serbian_synonyms": p.get("serbian_synonyms", []),
-                    "english_examples": p.get("english_examples", []),
-                    "serbian_usage": p.get("serbian_usage"),
+                    f"lemmas_{self.source_lang}": self._get_list_field(p, kind="lemmas", lang=self.source_lang),
+                    f"lemmas_{self.target_lang}": self._get_list_field(p, kind="lemmas", lang=self.target_lang),
+                    f"examples_{self.source_lang}": self._get_list_field(p, kind="examples", lang=self.source_lang),
+                    f"usage_{self.target_lang}": self._get_text_field(p, kind="usage", lang=self.target_lang),
                 }
             }
 
