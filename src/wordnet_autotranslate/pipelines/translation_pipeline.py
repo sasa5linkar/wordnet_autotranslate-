@@ -155,6 +155,63 @@ class TranslationPipeline:
 
         return ""
 
+    def _build_synset_context(self, synset: Dict) -> str:
+        """Build a compact, structured context block from a synset dict.
+
+        Includes: definition, synonyms/lemmas, usage/examples (first), and
+        a brief relations summary if available in the pair (e.g., *_relations).
+        """
+        lines: List[str] = []
+
+        # Definition (explicit if present separate from source text)
+        for key in ("serbian_definition", "english_definition", "definition"):
+            val = synset.get(key)
+            if isinstance(val, str) and val.strip():
+                lines.append(f"Definition: {val.strip()}")
+                break
+
+        # Synonyms / lemmas
+        if isinstance(synset.get("serbian_synonyms"), list) and synset["serbian_synonyms"]:
+            syns = ", ".join([s for s in synset["serbian_synonyms"] if isinstance(s, str)])
+            if syns:
+                lines.append(f"Synonyms (SR): {syns}")
+        if isinstance(synset.get("english_lemmas"), list) and synset["english_lemmas"]:
+            lemmas = ", ".join([s for s in synset["english_lemmas"] if isinstance(s, str)])
+            if lemmas:
+                lines.append(f"Lemmas (EN): {lemmas}")
+
+        # Usage / examples
+        if isinstance(synset.get("serbian_usage"), str) and synset["serbian_usage"].strip():
+            lines.append(f"Usage (SR): {synset['serbian_usage'].strip()}")
+        if isinstance(synset.get("english_examples"), list) and synset["english_examples"]:
+            eg = next((e for e in synset["english_examples"] if isinstance(e, str) and e.strip()), None)
+            if eg:
+                lines.append(f"Example (EN): {eg.strip()}")
+
+        # Relations summary
+        rel_obj = None
+        if isinstance(synset.get("serbian_relations"), dict):
+            rel_obj = synset["serbian_relations"]
+        elif isinstance(synset.get("english_relations"), dict):
+            rel_obj = synset["english_relations"]
+        if isinstance(rel_obj, dict):
+            total = rel_obj.get("total_relations")
+            by_type = rel_obj.get("relations_by_type") or {}
+            parts = []
+            # Limit for brevity
+            for k, v in list(by_type.items())[:5]:
+                try:
+                    parts.append(f"{k}:{int(v)}")
+                except Exception:
+                    parts.append(f"{k}:{v}")
+            if total is not None or parts:
+                rel_line = f"Relations: total={total}"
+                if parts:
+                    rel_line += f"; types=({', '.join(parts)})"
+                lines.append(rel_line)
+
+        return "\n".join(lines)
+
     def _dummy_translate(self, text: str) -> str:
         """Fallback translation when no model is wired yet.
 
@@ -294,6 +351,7 @@ class TranslationPipeline:
         """
         source_id = synset.get("id") or synset.get("serbian_id") or synset.get("english_id")
         source_text = self._build_source_text(synset)
+        source_context = self._build_synset_context(synset)
 
         # Guard: nothing to translate
         if not source_text:
@@ -316,6 +374,7 @@ class TranslationPipeline:
                 "target_lang": self.target_lang,
                 "used_few_shots": bool(few_shots),
             },
+            "source_context": source_context,
         }
 
     def save_translations(
