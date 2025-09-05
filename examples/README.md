@@ -1,62 +1,106 @@
-# Examples Directory
+## Examples Overview
 
-This directory contains precision words and sentence examples for various target languages used in WordNet auto-translation.
+This folder contains ready-to-import example data for the Serbian WordNet Synset Browser GUI. The main example lives under `examples/sr/` and demonstrates how Serbian and English synsets are paired in a JSON file you can import into the app.
 
-## Directory Structure
+### Directory
+- `sr/serbian_english_synset_pairs_enhanced.json` — enhanced Serbian↔English synset pairing example (v2.0)
 
-Each language should have its own subdirectory with the following files:
-- `words.txt`: Precision words in the target language
-- `sentences.txt`: Example sentences providing context for translations
+## Serbian example (enhanced v2.0)
 
-## Supported Languages
+File: `examples/sr/serbian_english_synset_pairs_enhanced.json`
 
-Currently included examples:
-- **Spanish** (`spanish/`): Comprehensive word lists and sentence examples
-- **French** (`french/`): Basic vocabulary and contextual sentences
-- **German** (`german/`): Ready for your contributions
-- **Portuguese** (`portuguese/`): Ready for your contributions
+This JSON uses the app’s enhanced export format (v2.0). It’s ready to import and includes richer context for each pair.
 
-## Adding New Languages
+Top-level structure:
+- `pairs`: list of pairing objects (each links a Serbian synset to an English synset)
+- `metadata`: file-level info
 
-To add a new target language:
+Serbian fields (per pair):
+- `serbian_id` (string): Serbian synset ID in ENG30-format, e.g. `ENG30-03574555-n`.
+- `serbian_synonyms` (string[]): Serbian synonyms.
+- `serbian_definition` (string): Serbian definition.
+- `serbian_usage` (string | null): Optional usage example.
+- `serbian_pos` (string): Part of speech (e.g., `n`, `v`, `a`, `r`).
+- `serbian_domain` (string | null): Optional domain label.
+- `serbian_relations` (object): Summary of SR WordNet relations with:
+	- `total_relations` (number)
+	- `relations_by_type` (object)
+	- `available_relations` (object[] with target details when loaded)
+	- `external_relations` (object[] for targets not in memory)
 
-1. Create a new directory: `examples/your_language/`
-2. Add `words.txt` with precision words
-3. Add `sentences.txt` with contextual examples
-4. Follow the format of existing examples
+English fields (per pair):
+- `english_id` (string): English synset identifier (ENG30-format or name).
+- `english_definition` (string)
+- `english_lemmas` (string[])
+- `english_examples` (string[])
+- `english_pos` (string)
+- `english_name` (string): WordNet name like `institution.n.01`.
+- `english_relations` (object): Princeton WordNet relations (synset-level and lemma-level keys).
 
-## File Formats
+Pairing metadata:
+- `pairing_metadata` (object):
+	- `pair_type` (string): `automatic` | `manual`
+	- `quality_score` (number)
+	- `translator` (string)
+	- `translation_date` (string)
 
-### words.txt
+File metadata:
+- `metadata.total_pairs` (number)
+- `metadata.created_by` (string): Usually `Serbian WordNet Synset Browser`.
+- `metadata.format_version` (string): `"2.0"` for enhanced format.
+- `metadata.export_timestamp` (string, ISO datetime)
+- `metadata.includes_relations` (boolean)
+- `metadata.includes_metadata` (boolean)
+- `metadata.description` (string)
+
+Notes on versions:
+- The importer accepts both `1.0` (minimal) and `2.0` (enhanced) formats.
+- This example is `2.0` and contains relations and metadata fields as exported by the app.
+
+## How to use this example in the GUI
+
+1) Launch the GUI
+- Ensure the GUI dependencies are installed.
+
+On Windows PowerShell:
+
+```powershell
+# (Optional) create and activate a virtual environment
+python -m venv .venv; .\.venv\Scripts\Activate.ps1
+
+# Install the package with GUI extras
+python -m pip install -U pip
+pip install -e .[gui]
+
+# Start the Streamlit app
+python .\launch_gui.py
 ```
-# Language WordNet Examples
 
-## Precision Words
-word1
-word2
-word3
+Then open the app in your browser at http://localhost:8501 if it doesn’t open automatically.
 
-## Context Examples
-Short example sentence 1.
-Short example sentence 2.
-```
+2) Import the example pairs
+- In the app sidebar, find “Import Pairs”.
+- Click to upload and select `examples/sr/serbian_english_synset_pairs_enhanced.json`.
+- Choose import mode:
+	- Merge with existing: adds new pairs and skips duplicates (duplicates are detected by `serbian_id`).
+	- Replace existing: discards current pairs and loads only from the file.
 
-### sentences.txt
-```
-# Language Sentence Examples for WordNet Translation
+3) Review and export (optional)
+- After import, expand a pair to review Serbian and English details.
+- Use “Export Pairs” to save your current selection. The export uses format version `2.0` with additional helpful metadata.
 
-Longer contextual sentence demonstrating word usage.
-Another sentence with multiple target words for translation.
-```
+## Validating the JSON format (optional)
 
-## Usage in Translation Pipeline
+The importer expects:
+- Root object with a `pairs` array.
+- Each pair must include `serbian_id` and `english_id` (both strings).
+- `metadata.format_version` may be `1.0` or `2.0` if present.
 
-These examples are used by the DSPy pipeline to:
-- Provide context for better translations
-- Validate translation quality
-- Fine-tune prompt optimization
-- Generate training data for models
+The included example file satisfies these rules and is ready to import.
 
-## Contributing
+## Contributing additional examples
 
-Please contribute examples for additional languages by following the established format and creating pull requests.
+If you add more examples:
+- Place them under a language folder (e.g., `examples/sr/your_file.json`).
+- Match the import structure (`pairs` + `metadata`).
+- If you include advanced fields (relations, usage examples, etc.), keep the format consistent with the app’s exporter so they’re importable.
