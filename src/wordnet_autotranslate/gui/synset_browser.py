@@ -999,10 +999,13 @@ class SynsetBrowserApp:
                 
                 # Try to get English synset data
                 try:
-                    numeric_id_match = re.match(r"ENG30-(\d+)-([nvar])", english_id)
+                    # Accept Serbian 'b' for adverbs and normalize to 'r' for NLTK lookups
+                    numeric_id_match = re.match(r"ENG30-(\d+)-([nvarb])", english_id)
                     if numeric_id_match:
                         numeric_id = numeric_id_match.group(1)
                         pos = numeric_id_match.group(2)
+                        if pos == 'b':  # Serbian adverb tag
+                            pos = 'r'   # Princeton/NLTK adverb tag
                         
                         # Try to get synset by offset
                         english_synset = self.synset_handler.get_synset_by_offset(numeric_id, pos)
@@ -1230,6 +1233,9 @@ class SynsetBrowserApp:
     def _extract_english_id(self, synset_id: str) -> Optional[str]:
         """Extract English WordNet ID if present."""
         if synset_id.startswith('ENG30-'):
+            # Normalize Serbian adverb POS '-b' to English '-r' for lookups
+            if synset_id.endswith('-b'):
+                return synset_id[:-1] + 'r'
             return synset_id
         return None
     

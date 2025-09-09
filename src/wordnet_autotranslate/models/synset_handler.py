@@ -135,9 +135,14 @@ class SynsetHandler:
         try:
             self._check_nltk_availability()
             
+            # Normalize POS: Serbian 'b' (adverb) -> English 'r'
+            pos_norm = pos.lower()
+            if pos_norm == 'b':
+                pos_norm = 'r'
+
             # Convert offset to integer and find synset
             offset_int = int(offset)
-            synset = wn.synset_from_pos_and_offset(pos, offset_int)
+            synset = wn.synset_from_pos_and_offset(pos_norm, offset_int)
             
             if synset:
                 return self._create_synset_data(synset)

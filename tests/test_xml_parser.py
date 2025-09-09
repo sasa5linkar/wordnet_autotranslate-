@@ -11,6 +11,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from wordnet_autotranslate.models.xml_synset_parser import XmlSynsetParser, Synset
+from wordnet_autotranslate.utils.language_utils import LanguageUtils
 
 
 def test_xml_synset_parser_init():
@@ -107,16 +108,30 @@ def test_parse_multiple_synsets():
 
 
 def test_english_id_extraction():
-    """Test English ID extraction."""
-    parser = XmlSynsetParser()
-    
-    # Test valid English ID
-    english_id = parser._extract_english_id("ENG30-03574555-n")
-    assert english_id == "ENG30-03574555-n"
-    
-    # Test non-English ID
-    english_id = parser._extract_english_id("SRP-00468874")
-    assert english_id is None
+   """Test English ID extraction."""
+   parser = XmlSynsetParser()
+
+   # Test valid English ID
+   english_id = parser._extract_english_id("ENG30-03574555-n")
+   assert english_id == "ENG30-03574555-n"
+
+   # Serbian-style adverb POS should normalize to English 'r'
+   english_id_adv = parser._extract_english_id("ENG30-00001740-b")
+   assert english_id_adv == "ENG30-00001740-r"
+
+   # Test non-English ID
+   english_id = parser._extract_english_id("SRP-00468874")
+   assert english_id is None
+
+
+def test_pos_normalization_helpers():
+   """Ensure POS normalization between Serbian and English is correct."""
+   # Serbian -> English
+   assert LanguageUtils.normalize_pos_for_english('b') == 'r'
+   assert LanguageUtils.normalize_pos_for_english('n') == 'n'
+   # English -> Serbian
+   assert LanguageUtils.normalize_pos_for_serbian('r') == 'b'
+   assert LanguageUtils.normalize_pos_for_serbian('a') == 'a'
 
 
 def test_search_synsets():
