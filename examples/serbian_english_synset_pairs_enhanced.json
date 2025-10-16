@@ -1,0 +1,4732 @@
+{
+  "pairs": [
+    {
+      "serbian_id": "ENG30-03574555-n",
+      "serbian_synonyms": [
+        "ustanova"
+      ],
+      "serbian_definition": "zgrada u kojoj se nalazi organizaciona jedinica neke grane javnog poslovanja",
+      "serbian_usage": "",
+      "serbian_pos": "n",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 3,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-03297735-n",
+              "available": true,
+              "target_synonyms": [
+                "objekat"
+              ],
+              "target_definition": "Javna ili privatna konstrukcija (poslovna, državna ili obrazovna) koja uključuje zgrade i opremu za poslovanje ili stanovanje.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "building_industry"
+            }
+          ],
+          "hyponym": [
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-03907654-n",
+              "available": true,
+              "target_synonyms": [
+                "kaznena institucija",
+                "kazneni zavod",
+                "pritvorna jedinica"
+              ],
+              "target_definition": "institucija (zavod) u kojoj su zatvorena lica u cilju njihovog kažnjavanja i kako bi se javnost od njih zaštitila",
+              "target_usage": "Jer,zatvor UN u Ševeningenu je u krugu holandskog kaznenog zavoda i zato se prolaze dve \"sigurnosne kapije\". Prepušteni sami sebi pritvorenici su,svaki za sebe,u samicama",
+              "target_pos": "n",
+              "target_domain": "law"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-03528100-n",
+              "available": true,
+              "target_synonyms": [
+                "bolnica",
+                "starački dom"
+              ],
+              "target_definition": "ustanova u kojoj se brinu o ljudima",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-03297735-n",
+            "available": true,
+            "target_synonyms": [
+              "objekat"
+            ],
+            "target_definition": "Javna ili privatna konstrukcija (poslovna, državna ili obrazovna) koja uključuje zgrade i opremu za poslovanje ili stanovanje.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "building_industry"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-03907654-n",
+            "available": true,
+            "target_synonyms": [
+              "kaznena institucija",
+              "kazneni zavod",
+              "pritvorna jedinica"
+            ],
+            "target_definition": "institucija (zavod) u kojoj su zatvorena lica u cilju njihovog kažnjavanja i kako bi se javnost od njih zaštitila",
+            "target_usage": "Jer,zatvor UN u Ševeningenu je u krugu holandskog kaznenog zavoda i zato se prolaze dve \"sigurnosne kapije\". Prepušteni sami sebi pritvorenici su,svaki za sebe,u samicama",
+            "target_pos": "n",
+            "target_domain": "law"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-03528100-n",
+            "available": true,
+            "target_synonyms": [
+              "bolnica",
+              "starački dom"
+            ],
+            "target_definition": "ustanova u kojoj se brinu o ljudima",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-03574555-n",
+      "english_definition": "an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated",
+      "english_lemmas": [
+        "institution"
+      ],
+      "english_examples": [],
+      "english_pos": "n",
+      "english_name": "institution.n.02",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "establishment.n.04",
+            "definition": "a public or private structure (business or governmental or educational) including buildings and equipment for business or residence"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "orphanage.n.02",
+            "definition": "a public institution for the care of orphans"
+          },
+          {
+            "name": "home.n.09",
+            "definition": "an institution where people are cared for"
+          },
+          {
+            "name": "penal_institution.n.01",
+            "definition": "an institution where persons are confined for punishment and to protect the public"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "lemma_relations": {
+          "institution": {
+            "derivationally_related": [
+              {
+                "name": "institutional.a.01",
+                "definition": "relating to or constituting or involving an institution",
+                "lemma": "institutional"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "20.7.2006. 00.00.00"
+      }
+    },
+    {
+      "serbian_id": "ENG30-07810907-n",
+      "serbian_synonyms": [
+        "začin"
+      ],
+      "serbian_definition": "pripremljeni dodatak jelu za poboljšanje ukusa",
+      "serbian_usage": "",
+      "serbian_pos": "n",
+      "serbian_domain": "gastronomy",
+      "serbian_relations": {
+        "total_relations": 14,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-07809368-n",
+              "available": true,
+              "target_synonyms": [
+                "dodatak jelima"
+              ],
+              "target_definition": "dodatak jelu za poboljšanje ukusa",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            }
+          ],
+          "hyponym": [
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07829412-n",
+              "available": true,
+              "target_synonyms": [
+                "sos",
+                "umak"
+              ],
+              "target_definition": "Začinjeni preliv koji se služi kao dodatak uz jelo.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07828987-n",
+              "available": true,
+              "target_synonyms": [
+                "sirće"
+              ],
+              "target_definition": "Tečnost kiselog ukusa koja se obično dobija oksidacijom alkohola u vinu ili sidru a koristi se kao začin ili za konzerviranje hrane.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07822197-n",
+              "available": true,
+              "target_synonyms": [
+                "kečap"
+              ],
+              "target_definition": "gust sos napravljen od paradajza sa mnogim začinima",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07819480-n",
+              "available": true,
+              "target_synonyms": [
+                "senf",
+                "gorčica",
+                "slačica"
+              ],
+              "target_definition": "sos jakog ukusa koji se spravlja od semena gorčice",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "SRP-00468874",
+              "available": true,
+              "target_synonyms": [
+                "vegeta"
+              ],
+              "target_definition": "univerzalni dodatak za jela hrvatske kompanije Podravka; predstavlja jedinstvenu kombinaciju nekoliko vrsta začina i sedam vrsta sušenog povrća",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07582441-n",
+              "available": true,
+              "target_synonyms": [
+                "dodatak uz jelo"
+              ],
+              "target_definition": "slani začin ili dodatak uz jelo",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07582609-n",
+              "available": true,
+              "target_synonyms": [
+                "umak"
+              ],
+              "target_definition": "smesa više tečna nego čvrsta u koju se umataču komadi hrane radi poboljšanja ukusa",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07825972-n",
+              "available": true,
+              "target_synonyms": [
+                "soja sos"
+              ],
+              "target_definition": "redak sos napravljen od fermentiranih zrna soje",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07823105-n",
+              "available": true,
+              "target_synonyms": [
+                "čatni"
+              ],
+              "target_definition": "vrsta sosa-umaka poreklom iz Indije, odnosno Južne Azije; pravi se od voća ili povrća i začina, a služi se kao dodatak raznim jelima od mesa, testa, pirinča",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07824383-n",
+              "available": true,
+              "target_synonyms": [
+                "ribani ren"
+              ],
+              "target_definition": "ribani koren rena, obično zakiseljen",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07857356-n",
+              "available": true,
+              "target_synonyms": [
+                "vasabi"
+              ],
+              "target_definition": "debeli zeleni koren biljke vasabi koju Japanci koriste u kuvanju koa ima ukus kao jak ren; u obliku praha ili namaza često se jede uz sirovu ribu",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": ""
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07856270-n",
+              "available": true,
+              "target_synonyms": [
+                "namaz"
+              ],
+              "target_definition": "ukusna smesa koja se maže na hleb ili krekere ili se koristi za pripremu drugih jela",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-07824502-n",
+              "available": true,
+              "target_synonyms": [
+                "marinada",
+                "marinat"
+              ],
+              "target_definition": "mešavina sirćeta ili vina i ulja sa raznim začinima u koju se natapa meso ili riba pre kuvanja",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "gastronomy"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-07809368-n",
+            "available": true,
+            "target_synonyms": [
+              "dodatak jelima"
+            ],
+            "target_definition": "dodatak jelu za poboljšanje ukusa",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07829412-n",
+            "available": true,
+            "target_synonyms": [
+              "sos",
+              "umak"
+            ],
+            "target_definition": "Začinjeni preliv koji se služi kao dodatak uz jelo.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07828987-n",
+            "available": true,
+            "target_synonyms": [
+              "sirće"
+            ],
+            "target_definition": "Tečnost kiselog ukusa koja se obično dobija oksidacijom alkohola u vinu ili sidru a koristi se kao začin ili za konzerviranje hrane.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07822197-n",
+            "available": true,
+            "target_synonyms": [
+              "kečap"
+            ],
+            "target_definition": "gust sos napravljen od paradajza sa mnogim začinima",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07819480-n",
+            "available": true,
+            "target_synonyms": [
+              "senf",
+              "gorčica",
+              "slačica"
+            ],
+            "target_definition": "sos jakog ukusa koji se spravlja od semena gorčice",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "SRP-00468874",
+            "available": true,
+            "target_synonyms": [
+              "vegeta"
+            ],
+            "target_definition": "univerzalni dodatak za jela hrvatske kompanije Podravka; predstavlja jedinstvenu kombinaciju nekoliko vrsta začina i sedam vrsta sušenog povrća",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07582441-n",
+            "available": true,
+            "target_synonyms": [
+              "dodatak uz jelo"
+            ],
+            "target_definition": "slani začin ili dodatak uz jelo",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07582609-n",
+            "available": true,
+            "target_synonyms": [
+              "umak"
+            ],
+            "target_definition": "smesa više tečna nego čvrsta u koju se umataču komadi hrane radi poboljšanja ukusa",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07825972-n",
+            "available": true,
+            "target_synonyms": [
+              "soja sos"
+            ],
+            "target_definition": "redak sos napravljen od fermentiranih zrna soje",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07823105-n",
+            "available": true,
+            "target_synonyms": [
+              "čatni"
+            ],
+            "target_definition": "vrsta sosa-umaka poreklom iz Indije, odnosno Južne Azije; pravi se od voća ili povrća i začina, a služi se kao dodatak raznim jelima od mesa, testa, pirinča",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07824383-n",
+            "available": true,
+            "target_synonyms": [
+              "ribani ren"
+            ],
+            "target_definition": "ribani koren rena, obično zakiseljen",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07857356-n",
+            "available": true,
+            "target_synonyms": [
+              "vasabi"
+            ],
+            "target_definition": "debeli zeleni koren biljke vasabi koju Japanci koriste u kuvanju koa ima ukus kao jak ren; u obliku praha ili namaza često se jede uz sirovu ribu",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": ""
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07856270-n",
+            "available": true,
+            "target_synonyms": [
+              "namaz"
+            ],
+            "target_definition": "ukusna smesa koja se maže na hleb ili krekere ili se koristi za pripremu drugih jela",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-07824502-n",
+            "available": true,
+            "target_synonyms": [
+              "marinada",
+              "marinat"
+            ],
+            "target_definition": "mešavina sirćeta ili vina i ulja sa raznim začinima u koju se natapa meso ili riba pre kuvanja",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "gastronomy"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-07810907-n",
+      "english_definition": "a preparation (a sauce or relish or spice) to enhance flavor or enjoyment",
+      "english_lemmas": [
+        "condiment"
+      ],
+      "english_examples": [
+        "mustard and ketchup are condiments"
+      ],
+      "english_pos": "n",
+      "english_name": "condiment.n.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "flavorer.n.01",
+            "definition": "something added to food primarily for the savor it imparts"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "sauce.n.01",
+            "definition": "flavorful relish or dressing or topping served as an accompaniment to food"
+          },
+          {
+            "name": "mint_sauce.n.01",
+            "definition": "sweetened diluted vinegar with chopped mint leaves"
+          },
+          {
+            "name": "duck_sauce.n.01",
+            "definition": "a thick sweet and pungent Chinese condiment"
+          },
+          {
+            "name": "dip.n.04",
+            "definition": "tasty mixture or liquid into which bite-sized foods are dipped"
+          },
+          {
+            "name": "vinegar.n.01",
+            "definition": "sour-tasting liquid produced usually by oxidation of the alcohol in wine or cider and used as a condiment or food preservative"
+          },
+          {
+            "name": "chutney.n.01",
+            "definition": "a spicy condiment made of chopped fruits or vegetables cooked in vinegar and sugar with ginger and spices"
+          },
+          {
+            "name": "relish.n.02",
+            "definition": "spicy or savory condiment"
+          },
+          {
+            "name": "horseradish.n.03",
+            "definition": "grated horseradish root"
+          },
+          {
+            "name": "marinade.n.01",
+            "definition": "mixtures of vinegar or wine and oil with various spices and seasonings; used for soaking foods before cooking"
+          },
+          {
+            "name": "mustard.n.02",
+            "definition": "pungent powder or paste prepared from ground mustard seeds"
+          },
+          {
+            "name": "chili_sauce.n.01",
+            "definition": "tomatoes and onions and peppers (sweet or hot) simmered with vinegar and sugar and various seasonings"
+          },
+          {
+            "name": "soy_sauce.n.01",
+            "definition": "thin sauce made of fermented soy beans"
+          },
+          {
+            "name": "spread.n.05",
+            "definition": "a tasty mixture to be spread on bread or crackers or used in preparing other dishes"
+          },
+          {
+            "name": "wasabi.n.02",
+            "definition": "the thick green root of the wasabi plant that the Japanese use in cooking and that tastes like strong horseradish; in powder or paste form it is often eaten with raw fish"
+          },
+          {
+            "name": "taco_sauce.n.01",
+            "definition": "spicy tomato-based sauce for tacos"
+          },
+          {
+            "name": "steak_sauce.n.01",
+            "definition": "pungent bottled sauce for steak"
+          },
+          {
+            "name": "catsup.n.01",
+            "definition": "thick spicy sauce made from tomatoes"
+          },
+          {
+            "name": "salsa.n.01",
+            "definition": "spicy sauce of tomatoes and onions and chili peppers to accompany Mexican foods"
+          },
+          {
+            "name": "cranberry_sauce.n.01",
+            "definition": "sauce made of cranberries and sugar"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "lemma_relations": {
+          "condiment": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01376245-v",
+      "serbian_synonyms": [
+        "rasuti",
+        "raštrkati",
+        "posuti",
+        "rasejati",
+        "rasturiti"
+      ],
+      "serbian_definition": "Razmestiti na raštrkan način.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 3,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01377032-v",
+              "available": true,
+              "target_synonyms": [
+                "izliti",
+                "ispustiti"
+              ],
+              "target_definition": "Ispustiti ili osloboditi; posebno o tečnostima.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "hyponym": [
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01374020-v",
+              "available": true,
+              "target_synonyms": [
+                "pokvasiti",
+                "poprskati",
+                "smočiti"
+              ],
+              "target_definition": "proliti tečnost po nečemu",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01374767-v",
+              "available": true,
+              "target_synonyms": [
+                "poprskati",
+                "prskati",
+                "raspljusnuti",
+                "rasprskati"
+              ],
+              "target_definition": "učiniti da se (tečnost) rasprska, naročito upotrebom velike sile",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01377032-v",
+            "available": true,
+            "target_synonyms": [
+              "izliti",
+              "ispustiti"
+            ],
+            "target_definition": "Ispustiti ili osloboditi; posebno o tečnostima.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01374020-v",
+            "available": true,
+            "target_synonyms": [
+              "pokvasiti",
+              "poprskati",
+              "smočiti"
+            ],
+            "target_definition": "proliti tečnost po nečemu",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01374767-v",
+            "available": true,
+            "target_synonyms": [
+              "poprskati",
+              "prskati",
+              "raspljusnuti",
+              "rasprskati"
+            ],
+            "target_definition": "učiniti da se (tečnost) rasprska, naročito upotrebom velike sile",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01376245-v",
+      "english_definition": "distribute loosely",
+      "english_lemmas": [
+        "scatter",
+        "sprinkle",
+        "dot",
+        "dust",
+        "disperse"
+      ],
+      "english_examples": [
+        "He scattered gun powder under the wagon"
+      ],
+      "english_pos": "v",
+      "english_name": "scatter.v.03",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "discharge.v.02",
+            "definition": "pour forth or release"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "sprinkle.v.02",
+            "definition": "cause (a liquid) to spatter about, especially with force"
+          },
+          {
+            "name": "spray.v.01",
+            "definition": "be discharged in sprays of liquid"
+          },
+          {
+            "name": "bespangle.v.02",
+            "definition": "dot or sprinkle with sparkling or glittering objects"
+          },
+          {
+            "name": "spatter.v.01",
+            "definition": "dash a liquid upon or against"
+          },
+          {
+            "name": "aerosolize.v.01",
+            "definition": "disperse as an aerosol"
+          },
+          {
+            "name": "spray.v.02",
+            "definition": "scatter in a mass or jet of droplets"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "scatter": {
+            "derivationally_related": [
+              {
+                "name": "scatter.n.02",
+                "definition": "the act of scattering",
+                "lemma": "scatter"
+              },
+              {
+                "name": "scatter.n.01",
+                "definition": "a haphazard distribution in all directions",
+                "lemma": "scatter"
+              }
+            ]
+          },
+          "sprinkle": {
+            "derivationally_related": [
+              {
+                "name": "scattering.n.01",
+                "definition": "a small number (of something) dispersed haphazardly",
+                "lemma": "sprinkling"
+              }
+            ]
+          },
+          "dot": {},
+          "dust": {
+            "derivationally_related": [
+              {
+                "name": "dust.n.03",
+                "definition": "free microscopic particles of solid material",
+                "lemma": "dust"
+              }
+            ]
+          },
+          "disperse": {
+            "derivationally_related": [
+              {
+                "name": "diffusing.s.01",
+                "definition": "spreading by diffusion",
+                "lemma": "dispersive"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01382083-v",
+      "serbian_synonyms": [
+        "brati",
+        "sakupljati"
+      ],
+      "serbian_definition": "Tražiti i sakupljati.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 1,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01380638-v",
+              "available": true,
+              "target_synonyms": [
+                "sabrati",
+                "sabirati",
+                "skupiti",
+                "sakupiti",
+                "nakupiti"
+              ],
+              "target_definition": "Prikupiti zajedno.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01380638-v",
+            "available": true,
+            "target_synonyms": [
+              "sabrati",
+              "sabirati",
+              "skupiti",
+              "sakupiti",
+              "nakupiti"
+            ],
+            "target_definition": "Prikupiti zajedno.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01382083-v",
+      "english_definition": "look for and gather",
+      "english_lemmas": [
+        "pick",
+        "pluck",
+        "cull"
+      ],
+      "english_examples": [
+        "pick mushrooms",
+        "pick flowers"
+      ],
+      "english_pos": "v",
+      "english_name": "pick.v.02",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "gather.v.01",
+            "definition": "assemble or get together"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "berry.v.01",
+            "definition": "pick or gather berries"
+          },
+          {
+            "name": "mushroom.v.01",
+            "definition": "pick or gather mushrooms"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "pick": {
+            "derivationally_related": [
+              {
+                "name": "picking.n.01",
+                "definition": "the quantity of a crop that is harvested",
+                "lemma": "pick"
+              },
+              {
+                "name": "picker.n.02",
+                "definition": "someone who gathers crops or fruits etc.",
+                "lemma": "picker"
+              },
+              {
+                "name": "picking.n.02",
+                "definition": "the act of picking (crops or fruit or hops etc.)",
+                "lemma": "picking"
+              }
+            ]
+          },
+          "pluck": {},
+          "cull": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01393996-v",
+      "serbian_synonyms": [
+        "pomesti"
+      ],
+      "serbian_definition": "Očistiti metenjem.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 1,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01532589-v",
+              "available": true,
+              "target_synonyms": [
+                "čistiti",
+                "očistiti"
+              ],
+              "target_definition": "Učiniti čistim uklanjanjem prljavštine ili neželjenih supstanci.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01532589-v",
+            "available": true,
+            "target_synonyms": [
+              "čistiti",
+              "očistiti"
+            ],
+            "target_definition": "Učiniti čistim uklanjanjem prljavštine ili neželjenih supstanci.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01393996-v",
+      "english_definition": "clean by sweeping",
+      "english_lemmas": [
+        "sweep"
+      ],
+      "english_examples": [
+        "Please sweep the floor"
+      ],
+      "english_pos": "v",
+      "english_name": "sweep.v.06",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "clean.v.01",
+            "definition": "make clean by removing dirt, filth, or unwanted substances from"
+          }
+        ],
+        "hyponyms": [],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [
+          {
+            "name": "sweep.v.03",
+            "definition": "sweep with a broom or as if with a broom"
+          }
+        ],
+        "lemma_relations": {
+          "sweep": {
+            "derivationally_related": [
+              {
+                "name": "chimneysweeper.n.01",
+                "definition": "someone who cleans soot from chimneys",
+                "lemma": "sweep"
+              },
+              {
+                "name": "sweeper.n.01",
+                "definition": "an employee who sweeps (floors or streets etc.)",
+                "lemma": "sweeper"
+              },
+              {
+                "name": "carpet_sweeper.n.01",
+                "definition": "a cleaning implement with revolving brushes that pick up dirt as the implement is pushed over a carpet",
+                "lemma": "sweeper"
+              },
+              {
+                "name": "sweeping.n.01",
+                "definition": "the act of cleaning with a broom",
+                "lemma": "sweeping"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01421622-v",
+      "serbian_synonyms": [
+        "ubaciti",
+        "umetnuti",
+        "staviti"
+      ],
+      "serbian_definition": "Staviti ili ubaciti u nešto.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 2,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01296462-v",
+              "available": true,
+              "target_synonyms": [
+                "zakačiti",
+                "prikačiti"
+              ],
+              "target_definition": "Učiniti da postane prikačen.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "eng_derivative": [
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-00320852-n",
+              "available": true,
+              "target_synonyms": [
+                "umetanje",
+                "uvođenje"
+              ],
+              "target_definition": "Čin stavljanja jedne stvari u drugu.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01296462-v",
+            "available": true,
+            "target_synonyms": [
+              "zakačiti",
+              "prikačiti"
+            ],
+            "target_definition": "Učiniti da postane prikačen.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-00320852-n",
+            "available": true,
+            "target_synonyms": [
+              "umetanje",
+              "uvođenje"
+            ],
+            "target_definition": "Čin stavljanja jedne stvari u drugu.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01421622-v",
+      "english_definition": "put or introduce into something",
+      "english_lemmas": [
+        "insert",
+        "infix",
+        "enter",
+        "introduce"
+      ],
+      "english_examples": [
+        "insert a picture into the text"
+      ],
+      "english_pos": "v",
+      "english_name": "insert.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "attach.v.01",
+            "definition": "cause to be attached"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "plug_in.v.01",
+            "definition": "plug into an outlet"
+          },
+          {
+            "name": "implant.v.01",
+            "definition": "fix or set securely or deeply"
+          },
+          {
+            "name": "transplant.v.03",
+            "definition": "place the organ of a donor into the body of a recipient"
+          },
+          {
+            "name": "input.v.01",
+            "definition": "enter (data or a program) into a computer"
+          },
+          {
+            "name": "cannulate.v.01",
+            "definition": "introduce a cannula or tube into"
+          },
+          {
+            "name": "sandwich.v.02",
+            "definition": "insert or squeeze tightly between two people or objects"
+          },
+          {
+            "name": "penetrate.v.06",
+            "definition": "insert the penis into the vagina or anus of"
+          },
+          {
+            "name": "instill.v.02",
+            "definition": "enter drop by drop"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "insert": {
+            "derivationally_related": [
+              {
+                "name": "insertion.n.02",
+                "definition": "the act of putting one thing into another",
+                "lemma": "insertion"
+              },
+              {
+                "name": "cut-in.n.02",
+                "definition": "(film) a still picture that is introduced and that interrupts the action of a film",
+                "lemma": "insert"
+              },
+              {
+                "name": "insert.n.02",
+                "definition": "an artifact that is inserted or is to be inserted",
+                "lemma": "insert"
+              }
+            ]
+          },
+          "infix": {},
+          "enter": {},
+          "introduce": {
+            "derivationally_related": [
+              {
+                "name": "insertion.n.02",
+                "definition": "the act of putting one thing into another",
+                "lemma": "introduction"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01437254-v",
+      "serbian_synonyms": [
+        "odaslati",
+        "izaslati",
+        "izdati"
+      ],
+      "serbian_definition": "Uzrokovati ili narediti da se prenese, usmeri ili odašalje na drugo mesto.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "telecommunication",
+      "serbian_relations": {
+        "total_relations": 1,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01435380-v",
+              "available": true,
+              "target_synonyms": [
+                "preneti",
+                "sprovesti"
+              ],
+              "target_definition": "Poslati od jedne osobe ili mesta na drugo.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "telecommunication"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01435380-v",
+            "available": true,
+            "target_synonyms": [
+              "preneti",
+              "sprovesti"
+            ],
+            "target_definition": "Poslati od jedne osobe ili mesta na drugo.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "telecommunication"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01437254-v",
+      "english_definition": "to cause or order to be taken, directed, or transmitted to another place",
+      "english_lemmas": [
+        "send",
+        "send_out"
+      ],
+      "english_examples": [
+        "He had sent the dispatches downtown to the proper people and had slept"
+      ],
+      "english_pos": "v",
+      "english_name": "send.v.02",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "transmit.v.04",
+            "definition": "send from one person or place to another"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "send_in.v.01",
+            "definition": "mail in; cause to be delivered"
+          },
+          {
+            "name": "mail.v.01",
+            "definition": "send via the postal service"
+          },
+          {
+            "name": "mail_out.v.01",
+            "definition": "transmit by mail"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "send": {
+            "derivationally_related": [
+              {
+                "name": "sender.n.01",
+                "definition": "someone who transmits a message",
+                "lemma": "sender"
+              },
+              {
+                "name": "sending.n.01",
+                "definition": "the act of causing something to go (especially messages)",
+                "lemma": "sending"
+              }
+            ]
+          },
+          "send_out": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01441100-v",
+      "serbian_synonyms": [
+        "probušiti"
+      ],
+      "serbian_definition": "Napraviti rupu u nečemu.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 3,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01227675-v",
+              "available": true,
+              "target_synonyms": [
+                "prodreti",
+                "proći"
+              ],
+              "target_definition": "Ući u nešto ili kroz nešto, često savaladavajući otpor.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "subevent": [
+            {
+              "type": "subevent",
+              "target_id": "ENG30-01552519-v",
+              "available": true,
+              "target_synonyms": [
+                "iseći"
+              ],
+              "target_definition": "Razdvojiti s nekim instrumentom.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "hyponym": [
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01442779-v",
+              "available": true,
+              "target_synonyms": [
+                "preforirati"
+              ],
+              "target_definition": "Napraviti rupu u nečemu ili izmedžu nečega da bi se lakše odvajalo.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01227675-v",
+            "available": true,
+            "target_synonyms": [
+              "prodreti",
+              "proći"
+            ],
+            "target_definition": "Ući u nešto ili kroz nešto, često savaladavajući otpor.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "subevent",
+            "target_id": "ENG30-01552519-v",
+            "available": true,
+            "target_synonyms": [
+              "iseći"
+            ],
+            "target_definition": "Razdvojiti s nekim instrumentom.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01442779-v",
+            "available": true,
+            "target_synonyms": [
+              "preforirati"
+            ],
+            "target_definition": "Napraviti rupu u nečemu ili izmedžu nečega da bi se lakše odvajalo.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01441100-v",
+      "english_definition": "make a hole into",
+      "english_lemmas": [
+        "pierce"
+      ],
+      "english_examples": [
+        "The needle pierced her flesh"
+      ],
+      "english_pos": "v",
+      "english_name": "pierce.v.05",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "penetrate.v.01",
+            "definition": "pass into or through, often by overcoming resistance"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "punch.v.03",
+            "definition": "make a hole into or between, as for ease of separation"
+          },
+          {
+            "name": "poke.v.05",
+            "definition": "make a hole by poking"
+          },
+          {
+            "name": "puncture.v.01",
+            "definition": "pierce with a pointed object; make a hole into"
+          },
+          {
+            "name": "tap.v.11",
+            "definition": "pierce in order to draw a liquid from"
+          },
+          {
+            "name": "prickle.v.03",
+            "definition": "make a small hole into, as with a needle or a thorn"
+          },
+          {
+            "name": "sting.v.02",
+            "definition": "deliver a sting to"
+          },
+          {
+            "name": "riddle.v.01",
+            "definition": "pierce with many holes"
+          },
+          {
+            "name": "bite.v.03",
+            "definition": "penetrate or cut, as with a knife"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [
+          {
+            "name": "cut.v.01",
+            "definition": "separate with or as if with an instrument"
+          }
+        ],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "pierce": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01445932-v",
+      "serbian_synonyms": [
+        "ujesti",
+        "ugristi"
+      ],
+      "serbian_definition": "Uhvatiti, odgristi ili otrgnuti pomoću zuba ili kao zubima.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 2,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01224001-v",
+              "available": true,
+              "target_synonyms": [
+                "stisnuti",
+                "stegnuti"
+              ],
+              "target_definition": "Držati čvrsto",
+              "target_usage": "Stisnuo je volan",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "hyponym": [
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01446420-v",
+              "available": true,
+              "target_synonyms": [
+                "grickati",
+                "glockati"
+              ],
+              "target_definition": "grizti po malo",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": ""
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01224001-v",
+            "available": true,
+            "target_synonyms": [
+              "stisnuti",
+              "stegnuti"
+            ],
+            "target_definition": "Držati čvrsto",
+            "target_usage": "Stisnuo je volan",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01446420-v",
+            "available": true,
+            "target_synonyms": [
+              "grickati",
+              "glockati"
+            ],
+            "target_definition": "grizti po malo",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": ""
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01445932-v",
+      "english_definition": "to grip, cut off, or tear with or as if with the teeth or jaws",
+      "english_lemmas": [
+        "bite",
+        "seize_with_teeth"
+      ],
+      "english_examples": [
+        "Gunny invariably tried to bite her"
+      ],
+      "english_pos": "v",
+      "english_name": "bite.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "grip.v.01",
+            "definition": "hold fast or firmly"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "snap_at.v.01",
+            "definition": "bite off with a quick bite"
+          },
+          {
+            "name": "nip.v.02",
+            "definition": "give a small sharp bite to"
+          },
+          {
+            "name": "nibble.v.01",
+            "definition": "bite off very small pieces"
+          },
+          {
+            "name": "gnaw.v.01",
+            "definition": "bite or chew on with the teeth"
+          },
+          {
+            "name": "snap.v.12",
+            "definition": "bring the jaws together"
+          },
+          {
+            "name": "nibble.v.02",
+            "definition": "bite gently"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "bite": {
+            "derivationally_related": [
+              {
+                "name": "bite.n.01",
+                "definition": "a wound resulting from biting by an animal or a person",
+                "lemma": "bite"
+              },
+              {
+                "name": "bite.n.08",
+                "definition": "the act of gripping or chewing off with the teeth and jaws",
+                "lemma": "bite"
+              },
+              {
+                "name": "biter.n.01",
+                "definition": "someone who bites",
+                "lemma": "biter"
+              }
+            ]
+          },
+          "seize_with_teeth": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01370561-v",
+      "serbian_synonyms": [
+        "šutnuti"
+      ],
+      "serbian_definition": "Udariti nogom",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 1,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01400044-v",
+              "available": true,
+              "target_synonyms": [
+                "tresnuti",
+                "udariti",
+                "lupiti",
+                "mlatnuti"
+              ],
+              "target_definition": "Rukom ili nekim predmetom izazvati udarac.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01400044-v",
+            "available": true,
+            "target_synonyms": [
+              "tresnuti",
+              "udariti",
+              "lupiti",
+              "mlatnuti"
+            ],
+            "target_definition": "Rukom ili nekim predmetom izazvati udarac.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01370561-v",
+      "english_definition": "strike with the foot",
+      "english_lemmas": [
+        "kick"
+      ],
+      "english_examples": [
+        "The boy kicked the dog",
+        "Kick the door down"
+      ],
+      "english_pos": "v",
+      "english_name": "kick.v.03",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "hit.v.03",
+            "definition": "deal a blow to, either with the hand or with an instrument"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "boot.v.01",
+            "definition": "kick; give a boot to"
+          },
+          {
+            "name": "scuff.v.04",
+            "definition": "poke at with the foot or toe"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "kick": {
+            "derivationally_related": [
+              {
+                "name": "kick.n.01",
+                "definition": "the act of delivering a blow with the foot",
+                "lemma": "kick"
+              },
+              {
+                "name": "kick.n.01",
+                "definition": "the act of delivering a blow with the foot",
+                "lemma": "kicking"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01391280-v",
+      "serbian_synonyms": [
+        "uvaljati",
+        "razviti"
+      ],
+      "serbian_definition": "Poravnati ili raširiti valjkom.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 1,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-00463778-v",
+              "available": true,
+              "target_synonyms": [
+                "stesati",
+                "poravnati"
+              ],
+              "target_definition": "Napraviti ravnim ili ravnijim.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-00463778-v",
+            "available": true,
+            "target_synonyms": [
+              "stesati",
+              "poravnati"
+            ],
+            "target_definition": "Napraviti ravnim ili ravnijim.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01391280-v",
+      "english_definition": "flatten or spread with a roller",
+      "english_lemmas": [
+        "roll_out",
+        "roll"
+      ],
+      "english_examples": [
+        "roll out the paper"
+      ],
+      "english_pos": "v",
+      "english_name": "roll_out.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "flatten.v.01",
+            "definition": "make flat or flatter"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "cog.v.01",
+            "definition": "roll steel ingots"
+          },
+          {
+            "name": "mill.v.04",
+            "definition": "roll out (metal) with a rolling machine"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "roll_out": {},
+          "roll": {
+            "derivationally_related": [
+              {
+                "name": "coil.n.02",
+                "definition": "a round shape formed by a series of concentric circles (as formed by leaves or flower petals)",
+                "lemma": "roll"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01435380-v",
+      "serbian_synonyms": [
+        "preneti",
+        "sprovesti"
+      ],
+      "serbian_definition": "Poslati od jedne osobe ili mesta na drugo.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "telecommunication",
+      "serbian_relations": {
+        "total_relations": 7,
+        "relations_by_type": {
+          "hyponym": [
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01437254-v",
+              "available": true,
+              "target_synonyms": [
+                "odaslati",
+                "izaslati",
+                "izdati"
+              ],
+              "target_definition": "Uzrokovati ili narediti da se prenese, usmeri ili odašalje na drugo mesto.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "telecommunication"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01433294-v",
+              "available": true,
+              "target_synonyms": [
+                "dodati"
+              ],
+              "target_definition": "Otići po nešto i doneti ga.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "telecommunication"
+            }
+          ],
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01850315-v",
+              "available": true,
+              "target_synonyms": [
+                "premestiti",
+                "pomeriti",
+                "pomaknuti",
+                "micati",
+                "maknuti"
+              ],
+              "target_definition": "Izazvati pomeranje, i u direktnom i u prenesenom značenju.",
+              "target_usage": "Klinton je odbio savet dugogodišnjeg prijatelja.. .da budući Klintonov centar s blibliotekom iz osvete pomeri u Džordžtaun, kod Vašingtona...",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "eng_derivative": [
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-00315986-n",
+              "available": true,
+              "target_synonyms": [
+                "prenos",
+                "transfer"
+              ],
+              "target_definition": "Čin prenosa nečega sa jednog mesta na drugo.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "factotum"
+            },
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-03100490-n",
+              "available": true,
+              "target_synonyms": [
+                "transportno sredstvo"
+              ],
+              "target_definition": "Nešto što služi kao sredstvo prevoza.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "transport"
+            },
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-05250659-n",
+              "available": true,
+              "target_synonyms": [
+                "duktus",
+                "kanal"
+              ],
+              "target_definition": "Provodni kanal ili cev prekriven epitelnim ćelijama koji prenosi izlučevine i druge supstance.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "anatomy"
+            },
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-06259898-n",
+              "available": true,
+              "target_synonyms": [
+                "kanal",
+                "transmisioni kanal"
+              ],
+              "target_definition": "put kojim se mogu prenositi signali",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "telecommunication"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01437254-v",
+            "available": true,
+            "target_synonyms": [
+              "odaslati",
+              "izaslati",
+              "izdati"
+            ],
+            "target_definition": "Uzrokovati ili narediti da se prenese, usmeri ili odašalje na drugo mesto.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "telecommunication"
+          },
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01850315-v",
+            "available": true,
+            "target_synonyms": [
+              "premestiti",
+              "pomeriti",
+              "pomaknuti",
+              "micati",
+              "maknuti"
+            ],
+            "target_definition": "Izazvati pomeranje, i u direktnom i u prenesenom značenju.",
+            "target_usage": "Klinton je odbio savet dugogodišnjeg prijatelja.. .da budući Klintonov centar s blibliotekom iz osvete pomeri u Džordžtaun, kod Vašingtona...",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-00315986-n",
+            "available": true,
+            "target_synonyms": [
+              "prenos",
+              "transfer"
+            ],
+            "target_definition": "Čin prenosa nečega sa jednog mesta na drugo.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-03100490-n",
+            "available": true,
+            "target_synonyms": [
+              "transportno sredstvo"
+            ],
+            "target_definition": "Nešto što služi kao sredstvo prevoza.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "transport"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-05250659-n",
+            "available": true,
+            "target_synonyms": [
+              "duktus",
+              "kanal"
+            ],
+            "target_definition": "Provodni kanal ili cev prekriven epitelnim ćelijama koji prenosi izlučevine i druge supstance.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "anatomy"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-06259898-n",
+            "available": true,
+            "target_synonyms": [
+              "kanal",
+              "transmisioni kanal"
+            ],
+            "target_definition": "put kojim se mogu prenositi signali",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "telecommunication"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01433294-v",
+            "available": true,
+            "target_synonyms": [
+              "dodati"
+            ],
+            "target_definition": "Otići po nešto i doneti ga.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "telecommunication"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01435380-v",
+      "english_definition": "send from one person or place to another",
+      "english_lemmas": [
+        "transmit",
+        "transfer",
+        "transport",
+        "channel",
+        "channelize",
+        "channelise"
+      ],
+      "english_examples": [
+        "transmit a message"
+      ],
+      "english_pos": "v",
+      "english_name": "transmit.v.04",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "move.v.02",
+            "definition": "cause to move or shift into a new position or place, both in a concrete and in an abstract sense"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "translate.v.04",
+            "definition": "bring to a certain spiritual state"
+          },
+          {
+            "name": "propagate.v.03",
+            "definition": "transmit"
+          },
+          {
+            "name": "bring.v.04",
+            "definition": "go or come after and bring or take back"
+          },
+          {
+            "name": "turn.v.08",
+            "definition": "let (something) fall or spill from a container"
+          },
+          {
+            "name": "send.v.02",
+            "definition": "to cause or order to be taken, directed, or transmitted to another place"
+          },
+          {
+            "name": "project.v.03",
+            "definition": "transfer (ideas or principles) from one domain into another"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "transmit": {
+            "derivationally_related": [
+              {
+                "name": "transmission.n.01",
+                "definition": "the act of sending a message; causing a message to be transmitted",
+                "lemma": "transmission"
+              },
+              {
+                "name": "sender.n.01",
+                "definition": "someone who transmits a message",
+                "lemma": "transmitter"
+              },
+              {
+                "name": "transmission.n.01",
+                "definition": "the act of sending a message; causing a message to be transmitted",
+                "lemma": "transmitting"
+              },
+              {
+                "name": "transmission.n.01",
+                "definition": "the act of sending a message; causing a message to be transmitted",
+                "lemma": "transmittal"
+              }
+            ]
+          },
+          "transfer": {
+            "derivationally_related": [
+              {
+                "name": "transfer.n.03",
+                "definition": "the act of transfering something from one form to another",
+                "lemma": "transfer"
+              },
+              {
+                "name": "transferer.n.01",
+                "definition": "someone who transfers something",
+                "lemma": "transferer"
+              },
+              {
+                "name": "transferer.n.01",
+                "definition": "someone who transfers something",
+                "lemma": "transferrer"
+              },
+              {
+                "name": "transportation.n.02",
+                "definition": "the act of moving something from one location to another",
+                "lemma": "transferral"
+              }
+            ]
+          },
+          "transport": {
+            "derivationally_related": [
+              {
+                "name": "conveyance.n.03",
+                "definition": "something that serves as a means of transportation",
+                "lemma": "transport"
+              },
+              {
+                "name": "transportation.n.05",
+                "definition": "the commercial enterprise of moving goods and materials",
+                "lemma": "transport"
+              }
+            ]
+          },
+          "channel": {
+            "derivationally_related": [
+              {
+                "name": "channelization.n.01",
+                "definition": "management through specified channels of communication",
+                "lemma": "channelization"
+              },
+              {
+                "name": "channelization.n.01",
+                "definition": "management through specified channels of communication",
+                "lemma": "channelisation"
+              },
+              {
+                "name": "channel.n.05",
+                "definition": "(often plural) a means of communication or access",
+                "lemma": "channel"
+              }
+            ]
+          },
+          "channelize": {
+            "derivationally_related": [
+              {
+                "name": "channelization.n.01",
+                "definition": "management through specified channels of communication",
+                "lemma": "channelization"
+              },
+              {
+                "name": "channel.n.05",
+                "definition": "(often plural) a means of communication or access",
+                "lemma": "channel"
+              },
+              {
+                "name": "channel.n.01",
+                "definition": "a path over which electrical signals can pass",
+                "lemma": "channel"
+              },
+              {
+                "name": "duct.n.01",
+                "definition": "a bodily passage or tube lined with epithelial cells and conveying a secretion or other substance",
+                "lemma": "channel"
+              }
+            ]
+          },
+          "channelise": {
+            "derivationally_related": [
+              {
+                "name": "channelization.n.01",
+                "definition": "management through specified channels of communication",
+                "lemma": "channelisation"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01456771-v",
+      "serbian_synonyms": [
+        "štipati",
+        "štipnuti",
+        "stisnuti"
+      ],
+      "serbian_definition": "Čvrsto stisnuti među prstima.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 1,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01224001-v",
+              "available": true,
+              "target_synonyms": [
+                "stisnuti",
+                "stegnuti"
+              ],
+              "target_definition": "Držati čvrsto",
+              "target_usage": "Stisnuo je volan",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01224001-v",
+            "available": true,
+            "target_synonyms": [
+              "stisnuti",
+              "stegnuti"
+            ],
+            "target_definition": "Držati čvrsto",
+            "target_usage": "Stisnuo je volan",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01456771-v",
+      "english_definition": "squeeze tightly between the fingers",
+      "english_lemmas": [
+        "pinch",
+        "squeeze",
+        "twinge",
+        "tweet",
+        "nip",
+        "twitch"
+      ],
+      "english_examples": [
+        "He pinched her behind",
+        "She squeezed the bottle"
+      ],
+      "english_pos": "v",
+      "english_name": "pinch.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "grip.v.01",
+            "definition": "hold fast or firmly"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "tweak.v.01",
+            "definition": "pinch or squeeze sharply"
+          },
+          {
+            "name": "goose.v.01",
+            "definition": "pinch in the buttocks"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "pinch": {
+            "derivationally_related": [
+              {
+                "name": "pinch.n.06",
+                "definition": "a squeeze with the fingers",
+                "lemma": "pinch"
+              }
+            ]
+          },
+          "squeeze": {
+            "derivationally_related": [
+              {
+                "name": "squeeze.n.05",
+                "definition": "a twisting squeeze",
+                "lemma": "squeeze"
+              },
+              {
+                "name": "squeeze.n.01",
+                "definition": "the act of gripping and pressing firmly",
+                "lemma": "squeeze"
+              }
+            ]
+          },
+          "twinge": {},
+          "tweet": {},
+          "nip": {
+            "derivationally_related": [
+              {
+                "name": "claw.n.03",
+                "definition": "a grasping structure on the limb of a crustacean or other arthropods",
+                "lemma": "nipper"
+              }
+            ]
+          },
+          "twitch": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01461328-v",
+      "serbian_synonyms": [
+        "smešati",
+        "pomešati"
+      ],
+      "serbian_definition": "Smešati u jednu celinu.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 3,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01462005-v",
+              "available": true,
+              "target_synonyms": [
+                "spajati"
+              ],
+              "target_definition": "Kombinovati zajedno ili s nečim drugim.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "eng_derivative": [
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-00378985-n",
+              "available": true,
+              "target_synonyms": [
+                "kombinovanje"
+              ],
+              "target_definition": "Čin združivanja stvari.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "factotum"
+            }
+          ],
+          "hyponym": [
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-00466651-v",
+              "available": true,
+              "target_synonyms": [
+                "sastaviti se",
+                "sjediniti se",
+                "integrisati"
+              ],
+              "target_definition": "Sjediniti se u celinu ili postati deo celine.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01462005-v",
+            "available": true,
+            "target_synonyms": [
+              "spajati"
+            ],
+            "target_definition": "Kombinovati zajedno ili s nečim drugim.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-00378985-n",
+            "available": true,
+            "target_synonyms": [
+              "kombinovanje"
+            ],
+            "target_definition": "Čin združivanja stvari.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-00466651-v",
+            "available": true,
+            "target_synonyms": [
+              "sastaviti se",
+              "sjediniti se",
+              "integrisati"
+            ],
+            "target_definition": "Sjediniti se u celinu ili postati deo celine.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01461328-v",
+      "english_definition": "combine so as to form a whole; mix",
+      "english_lemmas": [
+        "compound",
+        "combine"
+      ],
+      "english_examples": [
+        "compound the ingredients"
+      ],
+      "english_pos": "v",
+      "english_name": "compound.v.05",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "mix.v.05",
+            "definition": "to bring or combine together or with something else"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "heterodyne.v.01",
+            "definition": "combine (a radio frequency wave) with a locally generated wave of a different frequency so as to produce a new frequency equal to the sum or the difference between the two"
+          },
+          {
+            "name": "integrate.v.01",
+            "definition": "make into a whole or make part of a whole"
+          },
+          {
+            "name": "sulfurette.v.01",
+            "definition": "combine with sulfur"
+          },
+          {
+            "name": "carburet.v.01",
+            "definition": "combine with carbon"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "compound": {
+            "derivationally_related": [
+              {
+                "name": "compound.n.01",
+                "definition": "a whole formed by a union of two or more elements or parts",
+                "lemma": "compound"
+              },
+              {
+                "name": "combination.n.07",
+                "definition": "the act of combining things to form a new whole",
+                "lemma": "compounding"
+              }
+            ]
+          },
+          "combine": {
+            "derivationally_related": [
+              {
+                "name": "combinative.s.02",
+                "definition": "relating to or involving combinations",
+                "lemma": "combinative"
+              },
+              {
+                "name": "combinative.a.01",
+                "definition": "marked by or relating to or resulting from combination",
+                "lemma": "combinative"
+              },
+              {
+                "name": "combining.n.01",
+                "definition": "an occurrence that results in things being united",
+                "lemma": "combine"
+              },
+              {
+                "name": "combination.n.07",
+                "definition": "the act of combining things to form a new whole",
+                "lemma": "combining"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01487311-v",
+      "serbian_synonyms": [
+        "opteretiti",
+        "otežati",
+        "natovariti"
+      ],
+      "serbian_definition": "Natovariti teretom.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 2,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01488956-v",
+              "available": true,
+              "target_synonyms": [
+                "utovariti"
+              ],
+              "target_definition": "Napuniti ili natovariti do kraja.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "eng_derivative": [
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-04571088-n",
+              "available": true,
+              "target_synonyms": [
+                "teret",
+                "težina"
+              ],
+              "target_definition": "Teška tvorevina.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01488956-v",
+            "available": true,
+            "target_synonyms": [
+              "utovariti"
+            ],
+            "target_definition": "Napuniti ili natovariti do kraja.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-04571088-n",
+            "available": true,
+            "target_synonyms": [
+              "teret",
+              "težina"
+            ],
+            "target_definition": "Teška tvorevina.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01487311-v",
+      "english_definition": "weight down with a load",
+      "english_lemmas": [
+        "burden",
+        "burthen",
+        "weight",
+        "weight_down"
+      ],
+      "english_examples": [],
+      "english_pos": "v",
+      "english_name": "burden.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "charge.v.08",
+            "definition": "fill or load to capacity"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "overburden.v.02",
+            "definition": "load with excessive weight"
+          },
+          {
+            "name": "saddle.v.02",
+            "definition": "load or burden; encumber"
+          },
+          {
+            "name": "plumb.v.02",
+            "definition": "weight with lead"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "burden": {
+            "antonyms": [
+              {
+                "name": "unburden.v.02",
+                "definition": "take the burden off; remove the burden from",
+                "lemma": "unburden"
+              }
+            ],
+            "derivationally_related": [
+              {
+                "name": "load.n.01",
+                "definition": "weight to be borne or conveyed",
+                "lemma": "burden"
+              }
+            ]
+          },
+          "burthen": {
+            "derivationally_related": [
+              {
+                "name": "burthen.n.01",
+                "definition": "a variant of `burden'",
+                "lemma": "burthen"
+              }
+            ]
+          },
+          "weight": {
+            "derivationally_related": [
+              {
+                "name": "weight.n.04",
+                "definition": "an artifact that is heavy",
+                "lemma": "weight"
+              }
+            ]
+          },
+          "weight_down": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01489989-v",
+      "serbian_synonyms": [
+        "nakrcati",
+        "natovariti"
+      ],
+      "serbian_definition": "Napuniti ili natovariti.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 2,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-00452512-v",
+              "available": true,
+              "target_synonyms": [
+                "napuniti",
+                "ispuniti"
+              ],
+              "target_definition": "Učiniti da nešto bude puno, može i u metaforičnom značenju.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "eng_derivative": [
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-02964389-n",
+              "available": true,
+              "target_synonyms": [
+                "tovar",
+                "teret",
+                "isporuka"
+              ],
+              "target_definition": "Dobra koja vozi veliko vozilo.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "commerce"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-00452512-v",
+            "available": true,
+            "target_synonyms": [
+              "napuniti",
+              "ispuniti"
+            ],
+            "target_definition": "Učiniti da nešto bude puno, može i u metaforičnom značenju.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-02964389-n",
+            "available": true,
+            "target_synonyms": [
+              "tovar",
+              "teret",
+              "isporuka"
+            ],
+            "target_definition": "Dobra koja vozi veliko vozilo.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "commerce"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01489989-v",
+      "english_definition": "fill or place a load on",
+      "english_lemmas": [
+        "load",
+        "lade",
+        "laden",
+        "load_up"
+      ],
+      "english_examples": [
+        "load a car",
+        "load the truck with hay"
+      ],
+      "english_pos": "v",
+      "english_name": "load.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "fill.v.01",
+            "definition": "make full, also in a metaphorical sense"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "overload.v.03",
+            "definition": "place too much a load on"
+          },
+          {
+            "name": "stack.v.01",
+            "definition": "load or cover with stacks"
+          },
+          {
+            "name": "pack.v.12",
+            "definition": "load with a pack"
+          },
+          {
+            "name": "bomb_up.v.01",
+            "definition": "load an aircraft with bombs"
+          },
+          {
+            "name": "reload.v.02",
+            "definition": "place a new load on"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "load": {
+            "derivationally_related": [
+              {
+                "name": "load.n.01",
+                "definition": "weight to be borne or conveyed",
+                "lemma": "load"
+              },
+              {
+                "name": "cargo.n.01",
+                "definition": "goods carried by a large vehicle",
+                "lemma": "load"
+              },
+              {
+                "name": "stevedore.n.01",
+                "definition": "a laborer who loads and unloads vessels in a port",
+                "lemma": "loader"
+              },
+              {
+                "name": "loading.n.05",
+                "definition": "the labor of putting a load of something on or in a vehicle or ship or container etc.",
+                "lemma": "loading"
+              }
+            ]
+          },
+          "lade": {
+            "derivationally_related": [
+              {
+                "name": "cargo.n.01",
+                "definition": "goods carried by a large vehicle",
+                "lemma": "lading"
+              }
+            ]
+          },
+          "laden": {},
+          "load_up": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01493619-v",
+      "serbian_synonyms": [
+        "smestiti se",
+        "zavaliti se"
+      ],
+      "serbian_definition": "Čvrsto ili sigurno se smestiti.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 1,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01494310-v",
+              "available": true,
+              "target_synonyms": [
+                "staviti",
+                "metnuti",
+                "postaviti",
+                "položiti"
+              ],
+              "target_definition": "Staviti na određeno mesto ili apstraktnu lokaciju.",
+              "target_usage": "Bilo je planirano da se na Paliću postavi bista Lajoša Veremeša.",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01494310-v",
+            "available": true,
+            "target_synonyms": [
+              "staviti",
+              "metnuti",
+              "postaviti",
+              "položiti"
+            ],
+            "target_definition": "Staviti na određeno mesto ili apstraktnu lokaciju.",
+            "target_usage": "Bilo je planirano da se na Paliću postavi bista Lajoša Veremeša.",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01493619-v",
+      "english_definition": "fix firmly",
+      "english_lemmas": [
+        "ensconce",
+        "settle"
+      ],
+      "english_examples": [
+        "He ensconced himself in the chair"
+      ],
+      "english_pos": "v",
+      "english_name": "ensconce.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "put.v.01",
+            "definition": "put into a certain place or abstract location"
+          }
+        ],
+        "hyponyms": [],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "ensconce": {},
+          "settle": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01536168-v",
+      "serbian_synonyms": [
+        "proprati",
+        "isplaknuti"
+      ],
+      "serbian_definition": "Isprati sapun ili preostalu prljavštinu.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 1,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01535246-v",
+              "available": true,
+              "target_synonyms": [
+                "prati"
+              ],
+              "target_definition": "Očistiti sredstvom za čišćenje, kao što su sapun ili voda.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01535246-v",
+            "available": true,
+            "target_synonyms": [
+              "prati"
+            ],
+            "target_definition": "Očistiti sredstvom za čišćenje, kao što su sapun ili voda.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01536168-v",
+      "english_definition": "wash off soap or remaining dirt",
+      "english_lemmas": [
+        "rinse",
+        "rinse_off"
+      ],
+      "english_examples": [],
+      "english_pos": "v",
+      "english_name": "rinse.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "wash.v.03",
+            "definition": "cleanse with a cleaning agent, such as soap, and water"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "flush.v.05",
+            "definition": "rinse, clean, or empty with a liquid"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "rinse": {
+            "derivationally_related": [
+              {
+                "name": "rinse.n.02",
+                "definition": "the removal of soap with clean water in the final stage of washing",
+                "lemma": "rinse"
+              },
+              {
+                "name": "rinse.n.02",
+                "definition": "the removal of soap with clean water in the final stage of washing",
+                "lemma": "rinsing"
+              }
+            ]
+          },
+          "rinse_off": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01573515-v",
+      "serbian_synonyms": [
+        "prekinuti se",
+        "preseći se",
+        "puknuti",
+        "rasparati"
+      ],
+      "serbian_definition": "Razdvojiti ili učiniti da se nešto naglo razdvoji.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 2,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01556921-v",
+              "available": true,
+              "target_synonyms": [
+                "rastaviti",
+                "razdvojiti",
+                "razmaknuti"
+              ],
+              "target_definition": "Razdvojiti što je sastavljeno.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "eng_derivative": [
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-09410928-n",
+              "available": true,
+              "target_synonyms": [
+                "razrez",
+                "poderotina"
+              ],
+              "target_definition": "otvor načinjen na silu, kao razdvajanjem",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01556921-v",
+            "available": true,
+            "target_synonyms": [
+              "rastaviti",
+              "razdvojiti",
+              "razmaknuti"
+            ],
+            "target_definition": "Razdvojiti što je sastavljeno.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-09410928-n",
+            "available": true,
+            "target_synonyms": [
+              "razrez",
+              "poderotina"
+            ],
+            "target_definition": "otvor načinjen na silu, kao razdvajanjem",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01573515-v",
+      "english_definition": "separate or cause to separate abruptly",
+      "english_lemmas": [
+        "tear",
+        "rupture",
+        "snap",
+        "bust"
+      ],
+      "english_examples": [
+        "The rope snapped",
+        "tear the paper"
+      ],
+      "english_pos": "v",
+      "english_name": "tear.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "separate.v.02",
+            "definition": "force, take, or pull apart"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "rend.v.01",
+            "definition": "tear or be torn violently"
+          },
+          {
+            "name": "shred.v.01",
+            "definition": "tear into shreds"
+          },
+          {
+            "name": "lacerate.v.01",
+            "definition": "cut or tear irregularly"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "tear": {
+            "derivationally_related": [
+              {
+                "name": "tear.n.04",
+                "definition": "the act of tearing",
+                "lemma": "tear"
+              },
+              {
+                "name": "rip.n.02",
+                "definition": "an opening made forcibly as by pulling apart",
+                "lemma": "tear"
+              }
+            ]
+          },
+          "rupture": {
+            "derivationally_related": [
+              {
+                "name": "rupture.n.03",
+                "definition": "the act of making a sudden noisy break",
+                "lemma": "rupture"
+              },
+              {
+                "name": "rupture.n.01",
+                "definition": "state of being torn or burst open",
+                "lemma": "rupture"
+              }
+            ]
+          },
+          "snap": {
+            "derivationally_related": [
+              {
+                "name": "snap.n.07",
+                "definition": "a sudden breaking",
+                "lemma": "snap"
+              }
+            ]
+          },
+          "bust": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01631534-v",
+      "serbian_synonyms": [
+        "zamisliti",
+        "stvoriti umom"
+      ],
+      "serbian_definition": "Stvoriti mentalno i apstraktno, a ne ručno.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 5,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01617192-v",
+              "available": true,
+              "target_synonyms": [
+                "tvoriti",
+                "stvoriti"
+              ],
+              "target_definition": "Učiniti ili izazvati da nešto postane.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "hyponym": [
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01634142-v",
+              "available": true,
+              "target_synonyms": [
+                "smisliti",
+                "isplanirati",
+                "zasnovati"
+              ],
+              "target_definition": "Zamisliti neku ideju.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01633343-v",
+              "available": true,
+              "target_synonyms": [
+                "osmisliti",
+                "stvoriti"
+              ],
+              "target_definition": "Zamisliti neki plan ili ideju i način njihovog ostvarenja.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01636397-v",
+              "available": true,
+              "target_synonyms": [
+                "zamisliti",
+                "koncipirati"
+              ],
+              "target_definition": "Stvoriti mentalnu sliku nečega što nije prisutno ili nije stanje stvari.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            },
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01747717-v",
+              "available": true,
+              "target_synonyms": [
+                "programirati"
+              ],
+              "target_definition": "napisati računarski program",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "computer_science"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01617192-v",
+            "available": true,
+            "target_synonyms": [
+              "tvoriti",
+              "stvoriti"
+            ],
+            "target_definition": "Učiniti ili izazvati da nešto postane.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01634142-v",
+            "available": true,
+            "target_synonyms": [
+              "smisliti",
+              "isplanirati",
+              "zasnovati"
+            ],
+            "target_definition": "Zamisliti neku ideju.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01633343-v",
+            "available": true,
+            "target_synonyms": [
+              "osmisliti",
+              "stvoriti"
+            ],
+            "target_definition": "Zamisliti neki plan ili ideju i način njihovog ostvarenja.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01636397-v",
+            "available": true,
+            "target_synonyms": [
+              "zamisliti",
+              "koncipirati"
+            ],
+            "target_definition": "Stvoriti mentalnu sliku nečega što nije prisutno ili nije stanje stvari.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01747717-v",
+            "available": true,
+            "target_synonyms": [
+              "programirati"
+            ],
+            "target_definition": "napisati računarski program",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "computer_science"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01631534-v",
+      "english_definition": "create mentally and abstractly rather than with one's hands",
+      "english_lemmas": [
+        "create_by_mental_act",
+        "create_mentally"
+      ],
+      "english_examples": [],
+      "english_pos": "v",
+      "english_name": "create_by_mental_act.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "make.v.03",
+            "definition": "make or cause to be or to become"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "construct.v.05",
+            "definition": "create by organizing and linking ideas, arguments, or concepts"
+          },
+          {
+            "name": "draw.v.04",
+            "definition": "make, formulate, or derive in the mind"
+          },
+          {
+            "name": "give_birth.v.02",
+            "definition": "create or produce an idea"
+          },
+          {
+            "name": "plan.v.03",
+            "definition": "make or work out a plan for; devise"
+          },
+          {
+            "name": "schematize.v.01",
+            "definition": "formulate in regular order; to reduce to a scheme or formula"
+          },
+          {
+            "name": "evolve.v.01",
+            "definition": "work out"
+          },
+          {
+            "name": "imagine.v.01",
+            "definition": "form a mental image of something that is not present or that is not the case"
+          },
+          {
+            "name": "gestate.v.01",
+            "definition": "have the idea for"
+          },
+          {
+            "name": "write.v.10",
+            "definition": "create code, write a computer program"
+          },
+          {
+            "name": "invent.v.01",
+            "definition": "come up with (an idea, plan, explanation, theory, or principle) after a mental effort"
+          },
+          {
+            "name": "design.v.04",
+            "definition": "make a design of; plan out in systematic, often graphic form"
+          },
+          {
+            "name": "construct.v.04",
+            "definition": "create by linking linguistic units"
+          },
+          {
+            "name": "re-create.v.03",
+            "definition": "form anew in the imagination; recollect and re-form in the mind"
+          },
+          {
+            "name": "program.v.02",
+            "definition": "write a computer program"
+          },
+          {
+            "name": "think_up.v.01",
+            "definition": "devise or invent"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "create_by_mental_act": {},
+          "create_mentally": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01723690-v",
+      "serbian_synonyms": [
+        "oličavati",
+        "oličiti"
+      ],
+      "serbian_definition": "Poprimiti ili glumiti nečiji karakter.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "theatre",
+      "serbian_relations": {
+        "total_relations": 3,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01719302-v",
+              "available": true,
+              "target_synonyms": [
+                "igrati",
+                "glumiti"
+              ],
+              "target_definition": "Igrati rolu ili ulogu.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "theatre"
+            }
+          ],
+          "eng_derivative": [
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-00548802-n",
+              "available": true,
+              "target_synonyms": [
+                "gluma",
+                "igra"
+              ],
+              "target_definition": "glumljenje lika na sceni",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "theatre"
+            },
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-05929008-n",
+              "available": true,
+              "target_synonyms": [
+                "uloga",
+                "lice",
+                "lik"
+              ],
+              "target_definition": "Glumčev portret nekoga u drami.",
+              "target_usage": "U toj drami svih šest lica su moguće ubice.",
+              "target_pos": "n",
+              "target_domain": "theatre"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01719302-v",
+            "available": true,
+            "target_synonyms": [
+              "igrati",
+              "glumiti"
+            ],
+            "target_definition": "Igrati rolu ili ulogu.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "theatre"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-00548802-n",
+            "available": true,
+            "target_synonyms": [
+              "gluma",
+              "igra"
+            ],
+            "target_definition": "glumljenje lika na sceni",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "theatre"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-05929008-n",
+            "available": true,
+            "target_synonyms": [
+              "uloga",
+              "lice",
+              "lik"
+            ],
+            "target_definition": "Glumčev portret nekoga u drami.",
+            "target_usage": "U toj drami svih šest lica su moguće ubice.",
+            "target_pos": "n",
+            "target_domain": "theatre"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01723690-v",
+      "english_definition": "assume or act the character of",
+      "english_lemmas": [
+        "impersonate",
+        "portray"
+      ],
+      "english_examples": [
+        "She impersonates Madonna",
+        "The actor portrays an elderly, lonely man"
+      ],
+      "english_pos": "v",
+      "english_name": "impersonate.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "act.v.03",
+            "definition": "play a role or part"
+          }
+        ],
+        "hyponyms": [],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "impersonate": {
+            "derivationally_related": [
+              {
+                "name": "character.n.04",
+                "definition": "an actor's portrayal of someone in a play",
+                "lemma": "persona"
+              },
+              {
+                "name": "imposture.n.01",
+                "definition": "pretending to be another person",
+                "lemma": "impersonation"
+              },
+              {
+                "name": "impersonation.n.03",
+                "definition": "imitating the mannerisms of another person",
+                "lemma": "impersonation"
+              }
+            ]
+          },
+          "portray": {
+            "derivationally_related": [
+              {
+                "name": "portrayal.n.02",
+                "definition": "acting the part of a character on stage; dramatically representing the character by speech and action and gesture",
+                "lemma": "portrayal"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01797051-v",
+      "serbian_synonyms": [
+        "oplakati",
+        "tugovati",
+        "jadikovati",
+        "ožaliti"
+      ],
+      "serbian_definition": "Osećati tugu.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "psychology",
+      "serbian_relations": {
+        "total_relations": 2,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01797347-v",
+              "available": true,
+              "target_synonyms": [
+                "tugovati",
+                "žalovati"
+              ],
+              "target_definition": "biti jako tužan",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "psychology"
+            }
+          ],
+          "hyponym": [
+            {
+              "type": "hyponym",
+              "target_id": "BILI-00000306",
+              "available": true,
+              "target_synonyms": [
+                "nositi crninu"
+              ],
+              "target_definition": "Oblačiti se u crno kao znak žalosti.",
+              "target_usage": "Mnogi rođaci nastradalih mornara još se ne mire sa sudbinom svojih najmilijih, a žene odbijaju da nose crninu, sve dok se lično ne uvere da su njihovi muževi, sinovi i braća zaista poginuli.",
+              "target_pos": "v",
+              "target_domain": ""
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01797347-v",
+            "available": true,
+            "target_synonyms": [
+              "tugovati",
+              "žalovati"
+            ],
+            "target_definition": "biti jako tužan",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "psychology"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "BILI-00000306",
+            "available": true,
+            "target_synonyms": [
+              "nositi crninu"
+            ],
+            "target_definition": "Oblačiti se u crno kao znak žalosti.",
+            "target_usage": "Mnogi rođaci nastradalih mornara još se ne mire sa sudbinom svojih najmilijih, a žene odbijaju da nose crninu, sve dok se lično ne uvere da su njihovi muževi, sinovi i braća zaista poginuli.",
+            "target_pos": "v",
+            "target_domain": ""
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01797051-v",
+      "english_definition": "feel sadness",
+      "english_lemmas": [
+        "mourn"
+      ],
+      "english_examples": [
+        "She is mourning her dead child"
+      ],
+      "english_pos": "v",
+      "english_name": "mourn.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "grieve.v.01",
+            "definition": "feel grief"
+          }
+        ],
+        "hyponyms": [],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "mourn": {
+            "derivationally_related": [
+              {
+                "name": "mourner.n.01",
+                "definition": "a person who is feeling grief (as grieving over someone who has died)",
+                "lemma": "mourner"
+              },
+              {
+                "name": "mourning.n.01",
+                "definition": "state of sorrow over the death or departure of a loved one",
+                "lemma": "mourning"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01824532-v",
+      "serbian_synonyms": [
+        "želeti dobro"
+      ],
+      "serbian_definition": "Osećati ili izražavati želju ili nadu za nečiju budućnost.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 4,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01825237-v",
+              "available": true,
+              "target_synonyms": [
+                "želeti",
+                "hteti"
+              ],
+              "target_definition": "Osećati želju za nečim; hteti jako.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "eng_derivative": [
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-07185870-n",
+              "available": true,
+              "target_synonyms": [
+                "želja",
+                "zahtev"
+              ],
+              "target_definition": "Izraz neke želje ili naklonosti.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "factotum"
+            },
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-07486229-n",
+              "available": true,
+              "target_synonyms": [
+                "želja",
+                "prohtev"
+              ],
+              "target_definition": "poseban osećaj žudnje",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "factotum"
+            }
+          ],
+          "near_antonym": [
+            {
+              "type": "near_antonym",
+              "target_id": "ENG30-01825125-v",
+              "available": true,
+              "target_synonyms": [
+                "begrudge",
+                "resent"
+              ],
+              "target_definition": "wish ill or allow unwillingly",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01825237-v",
+            "available": true,
+            "target_synonyms": [
+              "želeti",
+              "hteti"
+            ],
+            "target_definition": "Osećati želju za nečim; hteti jako.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-07185870-n",
+            "available": true,
+            "target_synonyms": [
+              "želja",
+              "zahtev"
+            ],
+            "target_definition": "Izraz neke želje ili naklonosti.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-07486229-n",
+            "available": true,
+            "target_synonyms": [
+              "želja",
+              "prohtev"
+            ],
+            "target_definition": "poseban osećaj žudnje",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "near_antonym",
+            "target_id": "ENG30-01825125-v",
+            "available": true,
+            "target_synonyms": [
+              "begrudge",
+              "resent"
+            ],
+            "target_definition": "wish ill or allow unwillingly",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01824532-v",
+      "english_definition": "feel or express a desire or hope concerning the future or fortune of",
+      "english_lemmas": [
+        "wish",
+        "wish_well"
+      ],
+      "english_examples": [],
+      "english_pos": "v",
+      "english_name": "wish.v.04",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "desire.v.01",
+            "definition": "feel or have a desire for; want strongly"
+          }
+        ],
+        "hyponyms": [],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "wish": {
+            "antonyms": [
+              {
+                "name": "begrudge.v.02",
+                "definition": "wish ill or allow unwillingly",
+                "lemma": "begrudge"
+              }
+            ],
+            "derivationally_related": [
+              {
+                "name": "wish.n.01",
+                "definition": "a specific feeling of desire",
+                "lemma": "wish"
+              },
+              {
+                "name": "wish.n.02",
+                "definition": "an expression of some desire or inclination",
+                "lemma": "wish"
+              }
+            ]
+          },
+          "wish_well": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01828405-v",
+      "serbian_synonyms": [
+        "čeznuti",
+        "priželjkivati",
+        "žudeti"
+      ],
+      "serbian_definition": "Jako ili neprekidno želeti.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 3,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01825237-v",
+              "available": true,
+              "target_synonyms": [
+                "želeti",
+                "hteti"
+              ],
+              "target_definition": "Osećati želju za nečim; hteti jako.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "eng_derivative": [
+            {
+              "type": "eng_derivative",
+              "target_id": "ENG30-07486628-n",
+              "available": true,
+              "target_synonyms": [
+                "čežnja"
+              ],
+              "target_definition": "Stalna neispunjena želja ili potreba.",
+              "target_usage": "",
+              "target_pos": "n",
+              "target_domain": "factotum"
+            }
+          ],
+          "hyponym": [
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01805684-v",
+              "available": true,
+              "target_synonyms": [
+                "čileti",
+                "venuti",
+                "sahnuti"
+              ],
+              "target_definition": "Imati žudnju za nečim.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01825237-v",
+            "available": true,
+            "target_synonyms": [
+              "želeti",
+              "hteti"
+            ],
+            "target_definition": "Osećati želju za nečim; hteti jako.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "eng_derivative",
+            "target_id": "ENG30-07486628-n",
+            "available": true,
+            "target_synonyms": [
+              "čežnja"
+            ],
+            "target_definition": "Stalna neispunjena želja ili potreba.",
+            "target_usage": "",
+            "target_pos": "n",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01805684-v",
+            "available": true,
+            "target_synonyms": [
+              "čileti",
+              "venuti",
+              "sahnuti"
+            ],
+            "target_definition": "Imati žudnju za nečim.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01828405-v",
+      "english_definition": "desire strongly or persistently",
+      "english_lemmas": [
+        "hanker",
+        "long",
+        "yearn"
+      ],
+      "english_examples": [],
+      "english_pos": "v",
+      "english_name": "hanker.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "desire.v.01",
+            "definition": "feel or have a desire for; want strongly"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "ache.v.02",
+            "definition": "have a desire for something or someone who is not present"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "hanker": {
+            "derivationally_related": [
+              {
+                "name": "hankering.n.01",
+                "definition": "a yearning for something or to do something",
+                "lemma": "hankering"
+              }
+            ]
+          },
+          "long": {
+            "derivationally_related": [
+              {
+                "name": "longer.n.01",
+                "definition": "a person with a strong desire for something",
+                "lemma": "longer"
+              },
+              {
+                "name": "longing.n.01",
+                "definition": "prolonged unfulfilled desire or need",
+                "lemma": "longing"
+              }
+            ]
+          },
+          "yearn": {
+            "derivationally_related": [
+              {
+                "name": "longer.n.01",
+                "definition": "a person with a strong desire for something",
+                "lemma": "yearner"
+              },
+              {
+                "name": "longing.n.01",
+                "definition": "prolonged unfulfilled desire or need",
+                "lemma": "yearning"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01868370-v",
+      "serbian_synonyms": [
+        "migoljiti se",
+        "uvrtati se",
+        "savijati se"
+      ],
+      "serbian_definition": "Micati se uvijenim ili grčevitim pokretima (posebno u borbi).",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 1,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01831531-v",
+              "available": true,
+              "target_synonyms": [
+                "pomeriti se",
+                "promeniti položaj"
+              ],
+              "target_definition": "Pomeriti poziciju, recimo dela tela.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01831531-v",
+            "available": true,
+            "target_synonyms": [
+              "pomeriti se",
+              "promeniti položaj"
+            ],
+            "target_definition": "Pomeriti poziciju, recimo dela tela.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01868370-v",
+      "english_definition": "to move in a twisting or contorted motion, (especially when struggling)",
+      "english_lemmas": [
+        "writhe",
+        "wrestle",
+        "wriggle",
+        "worm",
+        "squirm",
+        "twist"
+      ],
+      "english_examples": [
+        "The prisoner writhed in discomfort",
+        "The child tried to wriggle free from his aunt's embrace"
+      ],
+      "english_pos": "v",
+      "english_name": "writhe.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "move.v.03",
+            "definition": "move so as to change position, perform a nontranslational motion"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "wrench.v.02",
+            "definition": "make a sudden twisting motion"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "writhe": {},
+          "wrestle": {},
+          "wriggle": {
+            "derivationally_related": [
+              {
+                "name": "wiggler.n.01",
+                "definition": "one who can't stay still (especially a child)",
+                "lemma": "wriggler"
+              },
+              {
+                "name": "wiggle.n.01",
+                "definition": "the act of wiggling",
+                "lemma": "wriggle"
+              }
+            ]
+          },
+          "worm": {},
+          "squirm": {
+            "derivationally_related": [
+              {
+                "name": "wiggler.n.01",
+                "definition": "one who can't stay still (especially a child)",
+                "lemma": "squirmer"
+              },
+              {
+                "name": "wiggle.n.01",
+                "definition": "the act of wiggling",
+                "lemma": "squirm"
+              }
+            ]
+          },
+          "twist": {
+            "derivationally_related": [
+              {
+                "name": "twist.n.09",
+                "definition": "a jerky pulling movement",
+                "lemma": "twist"
+              },
+              {
+                "name": "tornado.n.01",
+                "definition": "a localized and violently destructive windstorm occurring over land characterized by a funnel-shaped cloud extending toward the ground",
+                "lemma": "twister"
+              }
+            ]
+          }
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01876530-v",
+      "serbian_synonyms": [
+        "ići tamo-amo"
+      ],
+      "serbian_definition": "Kretati se u jednom smeru, a zatim u suprotnom.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 2,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01831531-v",
+              "available": true,
+              "target_synonyms": [
+                "pomeriti se",
+                "promeniti položaj"
+              ],
+              "target_definition": "Pomeriti poziciju, recimo dela tela.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ],
+          "hyponym": [
+            {
+              "type": "hyponym",
+              "target_id": "ENG30-01875295-v",
+              "available": true,
+              "target_synonyms": [
+                "ljuljati se",
+                "tresti se",
+                "drmati se"
+              ],
+              "target_definition": "Kretati se tamo-amo na nestabilan način.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01831531-v",
+            "available": true,
+            "target_synonyms": [
+              "pomeriti se",
+              "promeniti položaj"
+            ],
+            "target_definition": "Pomeriti poziciju, recimo dela tela.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          },
+          {
+            "type": "hyponym",
+            "target_id": "ENG30-01875295-v",
+            "available": true,
+            "target_synonyms": [
+              "ljuljati se",
+              "tresti se",
+              "drmati se"
+            ],
+            "target_definition": "Kretati se tamo-amo na nestabilan način.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01876530-v",
+      "english_definition": "move in one direction and then into the opposite direction",
+      "english_lemmas": [
+        "move_back_and_forth"
+      ],
+      "english_examples": [],
+      "english_pos": "v",
+      "english_name": "move_back_and_forth.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "move.v.03",
+            "definition": "move so as to change position, perform a nontranslational motion"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "rock.v.01",
+            "definition": "move back and forth or sideways"
+          },
+          {
+            "name": "swing.v.02",
+            "definition": "move or walk in a swinging or swaying manner"
+          },
+          {
+            "name": "flicker.v.01",
+            "definition": "move back and forth very rapidly"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "move_back_and_forth": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    },
+    {
+      "serbian_id": "ENG30-01902405-v",
+      "serbian_synonyms": [
+        "odjuriti",
+        "strugnuti",
+        "kidnuti",
+        "odmagliti"
+      ],
+      "serbian_definition": "Kretati se žurno.",
+      "serbian_usage": "",
+      "serbian_pos": "v",
+      "serbian_domain": "factotum",
+      "serbian_relations": {
+        "total_relations": 1,
+        "relations_by_type": {
+          "hypernym": [
+            {
+              "type": "hypernym",
+              "target_id": "ENG30-01926311-v",
+              "available": true,
+              "target_synonyms": [
+                "trčati"
+              ],
+              "target_definition": "Kretati se brzo sopstvenim nogama, tako da je jedno stopalo uvek uvek podignuto sa zemlje.",
+              "target_usage": "",
+              "target_pos": "v",
+              "target_domain": "factotum"
+            }
+          ]
+        },
+        "available_relations": [
+          {
+            "type": "hypernym",
+            "target_id": "ENG30-01926311-v",
+            "available": true,
+            "target_synonyms": [
+              "trčati"
+            ],
+            "target_definition": "Kretati se brzo sopstvenim nogama, tako da je jedno stopalo uvek uvek podignuto sa zemlje.",
+            "target_usage": "",
+            "target_pos": "v",
+            "target_domain": "factotum"
+          }
+        ],
+        "external_relations": []
+      },
+      "english_id": "ENG30-01902405-v",
+      "english_definition": "to move about or proceed hurriedly",
+      "english_lemmas": [
+        "scurry",
+        "scamper",
+        "skitter",
+        "scuttle"
+      ],
+      "english_examples": [
+        "so terrified by the extraordinary ebbing of the sea that they scurried to higher ground"
+      ],
+      "english_pos": "v",
+      "english_name": "scurry.v.01",
+      "english_relations": {
+        "hypernyms": [
+          {
+            "name": "run.v.01",
+            "definition": "move fast by using one's feet, with one foot off the ground at any given time"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "crab.v.02",
+            "definition": "scurry sideways like a crab"
+          }
+        ],
+        "instance_hypernyms": [],
+        "instance_hyponyms": [],
+        "part_meronyms": [],
+        "part_holonyms": [],
+        "member_meronyms": [],
+        "member_holonyms": [],
+        "substance_meronyms": [],
+        "substance_holonyms": [],
+        "similar_tos": [],
+        "also": [],
+        "entailments": [],
+        "causes": [],
+        "verb_groups": [],
+        "lemma_relations": {
+          "scurry": {
+            "derivationally_related": [
+              {
+                "name": "scamper.n.01",
+                "definition": "rushing about hastily in an undignified way",
+                "lemma": "scurry"
+              }
+            ]
+          },
+          "scamper": {
+            "derivationally_related": [
+              {
+                "name": "scamper.n.01",
+                "definition": "rushing about hastily in an undignified way",
+                "lemma": "scamper"
+              }
+            ]
+          },
+          "skitter": {},
+          "scuttle": {}
+        }
+      },
+      "pairing_metadata": {
+        "pair_type": "automatic",
+        "quality_score": 1.5,
+        "translator": "Cvetana",
+        "translation_date": "Unknown"
+      }
+    }
+  ],
+  "metadata": {
+    "total_pairs": 27,
+    "created_by": "Serbian WordNet Synset Browser",
+    "format_version": "2.0",
+    "export_timestamp": "2025-07-29T13:57:13.380980",
+    "includes_relations": true,
+    "includes_metadata": true,
+    "description": "Enhanced export with Serbian and English relations for translation context"
+  }
+}

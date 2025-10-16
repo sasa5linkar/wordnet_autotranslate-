@@ -84,6 +84,37 @@ target_synsets = pipeline.load_target_synsets()
 translated_synsets = pipeline.translate(english_synsets)
 ```
 
+### LangGraph + Ollama Translation Pipeline
+
+For a LangGraph-driven workflow that calls a local Ollama runtime, install the
+optional dependencies and use the dedicated pipeline:
+
+```bash
+pip install -e ".[langgraph]"
+```
+
+```python
+from wordnet_autotranslate import LangGraphTranslationPipeline
+
+pipeline = LangGraphTranslationPipeline(
+    source_lang="en",
+    target_lang="sr",
+    model="gpt-oss:120b",  # Default assumes a capable local reasoning model
+    timeout=600,
+)
+
+synsets = [{"id": "ENG30-00001740-r", "lemmas": ["entity"], "definition": "entity"}]
+translations = pipeline.translate(synsets)
+
+# Each translation now contains:
+# - translation: preferred headword in the target language
+# - definition_translation: gloss translated into the target language
+# - translated_synonyms: list of candidate synonyms aligned with the sense
+# - examples: target-language usage examples generated for the sense
+# - curator_summary: quick human-readable recap combining the key outputs
+# - payload: full JSON logs (sense analysis, definition translation, synonym decisions)
+```
+
 ### Serbian WordNet Expansion
 
 For Serbian-specific experiments, use `SerbianWordnetPipeline` which bundles
@@ -95,6 +126,7 @@ from wordnet_autotranslate import SerbianWordnetPipeline
 
 pipeline = SerbianWordnetPipeline(pilot_limit=100)
 pipeline.run(Path("./output/srpwn_generated.xml"))
+```
 
 ### Serbian Synset Parsing
 
