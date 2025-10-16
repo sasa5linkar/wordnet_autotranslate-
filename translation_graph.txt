@@ -1,0 +1,52 @@
+
+Translation Pipeline Graph Structure
+=====================================
+
+    ┌─────────┐
+    │  START  │
+    └────┬────┘
+         │
+         ▼
+    ┌─────────────────────┐
+    │  analyse_sense      │  ← Stage 1: Analyze word sense and semantic features
+    │                     │    • Identify nuances and distinguishing features
+    │  📊 Sense Analysis  │    • Build understanding before translation
+    └──────────┬──────────┘
+               │
+               ▼
+    ┌─────────────────────┐
+    │ translate_definition│  ← Stage 2: Translate the definition
+    │                     │    • Use sense analysis context
+    │ 📝 Definition       │    • Maintain semantic precision
+    └──────────┬──────────┘
+               │
+               ▼
+    ┌─────────────────────┐
+    │ translate_synonyms  │  ← Stage 3: Generate target synonyms
+    │                     │    • Create synonym candidates
+    │ 🔤 Synonyms         │    • Include confidence levels
+    └──────────┬──────────┘
+               │
+               ▼
+    ┌─────────────────────┐
+    │  assemble_result    │  ← Stage 4: Combine all outputs
+    │                     │    • Merge translations
+    │ 📦 Assembly         │    • Create curator summary
+    └──────────┬──────────┘
+               │
+               ▼
+    ┌─────────┐
+    │   END   │
+    └─────────┘
+
+Pipeline Flow:
+--------------
+1. Input synset enters at START
+2. Sense analysis extracts semantic features
+3. Definition translation uses sense context
+4. Synonym generation builds on definition
+5. Assembly merges all stages into final result
+6. Result exits at END
+
+Each stage passes state forward through the graph,
+accumulating information for downstream nodes.

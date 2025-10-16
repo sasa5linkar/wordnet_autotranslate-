@@ -72,6 +72,7 @@ class TranslationResult:
 class LangGraphTranslationPipeline:
     """Alternative translation pipeline that uses LangGraph + Ollama."""
 
+    # Default configuration constants
     DEFAULT_SYSTEM_PROMPT: str = (
         "You are an expert lexicographer helping expand WordNet into less "
         "resourced languages. Produce faithful, idiomatic translations and "
@@ -90,14 +91,20 @@ class LangGraphTranslationPipeline:
         "Linked English ID: {english_id}\n"
     )
 
+    # Response preview limit for logging
+    _PREVIEW_LIMIT: int = 600
+    
+    # Maximum number of synonyms to display in summary
+    _MAX_SYNONYMS_DISPLAY: int = 5
+
     def __init__(
         self,
-    source_lang: str = "en",
-    target_lang: str = "sr",
-    model: str = "gpt-oss:120b",
-    temperature: float = 0.2,
-    base_url: str = "http://localhost:11434",
-    timeout: int = 600,
+        source_lang: str = "en",
+        target_lang: str = "sr",
+        model: str = "gpt-oss:120b",
+        temperature: float = 0.2,
+        base_url: str = "http://localhost:11434",
+        timeout: int = 600,
         system_prompt: Optional[str] = None,
         prompt_template: Optional[str] = None,
         llm: Optional[Any] = None,
@@ -157,7 +164,12 @@ class LangGraphTranslationPipeline:
 
         return StateGraph, START, END, SystemMessage, HumanMessage, chat_factory
 
-    def _build_graph(self):
+    def _build_graph(self) -> Any:
+        """Build and compile the LangGraph state machine for translation.
+        
+        Returns:
+            Compiled graph ready for invocation.
+        """
         graph = self._StateGraph(TranslationGraphState)
         graph.add_node("analyse_sense", self._analyse_sense)
         graph.add_node("translate_definition", self._translate_definition)
@@ -197,12 +209,28 @@ class LangGraphTranslationPipeline:
     # ------------------------------------------------------------------
 
     def _analyse_sense(self, state: TranslationGraphState) -> TranslationGraphState:
+        """LangGraph node: Analyse synset sense before translation.
+        
+        Args:
+            state: Current graph state containing synset data.
+            
+        Returns:
+            Updated state with sense_analysis results.
+        """
         synset = state["synset"]
         prompt = self._render_sense_prompt(synset)
         call_result = self._call_llm(prompt, stage="sense_analysis")
         return {"sense_analysis": call_result}
 
     def _translate_definition(self, state: TranslationGraphState) -> TranslationGraphState:
+        """LangGraph node: Translate synset definition.
+        
+        Args:
+            state: Current graph state with sense analysis.
+            
+        Returns:
+            Updated state with definition_translation results.
+        """
         synset = state["synset"]
         sense_payload = state.get("sense_analysis", {}).get("payload", {})
         prompt = self._render_definition_prompt(synset, sense_payload)
@@ -210,6 +238,14 @@ class LangGraphTranslationPipeline:
         return {"definition_translation": call_result}
 
     def _translate_synonyms(self, state: TranslationGraphState) -> TranslationGraphState:
+        """LangGraph node: Generate target language synonyms.
+        
+        Args:
+            state: Current graph state with definition translation.
+            
+        Returns:
+            Updated state with synonym_translation results.
+        """
         synset = state["synset"]
         sense_payload = state.get("sense_analysis", {}).get("payload", {})
         definition_payload = state.get("definition_translation", {}).get("payload", {})
@@ -218,6 +254,14 @@ class LangGraphTranslationPipeline:
         return {"synonym_translation": call_result}
 
     def _render_sense_prompt(self, synset: Dict[str, Any]) -> str:
+        """Generate prompt for sense analysis stage.
+        
+        Args:
+            synset: Source synset with lemmas, definition, examples.
+            
+        Returns:
+            Formatted prompt for LLM.
+        """
         lemmas = synset.get("lemmas") or synset.get("literals") or []
         lemmas_str = ", ".join(lemmas) if isinstance(lemmas, (list, tuple)) else str(lemmas)
 
@@ -257,6 +301,15 @@ class LangGraphTranslationPipeline:
         synset: Dict[str, Any],
         sense_payload: Dict[str, Any],
     ) -> str:
+        """Generate prompt for definition translation stage.
+        
+        Args:
+            synset: Source synset data.
+            sense_payload: Output from sense analysis stage.
+            
+        Returns:
+            Formatted prompt for LLM.
+        """
         target_name = LanguageUtils.get_language_name(self.target_lang)
         definition = synset.get("definition") or synset.get("gloss") or ""
 
@@ -290,6 +343,16 @@ class LangGraphTranslationPipeline:
         sense_payload: Dict[str, Any],
         definition_payload: Dict[str, Any],
     ) -> str:
+        """Generate prompt for synonym translation stage.
+        
+        Args:
+            synset: Source synset data.
+            sense_payload: Output from sense analysis stage.
+            definition_payload: Output from definition translation stage.
+            
+        Returns:
+            Formatted prompt for LLM.
+        """
         target_name = LanguageUtils.get_language_name(self.target_lang)
         lemmas = synset.get("lemmas") or synset.get("literals") or []
         lemmas_str = ", ".join(lemmas) if isinstance(lemmas, (list, tuple)) else str(lemmas)
@@ -317,6 +380,15 @@ class LangGraphTranslationPipeline:
         return prompt
 
     def _call_llm(self, prompt: str, stage: str) -> Dict[str, Any]:
+        """Invoke the LLM with given prompt and track the interaction.
+        
+        Args:
+            prompt: User message to send to LLM.
+            stage: Current pipeline stage (for logging).
+            
+        Returns:
+            Dict containing prompt, response, parsed payload, and metadata.
+        """
         system_content = self.system_prompt + f"\nCurrent stage: {stage}. Return valid JSON as instructed."
         messages = [
             self._SystemMessage(content=system_content),
@@ -352,13 +424,22 @@ class LangGraphTranslationPipeline:
 
     @staticmethod
     def _summarise_call(call: Dict[str, Any]) -> Dict[str, Any]:
+        """Create a concise summary of an LLM call for logging.
+        
+        Args:
+            call: Full LLM call record with prompt, response, etc.
+            
+        Returns:
+            Summarised version with truncated response.
+        """
         if not call:
             return {}
 
-        preview_limit = 600
         raw = call.get("raw_response", "")
         raw_preview = (
-            raw[:preview_limit] + "… [truncated]" if raw and len(raw) > preview_limit else raw
+            raw[:LangGraphTranslationPipeline._PREVIEW_LIMIT] + "… [truncated]" 
+            if raw and len(raw) > LangGraphTranslationPipeline._PREVIEW_LIMIT 
+            else raw
         )
 
         return {
@@ -435,6 +516,14 @@ class LangGraphTranslationPipeline:
         return {"translation": cleaned}
 
     def _assemble_result(self, state: TranslationGraphState) -> TranslationGraphState:
+        """LangGraph node: Combine all stage outputs into final result.
+        
+        Args:
+            state: Complete graph state with all translation stages.
+            
+        Returns:
+            Updated state with assembled TranslationResult.
+        """
         synset = state["synset"]
         sense_call = state.get("sense_analysis", {}) or {}
         definition_call = state.get("definition_translation", {}) or {}
@@ -526,11 +615,11 @@ class LangGraphTranslationPipeline:
         )
         if translated_synonyms:
             summary_lines.append("Synonym candidates:")
-            for syn in translated_synonyms[:5]:
+            for syn in translated_synonyms[:self._MAX_SYNONYMS_DISPLAY]:
                 summary_lines.append(f"  • {syn}")
-            if len(translated_synonyms) > 5:
+            if len(translated_synonyms) > self._MAX_SYNONYMS_DISPLAY:
                 summary_lines.append(
-                    f"  (+{len(translated_synonyms) - 5} more candidates)"
+                    f"  (+{len(translated_synonyms) - self._MAX_SYNONYMS_DISPLAY} more candidates)"
                 )
         else:
             summary_lines.append("Synonym candidates: (none returned)")
