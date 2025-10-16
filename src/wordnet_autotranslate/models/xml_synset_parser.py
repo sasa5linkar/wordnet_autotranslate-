@@ -9,6 +9,13 @@ import re
 import logging
 from dataclasses import dataclass
 
+# POS normalization utilities (Serbian <-> English)
+try:
+    from ..utils.language_utils import LanguageUtils
+except Exception:
+    # Fallback import path when running outside package context
+    from wordnet_autotranslate.utils.language_utils import LanguageUtils
+
 # Set up logger
 logger = logging.getLogger(__name__)
 
@@ -154,6 +161,10 @@ class XmlSynsetParser:
         # Index English links
         english_id = self._extract_english_id(synset.id)
         if english_id:
+            # Normalize POS in ENG30 id for consistent English lookups.
+            # Serbian XML may use '-b' for adverbs; WordNet uses '-r'.
+            if english_id.endswith('-b'):
+                english_id = english_id[:-1] + 'r'
             if english_id not in self.english_links:
                 self.english_links[english_id] = []
             self.english_links[english_id].append(synset)
@@ -301,7 +312,13 @@ class XmlSynsetParser:
     def _extract_english_id(self, synset_id: str) -> Optional[str]:
         """Extract English WordNet ID from synset ID if present."""
         match = re.match(ENGLISH_ID_PATTERN, synset_id)
-        return match.group(1) if match else None
+        if not match:
+            return None
+        eng_id = match.group(1)
+        # Normalize Serbian 'b' (adverb) to English 'r' for downstream use
+        if eng_id.endswith('-b'):
+            return eng_id[:-1] + 'r'
+        return eng_id
     
     def get_synset_by_id(self, synset_id: str) -> Optional[Synset]:
         """Get synset by ID."""

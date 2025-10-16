@@ -89,9 +89,13 @@ class SerbianWordnetPipeline:
             self._placeholder_dspy_usage()
             # TODO: implement DSPy generation logic
 
+        # Map POS: English 'r' (adverb) becomes Serbian 'b' in SRP XML
+        pos_raw = str(syn.get("pos"))
+        pos_srp = 'b' if pos_raw == 'r' else pos_raw
+
         return SerbianSynset(
             id=str(syn.get("id")),
-            pos=str(syn.get("pos")),
+            pos=pos_srp,
             literals=literals,
             gloss=gloss,
             examples=[f"Primer upotrebe za {literals[0]}." if literals else "Primer upotrebe nije dostupan."],

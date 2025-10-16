@@ -54,7 +54,48 @@ class LanguageUtils:
         # Simple word extraction
         words = re.findall(r'\b\w+\b', text.lower())
         return words
-    
+
+    # --- POS normalization helpers ---
+    # Serbian WordNet XML uses 'b' to denote adverbs (prilog),
+    # while Princeton WordNet (NLTK) uses 'r' for adverbs.
+    # We normalize when crossing the EN<->SR boundary so lookups work.
+
+    _POS_SRP_TO_ENG = {
+        'b': 'r',  # adverb: Serbian 'b' -> English 'r'
+        'n': 'n',
+        'v': 'v',
+        'a': 'a',
+        # keep any other tag as-is by default
+    }
+
+    _POS_ENG_TO_SRP = {
+        'r': 'b',  # adverb: English 'r' -> Serbian 'b'
+        'n': 'n',
+        'v': 'v',
+        'a': 'a',
+    }
+
+    @staticmethod
+    def normalize_pos_for_english(pos: str) -> str:
+        """Map Serbian POS tags to English/Princeton ones (b->r for adverbs).
+
+        Returns a lowercased single-letter POS expected by NLTK WordNet.
+        """
+        if not pos:
+            return pos
+        p = pos.lower()
+        return LanguageUtils._POS_SRP_TO_ENG.get(p, p)
+
+    @staticmethod
+    def normalize_pos_for_serbian(pos: str) -> str:
+        """Map English/Princeton POS to Serbian XML ones (r->b for adverbs).
+
+        Returns a lowercased single-letter POS used in Serbian WordNet XML.
+        """
+        if not pos:
+            return pos
+        p = pos.lower()
+        return LanguageUtils._POS_ENG_TO_SRP.get(p, p)
     @staticmethod
     def load_stopwords(lang_code: str) -> Set[str]:
         """Load stopwords for a language."""
