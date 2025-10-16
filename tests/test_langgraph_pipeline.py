@@ -65,6 +65,7 @@ class _DummyLLM:
             # Filter and validate synonyms
             payload = {
                 "filtered_synonyms": [self.translation],
+                "confidence_by_word": {self.translation: "high"},
                 "removed": [],
                 "confidence": "high",
             }
@@ -370,6 +371,7 @@ def test_multiple_synonyms_with_varying_confidence():
             elif "synonym_filtering" in system_content:
                 payload = {
                     "filtered_synonyms": ["glavni", "primarni", "главни"],
+                    "confidence_by_word": {"glavni": "high", "primarni": "medium", "главни": "high"},
                     "removed": [],
                     "confidence": "high",
                 }
@@ -443,8 +445,10 @@ def test_curator_summary_with_many_synonyms():
             elif "synonym_filtering" in system_content:
                 # Keep all 10 synonyms
                 filtered_synonyms = [f"reč{i}" for i in range(10)]
+                confidence_by_word = {f"reč{i}": "high" for i in range(10)}
                 payload = {
                     "filtered_synonyms": filtered_synonyms,
+                    "confidence_by_word": confidence_by_word,
                     "removed": [],
                     "confidence": "high",
                 }
@@ -511,6 +515,7 @@ def test_example_deduplication():
             elif "synonym_filtering" in system_content:
                 payload = {
                     "filtered_synonyms": ["test"],
+                    "confidence_by_word": {"test": "high"},
                     "removed": [],
                     "confidence": "high",
                 }

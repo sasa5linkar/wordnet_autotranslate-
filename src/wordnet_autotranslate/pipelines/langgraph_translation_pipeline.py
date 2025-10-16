@@ -127,6 +127,7 @@ class ExpansionSchema(BaseModel):
 class FilteringSchema(BaseModel):
     """Pydantic schema for synonym filtering stage output."""
     filtered_synonyms: List[str]
+    confidence_by_word: Optional[Dict[str, str]] = Field(default_factory=dict)
     removed: Optional[List[Dict[str, str]]] = Field(default_factory=list)
     confidence: str
 
@@ -604,7 +605,7 @@ class LangGraphTranslationPipeline:
         sense_payload: Dict[str, Any],
         definition_payload: Dict[str, Any],
     ) -> str:
-        """Generate prompt for synonym filtering/validation stage (improved: structured rejections + confidence level).
+        """Filtering prompt that balances conceptual fidelity with target-language naturalness.
         
         Args:
             expansion_payload: Output from expansion stage.
@@ -623,21 +624,30 @@ class LangGraphTranslationPipeline:
 
         prompt = textwrap.dedent(
             f"""
-            Validate the following {target_name} candidates; keep only *perfect synonyms*.
+            Final validation of {target_name} synonym candidates.
 
             Candidates: {expanded_str}
             Sense summary: {sense_summary or "(no summary available)"}
-            Definition: {definition_translation or "(not available)"}
+            Definition (translated): {definition_translation or "(not available)"}
 
-            Reject any that:
-            - Differ in meaning or register
-            - Violate POS or grammatical gender/number
-            - Are dialectal or figurative unless universally interchangeable
+            Guidelines:
+            - Preserve the *core concept* expressed in the English sense,
+              but prefer words and expressions that sound **natural, idiomatic, and culturally appropriate**
+              in {target_name}.
+            - If multiple target words exist, choose those most typical in modern usage,
+              even if they cover slightly broader or narrower meanings.
+            - Include abstract or concrete variants when they reflect how
+              native speakers conceptualize the same category.
+            - Reject only those that belong to a clearly different concept,
+              part of speech, or register that would feel unnatural in {target_name}.
+            - Prioritize native semantic norms of {target_name} over literal translation
+              if the two conflict.
 
             Return JSON:
             {{
-              "filtered_synonyms": ["final1", "final2"],
-              "removed": [{{"word": "X", "reason": "broader meaning"}}],
+              "filtered_synonyms": ["final1", "final2", "final3"],
+              "confidence_by_word": {{"final1": "high", "final2": "medium"}},
+              "removed": [{{"word": "X", "reason": "different concept or unnatural usage"}}],
               "confidence": "high|medium|low"
             }}
             """
