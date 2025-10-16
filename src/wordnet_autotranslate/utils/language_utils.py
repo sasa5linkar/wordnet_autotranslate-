@@ -96,7 +96,6 @@ class LanguageUtils:
             return pos
         p = pos.lower()
         return LanguageUtils._POS_ENG_TO_SRP.get(p, p)
-    
     @staticmethod
     def load_stopwords(lang_code: str) -> Set[str]:
         """Load stopwords for a language."""
