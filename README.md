@@ -36,6 +36,19 @@ pip install -e .
 pip install -e ".[notebooks,gui,dev]"
 ```
 
+### Optional dependencies
+
+The base library runs without heavy GUI packages. Install the ``gui``
+extra to enable the interactive browser, which pulls in optional
+dependencies ``streamlit`` and ``pandas``:
+
+```bash
+pip install -e ".[gui]"
+```
+
+These packages are only required for GUI features; core translation
+utilities work in headless environments.
+
 3. Set up Jupyter environment (optional):
 ```bash
 # Install with notebook dependencies
@@ -47,7 +60,9 @@ jupyter notebook
 
 ### Serbian WordNet Synset Browser (GUI)
 
-Launch the interactive GUI for browsing and pairing Serbian synsets:
+Launch the interactive GUI for browsing and pairing Serbian synsets.
+This component requires the optional ``streamlit`` and ``pandas``
+dependencies (install via ``pip install -e ".[gui]"``):
 
 ```bash
 # Using the launcher script
