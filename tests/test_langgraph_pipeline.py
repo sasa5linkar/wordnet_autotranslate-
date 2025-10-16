@@ -41,7 +41,7 @@ class _DummyLLM:
                 "key_features": ["distinct existence", "identifiable"],
                 "domain_tags": ["ontology"],
                 "confidence": "high",
-                "recommended_translation": self.translation,
+                "contrastive_note": "Not to be confused with abstract concepts",
             }
         elif "definition_translation" in system_content:
             payload = {
@@ -49,19 +49,24 @@ class _DummyLLM:
                 "notes": self.notes,
                 "examples": self.examples,
             }
-        elif "synonym_translation" in system_content:
+        elif "initial_translation" in system_content:
+            # Return translations for each lemma
             payload = {
-                "preferred_headword": self.translation,
-                "synonyms": [
-                    {
-                        "original": "entity",
-                        "translation": self.translation,
-                        "confidence": "high",
-                        "example": self.examples[0] if self.examples else None,
-                    }
-                ],
-                "examples": self.examples,
-                "notes": self.notes,
+                "initial_translations": [self.translation],
+                "alignment": {"entity": self.translation},
+            }
+        elif "synonym_expansion" in system_content:
+            # Expand with additional synonyms
+            payload = {
+                "expanded_synonyms": [self.translation],
+                "rationale": {self.translation: "Direct translation of the concept"},
+            }
+        elif "synonym_filtering" in system_content:
+            # Filter and validate synonyms
+            payload = {
+                "filtered_synonyms": [self.translation],
+                "removed": [],
+                "confidence": "high",
             }
         else:  # fallback for unexpected prompts
             payload = {
@@ -99,10 +104,12 @@ def test_langgraph_pipeline_returns_structured_dict():
     assert result["target_lang"] == "sr"
     assert result["source"]["id"] == synset["id"]
     assert result["examples"] == ["Ovo je entitet."]
+    # Check new 6-stage pipeline structure
     assert result["payload"]["definition"]["definition_translation"].startswith("entitet je")
-    assert result["payload"]["synonyms"]["preferred_headword"] == "entitet"
-    assert "Headword" in result["curator_summary"]
-    assert "Synonym candidates" in result["curator_summary"]
+    assert result["payload"]["initial_translation"]["initial_translations"] == ["entitet"]
+    assert result["payload"]["filtering"]["filtered_synonyms"] == ["entitet"]
+    assert "Representative literal" in result["curator_summary"]
+    assert "Synset literals" in result["curator_summary"]
 
 
 def test_langgraph_pipeline_batch_processing():
@@ -126,7 +133,8 @@ def test_langgraph_pipeline_batch_processing():
 
     assert len(translated) == 1
     assert translated[0]["translation"] == "entitet-2"
-    assert pipeline.llm.calls == 3
+    # 6-stage pipeline: sense_analysis, definition_translation, initial_translation, expansion, filtering = 5 calls
+    assert pipeline.llm.calls == 5
 
 
 def test_langgraph_pipeline_african_synset_example():
@@ -156,7 +164,8 @@ def test_langgraph_pipeline_african_synset_example():
     assert result["notes"] == "Transliteration with tonal marks."
     assert result["definition_translation"].startswith("Àfíríkà")
     assert result["translated_synonyms"] == ["Àfíríkà"]
-    assert result["payload"]["synonyms"]["preferred_headword"] == "Àfíríkà"
+    # Check new pipeline structure
+    assert result["payload"]["filtering"]["filtered_synonyms"] == ["Àfíríkà"]
     assert "Àfíríkà" in result["curator_summary"]
 
 
@@ -332,16 +341,11 @@ def test_multiple_synonyms_with_varying_confidence():
             self.calls += 1
             system_content = getattr(messages[0], "content", str(messages[0]))
             
-            if "synonym_translation" in system_content:
+            if "sense_analysis" in system_content:
                 payload = {
-                    "preferred_headword": "glavni",
-                    "synonyms": [
-                        {"original": "main", "translation": "glavni", "confidence": "high"},
-                        {"original": "primary", "translation": "primarni", "confidence": "medium"},
-                        {"original": "chief", "translation": "glavni", "confidence": "high"},
-                    ],
-                    "examples": ["Test primjer"],
-                    "notes": "Multiple synonyms available",
+                    "sense_summary": "The most important one",
+                    "key_features": ["primary importance"],
+                    "confidence": "high",
                 }
             elif "definition_translation" in system_content:
                 payload = {
@@ -349,12 +353,28 @@ def test_multiple_synonyms_with_varying_confidence():
                     "examples": ["Test primjer"],
                     "notes": "Multiple synonyms available",
                 }
-            else:  # sense_analysis
+            elif "initial_translation" in system_content:
                 payload = {
-                    "sense_summary": "The most important one",
-                    "key_features": ["primary importance"],
+                    "initial_translations": ["glavni", "primarni", "главни"],
+                    "alignment": {"main": "glavni", "primary": "primarni", "chief": "главни"},
+                }
+            elif "synonym_expansion" in system_content:
+                payload = {
+                    "expanded_synonyms": ["glavni", "primarni", "главни"],
+                    "rationale": {
+                        "glavni": "Common usage",
+                        "primarni": "Technical term",
+                        "главни": "Cyrillic variant",
+                    },
+                }
+            elif "synonym_filtering" in system_content:
+                payload = {
+                    "filtered_synonyms": ["glavni", "primarni", "главни"],
+                    "removed": [],
                     "confidence": "high",
                 }
+            else:
+                payload = {"error": "unexpected stage"}
             
             class _Response:
                 content = json.dumps(payload)
@@ -381,6 +401,7 @@ def test_multiple_synonyms_with_varying_confidence():
     assert len(result["translated_synonyms"]) == 3
     assert "glavni" in result["translated_synonyms"]
     assert "primarni" in result["translated_synonyms"]
+    assert "главни" in result["translated_synonyms"]
     assert result["notes"] == "Multiple synonyms available"
 
 
@@ -392,28 +413,43 @@ def test_curator_summary_with_many_synonyms():
             self.calls += 1
             system_content = getattr(messages[0], "content", str(messages[0]))
             
-            if "synonym_translation" in system_content:
-                # Create 10 synonyms to test truncation
-                synonyms = [
-                    {"original": f"word{i}", "translation": f"reč{i}", "confidence": "high"}
-                    for i in range(10)
-                ]
+            if "sense_analysis" in system_content:
                 payload = {
-                    "preferred_headword": "reč0",
-                    "synonyms": synonyms,
-                    "examples": [],
+                    "sense_summary": "Test sense",
+                    "key_features": ["test"],
+                    "confidence": "high",
                 }
             elif "definition_translation" in system_content:
                 payload = {
                     "definition_translation": "Test definition",
                     "examples": [],
                 }
-            else:  # sense_analysis
+            elif "initial_translation" in system_content:
+                # Create 10 translations to test handling
+                initial_translations = [f"reč{i}" for i in range(10)]
+                alignment = {f"word{i}": f"reč{i}" for i in range(10)}
                 payload = {
-                    "sense_summary": "Test sense",
-                    "key_features": ["test"],
+                    "initial_translations": initial_translations,
+                    "alignment": alignment,
+                }
+            elif "synonym_expansion" in system_content:
+                # Expand with all 10 synonyms
+                expanded_synonyms = [f"reč{i}" for i in range(10)]
+                rationale = {f"reč{i}": "Synonym variant" for i in range(10)}
+                payload = {
+                    "expanded_synonyms": expanded_synonyms,
+                    "rationale": rationale,
+                }
+            elif "synonym_filtering" in system_content:
+                # Keep all 10 synonyms
+                filtered_synonyms = [f"reč{i}" for i in range(10)]
+                payload = {
+                    "filtered_synonyms": filtered_synonyms,
+                    "removed": [],
                     "confidence": "high",
                 }
+            else:
+                payload = {"error": "unexpected stage"}
             
             class _Response:
                 content = json.dumps(payload)
@@ -438,7 +474,8 @@ def test_curator_summary_with_many_synonyms():
 
     # Check that curator summary mentions truncation
     assert len(result["translated_synonyms"]) == 10
-    assert "(+5 more candidates)" in result["curator_summary"] or "more candidates" in result["curator_summary"]
+    # Updated to match new terminology: "literals" instead of "candidates"
+    assert "(+5 more literals)" in result["curator_summary"] or "more literals" in result["curator_summary"]
 
 
 def test_example_deduplication():
@@ -449,34 +486,36 @@ def test_example_deduplication():
             self.calls += 1
             system_content = getattr(messages[0], "content", str(messages[0]))
             
-            if "synonym_translation" in system_content:
-                payload = {
-                    "preferred_headword": "test",
-                    "synonyms": [
-                        {
-                            "original": "test1",
-                            "translation": "test1",
-                            "example": "Duplicate example",  # Will be deduplicated
-                        },
-                        {
-                            "original": "test2",
-                            "translation": "test2",
-                            "example": "Unique example",
-                        },
-                    ],
-                    "examples": ["Duplicate example", "Another unique"],  # Duplicate here too
-                }
-            elif "definition_translation" in system_content:
-                payload = {
-                    "definition_translation": "Test",
-                    "examples": ["Duplicate example"],  # Same as above
-                }
-            else:  # sense_analysis
+            if "sense_analysis" in system_content:
                 payload = {
                     "sense_summary": "Test",
                     "key_features": [],
                     "confidence": "high",
                 }
+            elif "definition_translation" in system_content:
+                payload = {
+                    "definition_translation": "Test",
+                    # Provide all three examples - will test deduplication
+                    "examples": ["Duplicate example", "Unique example", "Another unique"],
+                }
+            elif "initial_translation" in system_content:
+                payload = {
+                    "initial_translations": ["test"],
+                    "alignment": {"test": "test"},
+                }
+            elif "synonym_expansion" in system_content:
+                payload = {
+                    "expanded_synonyms": ["test"],
+                    "rationale": {"test": "Direct translation"},
+                }
+            elif "synonym_filtering" in system_content:
+                payload = {
+                    "filtered_synonyms": ["test"],
+                    "removed": [],
+                    "confidence": "high",
+                }
+            else:
+                payload = {"error": "unexpected stage"}
             
             class _Response:
                 content = json.dumps(payload)

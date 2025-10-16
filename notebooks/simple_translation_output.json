@@ -1,13 +1,15 @@
 {
   "english_id": "ENG30-03574555-n",
-  "preferred_headword": "ustanova",
+  "representative_literal": "sedište",
+  "synset_literals": [
+    "sedište"
+  ],
+  "literal_count": 1,
   "definition_translation": "objekat koji se sastoji od jedne zgrade ili kompleksa zgrada, u kojem se nalazi organizacija posvećena promociji određenog cilja ili uzroka",
-  "synonyms": [
-    "institucija",
-    "kompleks",
-    "objekat",
-    "sedište",
-    "ustanova",
-    "zgrada"
-  ]
+  "pipeline_stages": {
+    "initial_translations": 1,
+    "expanded_candidates": 6,
+    "filtered_results": 1,
+    "removal_rate": "5/6"
+  }
 }

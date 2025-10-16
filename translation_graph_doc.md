@@ -2,7 +2,7 @@
 
 **Auto-generated:** This document is automatically generated from the code.  
 **Purpose:** Visualize and document the translation pipeline graph structure.  
-**Last Updated:** 1760618327.872356
+**Last Updated:** 1760618627.5535576
 
 ## Overview
 
@@ -22,13 +22,17 @@ graph TD;
 	__start__([<p>__start__</p>]):::first
 	analyse_sense(analyse_sense)
 	translate_definition(translate_definition)
-	translate_synonyms(translate_synonyms)
+	translate_all_lemmas(translate_all_lemmas)
+	expand_synonyms(expand_synonyms)
+	filter_synonyms(filter_synonyms)
 	assemble_result(assemble_result)
 	__end__([<p>__end__</p>]):::last
 	__start__ --> analyse_sense;
 	analyse_sense --> translate_definition;
-	translate_definition --> translate_synonyms;
-	translate_synonyms --> assemble_result;
+	expand_synonyms --> filter_synonyms;
+	filter_synonyms --> assemble_result;
+	translate_all_lemmas --> expand_synonyms;
+	translate_definition --> translate_all_lemmas;
 	assemble_result --> __end__;
 	classDef default fill:#f2f0ff,line-height:1.2
 	classDef first fill-opacity:0
