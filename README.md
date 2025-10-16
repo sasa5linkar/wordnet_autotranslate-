@@ -201,6 +201,20 @@ wordnet_autotranslate/
 └── README.md             # This file
 ```
 
+## Documentation
+
+### Core Guides
+- **[Schema Validation Integration](SCHEMA_VALIDATION_INTEGRATION.md)** - Pydantic validation & retry logic
+- **[Full Log Access Guide](FULL_LOG_ACCESS_GUIDE.md)** - Complete guide to accessing untruncated LLM logs
+- **[Quick Reference: Logs](QUICK_REF_LOGS.md)** - One-page cheat sheet for log access
+
+### Notebooks
+- **[01_introduction.ipynb](notebooks/01_introduction.ipynb)** - Getting started
+- **[02_langgraph_pipeline_demo.ipynb](notebooks/02_langgraph_pipeline_demo.ipynb)** - 6-stage pipeline demonstration
+
+### Utilities
+- `src/wordnet_autotranslate/utils/log_utils.py` - Helper functions for saving and analyzing full logs
+
 ## Contributing
 
 1. Fork the repository

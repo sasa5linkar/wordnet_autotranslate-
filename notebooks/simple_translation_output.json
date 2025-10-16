@@ -5,11 +5,11 @@
     "sedište"
   ],
   "literal_count": 1,
-  "definition_translation": "objekat koji se sastoji od jedne zgrade ili kompleksa zgrada, u kojem se nalazi organizacija posvećena promociji određenog cilja ili uzroka",
+  "definition_translation": "zgrada ili skup zgrada u kome se nalazi organizacija posvećena promovisanju određenog cilja",
   "pipeline_stages": {
     "initial_translations": 1,
-    "expanded_candidates": 6,
+    "expanded_candidates": 4,
     "filtered_results": 1,
-    "removal_rate": "5/6"
+    "removal_rate": "3/4"
   }
 }
