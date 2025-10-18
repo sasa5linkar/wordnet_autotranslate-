@@ -936,7 +936,11 @@ class LangGraphTranslationPipeline:
         sense_payload: Dict[str, Any],
         definition_payload: Dict[str, Any],
     ) -> str:
-        """Generate prompt for synonym expansion stage (improved: requires rationale for each new synonym).
+        """Generate prompt for synonym expansion stage (revised: prevents semantic drift).
+        
+        This revised prompt emphasizes alignment with the core concept to prevent
+        expansion into homonyms or polysemous translations. It instructs the LLM
+        to reason from the concept itself rather than surface word similarity.
         
         Args:
             initial_payload: Output from initial translation stage.
@@ -944,34 +948,44 @@ class LangGraphTranslationPipeline:
             definition_payload: Output from definition translation stage.
             
         Returns:
-            Formatted prompt for LLM.
+            Formatted prompt for LLM that prevents semantic drift across senses.
         """
         target_name = LanguageUtils.get_language_name(self.target_lang)
         initial_translations = initial_payload.get("initial_translations", [])
         # Filter out null values from initial translations
         initial_translations = [t for t in initial_translations if t is not None]
-        initial_str = ", ".join(str(t) for t in initial_translations) if initial_translations else "(none)"
+        base_synonyms = ", ".join(str(t) for t in initial_translations) if initial_translations else "(none)"
         
         sense_summary = sense_payload.get("sense_summary", "")
         definition_translation = definition_payload.get("definition_translation", "")
 
         prompt = textwrap.dedent(
             f"""
-            Generate additional {target_name} synonyms matching this precise sense.
+            You are expanding a synonym set for a WordNet synset in {target_name}.
 
-            Initial translations: {initial_str}
-            Sense summary: {sense_summary or "(no summary available)"}
-            Translated definition: {definition_translation or "(not available)"}
+            Core meaning (sense summary):
+            {sense_summary or "(no summary available)"}
 
-            Tasks:
-            1. Retain all initial translations.
-            2. Add strictly synonymous words—same POS, meaning, and register.
-            3. Exclude hypernyms, antonyms, or stylistic shifts.
+            Translated definition (for reference):
+            {definition_translation or "(not available)"}
+
+            Existing {target_name} translations:
+            {base_synonyms}
+
+            Guidelines:
+            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.
+            - Stay faithful to the described meaning and avoid extensions that fit different senses.
+            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.
+            - Do not rely on surface similarity to the existing words; reason from the concept itself.
+            - Keep to canonical lemma forms and natural, modern vocabulary.
 
             Return JSON:
             {{
-              "expanded_synonyms": ["word1", "word2", ...],
-              "rationale": {{"word2": "colloquial variant", "word3": "archaic synonym"}}
+              "expanded_synonyms": ["lemma1", "lemma2", ...],
+              "rationale": {{
+                 "lemma1": "explanation of conceptual alignment",
+                 "lemma2": "explanation of conceptual alignment"
+              }}
             }}
             """
         ).strip()
@@ -984,7 +998,11 @@ class LangGraphTranslationPipeline:
         sense_payload: Dict[str, Any],
         definition_payload: Dict[str, Any],
     ) -> str:
-        """Filtering prompt that balances conceptual fidelity with target-language naturalness.
+        """Filtering prompt anchored to the definition to prevent sense drift.
+        
+        This revised prompt emphasizes strict validation against the translated definition,
+        ensuring filtered synonyms express exactly the same concept without drift into
+        related but different senses.
         
         Args:
             expansion_payload: Output from expansion stage.
@@ -992,11 +1010,11 @@ class LangGraphTranslationPipeline:
             definition_payload: Output from definition translation stage.
             
         Returns:
-            Formatted prompt for LLM.
+            Formatted prompt for LLM with definition-anchored validation.
         """
         target_name = LanguageUtils.get_language_name(self.target_lang)
         expanded_synonyms = expansion_payload.get("expanded_synonyms", [])
-        expanded_str = ", ".join(str(t) for t in expanded_synonyms) if expanded_synonyms else "(none)"
+        expanded = ", ".join(str(t) for t in expanded_synonyms) if expanded_synonyms else "(none)"
         
         sense_summary = sense_payload.get("sense_summary", "")
         definition_translation = definition_payload.get("definition_translation", "")
@@ -1005,28 +1023,25 @@ class LangGraphTranslationPipeline:
             f"""
             Final validation of {target_name} synonym candidates.
 
-            Candidates: {expanded_str}
+            Candidates: {expanded}
+
             Sense summary: {sense_summary or "(no summary available)"}
             Definition (translated): {definition_translation or "(not available)"}
 
             Guidelines:
-            - Preserve the *core concept* expressed in the English sense,
-              but prefer words and expressions that sound **natural, idiomatic, and culturally appropriate**
-              in {target_name}.
-            - If multiple target words exist, choose those most typical in modern usage,
-              even if they cover slightly broader or narrower meanings.
-            - Include abstract or concrete variants when they reflect how
-              native speakers conceptualize the same category.
-            - Reject only those that belong to a clearly different concept,
-              part of speech, or register that would feel unnatural in {target_name}.
-            - Prioritize native semantic norms of {target_name} over literal translation
-              if the two conflict.
+            - Evaluate each candidate strictly against this definition, not just against other candidates.
+            - Keep only those that express the same concept described in the definition.
+            - Discard any that correspond to other senses of the same word or a broader/narrower category.
+            - Prefer expressions natural and idiomatic in {target_name}, following normal usage and cultural norms.
+            - Reject any forms adding descriptive modifiers, particles, or objects that shift the meaning or argument structure.
+            - Remove collocations or domain-specific variants that extend beyond the concept in the definition.
+            - Keep only canonical lemmas expressing exactly this sense.
 
-            Return JSON:
+            Return structured JSON:
             {{
-              "filtered_synonyms": ["final1", "final2", "final3"],
-              "confidence_by_word": {{"final1": "high", "final2": "medium"}},
-              "removed": [{{"word": "X", "reason": "different concept or unnatural usage"}}],
+              "filtered_synonyms": ["lemma1", "lemma2"],
+              "confidence_by_word": {{"lemma1": "high", "lemma2": "medium"}},
+              "removed": [{{"word": "X", "reason": "does not match definition"}}],
               "confidence": "high|medium|low"
             }}
             """
