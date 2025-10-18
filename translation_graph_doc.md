@@ -2,7 +2,7 @@
 
 **Auto-generated:** This document is automatically generated from the code.  
 **Purpose:** Visualize and document the translation pipeline graph structure.  
-**Last Updated:** 1760618627.5535576
+**Last Updated:** 1760629865.8840325
 
 ## Overview
 

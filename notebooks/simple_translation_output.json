@@ -2,14 +2,18 @@
   "english_id": "ENG30-03574555-n",
   "representative_literal": "sedište",
   "synset_literals": [
-    "sedište"
+    "sedište",
+    "administrativni centar",
+    "glavna kancelarija",
+    "centrala",
+    "glavno sedište"
   ],
-  "literal_count": 1,
-  "definition_translation": "zgrada ili skup zgrada u kome se nalazi organizacija posvećena promovisanju određenog cilja",
+  "literal_count": 5,
+  "definition_translation": "zgrada ili kompleks zgrada u kome je smeštena organizacija posvećena promovisanja određenog cilja",
   "pipeline_stages": {
     "initial_translations": 1,
-    "expanded_candidates": 4,
-    "filtered_results": 1,
-    "removal_rate": "3/4"
+    "expanded_candidates": 7,
+    "filtered_results": 5,
+    "removal_rate": "2/7"
   }
 }
