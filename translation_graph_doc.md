@@ -25,12 +25,14 @@ graph TD;
 	translate_all_lemmas(translate_all_lemmas)
 	expand_synonyms(expand_synonyms)
 	filter_synonyms(filter_synonyms)
+	review_definition_quality(review_definition_quality)
 	assemble_result(assemble_result)
 	__end__([<p>__end__</p>]):::last
 	__start__ --> analyse_sense;
 	analyse_sense --> translate_definition;
 	expand_synonyms --> filter_synonyms;
-	filter_synonyms --> assemble_result;
+	filter_synonyms --> review_definition_quality;
+	review_definition_quality --> assemble_result;
 	translate_all_lemmas --> expand_synonyms;
 	translate_definition --> translate_all_lemmas;
 	assemble_result --> __end__;
@@ -88,56 +90,111 @@ preventing ambiguity and ensuring the correct semantic interpretation.
 
 ---
 
-### 3. 🔤 **translate_synonyms**
-**Purpose:** Generate target language synonyms that align with the sense and definition.
+### 3. 🔤 **translate_all_lemmas**
+**Purpose:** Produce direct translations for each English lemma while preserving sense alignment.
 
 **Input:**
 - Source synset
 - Sense analysis (from Stage 1)
-- Translated definition (from Stage 2)
 
 **Processing:**
-- Proposes synonym candidates in target language
-- Assigns confidence levels to each synonym
-- Provides usage examples for synonyms
-- Selects preferred headword
+- Translates each lemma individually
+- Maintains array order for downstream alignment
+- Emits `null` where no direct equivalent exists
 
 **Output:**
-- `preferred_headword`: Best single translation
-- `synonyms`: List of synonym objects with confidence and examples
-- `examples`: Additional usage examples
-- `notes`: Commentary on synonym choices
+- `initial_translations`: Ordered list of lemma translations (with optional `None` slots)
+- `alignment`: Mapping of source lemmas to translations
 
-**Why Third?** With both sense understanding and translated definition available,
-synonym generation can be precise and contextually appropriate.
+**Why Third?** Establishing a baseline set of translations provides anchors for later expansion.
 
 ---
 
-### 4. 📦 **assemble_result**
+### 4. 🚀 **expand_synonyms**
+**Purpose:** Discover additional candidate synonyms beyond the direct translations.
+
+**Input:**
+- Initial translations (from Stage 3)
+- Sense analysis
+- Translated definition (from Stage 2)
+
+**Processing:**
+- Iteratively proposes new synonyms using conceptual reasoning
+- Records provenance (which iteration produced each synonym)
+- Captures rationale for transparency
+
+**Output:**
+- `expanded_synonyms`: Aggregate list of unique candidates
+- `rationale`: Mapping of synonym → justification
+- `synonym_provenance`: Iteration index for each synonym
+- `iterations_run` and `converged` flags
+
+**Why Fourth?** Expansion builds breadth around the concept before filtering.
+
+---
+
+### 5. ✅ **filter_synonyms**
+**Purpose:** Eliminate candidates that drift from the intended sense.
+
+**Input:**
+- Expanded candidate list (from Stage 4)
+- Sense analysis & translated definition
+
+**Processing:**
+- Applies definition-anchored heuristics
+- Removes hypernyms, narrow modifiers, and scope-shifting forms
+- Assigns per-synonym confidence levels
+
+**Output:**
+- `filtered_synonyms`: Final high-quality list
+- `confidence_by_word`: Confidence per synonym
+- `removed`: Explanations for rejected candidates
+- `confidence`: Overall stage confidence
+
+**Why Fifth?** Quality control ensures only sense-perfect literals advance.
+
+---
+
+### 6. 🧪 **review_definition_quality**
+**Purpose:** Polish the translated definition for grammar, circularity, and stylistic clarity.
+
+**Input:**
+- Filtered synonym list (from Stage 5)
+- Translated definition (from Stage 2)
+
+**Processing:**
+- Detects circular definitions referencing synonyms
+- Checks agreement, inflection, and lexicographic tone
+- Suggests revised wording if issues arise
+
+**Output:**
+- `status`: `ok` or `needs_revision`
+- `issues`: Categorized list of detected problems
+- `revised_definition`: Improved gloss when needed
+- `notes`: Summary observations
+
+**Why Sixth?** A final editorial pass protects against linguistic flaws before publishing.
+
+---
+
+### 7. 📦 **assemble_result**
 **Purpose:** Combine all stage outputs into a structured final result.
 
 **Input:**
-- All previous stage outputs (sense, definition, synonyms)
+- Outputs from every previous stage
 
 **Processing:**
-- Extracts translations from payloads
-- Selects primary translation (preferred headword)
-- Collects and deduplicates examples
-- Merges notes from all stages
-- Generates curator-friendly summary
+- Extracts vetted synonyms and translations
+- Applies compound deduplication
+- Merges notes and quality findings
+- Builds curator-friendly summary
 
 **Output:**
-- Complete `TranslationResult` object with:
-  - `translation`: Primary target language term
-  - `definition_translation`: Translated definition
-  - `translated_synonyms`: List of synonym candidates
-  - `examples`: Deduplicated example sentences
-  - `notes`: Merged notes from all stages
-  - `curator_summary`: Human-readable summary
-  - `payload`: Full details from all stages
+- Complete `TranslationResult` with translation, definition, synonyms, examples, notes
+- Full payload + call logs for auditing
+- Summary statistics for curators
 
-**Why Last?** Final assembly allows for intelligent merging, prioritization,
-and presentation of accumulated results.
+**Why Last?** Final assembly packages the refined data for downstream usage and review.
 
 ---
 
@@ -147,11 +204,14 @@ The graph uses a `TranslationGraphState` TypedDict that accumulates information:
 
 ```python
 TranslationGraphState = {
-    "synset": Dict[str, Any],              # Input synset (always present)
-    "sense_analysis": Dict[str, Any],      # Added by Stage 1
-    "definition_translation": Dict[str, Any],  # Added by Stage 2
-    "synonym_translation": Dict[str, Any],     # Added by Stage 3
-    "result": Dict[str, Any],              # Added by Stage 4 (final output)
+	"synset": Dict[str, Any],                    # Input synset (always present)
+	"sense_analysis": Dict[str, Any],            # Stage 1 output
+	"definition_translation": Dict[str, Any],    # Stage 2 output
+	"initial_translation_call": Dict[str, Any],  # Stage 3 output
+	"expansion_call": Dict[str, Any],            # Stage 4 output
+	"filtering_call": Dict[str, Any],            # Stage 5 output
+	"definition_quality_call": Dict[str, Any],   # Stage 6 output
+	"result": Dict[str, Any],                    # Stage 7 output
 }
 ```
 
@@ -193,7 +253,7 @@ To add a stage (e.g., quality estimation):
 1. Add state field to `TranslationGraphState`
 2. Implement stage function: `def _estimate_quality(self, state) -> TranslationGraphState`
 3. Add node: `graph.add_node("estimate_quality", self._estimate_quality)`
-4. Add edge: `graph.add_edge("translate_synonyms", "estimate_quality")`
+4. Add edge: `graph.add_edge("filter_synonyms", "estimate_quality")`
 5. Update subsequent edges
 
 ### Adding Conditional Branches

@@ -18,7 +18,7 @@ Performed a complete refactoring of the translation pipeline to follow Python be
 ### 1. **Module-Level Documentation** ✅
 
 **Enhanced module docstring** with:
-- Architecture overview explaining the 6-stage pipeline
+- Architecture overview explaining the 7-stage pipeline (including definition quality review)
 - Key features list (iterative expansion, schema validation, etc.)
 - Language support details
 - Configuration defaults
@@ -101,7 +101,7 @@ Added clear section markers:
 - Clarified when chat_factory is None vs ChatOllama
 
 #### `_build_graph()`
-- Detailed explanation of 6-stage pipeline
+- Detailed explanation of 7-stage pipeline
 - Graph architecture notes (linear, no branching)
 - State flow documentation
 - Return value clarification

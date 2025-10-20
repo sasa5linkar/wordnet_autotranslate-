@@ -210,7 +210,7 @@ wordnet_autotranslate/
 
 ### Notebooks
 - **[01_introduction.ipynb](notebooks/01_introduction.ipynb)** - Getting started
-- **[02_langgraph_pipeline_demo.ipynb](notebooks/02_langgraph_pipeline_demo.ipynb)** - 6-stage pipeline demonstration
+- **[02_langgraph_pipeline_demo.ipynb](notebooks/02_langgraph_pipeline_demo.ipynb)** - 7-stage pipeline demonstration (generate → filter → review)
 
 ### Utilities
 - `src/wordnet_autotranslate/utils/log_utils.py` - Helper functions for saving and analyzing full logs

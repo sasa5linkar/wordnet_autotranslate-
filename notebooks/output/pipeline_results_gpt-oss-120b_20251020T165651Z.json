@@ -1,0 +1,1141 @@
+{
+  "metadata": {
+    "model": "gpt-oss:120b",
+    "timestamp_utc": "20251020T165651Z",
+    "source_lang": "en",
+    "target_lang": "sr",
+    "max_expansion_iterations": 5
+  },
+  "entries": [
+    {
+      "synset": {
+        "id": "ENG30-03574555-n",
+        "lemmas": [
+          "institution"
+        ],
+        "definition": "an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated",
+        "examples": [],
+        "pos": "n"
+      },
+      "final_output": {
+        "representative_literal": "administrativna zgrada",
+        "definition": "objekat – zgrada ili skup zgrada – u kojem se nalazi organizacija koja promoviše određeni cilj",
+        "synonyms": [
+          {
+            "word": "administrativna zgrada",
+            "confidence": "high"
+          },
+          {
+            "word": "administrativni objekat",
+            "confidence": "high"
+          },
+          {
+            "word": "centar",
+            "confidence": "medium"
+          },
+          {
+            "word": "centrala",
+            "confidence": "medium"
+          },
+          {
+            "word": "filijala",
+            "confidence": "high"
+          },
+          {
+            "word": "glavna zgrada",
+            "confidence": "high"
+          },
+          {
+            "word": "radna zgrada",
+            "confidence": "high"
+          },
+          {
+            "word": "sedište",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "administrativna_zgrada",
+            "reason": "identical to kept lemma but contains underscore, not a standard lexical form"
+          },
+          {
+            "word": "institucija",
+            "reason": "refers to the organization itself, not the building that houses it"
+          },
+          {
+            "word": "kancelarija",
+            "reason": "typically denotes a room or office space, not a whole building or complex"
+          },
+          {
+            "word": "kompleks",
+            "reason": "too generic; can denote any building complex, not necessarily housing an organization with a purpose"
+          },
+          {
+            "word": "objekat",
+            "reason": "generic hypernym for any object or building"
+          },
+          {
+            "word": "paviljon",
+            "reason": "specific type of building (exhibition hall) not generally used for organizational headquarters"
+          },
+          {
+            "word": "poslovni prostor",
+            "reason": "refers to commercial premises; scope is broader than the target sense"
+          },
+          {
+            "word": "ustanova",
+            "reason": "denotes the institution/organization, not the physical building"
+          },
+          {
+            "word": "zavod",
+            "reason": "denotes the institute/organization, not the physical building"
+          },
+          {
+            "word": "zgrada",
+            "reason": "generic term for any building, lacking the organizational purpose nuance"
+          },
+          {
+            "word": "zgrada organizacije",
+            "reason": "descriptive phrase rather than a lexicalized lemma; essentially repeats the definition"
+          }
+        ],
+        "notes": "Literal translation preserves the sense of a physical establishment that houses a cause‑oriented organization."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "objekat – zgrada ili skup zgrada – u kojem se nalazi organizacija koja promoviše određeni cilj",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The head word “zgrada” (and its compounds) appears in the definition, which makes the definition circular with respect to the listed synonyms."
+          },
+          {
+            "type": "grammar",
+            "message": "Incorrect relative pronoun: should be “u kojem” (masc. sg.) instead of “u kome”. The phrase “za promovisanje nekog cilja” is less idiomatic than “koja promoviše određeni cilj”."
+          },
+          {
+            "type": "style",
+            "message": "The definition is wordy and uses a literal construction. A more concise, natural phrasing would improve readability."
+          }
+        ],
+        "notes": "The revised definition removes the circular use of “zgrada”, fixes the relative pronoun, and adopts a clearer, more idiomatic style while preserving the original meaning."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.",
+          "contrastive_note": "Unlike the abstract sense of “institution” that denotes a social system, custom, or the organization itself, this sense refers specifically to the physical premises (the edifice or campus) where the organization operates.",
+          "key_features": [
+            "physical structure (building or complex)",
+            "hosts an organization",
+            "purpose‑driven (promotion of a cause)",
+            "formal, established location"
+          ],
+          "domain_tags": [
+            "architecture",
+            "organizational infrastructure",
+            "non‑profit",
+            "government"
+          ],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "zgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja",
+          "notes": "Literal translation preserves the sense of a physical establishment that houses a cause‑oriented organization.",
+          "examples": [
+            "Humanitarni centar se nalazi u velikoj zgradi na obali.",
+            "Organizacija za zaštitu životne sredine ima svoju kancelariju u kompleksu zgrada."
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "ustanova"
+          ],
+          "alignment": {
+            "institution": "ustanova"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "administrativna zgrada",
+            "administrativna_zgrada",
+            "administrativni objekat",
+            "centar",
+            "centrala",
+            "filijala",
+            "glavna zgrada",
+            "institucija",
+            "kancelarija",
+            "kompleks",
+            "objekat",
+            "paviljon",
+            "poslovni prostor",
+            "radna zgrada",
+            "sedište",
+            "ustanova",
+            "zavod",
+            "zgrada",
+            "zgrada organizacije"
+          ],
+          "rationale": {
+            "institucija": "Opšti naziv za organizaciju koja ima fizičko sedište u zgradi i čiji je cilj promovisanje određenog cilja; u srpskom se često koristi i za samu zgradu institucije.",
+            "zavod": "Specifičan tip ustanove (npr. Zavod za zaštitu životne sredine) koji podrazumeva fizički objekat u kome se obavlja rad organizacije.",
+            "centar": "Reč koja označava zgradu ili kompleks zgrada posvećen određenoj temi ili cilju (npr. kulturni centar, sportski centar).",
+            "sedište": "Fizičko mesto – zgrada ili prostor – gde se nalazi upravljačko telo organizacije; sinonim za glavni objekat organizacije.",
+            "kancelarija": "Uredski prostor unutar zgrade koji služi kao radno mesto organizacije; često se koristi za organizacije koje promovišu određeni cilj.",
+            "administrativna_zgrada": "Kombinacija reči koja jasno opisuje zgradu u kojoj se obavlja administrativni rad organizacije posvećene nekom cilju.",
+            "objekat": "A neutral term for a constructed facility; when applied to an organization, it signals the concrete structure that contains it.",
+            "zgrada": "The generic word for a building; in this context it points to the edifice that contains an organization pursuing a particular goal.",
+            "administrativni objekat": "A formal term for a building used for administrative functions of an organization, matching the concrete‑establishment sense.",
+            "centrala": "Commonly used for the main building of an organization (e.g., a cultural centre, humanitarian centre) that serves as the hub for its mission.",
+            "filijala": "Indicates a branch building of a larger organization, still a concrete establishment that hosts activities toward a defined goal.",
+            "glavna zgrada": "Specifies the principal building of an institution, emphasizing the physical structure that contains the organization’s core activities.",
+            "radna zgrada": "Highlights a building where the work of an organization is carried out, aligning with the notion of a concrete establishment dedicated to a cause.",
+            "paviljon": "A standalone or part of a complex building that houses an organization or exhibition with a specific goal, satisfying the concrete‑building requirement.",
+            "administrativna zgrada": "Specifies a building used for the administrative functions of an organization, directly reflecting a concrete structure that houses a purpose‑oriented entity.",
+            "poslovni prostor": "General term for a commercial or organizational premises where an organization operates toward a defined purpose; emphasizes the physical location.",
+            "kompleks": "Indicates a group of buildings that together accommodate an organization dedicated to a cause, preserving the notion of a concrete establishment.",
+            "zgrada organizacije": "A literal phrase meaning ‘the building of the organization’, directly capturing the sense of a concrete edifice that houses a purpose‑driven body."
+          },
+          "iterations_run": 5,
+          "synonym_provenance": {
+            "ustanova": 0,
+            "institucija": 1,
+            "zavod": 1,
+            "centar": 1,
+            "sedište": 1,
+            "kancelarija": 1,
+            "administrativna_zgrada": 1,
+            "objekat": 2,
+            "zgrada": 2,
+            "administrativni objekat": 3,
+            "centrala": 3,
+            "filijala": 3,
+            "glavna zgrada": 3,
+            "radna zgrada": 3,
+            "paviljon": 4,
+            "administrativna zgrada": 4,
+            "poslovni prostor": 4,
+            "kompleks": 4,
+            "zgrada organizacije": 5
+          },
+          "converged": false
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "administrativna zgrada",
+            "administrativni objekat",
+            "centar",
+            "centrala",
+            "filijala",
+            "glavna zgrada",
+            "radna zgrada",
+            "sedište"
+          ],
+          "confidence_by_word": {
+            "administrativna zgrada": "high",
+            "administrativni objekat": "high",
+            "centar": "medium",
+            "centrala": "medium",
+            "filijala": "high",
+            "glavna zgrada": "high",
+            "radna zgrada": "high",
+            "sedište": "high"
+          },
+          "removed": [
+            {
+              "word": "administrativna_zgrada",
+              "reason": "identical to kept lemma but contains underscore, not a standard lexical form"
+            },
+            {
+              "word": "institucija",
+              "reason": "refers to the organization itself, not the building that houses it"
+            },
+            {
+              "word": "kancelarija",
+              "reason": "typically denotes a room or office space, not a whole building or complex"
+            },
+            {
+              "word": "kompleks",
+              "reason": "too generic; can denote any building complex, not necessarily housing an organization with a purpose"
+            },
+            {
+              "word": "objekat",
+              "reason": "generic hypernym for any object or building"
+            },
+            {
+              "word": "paviljon",
+              "reason": "specific type of building (exhibition hall) not generally used for organizational headquarters"
+            },
+            {
+              "word": "poslovni prostor",
+              "reason": "refers to commercial premises; scope is broader than the target sense"
+            },
+            {
+              "word": "ustanova",
+              "reason": "denotes the institution/organization, not the physical building"
+            },
+            {
+              "word": "zavod",
+              "reason": "denotes the institute/organization, not the physical building"
+            },
+            {
+              "word": "zgrada",
+              "reason": "generic term for any building, lacking the organizational purpose nuance"
+            },
+            {
+              "word": "zgrada organizacije",
+              "reason": "descriptive phrase rather than a lexicalized lemma; essentially repeats the definition"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Humanitarni centar se nalazi u velikoj zgradi na obali.",
+        "Organizacija za zaštitu životne sredine ima svoju kancelariju u kompleksu zgrada."
+      ],
+      "curator_summary": "Representative literal (sr): administrativna zgrada\nDefinition translation: objekat – zgrada ili skup zgrada – u kojem se nalazi organizacija koja promoviše određeni cilj\nLexname: noun.artifact\nSynset literals (8 total):\n  • administrativna zgrada\n  • administrativni objekat\n  • centar\n  • centrala\n  • filijala\n  (+3 more literals)\nExample sentences: 2 (showing first)\n  “Humanitarni centar se nalazi u velikoj zgradi na obali.”\nNotes: Literal translation preserves the sense of a physical establishment that houses a cause‑oriented organization.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 19 synonyms\n  3. Filtered results: 8 final literals\n  4. Definition quality: needs_revision (3 issue(s) flagged)",
+      "raw_response": "{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The head word “zgrada” (and its compounds) appears in the definition, which makes the definition circular with respect to the listed synonyms.\"\n    },\n    {\n      \"type\": \"grammar\",\n      \"message\": \"Incorrect relative pronoun: should be “u kojem” (masc. sg.) instead of “u kome”. The phrase “za promovisanje nekog cilja” is less idiomatic than “koja promoviše određeni cilj”.\"\n    },\n    {\n      \"type\": \"style\",\n      \"message\": \"The definition is wordy and uses a literal construction. A more concise, natural phrasing would improve readability.\"\n    }\n  ],\n  \"revised_definition\": \"objekat – zgrada ili skup zgrada – u kojem se nalazi organizacija koja promoviše određeni cilj\",\n  \"notes\": \"The revised definition removes the circular use of “zgrada”, fixes the relative pronoun, and adopts a clearer, more idiomatic style while preserving the original meaning.\"\n}",
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_gpt-oss-120b_20251020T165650Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-07810907-n",
+        "lemmas": [
+          "condiment"
+        ],
+        "definition": "a preparation (a sauce or relish or spice) to enhance flavor or enjoyment",
+        "examples": [
+          "mustard and ketchup are condiments"
+        ],
+        "pos": "n"
+      },
+      "final_output": {
+        "representative_literal": "kondiment",
+        "definition": "Pripremljen dodatak koji se dodaje uz jelo radi poboljšanja ukusa, mirisa ili užitka.",
+        "synonyms": [
+          {
+            "word": "kondiment",
+            "confidence": "high"
+          },
+          {
+            "word": "mešavina začina",
+            "confidence": "high"
+          },
+          {
+            "word": "namaz",
+            "confidence": "medium"
+          },
+          {
+            "word": "preliv",
+            "confidence": "high"
+          },
+          {
+            "word": "sos",
+            "confidence": "high"
+          },
+          {
+            "word": "umak",
+            "confidence": "high"
+          },
+          {
+            "word": "začin",
+            "confidence": "high"
+          },
+          {
+            "word": "začinska mešavina",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "dodatak",
+            "reason": "too generic hypernym; does not specifically denote a prepared food accompaniment"
+          },
+          {
+            "word": "dodatak ukusa",
+            "reason": "phrase with modifier; not a standard single‑word lemma for condiment"
+          },
+          {
+            "word": "dodatak za jelo",
+            "reason": "phrase; generic addition rather than a specific condiment"
+          },
+          {
+            "word": "kulinarski dodatak",
+            "reason": "descriptive phrase with modifier; not a lexicalized term for condiment"
+          },
+          {
+            "word": "prilog",
+            "reason": "means side dish or accompaniment served separately, not a condiment added at the table"
+          },
+          {
+            "word": "ukusni dodatak",
+            "reason": "phrase with adjective; not a base lemma"
+          },
+          {
+            "word": "ukusni preliv",
+            "reason": "phrase with adjective; not a base lemma"
+          },
+          {
+            "word": "ukusni sos",
+            "reason": "phrase with adjective; not a base lemma"
+          }
+        ],
+        "notes": "Glas je formiran kao kratka leksička definicija, neutralnog tona, bez potpunog rečenog oblika."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "Pripremljen dodatak koji se dodaje uz jelo radi poboljšanja ukusa, mirisa ili užitka.",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The words “sos” and “začin”, which are among the listed lemmas, appear inside the definition (in the parenthetical example), creating a circular definition."
+          },
+          {
+            "type": "grammar",
+            "message": "Adjective‑noun agreement is wrong: “pripremljeni dodatak” should be “pripremljen dodatak” (masculine singular)."
+          },
+          {
+            "type": "style",
+            "message": "The phrasing is slightly clunky; “uživanja” is less idiomatic than “užitka”, and the parenthetical list is unnecessary for a concise lexicographic definition."
+          }
+        ],
+        "notes": "The revised definition removes the circular lemmas, fixes gender/number agreement, and adopts a smoother, more idiomatic lexicographic style while preserving the original meaning."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "A condiment is a prepared accompaniment—such as a sauce, relish, or spice blend—intended to be added at the table (or shortly before serving) to boost the flavor, aroma, or enjoyment of a dish.",
+          "contrastive_note": "Unlike raw spices or herbs, which are single ingredients used during cooking, a condiment is a ready‑made mixture that is typically applied by the eater. It differs from a simple sauce in that it can be dry (e.g., mustard powder) or chunky (relish) and is distinguished from generic “seasonings” by its role as a table‑side enhancer rather than a cooking ingredient.",
+          "key_features": [
+            "Prepared mixture (sauce, relish, spice blend)",
+            "Applied at point of consumption",
+            "Enhances flavor, aroma, or enjoyment",
+            "Can be liquid, semi‑solid, or dry"
+          ],
+          "domain_tags": [
+            "food",
+            "culinary",
+            "gastronomy",
+            "tableware"
+          ],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "pripremljeni dodatak (sos, prilog, začin) koji se dodaje uz jelo radi poboljšanja ukusa, mirisa ili uživanja",
+          "notes": "Glas je formiran kao kratka leksička definicija, neutralnog tona, bez potpunog rečenog oblika.",
+          "examples": [
+            "Kečap je čest dodatak uz pomfrit.",
+            "Sos od soje se koristi kao začin uz sušeno meso."
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "kondiment"
+          ],
+          "alignment": {
+            "condiment": "kondiment"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "dodatak",
+            "dodatak ukusa",
+            "dodatak za jelo",
+            "kondiment",
+            "kulinarski dodatak",
+            "mešavina začina",
+            "namaz",
+            "preliv",
+            "prilog",
+            "sos",
+            "ukusni dodatak",
+            "ukusni preliv",
+            "ukusni sos",
+            "umak",
+            "začin",
+            "začinska mešavina"
+          ],
+          "rationale": {
+            "začin": "Odgovara pojmu „condiment“ jer označava pripremljenu mešavinu ili pojedinačni začin (sol, biber, čili) koji se dodaje uz jelo radi poboljšanja ukusa i mirisa.",
+            "sos": "Klasičan primer kondimenta – tečni ili polutečni dodatak (paradajz sos, majonez, senf) koji se servira uz jelo i pojačava njegov ukus.",
+            "preliv": "Terminu se najčešće koristi za tečne dodatke (dressing, vinaigrette) koji se sipaju po jelu neposredno pre serviranja, čime se pojačava aromatičnost i ukus.",
+            "prilog": "U širem smislu, „prilog“ obuhvata male pripremljene dodatke (relish, kiseljak, kiseli krastavci) koji se poslužuju uz glavno jelo i služe za poboljšanje ukusa.",
+            "ukusni dodatak": "Fraza opisuje svaku pripremljenu supstancu koja se dodaje uz jelo da pojača ukus, miris ili uživanje – tačno definiciju kondimenta.",
+            "začinska mešavina": "Odnosi se na kombinaciju više začina (npr. mešavina za roštilj, curry) koja se posipa ili doda jelu neposredno pre konzumacije, čime se postiže željeni ukus.",
+            "ukusni preliv": "Specifičan tip preliv koji se koristi kao dodatak uz jelo (npr. slatko‑ljuti preliv) i služi da pojača aromu i ukus, što je suštinski zadatak kondimenta.",
+            "ukusni sos": "Emphasizes a flavorful sauce used as a table‑side accompaniment, directly reflecting the condiment definition.",
+            "umak": "Srpski ekvivalent engleskog “sauce”/“dip”, pripremljen da se stavlja uz jelo neposredno pre konzumacije, čime zadovoljava definiciju kondimenta.",
+            "namaz": "Namaz (kao puter, džem, pašteta) je pripremljeni dodatak koji se nanosi na hleb ili drugo jelo neposredno pre jela, čime funkcioniše kao kondiment.",
+            "mešavina začina": "Specifičan izraz za kombinaciju više začina (npr. curry, garam masala) koja se posipa ili doda jelu na stolu, što je tipična upotreba kondimenta.",
+            "dodatak ukusa": "Generički, ali uobičajen izraz koji opisuje svaku pripremljenu supstancu koja se dodaje jelu da pojača njegov ukus, miris ili uživanje – tačno ono što kondiment predstavlja.",
+            "dodatak": "General noun meaning ‘addition’; in culinary contexts it denotes any prepared item added to a dish to boost its flavor, aroma, or enjoyment.",
+            "dodatak za jelo": "Opšti izraz koji obuhvata sve vrste pripremljenih sastojaka (sos, začin, reljef) koji se dodaju uz jelo radi poboljšanja ukusa, što ga čini relevantnim sinonimom.",
+            "kulinarski dodatak": "Širi termin koji se odnosi na svaku vrstu pripremljenog dodatka u kulinarstvu (sos, začin, preliv) koji se servira uz jelo da pojača njegovu aromu i ukus."
+          },
+          "iterations_run": 5,
+          "synonym_provenance": {
+            "kondiment": 0,
+            "začin": 1,
+            "sos": 1,
+            "preliv": 1,
+            "prilog": 1,
+            "ukusni dodatak": 1,
+            "začinska mešavina": 1,
+            "ukusni preliv": 1,
+            "ukusni sos": 2,
+            "umak": 3,
+            "namaz": 3,
+            "mešavina začina": 3,
+            "dodatak ukusa": 3,
+            "dodatak": 4,
+            "dodatak za jelo": 5,
+            "kulinarski dodatak": 5
+          },
+          "converged": false
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "kondiment",
+            "mešavina začina",
+            "namaz",
+            "preliv",
+            "sos",
+            "umak",
+            "začin",
+            "začinska mešavina"
+          ],
+          "confidence_by_word": {
+            "kondiment": "high",
+            "mešavina začina": "high",
+            "namaz": "medium",
+            "preliv": "high",
+            "sos": "high",
+            "umak": "high",
+            "začin": "high",
+            "začinska mešavina": "high"
+          },
+          "removed": [
+            {
+              "word": "dodatak",
+              "reason": "too generic hypernym; does not specifically denote a prepared food accompaniment"
+            },
+            {
+              "word": "dodatak ukusa",
+              "reason": "phrase with modifier; not a standard single‑word lemma for condiment"
+            },
+            {
+              "word": "dodatak za jelo",
+              "reason": "phrase; generic addition rather than a specific condiment"
+            },
+            {
+              "word": "kulinarski dodatak",
+              "reason": "descriptive phrase with modifier; not a lexicalized term for condiment"
+            },
+            {
+              "word": "prilog",
+              "reason": "means side dish or accompaniment served separately, not a condiment added at the table"
+            },
+            {
+              "word": "ukusni dodatak",
+              "reason": "phrase with adjective; not a base lemma"
+            },
+            {
+              "word": "ukusni preliv",
+              "reason": "phrase with adjective; not a base lemma"
+            },
+            {
+              "word": "ukusni sos",
+              "reason": "phrase with adjective; not a base lemma"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Kečap je čest dodatak uz pomfrit.",
+        "Sos od soje se koristi kao začin uz sušeno meso."
+      ],
+      "curator_summary": "Representative literal (sr): kondiment\nDefinition translation: Pripremljen dodatak koji se dodaje uz jelo radi poboljšanja ukusa, mirisa ili užitka.\nLexname: noun.food\nSynset literals (8 total):\n  • kondiment\n  • mešavina začina\n  • namaz\n  • preliv\n  • sos\n  (+3 more literals)\nExample sentences: 2 (showing first)\n  “Kečap je čest dodatak uz pomfrit.”\nNotes: Glas je formiran kao kratka leksička definicija, neutralnog tona, bez potpunog rečenog oblika.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 16 synonyms\n  3. Filtered results: 8 final literals\n  4. Definition quality: needs_revision (3 issue(s) flagged)",
+      "raw_response": "{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The words “sos” and “začin”, which are among the listed lemmas, appear inside the definition (in the parenthetical example), creating a circular definition.\"\n    },\n    {\n      \"type\": \"grammar\",\n      \"message\": \"Adjective‑noun agreement is wrong: “pripremljeni dodatak” should be “pripremljen dodatak” (masculine singular).\"\n    },\n    {\n      \"type\": \"style\",\n      \"message\": \"The phrasing is slightly clunky; “uživanja” is less idiomatic than “užitka”, and the parenthetical list is unnecessary for a concise lexicographic definition.\"\n    }\n  ],\n  \"revised_definition\": \"Pripremljen dodatak koji se dodaje uz jelo radi poboljšanja ukusa, mirisa ili užitka.\",\n  \"notes\": \"The revised definition removes the circular lemmas, fixes gender/number agreement, and adopts a smoother, more idiomatic lexicographic style while preserving the original meaning.\"\n}",
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_gpt-oss-120b_20251020T165650Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01376245-v",
+        "lemmas": [
+          "scatter",
+          "sprinkle",
+          "dot",
+          "dust",
+          "disperse"
+        ],
+        "definition": "distribute loosely",
+        "examples": [
+          "He scattered gun powder under the wagon"
+        ],
+        "pos": "v"
+      },
+      "final_output": {
+        "representative_literal": "posipati",
+        "definition": "raspršiti nešto tako da se razbije na sitne, labave čestice ili delove",
+        "synonyms": [
+          {
+            "word": "posipati",
+            "confidence": "high"
+          },
+          {
+            "word": "posipavati",
+            "confidence": "high"
+          },
+          {
+            "word": "posuti",
+            "confidence": "high"
+          },
+          {
+            "word": "prašiti",
+            "confidence": "medium"
+          },
+          {
+            "word": "prskati",
+            "confidence": "high"
+          },
+          {
+            "word": "pršiti",
+            "confidence": "high"
+          },
+          {
+            "word": "raspršiti",
+            "confidence": "high"
+          },
+          {
+            "word": "raspršivati",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "tačkati",
+            "reason": "refers to making discrete dots/marks rather than spreading particles or droplets loosely; does not match the core sense of 'sprinkling' or 'scattering'."
+          }
+        ],
+        "notes": "Glas glagola „raspršiti“ prenosi značenje „distribute\"; dodatak „labavo\" označava neujednačen, rastresit raspored čestica ili kapljica."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "raspršiti nešto tako da se razbije na sitne, labave čestice ili delove",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The lemma “raspršiti” (the headword) appears verbatim in the definition, creating a circular definition."
+          },
+          {
+            "type": "style",
+            "message": "The definition is overly terse and does not explain the meaning; it reads like a synonym phrase rather than an explanatory gloss."
+          }
+        ],
+        "notes": "The original definition repeats the headword and lacks an explanatory component. The revised version removes the circularity and provides a clear, concise description in standard Serbian lexicographic style."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To spread small particles or droplets over a surface in a loose, often random manner, without forming a dense or uniform layer.",
+          "contrastive_note": "Unlike the ‘scatter’ sense meaning ‘to cause to flee’ or ‘to disperse widely (e.g., ideas)’, this sense focuses on the physical act of depositing material loosely. It differs from ‘sprinkle’ when the latter implies a controlled, measured addition, and from ‘dust’ when that implies coating a surface more thoroughly. Here the emphasis is on a light, scattered distribution rather than thorough coverage or movement of agents.",
+          "key_features": [
+            "distribution of small, discrete particles",
+            "loose, non‑uniform placement",
+            "often intentional but not precise",
+            "applies to physical substances (powder, seeds, droplets)",
+            "temporary or easily disturbed arrangement"
+          ],
+          "domain_tags": [
+            "general",
+            "military",
+            "cooking",
+            "agriculture"
+          ],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "raspršiti labavo",
+          "notes": "Glas glagola „raspršiti“ prenosi značenje „distribute\"; dodatak „labavo\" označava neujednačen, rastresit raspored čestica ili kapljica.",
+          "examples": [
+            "Prašinu je raspršio labavo po podu.",
+            "Seme je raspršio labavo po zemlji."
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "raspršiti",
+            "posipati",
+            "tačkati",
+            "prašiti",
+            "raspršiti"
+          ],
+          "alignment": {
+            "scatter": "raspršiti",
+            "sprinkle": "posipati",
+            "dot": "tačkati",
+            "dust": "prašiti",
+            "disperse": "raspršiti"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "posipati",
+            "posipavati",
+            "posuti",
+            "prašiti",
+            "prskati",
+            "pršiti",
+            "raspršiti",
+            "raspršivati",
+            "tačkati"
+          ],
+          "rationale": {
+            "pršiti": "Verb meaning ‘to sprinkle’ (e.g., rain, water droplets). It conveys the idea of spreading small droplets loosely over a surface without forming a dense layer, matching the core sense.",
+            "prskati": "Verb meaning ‘to spray lightly’. It describes dispersing fine particles or droplets in a loose, random manner, fitting the definition of a non‑uniform, sparse distribution.",
+            "posuti": "Verb meaning ‘to scatter’ or ‘to dust’ (e.g., salt, sugar). It denotes laying down small particles over a surface in a loose, non‑dense fashion, aligning with the target concept.",
+            "raspršivati": "Imperfective form of ‘raspršiti’, explicitly meaning ‘to scatter’ or ‘to disperse’ particles/droplets continuously or habitually. It retains the same semantic core while providing a distinct lemma.",
+            "posipavati": "Imperfective counterpart of ‘posipati’; describes the continuous act of sprinkling small particles (salt, flour, etc.) over a surface in a light, non‑dense way."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "tačkati": 0,
+            "raspršiti": 0,
+            "prašiti": 0,
+            "posipati": 0,
+            "pršiti": 1,
+            "prskati": 1,
+            "posuti": 1,
+            "raspršivati": 1,
+            "posipavati": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "posipati",
+            "posipavati",
+            "posuti",
+            "prašiti",
+            "prskati",
+            "pršiti",
+            "raspršiti",
+            "raspršivati"
+          ],
+          "confidence_by_word": {
+            "posipati": "high",
+            "posipavati": "high",
+            "posuti": "high",
+            "prašiti": "medium",
+            "prskati": "high",
+            "pršiti": "high",
+            "raspršiti": "high",
+            "raspršivati": "high"
+          },
+          "removed": [
+            {
+              "word": "tačkati",
+              "reason": "refers to making discrete dots/marks rather than spreading particles or droplets loosely; does not match the core sense of 'sprinkling' or 'scattering'."
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Prašinu je raspršio labavo po podu.",
+        "Seme je raspršio labavo po zemlji."
+      ],
+      "curator_summary": "Representative literal (sr): posipati\nDefinition translation: raspršiti nešto tako da se razbije na sitne, labave čestice ili delove\nLexname: verb.contact\nSynset literals (8 total):\n  • posipati\n  • posipavati\n  • posuti\n  • prašiti\n  • prskati\n  (+3 more literals)\nExample sentences: 2 (showing first)\n  “Prašinu je raspršio labavo po podu.”\nNotes: Glas glagola „raspršiti“ prenosi značenje „distribute\"; dodatak „labavo\" označava neujednačen, rastresit raspored čestica ili kapljica.\n\nPipeline stages completed:\n  1. Initial translations: 5 lemmas\n  2. Expanded candidates: 9 synonyms\n  3. Filtered results: 8 final literals\n  4. Definition quality: needs_revision (2 issue(s) flagged)",
+      "raw_response": "{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The lemma “raspršiti” (the headword) appears verbatim in the definition, creating a circular definition.\"\n    },\n    {\n      \"type\": \"style\",\n      \"message\": \"The definition is overly terse and does not explain the meaning; it reads like a synonym phrase rather than an explanatory gloss.\"\n    }\n  ],\n  \"revised_definition\": \"raspršiti nešto tako da se razbije na sitne, labave čestice ili delove\",\n  \"notes\": \"The original definition repeats the headword and lacks an explanatory component. The revised version removes the circularity and provides a clear, concise description in standard Serbian lexicographic style.\"\n}",
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_gpt-oss-120b_20251020T165650Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01382083-v",
+        "lemmas": [
+          "pick",
+          "pluck",
+          "cull"
+        ],
+        "definition": "look for and gather",
+        "examples": [
+          "pick mushrooms",
+          "pick flowers"
+        ],
+        "pos": "v"
+      },
+      "final_output": {
+        "representative_literal": "brati",
+        "definition": "тражити и ручно стављати у једно место мале природне предмете",
+        "synonyms": [
+          {
+            "word": "brati",
+            "confidence": "high"
+          },
+          {
+            "word": "nabirati",
+            "confidence": "high"
+          },
+          {
+            "word": "prikupiti",
+            "confidence": "medium"
+          },
+          {
+            "word": "prikupljati",
+            "confidence": "high"
+          },
+          {
+            "word": "sakupljati",
+            "confidence": "high"
+          },
+          {
+            "word": "skupljati",
+            "confidence": "high"
+          },
+          {
+            "word": "čupati",
+            "confidence": "medium"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "beriti",
+            "reason": "too generic – denotes large‑scale harvesting of crops rather than selective gathering of small natural items"
+          },
+          {
+            "word": "uklupiti",
+            "reason": "mismatched sense – means ‘to beat/strike’ or is not used for gathering; does not fit the definition"
+          }
+        ],
+        "notes": "Glas glagola zadržava neutralni, leksički stil rečničkog zapisa. „Male prirodne predmete“ obuhvata gljive, cveće, bobice i slične objekte."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "тражити и ручно стављати у једно место мале природне предмете",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The verb “sakupljati” (a synonym lemma) appears in the definition, creating a circular definition."
+          },
+          {
+            "type": "grammar",
+            "message": "Adjective agreement is incorrect: “male prirodne predmete” does not match the masculine plural accusative required by “predmete”."
+          },
+          {
+            "type": "style",
+            "message": "The phrasing is slightly clunky and repeats the synonym; a more natural, concise formulation is preferred."
+          }
+        ],
+        "notes": "The revision removes the circular synonym, corrects adjective agreement, and yields a smoother, lexicographically appropriate definition."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To search for and manually gather specific, usually small, natural items (e.g., mushrooms, flowers) from their source, emphasizing selective collection rather than random harvesting.",
+          "contrastive_note": "Unlike the abstract sense of “pick” meaning to choose among options, this sense involves a physical act of locating and removing tangible items. It differs from “pluck” when that verb refers to a quick, often forceful removal (e.g., plucking a string) and from “cull” which usually means eliminating undesirable members of a group rather than gathering wanted ones.",
+          "key_features": [
+            "intentional search for desired items",
+            "manual, hand‑held removal",
+            "focus on small, discrete natural objects",
+            "often for consumption, decoration, or use"
+          ],
+          "domain_tags": [
+            "foraging",
+            "horticulture",
+            "agriculture",
+            "cooking",
+            "botany"
+          ],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "tražiti i ručno sakupljati male prirodne predmete",
+          "notes": "Glas glagola zadržava neutralni, leksički stil rečničkog zapisa. „Male prirodne predmete“ obuhvata gljive, cveće, bobice i slične objekte.",
+          "examples": [
+            "skupljanje gljiva u šumi",
+            "branje cveća za buket"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "brati",
+            "brati",
+            null
+          ],
+          "alignment": {
+            "pick": "brati",
+            "pluck": "brati",
+            "cull": null
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "beriti",
+            "brati",
+            "nabirati",
+            "prikupiti",
+            "prikupljati",
+            "sakupljati",
+            "skupljati",
+            "uklupiti",
+            "čupati"
+          ],
+          "rationale": {
+            "nabirati": "Verb used for searching and manually picking small natural items such as mushrooms, berries or flowers; conveys the selective, purposeful gathering aspect.",
+            "skupljati": "General term for gathering items by hand; commonly applied to picking natural objects like flowers or herbs, preserving the manual‑search nuance.",
+            "prikupljati": "Emphasizes the act of collecting items from their source; suitable for describing the careful, selective gathering of small natural specimens.",
+            "sakupljati": "Similar to ‘prikupljati’, often used for gathering edible or decorative natural items (e.g., berries, wildflowers) by hand, matching the sense of selective collection.",
+            "beriti": "Means to harvest or pick, frequently used for fruits, berries, mushrooms, etc.; retains the idea of manually selecting and gathering specific natural items.",
+            "čupati": "Specifically means to pluck or pull out individual natural items (e.g., flowers, buds); captures the idea of picking particular specimens rather than bulk harvesting.",
+            "uklupiti": "Commonly used for picking up mushrooms or other small wild items; conveys the act of searching for and manually gathering selected natural objects.",
+            "prikupiti": "Perfective form of ‘prikupljati’; refers to the completion of a selective gathering activity, preserving the core meaning of manually collecting specific natural items."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "brati": 0,
+            "nabirati": 1,
+            "skupljati": 1,
+            "prikupljati": 1,
+            "sakupljati": 1,
+            "beriti": 1,
+            "čupati": 2,
+            "uklupiti": 2,
+            "prikupiti": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "brati",
+            "nabirati",
+            "prikupiti",
+            "prikupljati",
+            "sakupljati",
+            "skupljati",
+            "čupati"
+          ],
+          "confidence_by_word": {
+            "brati": "high",
+            "nabirati": "high",
+            "prikupiti": "medium",
+            "prikupljati": "high",
+            "sakupljati": "high",
+            "skupljati": "high",
+            "čupati": "medium"
+          },
+          "removed": [
+            {
+              "word": "beriti",
+              "reason": "too generic – denotes large‑scale harvesting of crops rather than selective gathering of small natural items"
+            },
+            {
+              "word": "uklupiti",
+              "reason": "mismatched sense – means ‘to beat/strike’ or is not used for gathering; does not fit the definition"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "skupljanje gljiva u šumi",
+        "branje cveća za buket"
+      ],
+      "curator_summary": "Representative literal (sr): brati\nDefinition translation: тражити и ручно стављати у једно место мале природне предмете\nLexname: verb.contact\nSynset literals (7 total):\n  • brati\n  • nabirati\n  • prikupiti\n  • prikupljati\n  • sakupljati\n  (+2 more literals)\nExample sentences: 2 (showing first)\n  “skupljanje gljiva u šumi”\nNotes: Glas glagola zadržava neutralni, leksički stil rečničkog zapisa. „Male prirodne predmete“ obuhvata gljive, cveće, bobice i slične objekte.\n\nPipeline stages completed:\n  1. Initial translations: 3 lemmas\n  2. Expanded candidates: 9 synonyms\n  3. Filtered results: 7 final literals\n  4. Definition quality: needs_revision (3 issue(s) flagged)",
+      "raw_response": "{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The verb “sakupljati” (a synonym lemma) appears in the definition, creating a circular definition.\"\n    },\n    {\n      \"type\": \"grammar\",\n      \"message\": \"Adjective agreement is incorrect: “male prirodne predmete” does not match the masculine plural accusative required by “predmete”.\"\n    },\n    {\n      \"type\": \"style\",\n      \"message\": \"The phrasing is slightly clunky and repeats the synonym; a more natural, concise formulation is preferred.\"\n    }\n  ],\n  \"revised_definition\": \"тражити и ручно стављати у једно место мале природне предмете\",\n  \"notes\": \"The revision removes the circular synonym, corrects adjective agreement, and yields a smoother, lexicographically appropriate definition.\"\n}",
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_gpt-oss-120b_20251020T165650Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01393996-v",
+        "lemmas": [
+          "sweep"
+        ],
+        "definition": "clean by sweeping",
+        "examples": [
+          "Please sweep the floor"
+        ],
+        "pos": "v"
+      },
+      "final_output": {
+        "representative_literal": "metati",
+        "definition": "čistiti metlom",
+        "synonyms": [
+          {
+            "word": "metati",
+            "confidence": "high"
+          },
+          {
+            "word": "metati pod",
+            "confidence": "high"
+          },
+          {
+            "word": "metati podove",
+            "confidence": "medium"
+          },
+          {
+            "word": "čistiti metlom",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "metati podne podloge",
+            "reason": "adds specific modifier (floor covering) that narrows the scope beyond the core action"
+          },
+          {
+            "word": "metati podne površine",
+            "reason": "adds specific modifier (floor surface) that narrows the scope"
+          },
+          {
+            "word": "metati podni prostor",
+            "reason": "adds spatial modifier that narrows the meaning"
+          },
+          {
+            "word": "metati podni sloj",
+            "reason": "adds technical modifier (floor layer) that narrows the sense"
+          },
+          {
+            "word": "metati podnu površinu",
+            "reason": "adds specific object phrase, making it a longer, less idiomatic variant"
+          }
+        ],
+        "notes": "Glos je u neutralnom, ne‑rečenicnom obliku, tipičnom za rečničke definicije. Zadržava sve ključne elemente: upotrebu metle, pokret napred‑nazad i uklanjanje prljavštine."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "čistiti metlom",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The definition contains the gerund *metanjem*, which is derived from the lemma *metati* (one of the synonyms). This repeats the lexical item being defined."
+          },
+          {
+            "type": "style",
+            "message": "The parenthetical clarification *(metlom)* is redundant with *metanjem* and makes the definition less concise. A more natural lexicographic phrasing would avoid parentheses and repetition."
+          }
+        ],
+        "notes": "The original definition is grammatically acceptable but circular and stylistically redundant. Replacing it with the concise phrase “čistiti metlom” preserves the meaning (to clean by sweeping with a broom) while eliminating circularity and improving lexical style."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To clean a surface—typically a floor—by moving a broom or similar implement back and forth, gathering dust, dirt, or debris into a pile for removal.",
+          "contrastive_note": "Unlike other senses of *sweep* that refer to a broad, sweeping motion (e.g., sweeping a gaze, sweeping a victory, or sweeping an area with a sensor), this sense is a concrete, domestic cleaning action that involves a tool and the purpose of removing material from a surface.",
+          "key_features": [
+            "uses a broom or comparable implement",
+            "physical back‑and‑forth motion on a floor or ground",
+            "collects and removes dust, dirt, debris",
+            "aims to leave the surface clean"
+          ],
+          "domain_tags": [
+            "housekeeping",
+            "domestic",
+            "cleaning",
+            "maintenance"
+          ],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "čistiti metanjem (metlom)",
+          "notes": "Glos je u neutralnom, ne‑rečenicnom obliku, tipičnom za rečničke definicije. Zadržava sve ključne elemente: upotrebu metle, pokret napred‑nazad i uklanjanje prljavštine.",
+          "examples": [
+            "Metanjem pod je uklonjena prašina.",
+            "Metanjem se sakuplja i odlaže otpad."
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "metati"
+          ],
+          "alignment": {
+            "sweep": "metati"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "metati",
+            "metati pod",
+            "metati podne podloge",
+            "metati podne površine",
+            "metati podni prostor",
+            "metati podni sloj",
+            "metati podnu površinu",
+            "metati podove",
+            "čistiti metlom"
+          ],
+          "rationale": {
+            "metati pod": "Directly denotes the action of sweeping a floor surface with a broom, matching the core meaning without extra senses.",
+            "metati podove": "Specifies sweeping multiple floor surfaces; still the same basic action of gathering dust and debris with a broom.",
+            "metati podne površine": "Emphasises the floor as a surface being swept, preserving the sense of moving a broom back‑and‑forth to collect dirt.",
+            "metati podne podloge": "Focuses on the floor substrate being swept; retains the exact physical cleaning action described.",
+            "čistiti metlom": "A verb phrase that explicitly states cleaning by means of a broom, aligning perfectly with the definition.",
+            "metati podnu površinu": "Specifies sweeping the floor surface, aligning with the definition’s focus on a surface cleaned by a broom.",
+            "metati podni prostor": "Highlights the area (space) of the floor being swept, still referring to the physical act of broom‑based cleaning.",
+            "metati podni sloj": "Refers to the top layer of the floor that is swept, keeping the concept limited to the broom‑driven cleaning action."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "metati": 0,
+            "metati pod": 1,
+            "metati podove": 1,
+            "metati podne površine": 1,
+            "metati podne podloge": 1,
+            "čistiti metlom": 1,
+            "metati podnu površinu": 2,
+            "metati podni prostor": 2,
+            "metati podni sloj": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "metati",
+            "metati pod",
+            "metati podove",
+            "čistiti metlom"
+          ],
+          "confidence_by_word": {
+            "metati": "high",
+            "metati pod": "high",
+            "metati podove": "medium",
+            "čistiti metlom": "high"
+          },
+          "removed": [
+            {
+              "word": "metati podne podloge",
+              "reason": "adds specific modifier (floor covering) that narrows the scope beyond the core action"
+            },
+            {
+              "word": "metati podne površine",
+              "reason": "adds specific modifier (floor surface) that narrows the scope"
+            },
+            {
+              "word": "metati podni prostor",
+              "reason": "adds spatial modifier that narrows the meaning"
+            },
+            {
+              "word": "metati podni sloj",
+              "reason": "adds technical modifier (floor layer) that narrows the sense"
+            },
+            {
+              "word": "metati podnu površinu",
+              "reason": "adds specific object phrase, making it a longer, less idiomatic variant"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Metanjem pod je uklonjena prašina.",
+        "Metanjem se sakuplja i odlaže otpad."
+      ],
+      "curator_summary": "Representative literal (sr): metati\nDefinition translation: čistiti metlom\nLexname: verb.contact\nSynset literals (2 total):\n  • metati\n  • čistiti metlom\nExample sentences: 2 (showing first)\n  “Metanjem pod je uklonjena prašina.”\nNotes: Glos je u neutralnom, ne‑rečenicnom obliku, tipičnom za rečničke definicije. Zadržava sve ključne elemente: upotrebu metle, pokret napred‑nazad i uklanjanje prljavštine.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 9 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: needs_revision (2 issue(s) flagged)",
+      "raw_response": "{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition contains the gerund *metanjem*, which is derived from the lemma *metati* (one of the synonyms). This repeats the lexical item being defined.\"\n    },\n    {\n      \"type\": \"style\",\n      \"message\": \"The parenthetical clarification *(metlom)* is redundant with *metanjem* and makes the definition less concise. A more natural lexicographic phrasing would avoid parentheses and repetition.\"\n    }\n  ],\n  \"revised_definition\": \"čistiti metlom\",\n  \"notes\": \"The original definition is grammatically acceptable but circular and stylistically redundant. Replacing it with the concise phrase “čistiti metlom” preserves the meaning (to clean by sweeping with a broom) while eliminating circularity and improving lexical style.\"\n}",
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_gpt-oss-120b_20251020T165650Z.json"
+    }
+  ]
+}

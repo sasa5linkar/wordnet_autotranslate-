@@ -98,9 +98,9 @@ Improved `_render_filtering_prompt()` to request structured rejections:
 
 Updated all test mocks (`_DummyLLM`, `_MultiSynonymLLM`, etc.) to return correct schema formats:
 
-- Added support for 6-stage pipeline (was 3-stage)
+- Added support for 7-stage pipeline (was 3-stage)
 - Updated assertions to check new payload structure
-- Fixed expected call counts (5 instead of 3)
+- Fixed expected call counts (6 instead of 3)
 - Updated terminology ("literals" instead of "candidates")
 
 **Test Results:** All 16 tests passing ✅
@@ -125,9 +125,9 @@ Updated all test mocks (`_DummyLLM`, `_MultiSynonymLLM`, etc.) to return correct
    - Improved filtering prompt
 
 2. `tests/test_langgraph_pipeline.py`
-   - Updated all mock LLMs for 6-stage pipeline
-   - Fixed test assertions for new payload structure
-   - Adjusted expected call counts
+  - Updated all mock LLMs for 7-stage pipeline
+  - Fixed test assertions for new payload structure
+  - Adjusted expected call counts
 
 3. `test_schema_validation.py` (new file)
    - Comprehensive test suite for schema validation

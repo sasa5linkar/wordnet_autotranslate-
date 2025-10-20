@@ -35,6 +35,8 @@ class _DummyLLM:
         # Verify we got a valid prompt (not all stages have "Synset ID")
         assert len(human_content) > 0, "Empty prompt received"
 
+        definition_text = f"{self.translation} je entitet sa sopstvenim postojanjem."
+
         if "sense_analysis" in system_content:
             payload = {
                 "sense_summary": "A general concept or individual thing that exists.",
@@ -45,7 +47,7 @@ class _DummyLLM:
             }
         elif "definition_translation" in system_content:
             payload = {
-                "definition_translation": f"{self.translation} je entitet sa sopstvenim postojanjem.",
+                "definition_translation": definition_text,
                 "notes": self.notes,
                 "examples": self.examples,
             }
@@ -68,6 +70,13 @@ class _DummyLLM:
                 "confidence_by_word": {self.translation: "high"},
                 "removed": [],
                 "confidence": "high",
+            }
+        elif "definition_quality" in system_content:
+            payload = {
+                "status": "ok",
+                "issues": [],
+                "revised_definition": definition_text,
+                "notes": "Definition passes grammatical and stylistic checks.",
             }
         else:  # fallback for unexpected prompts
             payload = {
@@ -105,10 +114,11 @@ def test_langgraph_pipeline_returns_structured_dict():
     assert result["target_lang"] == "sr"
     assert result["source"]["id"] == synset["id"]
     assert result["examples"] == ["Ovo je entitet."]
-    # Check new 6-stage pipeline structure
+    # Check new 7-stage pipeline structure
     assert result["payload"]["definition"]["definition_translation"].startswith("entitet je")
     assert result["payload"]["initial_translation"]["initial_translations"] == ["entitet"]
     assert result["payload"]["filtering"]["filtered_synonyms"] == ["entitet"]
+    assert result["payload"]["definition_quality"]["status"] == "ok"
     assert "Representative literal" in result["curator_summary"]
     assert "Synset literals" in result["curator_summary"]
 
@@ -134,8 +144,8 @@ def test_langgraph_pipeline_batch_processing():
 
     assert len(translated) == 1
     assert translated[0]["translation"] == "entitet-2"
-    # 6-stage pipeline: sense_analysis, definition_translation, initial_translation, expansion, filtering = 5 calls
-    assert pipeline.llm.calls == 5
+    # 7-stage pipeline: sense_analysis, definition_translation, initial_translation, expansion, filtering, definition_quality
+    assert pipeline.llm.calls == 6
 
 
 def test_langgraph_pipeline_african_synset_example():
@@ -159,15 +169,16 @@ def test_langgraph_pipeline_african_synset_example():
 
     result = pipeline.translate_synset(synset)
 
-    assert result["translation"] == "Àfíríkà"
+    # Note: deduplication normalizes to lowercase for consistency
+    assert result["translation"] == "àfíríkà"
     assert result["target_lang"] == "yo"
     assert result["examples"] == ["Àfíríkà ní ọ̀pọ̀ àṣà àti akọ́le ilẹ̀."]
     assert result["notes"] == "Transliteration with tonal marks."
     assert result["definition_translation"].startswith("Àfíríkà")
-    assert result["translated_synonyms"] == ["Àfíríkà"]
+    assert result["translated_synonyms"] == ["àfíríkà"]
     # Check new pipeline structure
     assert result["payload"]["filtering"]["filtered_synonyms"] == ["Àfíríkà"]
-    assert "Àfíríkà" in result["curator_summary"]
+    assert "àfíríkà" in result["curator_summary"]
 
 
 def test_translate_stream_generator():
@@ -375,6 +386,13 @@ def test_multiple_synonyms_with_varying_confidence():
                     "removed": [],
                     "confidence": "high",
                 }
+            elif "definition_quality" in system_content:
+                payload = {
+                    "status": "ok",
+                    "issues": [],
+                    "revised_definition": "Glavni ili najvažniji",
+                    "notes": "Definition is stylistically balanced.",
+                }
             else:
                 payload = {"error": "unexpected stage"}
             
@@ -452,6 +470,13 @@ def test_curator_summary_with_many_synonyms():
                     "removed": [],
                     "confidence": "high",
                 }
+            elif "definition_quality" in system_content:
+                payload = {
+                    "status": "ok",
+                    "issues": [],
+                    "revised_definition": "Test definition",
+                    "notes": "Definition quality verified.",
+                }
             else:
                 payload = {"error": "unexpected stage"}
             
@@ -518,6 +543,13 @@ def test_example_deduplication():
                     "confidence_by_word": {"test": "high"},
                     "removed": [],
                     "confidence": "high",
+                }
+            elif "definition_quality" in system_content:
+                payload = {
+                    "status": "ok",
+                    "issues": [],
+                    "revised_definition": "Test",
+                    "notes": "Definition quality confirmed.",
                 }
             else:
                 payload = {"error": "unexpected stage"}
