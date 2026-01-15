@@ -370,6 +370,7 @@ class SynsetBrowserApp:
             
             if st.button("🗑️ Clear All Pairs"):
                 st.session_state[SESSION_SELECTED_PAIRS] = []
+                st.session_state[SESSION_SELECTED_PAIR_IDS] = set()
                 st.success("All pairs cleared!")
                 st.rerun()
     
@@ -428,15 +429,22 @@ class SynsetBrowserApp:
             
             if replace_existing:
                 st.session_state[SESSION_SELECTED_PAIRS] = imported_pairs
+                # Update the set cache to match
+                st.session_state[SESSION_SELECTED_PAIR_IDS] = {
+                    pair['serbian_id'] for pair in imported_pairs
+                }
                 new_count = len(imported_pairs)
                 st.success(f"✅ Successfully imported {new_count} pairs (replaced existing pairs)")
             else:
-                # Merge: avoid duplicates based on serbian_id
-                existing_ids = {pair['serbian_id'] for pair in st.session_state[SESSION_SELECTED_PAIRS]}
+                # Merge: avoid duplicates based on serbian_id using cached set for O(1) lookups
+                existing_ids = st.session_state[SESSION_SELECTED_PAIR_IDS]
                 new_pairs = [pair for pair in imported_pairs if pair['serbian_id'] not in existing_ids]
                 duplicates = len(imported_pairs) - len(new_pairs)
                 
                 st.session_state[SESSION_SELECTED_PAIRS].extend(new_pairs)
+                # Update the set cache with new IDs
+                for pair in new_pairs:
+                    st.session_state[SESSION_SELECTED_PAIR_IDS].add(pair['serbian_id'])
                 new_count = len(st.session_state[SESSION_SELECTED_PAIRS])
                 
                 if duplicates > 0:
@@ -1312,7 +1320,9 @@ class SynsetBrowserApp:
                                             st.write("---")
                     
                     if st.button(f"🗑️ Remove Pair {i+1}", key=f"remove_{i}"):
-                        st.session_state[SESSION_SELECTED_PAIRS].pop(i)
+                        removed_pair = st.session_state[SESSION_SELECTED_PAIRS].pop(i)
+                        # Update the set cache when removing
+                        st.session_state[SESSION_SELECTED_PAIR_IDS].discard(removed_pair['serbian_id'])
                         st.success("Pair removed!")
                         st.rerun()
     
