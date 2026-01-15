@@ -2,7 +2,8 @@
 Translation Pipeline using DSPy for WordNet auto-translation.
 """
 
-from typing import List, Dict, Optional
+from functools import lru_cache
+from typing import List, Dict, Optional, Tuple
 from pathlib import Path
 
 try:
@@ -10,6 +11,24 @@ try:
     DSPY_AVAILABLE = True
 except ImportError:
     DSPY_AVAILABLE = False
+
+
+@lru_cache(maxsize=128)
+def _load_text_file(file_path: str) -> Tuple[str, ...]:
+    """
+    Load and cache text file contents.
+    
+    Args:
+        file_path: Path to the text file
+        
+    Returns:
+        Tuple of non-empty, non-comment lines (immutable for caching)
+    """
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return tuple(
+            line.strip() for line in f 
+            if line.strip() and not line.startswith('#')
+        )
 
 
 class TranslationPipeline:
@@ -38,28 +57,20 @@ class TranslationPipeline:
         return []
     
     def load_examples(self) -> Dict[str, List[str]]:
-        """Load examples for the target language."""
+        """Load examples for the target language with caching."""
         examples = {"words": [], "sentences": []}
         
         target_path = self.examples_path / self.target_lang
         if target_path.exists():
-            # Load words
+            # Load words using cached helper
             words_file = target_path / "words.txt"
             if words_file.exists():
-                with open(words_file, 'r', encoding='utf-8') as f:
-                    examples["words"] = [
-                        line.strip() for line in f 
-                        if line.strip() and not line.startswith('#')
-                    ]
+                examples["words"] = list(_load_text_file(str(words_file)))
             
-            # Load sentences  
+            # Load sentences using cached helper
             sentences_file = target_path / "sentences.txt"
             if sentences_file.exists():
-                with open(sentences_file, 'r', encoding='utf-8') as f:
-                    examples["sentences"] = [
-                        line.strip() for line in f
-                        if line.strip() and not line.startswith('#')
-                    ]
+                examples["sentences"] = list(_load_text_file(str(sentences_file)))
         
         return examples
     

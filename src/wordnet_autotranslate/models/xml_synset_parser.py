@@ -72,6 +72,7 @@ class XmlSynsetParser:
         """Initialize the parser."""
         self.synsets: Dict[str, Synset] = {}
         self.english_links: Dict[str, List[Synset]] = {}  # Map English IDs to Serbian synsets
+        self._search_cache: Dict[str, List[Synset]] = {}  # Cache for search results
         
     def parse_xml_file(self, xml_file_path: str) -> List[Synset]:
         """
@@ -365,7 +366,7 @@ class XmlSynsetParser:
     
     def search_synsets(self, query: str, limit: int = 20) -> List[Synset]:
         """
-        Search synsets by query in definition, synonyms, or usage examples.
+        Search synsets by query in definition, synonyms, or usage examples with caching.
         
         Args:
             query: Search query
@@ -378,6 +379,14 @@ class XmlSynsetParser:
             return []
             
         query_lower = query.lower()
+        
+        # Create cache key from query and limit
+        cache_key = f"{query_lower}:{limit}"
+        
+        # Check cache first
+        if cache_key in self._search_cache:
+            return self._search_cache[cache_key]
+        
         results = []
         
         for synset in self.synsets.values():
@@ -385,6 +394,9 @@ class XmlSynsetParser:
                 results.append(synset)
                 if len(results) >= limit:
                     break
+        
+        # Cache the results
+        self._search_cache[cache_key] = results
         
         return results
     
@@ -427,9 +439,10 @@ class XmlSynsetParser:
         return list(self.synsets.values())
     
     def clear(self) -> None:
-        """Clear all loaded synsets."""
+        """Clear all loaded synsets and caches."""
         self.synsets.clear()
         self.english_links.clear()
+        self._search_cache.clear()
     
     def get_synset_count(self) -> int:
         """Get the total number of loaded synsets."""

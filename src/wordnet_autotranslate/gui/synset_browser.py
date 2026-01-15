@@ -97,6 +97,9 @@ SESSION_SELECTED_PAIRS = 'selected_pairs'
 SESSION_LOADED_SYNSETS = 'loaded_synsets'
 SESSION_CURRENT_INDEX = 'current_synset_index'
 SESSION_LIST_PAGE = 'synset_list_page'
+SESSION_POS_OPTIONS = 'pos_options_cache'
+SESSION_SYNSET_INDEX_MAP = 'synset_index_map'
+SESSION_SELECTED_PAIR_IDS = 'selected_pair_ids_set'
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -144,6 +147,9 @@ class SynsetBrowserApp:
             SESSION_LOADED_SYNSETS: [],
             SESSION_CURRENT_INDEX: 0,
             SESSION_LIST_PAGE: 0,
+            SESSION_POS_OPTIONS: [],
+            SESSION_SYNSET_INDEX_MAP: {},
+            SESSION_SELECTED_PAIR_IDS: set(),
         }
         
         for key, default_value in session_defaults.items():
@@ -215,6 +221,18 @@ class SynsetBrowserApp:
         # Selected pairs management
         self._render_pairs_management_section()
     
+    def _update_synset_caches(self):
+        """Update cached data structures for performance optimization."""
+        synsets = st.session_state[SESSION_LOADED_SYNSETS]
+        
+        # Cache POS options
+        st.session_state[SESSION_POS_OPTIONS] = sorted(set(s.pos for s in synsets))
+        
+        # Cache synset index mapping for O(1) lookups
+        st.session_state[SESSION_SYNSET_INDEX_MAP] = {
+            id(synset): idx for idx, synset in enumerate(synsets)
+        }
+    
     def _load_synsets_from_content(self, content: str, source_name: str) -> bool:
         """
         Load synsets from XML content with error handling.
@@ -230,6 +248,7 @@ class SynsetBrowserApp:
             self.parser.clear()
             synsets = self.parser.parse_xml_string(content)
             st.session_state[SESSION_LOADED_SYNSETS] = synsets
+            self._update_synset_caches()
             st.success(f"Loaded {len(synsets)} synsets from {source_name}!")
             st.rerun()
             return True
@@ -253,6 +272,7 @@ class SynsetBrowserApp:
             self.parser.clear()
             synsets = self.parser.parse_xml_file(file_path)
             st.session_state[SESSION_LOADED_SYNSETS] = synsets
+            self._update_synset_caches()
             st.success(f"Loaded {len(synsets)} synsets from {source_name}!")
             st.rerun()
             return True
@@ -326,8 +346,8 @@ class SynsetBrowserApp:
     def _render_pos_filter_section(self):
         """Render the part-of-speech filter section."""
         st.subheader("🏷️ Filter by POS")
-        pos_options = list(set(s.pos for s in st.session_state[SESSION_LOADED_SYNSETS]))
-        selected_pos = st.selectbox("Part of Speech", ["All"] + sorted(pos_options))
+        pos_options = st.session_state[SESSION_POS_OPTIONS]
+        selected_pos = st.selectbox("Part of Speech", ["All"] + pos_options)
         
         if selected_pos != "All":
             filtered_synsets = [
@@ -511,12 +531,10 @@ class SynsetBrowserApp:
     def _navigate_to_synset(self, synset: Synset):
         """Navigate to a specific synset."""
         st.session_state[SESSION_CURRENT_SYNSET] = synset
-        # Find the index of this synset in the loaded_synsets
-        try:
-            index = st.session_state[SESSION_LOADED_SYNSETS].index(synset)
-            st.session_state[SESSION_CURRENT_INDEX] = index
-        except ValueError:
-            st.session_state[SESSION_CURRENT_INDEX] = 0
+        # Use cached index map for O(1) lookup instead of O(n) .index()
+        synset_id = id(synset)
+        index = st.session_state[SESSION_SYNSET_INDEX_MAP].get(synset_id, 0)
+        st.session_state[SESSION_CURRENT_INDEX] = index
         st.rerun()
     
     def _render_welcome_screen(self):
@@ -1104,10 +1122,11 @@ class SynsetBrowserApp:
                                     }
                                 }
                                 
-                                # Check if pair already exists
-                                existing = any(p['serbian_id'] == serbian_synset.id for p in st.session_state[SESSION_SELECTED_PAIRS])
+                                # Check if pair already exists using O(1) set lookup
+                                existing = serbian_synset.id in st.session_state[SESSION_SELECTED_PAIR_IDS]
                                 if not existing:
                                     st.session_state[SESSION_SELECTED_PAIRS].append(pair)
+                                    st.session_state[SESSION_SELECTED_PAIR_IDS].add(serbian_synset.id)
                                     st.success("Pair added!")
                                     st.rerun()
                                 else:
@@ -1164,9 +1183,10 @@ class SynsetBrowserApp:
                                             }
                                         }
                                         
-                                        existing = any(p['serbian_id'] == serbian_synset.id for p in st.session_state[SESSION_SELECTED_PAIRS])
+                                        existing = serbian_synset.id in st.session_state[SESSION_SELECTED_PAIR_IDS]
                                         if not existing:
                                             st.session_state[SESSION_SELECTED_PAIRS].append(pair)
+                                            st.session_state[SESSION_SELECTED_PAIR_IDS].add(serbian_synset.id)
                                             st.success("Manual pair added!")
                                             st.rerun()
                                         else:
@@ -1233,16 +1253,22 @@ class SynsetBrowserApp:
                         # English Relations Summary
                         english_relations = pair.get('english_relations', {})
                         if english_relations:
+                            # Count all relations once and cache the result
                             total_eng_relations = 0
                             for rel_type, rel_list in english_relations.items():
                                 if rel_type != 'lemma_relations' and rel_list:
                                     total_eng_relations += len(rel_list)
                             
                             # Count lemma relations
+                            lemma_relations_count = 0
                             if english_relations.get('lemma_relations'):
                                 for lemma_data in english_relations['lemma_relations'].values():
                                     for rel_list in lemma_data.values():
-                                        total_eng_relations += len(rel_list)
+                                        lemma_relations_count += len(rel_list)
+                            total_eng_relations += lemma_relations_count
+                            
+                            # Calculate non-lemma relations count for expander
+                            non_lemma_relations_count = total_eng_relations - lemma_relations_count
                             
                             st.write(f"**Princeton WordNet Relations:** {total_eng_relations} total")
                             
@@ -1252,6 +1278,7 @@ class SynsetBrowserApp:
                                     st.write(f"  • {rel_type.replace('_', ' ').title()}: {len(rel_list)}")
                         else:
                             st.write("**Princeton WordNet Relations:** None")
+                            non_lemma_relations_count = 0
                     
                     # Expandable sections for detailed relations
                     if serbian_relations.get('available_relations') or english_relations:
@@ -1270,7 +1297,7 @@ class SynsetBrowserApp:
                         
                         with col2:
                             if english_relations:
-                                with st.expander(f"🔗 English Relations Details ({sum(len(v) for k, v in english_relations.items() if k != 'lemma_relations' and v)})"):
+                                with st.expander(f"🔗 English Relations Details ({non_lemma_relations_count})"):
                                     for rel_type, rel_list in english_relations.items():
                                         if rel_type != 'lemma_relations' and rel_list:
                                             st.write(f"**{rel_type.replace('_', ' ').title()}:**")
