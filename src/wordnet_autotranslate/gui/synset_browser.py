@@ -1260,20 +1260,22 @@ class SynsetBrowserApp:
                         
                         # English Relations Summary
                         english_relations = pair.get('english_relations', {})
+                        # Initialize non_lemma_relations_count for use in expander below
+                        non_lemma_relations_count = 0
+                        
                         if english_relations:
                             # Count all relations once and cache the result
                             # First count non-lemma relations
-                            non_lemma_relations_count = 0
                             for rel_type, rel_list in english_relations.items():
                                 if rel_type != 'lemma_relations' and rel_list:
                                     non_lemma_relations_count += len(rel_list)
                             
-                            # Count lemma relations separately
-                            lemma_relations_count = 0
-                            if english_relations.get('lemma_relations'):
-                                for lemma_data in english_relations['lemma_relations'].values():
-                                    for rel_list in lemma_data.values():
-                                        lemma_relations_count += len(rel_list)
+                            # Count lemma relations using optimized generator expression
+                            lemma_relations_count = sum(
+                                len(rel_list) 
+                                for lemma_data in english_relations.get('lemma_relations', {}).values() 
+                                for rel_list in lemma_data.values()
+                            )
                             
                             # Calculate total
                             total_eng_relations = non_lemma_relations_count + lemma_relations_count
@@ -1286,7 +1288,6 @@ class SynsetBrowserApp:
                                     st.write(f"  • {rel_type.replace('_', ' ').title()}: {len(rel_list)}")
                         else:
                             st.write("**Princeton WordNet Relations:** None")
-                            non_lemma_relations_count = 0
                     
                     # Expandable sections for detailed relations
                     if serbian_relations.get('available_relations') or english_relations:
