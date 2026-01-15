@@ -2,7 +2,6 @@
 Synset Handler for WordNet operations.
 """
 
-from functools import lru_cache
 import logging
 from typing import List, Dict, Optional, Any, Union
 

@@ -1262,21 +1262,21 @@ class SynsetBrowserApp:
                         english_relations = pair.get('english_relations', {})
                         if english_relations:
                             # Count all relations once and cache the result
-                            total_eng_relations = 0
+                            # First count non-lemma relations
+                            non_lemma_relations_count = 0
                             for rel_type, rel_list in english_relations.items():
                                 if rel_type != 'lemma_relations' and rel_list:
-                                    total_eng_relations += len(rel_list)
+                                    non_lemma_relations_count += len(rel_list)
                             
-                            # Count lemma relations
+                            # Count lemma relations separately
                             lemma_relations_count = 0
                             if english_relations.get('lemma_relations'):
                                 for lemma_data in english_relations['lemma_relations'].values():
                                     for rel_list in lemma_data.values():
                                         lemma_relations_count += len(rel_list)
-                            total_eng_relations += lemma_relations_count
                             
-                            # Calculate non-lemma relations count for expander
-                            non_lemma_relations_count = total_eng_relations - lemma_relations_count
+                            # Calculate total
+                            total_eng_relations = non_lemma_relations_count + lemma_relations_count
                             
                             st.write(f"**Princeton WordNet Relations:** {total_eng_relations} total")
                             
