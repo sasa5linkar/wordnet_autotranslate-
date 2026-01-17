@@ -4,6 +4,19 @@ Script to examine NLTK WordNet synsets in detail.
 This script analyzes several sample synsets from different parts of speech,
 extracts all features including relations, and generates data for a comprehensive
 report on how to use synset information in prompts.
+
+Usage:
+    python examine_wordnet_synsets.py
+
+Output:
+    - Prints summary statistics to console
+    - Saves detailed analysis data to output/synset_analysis_data.json
+    
+The analysis includes:
+    - Basic synset features (lemmas, definition, examples, POS)
+    - All relation types (hierarchical, meronymy, semantic, lexical)
+    - Relation statistics and richness scores
+    - Prompt engineering suggestions for each synset
 """
 
 import json
