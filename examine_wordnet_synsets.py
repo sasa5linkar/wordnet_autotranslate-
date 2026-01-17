@@ -261,14 +261,14 @@ def _generate_prompt_suggestions(insights: Dict[str, Any], info: Dict[str, Any],
         })
     
     # Hierarchical relations
-    if relations.get('hypernyms'):
+    if relations.get('hypernyms') and len(relations['hypernyms']) > 0:
         suggestions.append({
             'category': 'hypernyms',
             'suggestion': 'Use hypernyms to show broader categories (is-a relation)',
             'example': f"A type of: {relations['hypernyms'][0]['name'].split('.')[0]}"
         })
     
-    if relations.get('hyponyms'):
+    if relations.get('hyponyms') and len(relations['hyponyms']) > 0:
         suggestions.append({
             'category': 'hyponyms',
             'suggestion': 'Use hyponyms to show specific types',
@@ -276,7 +276,7 @@ def _generate_prompt_suggestions(insights: Dict[str, Any], info: Dict[str, Any],
         })
     
     # Meronymy relations
-    if relations.get('part_meronyms'):
+    if relations.get('part_meronyms') and len(relations['part_meronyms']) > 0:
         suggestions.append({
             'category': 'parts',
             'suggestion': 'Use part meronyms to describe component parts',
@@ -286,7 +286,7 @@ def _generate_prompt_suggestions(insights: Dict[str, Any], info: Dict[str, Any],
     # Antonyms
     lemma_rels = relations.get('lemma_relations', {})
     for lemma_name, lemma_data in lemma_rels.items():
-        if lemma_data.get('antonyms'):
+        if lemma_data.get('antonyms') and len(lemma_data['antonyms']) > 0:
             suggestions.append({
                 'category': 'antonyms',
                 'suggestion': 'Use antonyms to contrast meaning',
@@ -295,7 +295,7 @@ def _generate_prompt_suggestions(insights: Dict[str, Any], info: Dict[str, Any],
             break
     
     # Similar concepts
-    if relations.get('similar_tos'):
+    if relations.get('similar_tos') and len(relations['similar_tos']) > 0:
         suggestions.append({
             'category': 'similarity',
             'suggestion': 'Use similar synsets to clarify meaning',
