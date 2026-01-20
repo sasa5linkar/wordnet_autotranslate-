@@ -86,18 +86,23 @@ def analyze_synset(handler: SynsetHandler, synset_name: str) -> Dict[str, Any]:
         
         synset = wn.synset(synset_name)
         
+        # Use the handler's public interface to get synset data with relations
+        # Note: We access the private method here as this script is tightly coupled
+        # with the SynsetHandler implementation for detailed analysis purposes
+        synset_data = handler._create_synset_data(synset, include_relations=True)
+        
         analysis = {
             'synset_name': synset_name,
             'basic_info': {
-                'lemmas': [lemma.name() for lemma in synset.lemmas()],
-                'definition': synset.definition(),
-                'examples': synset.examples(),
-                'pos': synset.pos(),
-                'pos_full_name': _get_pos_full_name(synset.pos()),
-                'offset': synset.offset(),
+                'lemmas': synset_data['lemmas'],
+                'definition': synset_data['definition'],
+                'examples': synset_data['examples'],
+                'pos': synset_data['pos'],
+                'pos_full_name': _get_pos_full_name(synset_data['pos']),
+                'offset': synset_data['offset'],
                 'lexname': synset.lexname(),  # Lexicographer file name
             },
-            'relations': handler._extract_all_relations(synset),
+            'relations': synset_data.get('relations', {}),
             'statistics': {},
             'analysis': {}
         }
@@ -156,7 +161,9 @@ def _calculate_relation_statistics(relations: Dict[str, Any]) -> Dict[str, Any]:
                 for sub_rel_type, sub_rel_list in lemma_rels.items():
                     count = len(sub_rel_list)
                     lemma_count += count
-                    stats['relation_counts'][f'lemma_{sub_rel_type}'] = count
+                    # Accumulate counts instead of overwriting
+                    key = f'lemma_{sub_rel_type}'
+                    stats['relation_counts'][key] = stats['relation_counts'].get(key, 0) + count
             stats['total_lemma_relations'] = lemma_count
             if lemma_count > 0:
                 stats['has_lexical'] = True
@@ -237,11 +244,15 @@ def _generate_prompt_suggestions(insights: Dict[str, Any], info: Dict[str, Any],
     
     suggestions = []
     
+    # Determine a safe primary lemma (if available)
+    lemmas = info.get('lemmas') or []
+    primary_lemma = lemmas[0] if lemmas else "this concept"
+    
     # Basic definition usage
     suggestions.append({
         'category': 'definition',
         'suggestion': 'Use the synset definition as the core meaning',
-        'example': f"Define '{info['lemmas'][0]}' as: {info['definition']}"
+        'example': f"Define '{primary_lemma}' as: {info['definition']}"
     })
     
     # Examples usage
@@ -363,10 +374,13 @@ def generate_summary_statistics(all_analyses: List[Dict[str, Any]]) -> Dict[str,
     
     # Calculate relation coverage (what % of synsets have each relation type)
     total = len([a for a in all_analyses if 'error' not in a])
-    summary['relation_coverage'] = {
-        rel_type: f"{(count/total)*100:.1f}%"
-        for rel_type, count in relation_type_counts.items()
-    }
+    if total > 0:
+        summary['relation_coverage'] = {
+            rel_type: f"{(count/total)*100:.1f}%"
+            for rel_type, count in relation_type_counts.items()
+        }
+    else:
+        summary['relation_coverage'] = {}
     
     return summary
 
