@@ -654,7 +654,7 @@ class LangGraphTranslationPipeline:
     def _analyse_sense(self, state: TranslationGraphState) -> TranslationGraphState:
         """LangGraph node: Analyze synset sense before translation.
         
-        This is Stage 1 of 6. Examines the source synset to understand
+        This is Stage 1 of 7. Examines the source synset to understand
         semantic nuances, distinguish from other senses, and identify key features.
         
         Args:
@@ -729,7 +729,6 @@ class LangGraphTranslationPipeline:
         synonym_provenance = {syn: 0 for syn in all_synonyms}  # 0 = initial
         all_rationales = {}
         iteration_calls = []
-        new_count = 0  # Initialize before loop
         
         for iteration in range(self.max_expansion_iterations):
             # Generate prompt with current synonym set
