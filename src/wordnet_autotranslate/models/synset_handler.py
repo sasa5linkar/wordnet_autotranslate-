@@ -55,6 +55,8 @@ class SynsetHandler:
         """
         self.language = language
         self._ensure_wordnet_data()
+        # Cache for relation extraction
+        self._relation_cache: Dict[str, Dict[str, Any]] = {}
     
     def _check_nltk_availability(self) -> None:
         """Check if NLTK is available and raise exception if not."""
@@ -156,7 +158,7 @@ class SynsetHandler:
 
     def _extract_all_relations(self, synset: Any) -> Dict[str, Any]:
         """
-        Extract all available relations from Princeton WordNet synset.
+        Extract all available relations from Princeton WordNet synset with caching.
         
         Args:
             synset: NLTK synset object
@@ -164,6 +166,13 @@ class SynsetHandler:
         Returns:
             Dictionary containing all relations
         """
+        # Use synset name as cache key
+        synset_name = synset.name()
+        
+        # Check cache first
+        if synset_name in self._relation_cache:
+            return self._relation_cache[synset_name]
+        
         relations = {}
         
         # Extract different types of relations
@@ -174,6 +183,9 @@ class SynsetHandler:
         
         # Lemma-level relations
         relations['lemma_relations'] = self._extract_lemma_relations(synset)
+        
+        # Cache the result
+        self._relation_cache[synset_name] = relations
         
         return relations
     
