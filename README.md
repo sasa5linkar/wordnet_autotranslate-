@@ -204,6 +204,7 @@ wordnet_autotranslate/
 ## Documentation
 
 ### Core Guides
+- **[WordNet Synset Analysis](WORDNET_SYNSET_ANALYSIS.md)** - Comprehensive analysis of NLTK WordNet synsets, their features, and relation types with suggestions for prompt engineering
 - **[Schema Validation Integration](SCHEMA_VALIDATION_INTEGRATION.md)** - Pydantic validation & retry logic
 - **[Full Log Access Guide](FULL_LOG_ACCESS_GUIDE.md)** - Complete guide to accessing untruncated LLM logs
 - **[Quick Reference: Logs](QUICK_REF_LOGS.md)** - One-page cheat sheet for log access
@@ -211,6 +212,9 @@ wordnet_autotranslate/
 ### Notebooks
 - **[01_introduction.ipynb](notebooks/01_introduction.ipynb)** - Getting started
 - **[02_langgraph_pipeline_demo.ipynb](notebooks/02_langgraph_pipeline_demo.ipynb)** - 6-stage pipeline demonstration
+
+### Analysis Tools
+- `examine_wordnet_synsets.py` - Script to examine NLTK WordNet synsets and extract all features including relations
 
 ### Utilities
 - `src/wordnet_autotranslate/utils/log_utils.py` - Helper functions for saving and analyzing full logs
