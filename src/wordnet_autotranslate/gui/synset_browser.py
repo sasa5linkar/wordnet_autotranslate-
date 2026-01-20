@@ -228,9 +228,9 @@ class SynsetBrowserApp:
         # Cache POS options
         st.session_state[SESSION_POS_OPTIONS] = sorted(set(s.pos for s in synsets))
         
-        # Cache synset index mapping for O(1) lookups
+        # Cache synset index mapping for O(1) lookups using stable synset IDs
         st.session_state[SESSION_SYNSET_INDEX_MAP] = {
-            id(synset): idx for idx, synset in enumerate(synsets)
+            synset.id: idx for idx, synset in enumerate(synsets)
         }
     
     def _load_synsets_from_content(self, content: str, source_name: str) -> bool:
@@ -540,8 +540,11 @@ class SynsetBrowserApp:
         """Navigate to a specific synset."""
         st.session_state[SESSION_CURRENT_SYNSET] = synset
         # Use cached index map for O(1) lookup instead of O(n) .index()
-        synset_id = id(synset)
-        index = st.session_state[SESSION_SYNSET_INDEX_MAP].get(synset_id, 0)
+        synset_id = synset.id
+        index = st.session_state[SESSION_SYNSET_INDEX_MAP].get(synset_id)
+        if index is None:
+            logger.warning("Synset ID %r not found in SESSION_SYNSET_INDEX_MAP; falling back to index 0", synset_id)
+            index = 0
         st.session_state[SESSION_CURRENT_INDEX] = index
         st.rerun()
     

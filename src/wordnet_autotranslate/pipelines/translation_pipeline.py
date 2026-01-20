@@ -3,7 +3,7 @@ Translation Pipeline using DSPy for WordNet auto-translation.
 """
 
 from functools import lru_cache
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Tuple
 from pathlib import Path
 
 try:
