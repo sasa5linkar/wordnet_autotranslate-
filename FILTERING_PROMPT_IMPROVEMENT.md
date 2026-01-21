@@ -1,7 +1,7 @@
 # Filtering Prompt Improvement: Balancing Fidelity & Naturalness
 
 **Date**: October 18, 2025  
-**Branch**: `improving-propmts`  
+**Branch**: `improving-prompts`  
 **File Modified**: `src/wordnet_autotranslate/pipelines/langgraph_translation_pipeline.py`  
 **Method**: `_render_filtering_prompt()` (lines ~995-1045)
 
