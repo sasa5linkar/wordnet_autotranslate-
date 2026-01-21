@@ -211,7 +211,7 @@ wordnet_autotranslate/
 
 ### Notebooks
 - **[01_introduction.ipynb](notebooks/01_introduction.ipynb)** - Getting started
-- **[02_langgraph_pipeline_demo.ipynb](notebooks/02_langgraph_pipeline_demo.ipynb)** - 6-stage pipeline demonstration
+- **[02_langgraph_pipeline_demo.ipynb](notebooks/02_langgraph_pipeline_demo.ipynb)** - 7-stage pipeline demonstration (generate → filter → review)
 
 ### Analysis Tools
 - `examine_wordnet_synsets.py` - Script to examine NLTK WordNet synsets and extract all features including relations

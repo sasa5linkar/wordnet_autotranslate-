@@ -1,0 +1,498 @@
+{
+  "single_synset": {
+    "synset_id": "ENG30-03574555-n",
+    "calls": {
+      "sense": {
+        "stage": "sense_analysis",
+        "prompt": "Analyse the following WordNet synset carefully.\n\nSynset ID: ENG30-03574555-n\nPOS: n\nLexname: noun.artifact\nTopic domains: (none)\nEnglish lemmas: institution\nDefinition: an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated\nUsage examples:\n- (no examples)\n\nReturn JSON:\n{\n  \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n  \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n  \"key_features\": [\"short salient features\"],\n  \"domain_tags\": [\"optional topical tags\"],\n  \"confidence\": \"high|medium|low\"\n}\nFocus on *what makes this sense unique*, not just definitional paraphrasing.",
+        "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed.",
+        "raw_response": "{\n  \"sense_summary\": \"A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\",\n  \"contrastive_note\": \"Unlike the abstract sense of “institution” that denotes a social system, custom, or the organization itself, this sense refers specifically to the physical premises (the edifice or campus) where the organization operates.\",\n  \"key_features\": [\n    \"physical structure (building or complex)\",\n    \"hosts an organization\",\n    \"purpose‑driven (promotion of a cause)\",\n    \"formal, established location\"\n  ],\n  \"domain_tags\": [\n    \"architecture\",\n    \"organizational infrastructure\",\n    \"non‑profit\",\n    \"government\"\n  ],\n  \"confidence\": \"high\"\n}",
+        "payload": {
+          "sense_summary": "A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.",
+          "contrastive_note": "Unlike the abstract sense of “institution” that denotes a social system, custom, or the organization itself, this sense refers specifically to the physical premises (the edifice or campus) where the organization operates.",
+          "key_features": [
+            "physical structure (building or complex)",
+            "hosts an organization",
+            "purpose‑driven (promotion of a cause)",
+            "formal, established location"
+          ],
+          "domain_tags": [
+            "architecture",
+            "organizational infrastructure",
+            "non‑profit",
+            "government"
+          ],
+          "confidence": "high"
+        },
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed."
+          },
+          {
+            "role": "user",
+            "content": "Analyse the following WordNet synset carefully.\n\nSynset ID: ENG30-03574555-n\nPOS: n\nLexname: noun.artifact\nTopic domains: (none)\nEnglish lemmas: institution\nDefinition: an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated\nUsage examples:\n- (no examples)\n\nReturn JSON:\n{\n  \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n  \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n  \"key_features\": [\"short salient features\"],\n  \"domain_tags\": [\"optional topical tags\"],\n  \"confidence\": \"high|medium|low\"\n}\nFocus on *what makes this sense unique*, not just definitional paraphrasing."
+          }
+        ]
+      },
+      "definition": {
+        "stage": "definition_translation",
+        "prompt": "Translate this English WordNet gloss into Unknown (sr).\n\n            Original definition: \"an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated\"\n            Sense summary: A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n            Key features:\n            - physical structure (building or complex)\n- hosts an organization\n- purpose‑driven (promotion of a cause)\n- formal, established location\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Unknown (sr): short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Unknown (sr)\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }",
+        "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed.",
+        "raw_response": "{\n  \"definition_translation\": \"zgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\",\n  \"notes\": \"Literal translation preserves the sense of a physical establishment that houses a cause‑oriented organization.\",\n  \"examples\": [\n    \"Humanitarni centar se nalazi u velikoj zgradi na obali.\",\n    \"Organizacija za zaštitu životne sredine ima svoju kancelariju u kompleksu zgrada.\"\n  ]\n}",
+        "payload": {
+          "definition_translation": "zgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja",
+          "notes": "Literal translation preserves the sense of a physical establishment that houses a cause‑oriented organization.",
+          "examples": [
+            "Humanitarni centar se nalazi u velikoj zgradi na obali.",
+            "Organizacija za zaštitu životne sredine ima svoju kancelariju u kompleksu zgrada."
+          ]
+        },
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed."
+          },
+          {
+            "role": "user",
+            "content": "Translate this English WordNet gloss into Unknown (sr).\n\n            Original definition: \"an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated\"\n            Sense summary: A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n            Key features:\n            - physical structure (building or complex)\n- hosts an organization\n- purpose‑driven (promotion of a cause)\n- formal, established location\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Unknown (sr): short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Unknown (sr)\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }"
+          }
+        ]
+      },
+      "initial_translation": {
+        "stage": "initial_translation",
+        "prompt": "Translate each English lemma into Unknown (sr), preserving one-to-one order.\n\nEnglish lemmas: ['institution']\nSense summary: A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nRules:\n- Each translation must match *this sense*, not general meaning.\n- Keep array order aligned to lemmas; use null if no exact equivalent.\n\nReturn JSON:\n{\n  \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n  \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n}",
+        "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed.",
+        "raw_response": "{\n  \"initial_translations\": [\"ustanova\"],\n  \"alignment\": {\n    \"institution\": \"ustanova\"\n  }\n}",
+        "payload": {
+          "initial_translations": [
+            "ustanova"
+          ],
+          "alignment": {
+            "institution": "ustanova"
+          }
+        },
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed."
+          },
+          {
+            "role": "user",
+            "content": "Translate each English lemma into Unknown (sr), preserving one-to-one order.\n\nEnglish lemmas: ['institution']\nSense summary: A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nRules:\n- Each translation must match *this sense*, not general meaning.\n- Keep array order aligned to lemmas; use null if no exact equivalent.\n\nReturn JSON:\n{\n  \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n  \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n}"
+          }
+        ]
+      },
+      "expansion": {
+        "payload": {
+          "expanded_synonyms": [
+            "administrativna zgrada",
+            "administrativna_zgrada",
+            "administrativni objekat",
+            "centar",
+            "centrala",
+            "filijala",
+            "glavna zgrada",
+            "glavna_zgrada",
+            "institucija",
+            "kancelarija",
+            "kompleks",
+            "objekat",
+            "paviljon",
+            "poslovni objekat",
+            "radna zgrada",
+            "sedište",
+            "ustanova",
+            "zavod",
+            "zgrada"
+          ],
+          "rationale": {
+            "institucija": "Opšti naziv za organizaciju koja ima fizičko sedište u zgradi i čiji je cilj promovisanje određenog cilja; u srpskom se često koristi i za samu zgradu institucije.",
+            "zavod": "Specifičan tip ustanove (npr. Zavod za zaštitu životne sredine) koji podrazumeva fizički objekat u kome se obavlja rad organizacije.",
+            "centar": "Reč koja označava zgradu ili kompleks zgrada posvećen određenoj temi ili cilju (npr. kulturni centar, sportski centar).",
+            "sedište": "Fizičko mesto – zgrada ili prostor – gde se nalazi upravljačko telo organizacije; sinonim za glavni objekat organizacije.",
+            "kancelarija": "Uredski prostor unutar zgrade koji služi kao radno mesto organizacije; često se koristi za organizacije koje promovišu određeni cilj.",
+            "administrativna_zgrada": "Kombinacija reči koja jasno opisuje zgradu u kojoj se obavlja administrativni rad organizacije posvećene nekom cilju.",
+            "objekat": "A neutral term for a constructed facility; when applied to an organization, it signals the concrete structure that contains the cause‑focused entity.",
+            "zgrada": "The generic word for a building; in this context it points to the edifice that contains the organization advancing a particular goal.",
+            "administrativni objekat": "A formal term for a building used for administrative functions of an organization, matching the concrete‑establishment sense.",
+            "centrala": "Commonly used for the main building of an organization (e.g., a cultural centre, humanitarian centre) that serves as the hub for its mission.",
+            "filijala": "Indicates a branch building of a larger organization, still a concrete establishment that hosts activities toward a defined goal.",
+            "glavna zgrada": "Specifies the principal building of an institution, emphasizing the physical structure that contains the organization’s core activities.",
+            "radna zgrada": "Highlights a building where the work of an organization is carried out, aligning with the notion of a concrete establishment dedicated to a cause.",
+            "glavna_zgrada": "The main building of an organization, the primary site where its mission‑related activities are coordinated.",
+            "kompleks": "A group of interconnected buildings that together house an organization dedicated to a particular purpose.",
+            "paviljon": "A standalone structure often dedicated to a specific activity or cause (e.g., paviljon za ekologiju), fitting the definition of a concrete establishment.",
+            "administrativna zgrada": "Specifies a building used for the administrative functions of an organization, matching the idea of a concrete establishment.",
+            "poslovni objekat": "A premises or building used for business/organizational activities, fitting the notion of a physical location for a purpose‑driven entity."
+          },
+          "iterations_run": 5,
+          "synonym_provenance": {
+            "ustanova": 0,
+            "institucija": 1,
+            "zavod": 1,
+            "centar": 1,
+            "sedište": 1,
+            "kancelarija": 1,
+            "administrativna_zgrada": 1,
+            "objekat": 2,
+            "zgrada": 2,
+            "administrativni objekat": 3,
+            "centrala": 3,
+            "filijala": 3,
+            "glavna zgrada": 3,
+            "radna zgrada": 3,
+            "glavna_zgrada": 4,
+            "kompleks": 4,
+            "paviljon": 4,
+            "administrativna zgrada": 5,
+            "poslovni objekat": 5
+          },
+          "converged": false
+        },
+        "stage": "synonym_expansion",
+        "calls": [
+          {
+            "stage": "expansion_iter_1",
+            "prompt": "You are expanding a synonym set for a WordNet synset in Unknown (sr).\n\nCore meaning (sense summary):\nA concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nTranslated definition (for reference):\nzgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nExisting Unknown (sr) translations:\nustanova\n\nGuidelines:\n- Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n- Stay faithful to the described meaning and avoid extensions that fit different senses.\n- Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n- Do not rely on surface similarity to the existing words; reason from the concept itself.\n- Keep to canonical lemma forms and natural, modern vocabulary.\n\nReturn JSON:\n{\n  \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n  \"rationale\": {\n     \"lemma1\": \"explanation of conceptual alignment\",\n     \"lemma2\": \"explanation of conceptual alignment\"\n  }\n}",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_1. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"expanded_synonyms\": [\n    \"institucija\",\n    \"zavod\",\n    \"centar\",\n    \"sedište\",\n    \"kancelarija\",\n    \"administrativna_zgrada\"\n  ],\n  \"rationale\": {\n    \"institucija\": \"Opšti naziv za organizaciju koja ima fizičko sedište u zgradi i čiji je cilj promovisanje određenog cilja; u srpskom se često koristi i za samu zgradu institucije.\",\n    \"zavod\": \"Specifičan tip ustanove (npr. Zavod za zaštitu životne sredine) koji podrazumeva fizički objekat u kome se obavlja rad organizacije.\",\n    \"centar\": \"Reč koja označava zgradu ili kompleks zgrada posvećen određenoj temi ili cilju (npr. kulturni centar, sportski centar).\",\n    \"sedište\": \"Fizičko mesto – zgrada ili prostor – gde se nalazi upravljačko telo organizacije; sinonim za glavni objekat organizacije.\",\n    \"kancelarija\": \"Uredski prostor unutar zgrade koji služi kao radno mesto organizacije; često se koristi za organizacije koje promovišu određeni cilj.\",\n    \"administrativna_zgrada\": \"Kombinacija reči koja jasno opisuje zgradu u kojoj se obavlja administrativni rad organizacije posvećene nekom cilju.\"\n  }\n}",
+            "payload": {
+              "expanded_synonyms": [
+                "institucija",
+                "zavod",
+                "centar",
+                "sedište",
+                "kancelarija",
+                "administrativna_zgrada"
+              ],
+              "rationale": {
+                "institucija": "Opšti naziv za organizaciju koja ima fizičko sedište u zgradi i čiji je cilj promovisanje određenog cilja; u srpskom se često koristi i za samu zgradu institucije.",
+                "zavod": "Specifičan tip ustanove (npr. Zavod za zaštitu životne sredine) koji podrazumeva fizički objekat u kome se obavlja rad organizacije.",
+                "centar": "Reč koja označava zgradu ili kompleks zgrada posvećen određenoj temi ili cilju (npr. kulturni centar, sportski centar).",
+                "sedište": "Fizičko mesto – zgrada ili prostor – gde se nalazi upravljačko telo organizacije; sinonim za glavni objekat organizacije.",
+                "kancelarija": "Uredski prostor unutar zgrade koji služi kao radno mesto organizacije; često se koristi za organizacije koje promovišu određeni cilj.",
+                "administrativna_zgrada": "Kombinacija reči koja jasno opisuje zgradu u kojoj se obavlja administrativni rad organizacije posvećene nekom cilju."
+              }
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_1. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "You are expanding a synonym set for a WordNet synset in Unknown (sr).\n\nCore meaning (sense summary):\nA concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nTranslated definition (for reference):\nzgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nExisting Unknown (sr) translations:\nustanova\n\nGuidelines:\n- Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n- Stay faithful to the described meaning and avoid extensions that fit different senses.\n- Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n- Do not rely on surface similarity to the existing words; reason from the concept itself.\n- Keep to canonical lemma forms and natural, modern vocabulary.\n\nReturn JSON:\n{\n  \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n  \"rationale\": {\n     \"lemma1\": \"explanation of conceptual alignment\",\n     \"lemma2\": \"explanation of conceptual alignment\"\n  }\n}"
+              }
+            ]
+          },
+          {
+            "stage": "expansion_iter_2",
+            "prompt": "You are expanding a synonym set for a WordNet synset in Unknown (sr).\n\nCore meaning (sense summary):\nA concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nTranslated definition (for reference):\nzgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nExisting Unknown (sr) translations:\nustanova\n\nGuidelines:\n- Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n- Stay faithful to the described meaning and avoid extensions that fit different senses.\n- Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n- Do not rely on surface similarity to the existing words; reason from the concept itself.\n- Keep to canonical lemma forms and natural, modern vocabulary.\n\nReturn JSON:\n{\n  \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n  \"rationale\": {\n     \"lemma1\": \"explanation of conceptual alignment\",\n     \"lemma2\": \"explanation of conceptual alignment\"\n  }\n}",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_2. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"expanded_synonyms\": [\n    \"sedište\",\n    \"kancelarija\",\n    \"centar\",\n    \"objekat\",\n    \"zgrada\",\n    \"institucija\"\n  ],\n  \"rationale\": {\n    \"sedište\": \"Denotes the physical headquarters of an organization; it is a concrete building or set of buildings where the cause‑driven entity operates.\",\n    \"kancelarija\": \"Refers to the office space that houses the staff of a purpose‑oriented organization, emphasizing the building aspect of the establishment.\",\n    \"centar\": \"Used for purpose‑specific facilities (e.g., ‘centar za ljudska prava’); it implies a dedicated building or complex that hosts the organization’s activities.\",\n    \"objekat\": \"A neutral term for a constructed facility; when applied to an organization, it signals the concrete structure that contains the cause‑focused entity.\",\n    \"zgrada\": \"The generic word for a building; in this context it points to the edifice that contains the organization advancing a particular goal.\",\n    \"institucija\": \"Although often abstract, in Serbian it can also denote the physical establishment of a formal organization, matching the sense of a concrete house for a cause.\"\n  }\n}",
+            "payload": {
+              "expanded_synonyms": [
+                "sedište",
+                "kancelarija",
+                "centar",
+                "objekat",
+                "zgrada",
+                "institucija"
+              ],
+              "rationale": {
+                "sedište": "Denotes the physical headquarters of an organization; it is a concrete building or set of buildings where the cause‑driven entity operates.",
+                "kancelarija": "Refers to the office space that houses the staff of a purpose‑oriented organization, emphasizing the building aspect of the establishment.",
+                "centar": "Used for purpose‑specific facilities (e.g., ‘centar za ljudska prava’); it implies a dedicated building or complex that hosts the organization’s activities.",
+                "objekat": "A neutral term for a constructed facility; when applied to an organization, it signals the concrete structure that contains the cause‑focused entity.",
+                "zgrada": "The generic word for a building; in this context it points to the edifice that contains the organization advancing a particular goal.",
+                "institucija": "Although often abstract, in Serbian it can also denote the physical establishment of a formal organization, matching the sense of a concrete house for a cause."
+              }
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_2. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "You are expanding a synonym set for a WordNet synset in Unknown (sr).\n\nCore meaning (sense summary):\nA concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nTranslated definition (for reference):\nzgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nExisting Unknown (sr) translations:\nustanova\n\nGuidelines:\n- Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n- Stay faithful to the described meaning and avoid extensions that fit different senses.\n- Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n- Do not rely on surface similarity to the existing words; reason from the concept itself.\n- Keep to canonical lemma forms and natural, modern vocabulary.\n\nReturn JSON:\n{\n  \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n  \"rationale\": {\n     \"lemma1\": \"explanation of conceptual alignment\",\n     \"lemma2\": \"explanation of conceptual alignment\"\n  }\n}"
+              }
+            ]
+          },
+          {
+            "stage": "expansion_iter_3",
+            "prompt": "You are expanding a synonym set for a WordNet synset in Unknown (sr).\n\nCore meaning (sense summary):\nA concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nTranslated definition (for reference):\nzgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nExisting Unknown (sr) translations:\nustanova\n\nGuidelines:\n- Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n- Stay faithful to the described meaning and avoid extensions that fit different senses.\n- Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n- Do not rely on surface similarity to the existing words; reason from the concept itself.\n- Keep to canonical lemma forms and natural, modern vocabulary.\n\nReturn JSON:\n{\n  \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n  \"rationale\": {\n     \"lemma1\": \"explanation of conceptual alignment\",\n     \"lemma2\": \"explanation of conceptual alignment\"\n  }\n}",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_3. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"expanded_synonyms\": [\n    \"sedište\",\n    \"kancelarija\",\n    \"administrativni objekat\",\n    \"centrala\",\n    \"filijala\",\n    \"glavna zgrada\",\n    \"radna zgrada\"\n  ],\n  \"rationale\": {\n    \"sedište\": \"Denotes the physical headquarters of an organization, i.e., the building or complex where the institution pursuing a specific cause is located.\",\n    \"kancelarija\": \"Refers to an office space that houses the staff and operations of an organization dedicated to a particular purpose.\",\n    \"administrativni objekat\": \"A formal term for a building used for administrative functions of an organization, matching the concrete‑establishment sense.\",\n    \"centrala\": \"Commonly used for the main building of an organization (e.g., a cultural centre, humanitarian centre) that serves as the hub for its mission.\",\n    \"filijala\": \"Indicates a branch building of a larger organization, still a concrete establishment that hosts activities toward a defined goal.\",\n    \"glavna zgrada\": \"Specifies the principal building of an institution, emphasizing the physical structure that contains the organization’s core activities.\",\n    \"radna zgrada\": \"Highlights a building where the work of an organization is carried out, aligning with the notion of a concrete establishment dedicated to a cause.\"\n  }\n}",
+            "payload": {
+              "expanded_synonyms": [
+                "sedište",
+                "kancelarija",
+                "administrativni objekat",
+                "centrala",
+                "filijala",
+                "glavna zgrada",
+                "radna zgrada"
+              ],
+              "rationale": {
+                "sedište": "Denotes the physical headquarters of an organization, i.e., the building or complex where the institution pursuing a specific cause is located.",
+                "kancelarija": "Refers to an office space that houses the staff and operations of an organization dedicated to a particular purpose.",
+                "administrativni objekat": "A formal term for a building used for administrative functions of an organization, matching the concrete‑establishment sense.",
+                "centrala": "Commonly used for the main building of an organization (e.g., a cultural centre, humanitarian centre) that serves as the hub for its mission.",
+                "filijala": "Indicates a branch building of a larger organization, still a concrete establishment that hosts activities toward a defined goal.",
+                "glavna zgrada": "Specifies the principal building of an institution, emphasizing the physical structure that contains the organization’s core activities.",
+                "radna zgrada": "Highlights a building where the work of an organization is carried out, aligning with the notion of a concrete establishment dedicated to a cause."
+              }
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_3. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "You are expanding a synonym set for a WordNet synset in Unknown (sr).\n\nCore meaning (sense summary):\nA concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nTranslated definition (for reference):\nzgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nExisting Unknown (sr) translations:\nustanova\n\nGuidelines:\n- Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n- Stay faithful to the described meaning and avoid extensions that fit different senses.\n- Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n- Do not rely on surface similarity to the existing words; reason from the concept itself.\n- Keep to canonical lemma forms and natural, modern vocabulary.\n\nReturn JSON:\n{\n  \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n  \"rationale\": {\n     \"lemma1\": \"explanation of conceptual alignment\",\n     \"lemma2\": \"explanation of conceptual alignment\"\n  }\n}"
+              }
+            ]
+          },
+          {
+            "stage": "expansion_iter_4",
+            "prompt": "You are expanding a synonym set for a WordNet synset in Unknown (sr).\n\nCore meaning (sense summary):\nA concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nTranslated definition (for reference):\nzgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nExisting Unknown (sr) translations:\nustanova\n\nGuidelines:\n- Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n- Stay faithful to the described meaning and avoid extensions that fit different senses.\n- Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n- Do not rely on surface similarity to the existing words; reason from the concept itself.\n- Keep to canonical lemma forms and natural, modern vocabulary.\n\nReturn JSON:\n{\n  \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n  \"rationale\": {\n     \"lemma1\": \"explanation of conceptual alignment\",\n     \"lemma2\": \"explanation of conceptual alignment\"\n  }\n}",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_4. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"expanded_synonyms\": [\n    \"sedište\",\n    \"kancelarija\",\n    \"centar\",\n    \"administrativna_zgrada\",\n    \"filijala\",\n    \"glavna_zgrada\",\n    \"kompleks\",\n    \"paviljon\",\n    \"zgrada\"\n  ],\n  \"rationale\": {\n    \"sedište\": \"Denotes the physical headquarters where an organization pursuing a specific cause is located; matches the sense of a concrete establishment housing the body.\",\n    \"kancelarija\": \"Refers to an office building or suite that contains the staff and operations of a cause‑oriented organization.\",\n    \"centar\": \"Used for purpose‑driven institutions (e.g., centar za ljudska prava) and implies a dedicated building or complex for that mission.\",\n    \"administrativna_zgrada\": \"Specifies a building used for the administrative functions of an organization, directly aligning with the notion of a concrete establishment for a cause.\",\n    \"filijala\": \"A branch location of a larger organization, physically embodied in a building that serves the same purpose.\",\n    \"glavna_zgrada\": \"The main building of an organization, the primary site where its mission‑related activities are coordinated.\",\n    \"kompleks\": \"A group of interconnected buildings that together house an organization dedicated to a particular purpose.\",\n    \"paviljon\": \"A standalone structure often dedicated to a specific activity or cause (e.g., paviljon za ekologiju), fitting the definition of a concrete establishment.\",\n    \"zgrada\": \"General term for a building; when used in contexts like ‘zgrada organizacije’, it directly refers to the physical edifice containing the cause‑driven body.\"\n  }\n}",
+            "payload": {
+              "expanded_synonyms": [
+                "sedište",
+                "kancelarija",
+                "centar",
+                "administrativna_zgrada",
+                "filijala",
+                "glavna_zgrada",
+                "kompleks",
+                "paviljon",
+                "zgrada"
+              ],
+              "rationale": {
+                "sedište": "Denotes the physical headquarters where an organization pursuing a specific cause is located; matches the sense of a concrete establishment housing the body.",
+                "kancelarija": "Refers to an office building or suite that contains the staff and operations of a cause‑oriented organization.",
+                "centar": "Used for purpose‑driven institutions (e.g., centar za ljudska prava) and implies a dedicated building or complex for that mission.",
+                "administrativna_zgrada": "Specifies a building used for the administrative functions of an organization, directly aligning with the notion of a concrete establishment for a cause.",
+                "filijala": "A branch location of a larger organization, physically embodied in a building that serves the same purpose.",
+                "glavna_zgrada": "The main building of an organization, the primary site where its mission‑related activities are coordinated.",
+                "kompleks": "A group of interconnected buildings that together house an organization dedicated to a particular purpose.",
+                "paviljon": "A standalone structure often dedicated to a specific activity or cause (e.g., paviljon za ekologiju), fitting the definition of a concrete establishment.",
+                "zgrada": "General term for a building; when used in contexts like ‘zgrada organizacije’, it directly refers to the physical edifice containing the cause‑driven body."
+              }
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_4. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "You are expanding a synonym set for a WordNet synset in Unknown (sr).\n\nCore meaning (sense summary):\nA concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nTranslated definition (for reference):\nzgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nExisting Unknown (sr) translations:\nustanova\n\nGuidelines:\n- Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n- Stay faithful to the described meaning and avoid extensions that fit different senses.\n- Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n- Do not rely on surface similarity to the existing words; reason from the concept itself.\n- Keep to canonical lemma forms and natural, modern vocabulary.\n\nReturn JSON:\n{\n  \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n  \"rationale\": {\n     \"lemma1\": \"explanation of conceptual alignment\",\n     \"lemma2\": \"explanation of conceptual alignment\"\n  }\n}"
+              }
+            ]
+          },
+          {
+            "stage": "expansion_iter_5",
+            "prompt": "You are expanding a synonym set for a WordNet synset in Unknown (sr).\n\nCore meaning (sense summary):\nA concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nTranslated definition (for reference):\nzgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nExisting Unknown (sr) translations:\nustanova\n\nGuidelines:\n- Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n- Stay faithful to the described meaning and avoid extensions that fit different senses.\n- Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n- Do not rely on surface similarity to the existing words; reason from the concept itself.\n- Keep to canonical lemma forms and natural, modern vocabulary.\n\nReturn JSON:\n{\n  \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n  \"rationale\": {\n     \"lemma1\": \"explanation of conceptual alignment\",\n     \"lemma2\": \"explanation of conceptual alignment\"\n  }\n}",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_5. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"expanded_synonyms\": [\n    \"sedište\",\n    \"kancelarija\",\n    \"administrativna zgrada\",\n    \"poslovni objekat\",\n    \"centar\",\n    \"kompleks\",\n    \"paviljon\",\n    \"zgrada\"\n  ],\n  \"rationale\": {\n    \"sedište\": \"Denotes the headquarters or main premises of an organization; it is a concrete building or set of buildings where the organization operates.\",\n    \"kancelarija\": \"Refers to office space that houses the staff and activities of an organization dedicated to a specific cause.\",\n    \"administrativna zgrada\": \"Specifies a building used for the administrative functions of an organization, matching the idea of a concrete establishment.\",\n    \"poslovni objekat\": \"A premises or building used for business/organizational activities, fitting the notion of a physical location for a purpose‑driven entity.\",\n    \"centar\": \"Often used for cultural, scientific, or advocacy centers that are housed in a dedicated building or complex.\",\n    \"kompleks\": \"Indicates a group of buildings that together accommodate an organization, aligning with the ‘group of buildings’ aspect of the definition.\",\n    \"paviljon\": \"A standalone building or hall that can serve as the home of an organization promoting a particular goal (e.g., exhibition or advocacy pavilion).\",\n    \"zgrada\": \"A generic term for a building; when used in context it can denote the concrete structure that contains an organization.\"\n  }\n}",
+            "payload": {
+              "expanded_synonyms": [
+                "sedište",
+                "kancelarija",
+                "administrativna zgrada",
+                "poslovni objekat",
+                "centar",
+                "kompleks",
+                "paviljon",
+                "zgrada"
+              ],
+              "rationale": {
+                "sedište": "Denotes the headquarters or main premises of an organization; it is a concrete building or set of buildings where the organization operates.",
+                "kancelarija": "Refers to office space that houses the staff and activities of an organization dedicated to a specific cause.",
+                "administrativna zgrada": "Specifies a building used for the administrative functions of an organization, matching the idea of a concrete establishment.",
+                "poslovni objekat": "A premises or building used for business/organizational activities, fitting the notion of a physical location for a purpose‑driven entity.",
+                "centar": "Often used for cultural, scientific, or advocacy centers that are housed in a dedicated building or complex.",
+                "kompleks": "Indicates a group of buildings that together accommodate an organization, aligning with the ‘group of buildings’ aspect of the definition.",
+                "paviljon": "A standalone building or hall that can serve as the home of an organization promoting a particular goal (e.g., exhibition or advocacy pavilion).",
+                "zgrada": "A generic term for a building; when used in context it can denote the concrete structure that contains an organization."
+              }
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_5. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "You are expanding a synonym set for a WordNet synset in Unknown (sr).\n\nCore meaning (sense summary):\nA concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nTranslated definition (for reference):\nzgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nExisting Unknown (sr) translations:\nustanova\n\nGuidelines:\n- Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n- Stay faithful to the described meaning and avoid extensions that fit different senses.\n- Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n- Do not rely on surface similarity to the existing words; reason from the concept itself.\n- Keep to canonical lemma forms and natural, modern vocabulary.\n\nReturn JSON:\n{\n  \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n  \"rationale\": {\n     \"lemma1\": \"explanation of conceptual alignment\",\n     \"lemma2\": \"explanation of conceptual alignment\"\n  }\n}"
+              }
+            ]
+          }
+        ],
+        "response": "Iterative expansion completed in 5 iteration(s)"
+      },
+      "filtering": {
+        "stage": "synonym_filtering",
+        "prompt": "Final validation of Unknown (sr) synonym candidates.\n\nCandidates: administrativna zgrada, administrativna_zgrada, administrativni objekat, centar, centrala, filijala, glavna zgrada, glavna_zgrada, institucija, kancelarija, kompleks, objekat, paviljon, poslovni objekat, radna zgrada, sedište, ustanova, zavod, zgrada\n\nSense summary: A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\nDefinition (translated): zgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nGuidelines:\n- Evaluate each candidate strictly against the definition, not surface similarity.\n- Keep words that express the same central meaning or a culturally natural equivalent.\n- Prefer base lemmas, but also keep aspectual or derivational variants if they express\n  the same action, state, or entity type.\n- When a candidate's meaning naturally spans multiple related interpretations\n  (e.g., an entity and its location, or an organization and its premises),\n  treat this as normal lexical polysemy. Keep the word if at least one of its\n  established interpretations clearly fits the definition, even if others do not.\n- Remove candidates that merely restate the generic hypernym from the definition\n  (for instance, a term meaning only \"object\" or \"building\" when the sense is a specific kind).\n- Remove expressions with added modifiers, particles, or typical objects that narrow or\n  shift the intended scope.\n- Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n\nReturn structured JSON:\n{\n  \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n  \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n  \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n  \"confidence\": \"high|medium|low\"\n}",
+        "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed.",
+        "raw_response": "{\n  \"filtered_synonyms\": [\n    \"administrativna zgrada\",\n    \"administrativni objekat\",\n    \"centar\",\n    \"centrala\",\n    \"filijala\",\n    \"kancelarija\",\n    \"poslovni objekat\",\n    \"radna zgrada\",\n    \"sedište\"\n  ],\n  \"confidence_by_word\": {\n    \"administrativna zgrada\": \"high\",\n    \"administrativni objekat\": \"high\",\n    \"centar\": \"medium\",\n    \"centrala\": \"high\",\n    \"filijala\": \"high\",\n    \"kancelarija\": \"high\",\n    \"poslovni objekat\": \"high\",\n    \"radna zgrada\": \"high\",\n    \"sedište\": \"high\"\n  },\n  \"removed\": [\n    {\n      \"word\": \"administrativna_zgrada\",\n      \"reason\": \"duplicate with underscore; not a standard lemma\"\n    },\n    {\n      \"word\": \"glavna zgrada\",\n      \"reason\": \"contains a modifier that narrows scope; not a generic term\"\n    },\n    {\n      \"word\": \"glavna_zgrada\",\n      \"reason\": \"same as above and non‑standard form\"\n    },\n    {\n      \"word\": \"institucija\",\n      \"reason\": \"refers to the organization itself, not the building\"\n    },\n    {\n      \"word\": \"kompleks\",\n      \"reason\": \"generic term for a group of buildings without the organizational sense\"\n    },\n    {\n      \"word\": \"objekat\",\n      \"reason\": \"too generic; does not imply housing an organization\"\n    },\n    {\n      \"word\": \"paviljon\",\n      \"reason\": \"specific building type not necessarily linked to an organization\"\n    },\n    {\n      \"word\": \"ustanova\",\n      \"reason\": \"denotes the institution/organization, not the premises\"\n    },\n    {\n      \"word\": \"zavod\",\n      \"reason\": \"denotes the institution/organization, not the premises\"\n    },\n    {\n      \"word\": \"zgrada\",\n      \"reason\": \"generic building term without the organizational aspect\"\n    }\n  ],\n  \"confidence\": \"high\"\n}",
+        "payload": {
+          "filtered_synonyms": [
+            "administrativna zgrada",
+            "administrativni objekat",
+            "centar",
+            "centrala",
+            "filijala",
+            "kancelarija",
+            "poslovni objekat",
+            "radna zgrada",
+            "sedište"
+          ],
+          "confidence_by_word": {
+            "administrativna zgrada": "high",
+            "administrativni objekat": "high",
+            "centar": "medium",
+            "centrala": "high",
+            "filijala": "high",
+            "kancelarija": "high",
+            "poslovni objekat": "high",
+            "radna zgrada": "high",
+            "sedište": "high"
+          },
+          "removed": [
+            {
+              "word": "administrativna_zgrada",
+              "reason": "duplicate with underscore; not a standard lemma"
+            },
+            {
+              "word": "glavna zgrada",
+              "reason": "contains a modifier that narrows scope; not a generic term"
+            },
+            {
+              "word": "glavna_zgrada",
+              "reason": "same as above and non‑standard form"
+            },
+            {
+              "word": "institucija",
+              "reason": "refers to the organization itself, not the building"
+            },
+            {
+              "word": "kompleks",
+              "reason": "generic term for a group of buildings without the organizational sense"
+            },
+            {
+              "word": "objekat",
+              "reason": "too generic; does not imply housing an organization"
+            },
+            {
+              "word": "paviljon",
+              "reason": "specific building type not necessarily linked to an organization"
+            },
+            {
+              "word": "ustanova",
+              "reason": "denotes the institution/organization, not the premises"
+            },
+            {
+              "word": "zavod",
+              "reason": "denotes the institution/organization, not the premises"
+            },
+            {
+              "word": "zgrada",
+              "reason": "generic building term without the organizational aspect"
+            }
+          ],
+          "confidence": "high"
+        },
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed."
+          },
+          {
+            "role": "user",
+            "content": "Final validation of Unknown (sr) synonym candidates.\n\nCandidates: administrativna zgrada, administrativna_zgrada, administrativni objekat, centar, centrala, filijala, glavna zgrada, glavna_zgrada, institucija, kancelarija, kompleks, objekat, paviljon, poslovni objekat, radna zgrada, sedište, ustanova, zavod, zgrada\n\nSense summary: A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\nDefinition (translated): zgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nGuidelines:\n- Evaluate each candidate strictly against the definition, not surface similarity.\n- Keep words that express the same central meaning or a culturally natural equivalent.\n- Prefer base lemmas, but also keep aspectual or derivational variants if they express\n  the same action, state, or entity type.\n- When a candidate's meaning naturally spans multiple related interpretations\n  (e.g., an entity and its location, or an organization and its premises),\n  treat this as normal lexical polysemy. Keep the word if at least one of its\n  established interpretations clearly fits the definition, even if others do not.\n- Remove candidates that merely restate the generic hypernym from the definition\n  (for instance, a term meaning only \"object\" or \"building\" when the sense is a specific kind).\n- Remove expressions with added modifiers, particles, or typical objects that narrow or\n  shift the intended scope.\n- Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n\nReturn structured JSON:\n{\n  \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n  \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n  \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n  \"confidence\": \"high|medium|low\"\n}"
+          }
+        ]
+      },
+      "definition_quality": {
+        "stage": "definition_quality",
+        "prompt": "Evaluate the linguistic and stylistic quality of this Unknown (sr) dictionary definition.\n\nDefinition:\n\"zgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\"\n\nSynonyms (lemmas):\nadministrativna zgrada, administrativni objekat, centar, centrala, filijala, kancelarija, poslovni objekat, radna zgrada, sedište\n\nTasks:\n1. **Circularity** — Check if any lemma word or its close inflectional form\n   appears directly in the definition, which would create a circular definition.\n   If this occurs, suggest a neutral rephrasing that avoids repetition.\n\n2. **Grammar and agreement** — Verify correctness of inflection, case,\n   number, and gender, as appropriate for Unknown (sr). Identify ungrammatical\n   or mechanically translated phrasing.\n\n3. **Style and fluency** — Ensure the definition is concise, clear, and\n   natural in the lexicographic register of Unknown (sr). Prefer balanced\n   clause structure and neutral tone over heavy nominalization or literal phrasing.\n\n4. If any issues are detected, produce a corrected version that maintains\n   the original meaning while improving grammar and style.\n\nReturn structured JSON:\n{\n  \"status\": \"ok\" | \"needs_revision\",\n  \"issues\": [\n    {\"type\": \"circular\" | \"grammar\" | \"style\", \"message\": \"brief explanation\"},\n  ],\n  \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n  \"notes\": \"short summary of evaluation outcome\"\n}",
+        "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed.",
+        "raw_response": "{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The word “zgrada” (and its inflected forms) appears both in the definition and in the list of synonyms, creating a circular definition.\"\n    },\n    {\n      \"type\": \"grammar\",\n      \"message\": \"Relative pronoun should agree with the antecedent: “u kome” → “u kojem”. The phrase “kompleks zgrada” is a singular collective noun, so the relative pronoun must be masculine singular. Also “promovisanje” is a nominalization that sounds less natural than “promocija” or a verb clause.\"\n    },\n    {\n      \"type\": \"style\",\n      \"message\": \"The definition is wordy and uses a heavy nominal construction (“organizacija za promovisanje nekog cilja”). A more concise, natural phrasing would improve clarity.\"\n    }\n  ],\n  \"revised_definition\": \"Zgrada ili kompleks zgrada u kojoj se nalazi organizacija koja promoviše određeni cilj.\",\n  \"notes\": \"The revised definition removes the circular use of “zgrada”, corrects the relative pronoun, replaces the cumbersome nominalization with a verb clause, and yields a clearer, more idiomatic Serbian definition.\"\n}",
+        "payload": {
+          "status": "needs_revision",
+          "issues": [
+            {
+              "type": "circular",
+              "message": "The word “zgrada” (and its inflected forms) appears both in the definition and in the list of synonyms, creating a circular definition."
+            },
+            {
+              "type": "grammar",
+              "message": "Relative pronoun should agree with the antecedent: “u kome” → “u kojem”. The phrase “kompleks zgrada” is a singular collective noun, so the relative pronoun must be masculine singular. Also “promovisanje” is a nominalization that sounds less natural than “promocija” or a verb clause."
+            },
+            {
+              "type": "style",
+              "message": "The definition is wordy and uses a heavy nominal construction (“organizacija za promovisanje nekog cilja”). A more concise, natural phrasing would improve clarity."
+            }
+          ],
+          "revised_definition": "Zgrada ili kompleks zgrada u kojoj se nalazi organizacija koja promoviše određeni cilj.",
+          "notes": "The revised definition removes the circular use of “zgrada”, corrects the relative pronoun, replaces the cumbersome nominalization with a verb clause, and yields a clearer, more idiomatic Serbian definition."
+        },
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed."
+          },
+          {
+            "role": "user",
+            "content": "Evaluate the linguistic and stylistic quality of this Unknown (sr) dictionary definition.\n\nDefinition:\n\"zgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\"\n\nSynonyms (lemmas):\nadministrativna zgrada, administrativni objekat, centar, centrala, filijala, kancelarija, poslovni objekat, radna zgrada, sedište\n\nTasks:\n1. **Circularity** — Check if any lemma word or its close inflectional form\n   appears directly in the definition, which would create a circular definition.\n   If this occurs, suggest a neutral rephrasing that avoids repetition.\n\n2. **Grammar and agreement** — Verify correctness of inflection, case,\n   number, and gender, as appropriate for Unknown (sr). Identify ungrammatical\n   or mechanically translated phrasing.\n\n3. **Style and fluency** — Ensure the definition is concise, clear, and\n   natural in the lexicographic register of Unknown (sr). Prefer balanced\n   clause structure and neutral tone over heavy nominalization or literal phrasing.\n\n4. If any issues are detected, produce a corrected version that maintains\n   the original meaning while improving grammar and style.\n\nReturn structured JSON:\n{\n  \"status\": \"ok\" | \"needs_revision\",\n  \"issues\": [\n    {\"type\": \"circular\" | \"grammar\" | \"style\", \"message\": \"brief explanation\"},\n  ],\n  \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n  \"notes\": \"short summary of evaluation outcome\"\n}"
+          }
+        ]
+      }
+    },
+    "logs": {
+      "sense": {
+        "stage": "sense_analysis",
+        "prompt": "Analyse the following WordNet synset carefully.\n\nSynset ID: ENG30-03574555-n\nPOS: n\nLexname: noun.artifact\nTopic domains: (none)\nEnglish lemmas: institution\nDefinition: an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated\nUsage examples:\n- (no examples)\n\nReturn JSON:\n{\n  \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n  \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n  \"key_features\": [\"short salient features\"],\n  \"domain_tags\": [\"optional topical tags\"],\n  \"confidence\": \"high|medium|low\"\n}\nFocus on *what makes this sense unique*, not just definitional paraphrasing.",
+        "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed.",
+        "raw_response_preview": "{\n  \"sense_summary\": \"A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\",\n  \"contrastive_note\": \"Unlike the abstract sense of “institution” that denotes a social system, custom, or the organization itself, this sense refers specifically to the physical premises (the edifice or campus) where the organization operates.\",\n  \"key_features\": [\n    \"physical structure (building or complex)\",\n    \"hosts an organization\",\n    \"purpose‑driven (promotion of a cause)\",\n    \"formal, established location\"\n  ],\n  \"doma… [truncated]"
+      },
+      "definition": {
+        "stage": "definition_translation",
+        "prompt": "Translate this English WordNet gloss into Unknown (sr).\n\n            Original definition: \"an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated\"\n            Sense summary: A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n            Key features:\n            - physical structure (building or complex)\n- hosts an organization\n- purpose‑driven (promotion of a cause)\n- formal, established location\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Unknown (sr): short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Unknown (sr)\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }",
+        "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed.",
+        "raw_response_preview": "{\n  \"definition_translation\": \"zgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\",\n  \"notes\": \"Literal translation preserves the sense of a physical establishment that houses a cause‑oriented organization.\",\n  \"examples\": [\n    \"Humanitarni centar se nalazi u velikoj zgradi na obali.\",\n    \"Organizacija za zaštitu životne sredine ima svoju kancelariju u kompleksu zgrada.\"\n  ]\n}"
+      },
+      "initial_translation": {
+        "stage": "initial_translation",
+        "prompt": "Translate each English lemma into Unknown (sr), preserving one-to-one order.\n\nEnglish lemmas: ['institution']\nSense summary: A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\n\nRules:\n- Each translation must match *this sense*, not general meaning.\n- Keep array order aligned to lemmas; use null if no exact equivalent.\n\nReturn JSON:\n{\n  \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n  \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n}",
+        "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed.",
+        "raw_response_preview": "{\n  \"initial_translations\": [\"ustanova\"],\n  \"alignment\": {\n    \"institution\": \"ustanova\"\n  }\n}"
+      },
+      "expansion": {
+        "stage": "synonym_expansion",
+        "prompt": null,
+        "system_prompt": null,
+        "raw_response_preview": ""
+      },
+      "filtering": {
+        "stage": "synonym_filtering",
+        "prompt": "Final validation of Unknown (sr) synonym candidates.\n\nCandidates: administrativna zgrada, administrativna_zgrada, administrativni objekat, centar, centrala, filijala, glavna zgrada, glavna_zgrada, institucija, kancelarija, kompleks, objekat, paviljon, poslovni objekat, radna zgrada, sedište, ustanova, zavod, zgrada\n\nSense summary: A concrete establishment—a building or group of buildings—that houses an organization dedicated to advancing a particular cause or purpose.\nDefinition (translated): zgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\n\nGuidelines:\n- Evaluate each candidate strictly against the definition, not surface similarity.\n- Keep words that express the same central meaning or a culturally natural equivalent.\n- Prefer base lemmas, but also keep aspectual or derivational variants if they express\n  the same action, state, or entity type.\n- When a candidate's meaning naturally spans multiple related interpretations\n  (e.g., an entity and its location, or an organization and its premises),\n  treat this as normal lexical polysemy. Keep the word if at least one of its\n  established interpretations clearly fits the definition, even if others do not.\n- Remove candidates that merely restate the generic hypernym from the definition\n  (for instance, a term meaning only \"object\" or \"building\" when the sense is a specific kind).\n- Remove expressions with added modifiers, particles, or typical objects that narrow or\n  shift the intended scope.\n- Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n\nReturn structured JSON:\n{\n  \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n  \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n  \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n  \"confidence\": \"high|medium|low\"\n}",
+        "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed.",
+        "raw_response_preview": "{\n  \"filtered_synonyms\": [\n    \"administrativna zgrada\",\n    \"administrativni objekat\",\n    \"centar\",\n    \"centrala\",\n    \"filijala\",\n    \"kancelarija\",\n    \"poslovni objekat\",\n    \"radna zgrada\",\n    \"sedište\"\n  ],\n  \"confidence_by_word\": {\n    \"administrativna zgrada\": \"high\",\n    \"administrativni objekat\": \"high\",\n    \"centar\": \"medium\",\n    \"centrala\": \"high\",\n    \"filijala\": \"high\",\n    \"kancelarija\": \"high\",\n    \"poslovni objekat\": \"high\",\n    \"radna zgrada\": \"high\",\n    \"sedište\": \"high\"\n  },\n  \"removed\": [\n    {\n      \"word\": \"administrativna_zgrada\",\n      \"reason\": \"duplicate with un… [truncated]"
+      },
+      "definition_quality": {
+        "stage": "definition_quality",
+        "prompt": "Evaluate the linguistic and stylistic quality of this Unknown (sr) dictionary definition.\n\nDefinition:\n\"zgrada ili kompleks zgrada u kome se nalazi organizacija za promovisanje nekog cilja\"\n\nSynonyms (lemmas):\nadministrativna zgrada, administrativni objekat, centar, centrala, filijala, kancelarija, poslovni objekat, radna zgrada, sedište\n\nTasks:\n1. **Circularity** — Check if any lemma word or its close inflectional form\n   appears directly in the definition, which would create a circular definition.\n   If this occurs, suggest a neutral rephrasing that avoids repetition.\n\n2. **Grammar and agreement** — Verify correctness of inflection, case,\n   number, and gender, as appropriate for Unknown (sr). Identify ungrammatical\n   or mechanically translated phrasing.\n\n3. **Style and fluency** — Ensure the definition is concise, clear, and\n   natural in the lexicographic register of Unknown (sr). Prefer balanced\n   clause structure and neutral tone over heavy nominalization or literal phrasing.\n\n4. If any issues are detected, produce a corrected version that maintains\n   the original meaning while improving grammar and style.\n\nReturn structured JSON:\n{\n  \"status\": \"ok\" | \"needs_revision\",\n  \"issues\": [\n    {\"type\": \"circular\" | \"grammar\" | \"style\", \"message\": \"brief explanation\"},\n  ],\n  \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n  \"notes\": \"short summary of evaluation outcome\"\n}",
+        "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed.",
+        "raw_response_preview": "{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The word “zgrada” (and its inflected forms) appears both in the definition and in the list of synonyms, creating a circular definition.\"\n    },\n    {\n      \"type\": \"grammar\",\n      \"message\": \"Relative pronoun should agree with the antecedent: “u kome” → “u kojem”. The phrase “kompleks zgrada” is a singular collective noun, so the relative pronoun must be masculine singular. Also “promovisanje” is a nominalization that sounds less natural than “promocija” or a verb clause.\"\n    },\n    {\n      \"type\"… [truncated]"
+      }
+    }
+  }
+}

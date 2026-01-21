@@ -1,37 +1,59 @@
 """Translation pipeline powered by LangGraph and Ollama.
 
-This module defines an alternative translation pipeline that orchestrates
-LLM calls through LangGraph while relying on a local Ollama runtime. It keeps
-Serbian WordNet conventions (for example, the adverb POS tag "b") compatible
-with English WordNet conventions ("r") via LanguageUtils.
+This module implements a sophisticated multi-stage translation pipeline for WordNet synsets,
+orchestrating LLM calls through LangGraph with a local Ollama runtime.
 
-By default it targets the reasoning-oriented `gpt-oss:120b` model and allows up
-to 10 minutes per request so heavier local models have time to respond.
+Architecture Overview
+--------------------
+The pipeline employs a "generate-and-filter" approach to ensure high-quality translations:
 
-The pipeline uses a multi-step "generate-and-filter" approach for synonym translation:
+    1. **Sense Analysis** - Understand semantic nuances and context before translation
+    2. **Definition Translation** - Translate gloss with cultural adaptation
+    3. **Initial Translation** - Direct 1:1 translation of each English lemma
+    4. **Synonym Expansion** - Iteratively broaden candidate pool (up to 5 iterations)
+    5. **Synonym Filtering** - Quality check with per-word confidence scores
+    6. **Definition Quality Review** - Final grammatical and stylistic polish of translated gloss
+    7. **Result Assembly** - Combine outputs, deduplicate, and format final synset
 
-1. analyse_sense: Understand semantic nuances before translation
-2. translate_definition: Translate the definition with context
-3. translate_all_lemmas: Direct translation of each English lemma
-4. expand_synonyms: Broaden the candidate pool with target-language synonyms
-5. filter_synonyms: Quality check to remove imperfect matches
-6. assemble_result: Combine all outputs into final synset
+Key Features
+-----------
+- **Iterative Expansion**: Runs expansion multiple times until convergence
+- **Schema Validation**: Pydantic schemas with auto-repair for all stages
+- **Retry Logic**: Automatic retry (2 attempts) on LLM failures
+- **Compound Deduplication**: Removes redundant multiword expressions
+- **Per-Word Confidence**: Individual quality scores for each synonym
+- **Full Log Preservation**: Untruncated LLM outputs for analysis
+- **Definition Quality Safeguard**: Post-filter review catches stylistic or grammatical issues
+- **WordNet Domain Integration**: Automatic lexname and topic domain extraction
 
-This generate-and-filter approach ensures high-quality synsets by first casting
-a wide net for candidates, then rigorously validating each one against the precise
-sense. The final output is a set of synonymous literals (synset), not a headword.
+Language Support
+---------------
+- Maintains Serbian WordNet conventions (e.g., adverb POS tag "b")
+- Compatible with English WordNet conventions (e.g., "r" for adverbs)
+- Uses LanguageUtils for cross-lingual POS mapping
 
-The design makes it straightforward to extend with additional guard rails (e.g.,
-quality estimation, dictionary cross checks) following LangGraph best practices.
+Configuration
+------------
+- Default model: `gpt-oss:120b` (reasoning-oriented)
+- Default timeout: 600 seconds (10 minutes)
+- Default temperature: 0.2 (more deterministic)
+- Expansion iterations: 5 (configurable via max_expansion_iterations)
+
+Notes
+-----
+The final output is a **synset** (set of synonymous literals), not a headword.
+This design supports easy extension with additional validation steps following
+LangGraph best practices.
 """
 
 from __future__ import annotations
 
 import json
 import re
+from collections import defaultdict
 from dataclasses import dataclass
 import textwrap
-from typing import Any, Dict, Generator, Iterable, List, Optional, Sequence, TypedDict
+from typing import Any, Dict, Generator, Iterable, List, Literal, Optional, Sequence, TypedDict
 
 from pydantic import BaseModel, Field, ValidationError
 from pydantic_core import PydanticUndefined
@@ -39,24 +61,68 @@ from pydantic_core import PydanticUndefined
 from ..utils.language_utils import LanguageUtils
 
 
+# ============================================================================
+# TYPE DEFINITIONS AND STATE MANAGEMENT
+# ============================================================================
+
+
 class TranslationGraphState(TypedDict, total=False):
-    """State container passed between LangGraph nodes."""
+    """State container passed between LangGraph nodes.
+    
+    This TypedDict defines the structure of data flowing through the pipeline.
+    Each key corresponds to the output of a specific processing stage.
+    
+    Attributes:
+        synset: Input synset with lemmas, definition, examples, POS, etc.
+        sense_analysis: Output from sense analysis stage
+        definition_translation: Output from definition translation stage
+        initial_translation_call: Output from initial lemma translation stage
+        expansion_call: Output from synonym expansion stage (may contain multiple iterations)
+    filtering_call: Output from synonym filtering stage
+    definition_quality_call: Output from definition quality review stage
+        result: Final assembled result
+    """
 
     synset: Dict[str, Any]
     sense_analysis: Dict[str, Any]
     definition_translation: Dict[str, Any]
     
-    # New keys for multi-step synonym translation (generate-and-filter approach)
+    # Multi-step synonym translation (generate-and-filter approach)
     initial_translation_call: Dict[str, Any]
     expansion_call: Dict[str, Any]
     filtering_call: Dict[str, Any]
+    definition_quality_call: Dict[str, Any]
     
     result: Dict[str, Any]
 
 
 @dataclass
 class TranslationResult:
-    """Structured output returned by the LangGraph translation pipeline."""
+    """Structured output returned by the LangGraph translation pipeline.
+    
+    This dataclass encapsulates all information about a translated synset,
+    including the final synonyms, intermediate outputs, metadata, and domain information.
+    
+    Attributes:
+        translation: Representative literal (first synonym) for display purposes
+        definition_translation: Translated gloss/definition in target language
+        translated_synonyms: List of validated, deduplicated synonyms (the final synset)
+        target_lang: Target language code (e.g., 'sr' for Serbian)
+        source_lang: Source language code (e.g., 'en' for English)
+        source: Original input synset dictionary
+        examples: Translated usage examples in target language
+        notes: Optional lexicographer notes or translation commentary
+        raw_response: Full untruncated LLM output from all stages
+        payload: Structured outputs from each pipeline stage
+        curator_summary: Human-readable summary for manual review
+        lexname: WordNet lexical file category (e.g., 'noun.artifact', 'verb.motion')
+        topic_domains: Semantic field markers from WordNet (e.g., ['biochemistry.n.01'])
+    
+    Notes:
+        - translation is NOT a headword; the synset is represented by translated_synonyms
+        - payload contains full stage-by-stage results for debugging and analysis
+        - lexname and topic_domains are auto-fetched from English WordNet via NLTK
+    """
 
     translation: str
     definition_translation: str
@@ -69,12 +135,17 @@ class TranslationResult:
     raw_response: str
     payload: Dict[str, Any]
     curator_summary: str
-    # English WordNet domain information (automatically fetched from NLTK)
-    lexname: Optional[str] = None  # Broad lexical category (e.g., "noun.artifact", "verb.motion")
-    topic_domains: Optional[List[str]] = None  # Semantic field markers (e.g., ["biochemistry.n.01"])
+    lexname: Optional[str] = None
+    topic_domains: Optional[List[str]] = None
 
     def to_dict(self) -> Dict[str, Any]:
-        """Return a serialisable representation for downstream usage."""
+        """Return a serializable dictionary representation.
+        
+        Useful for JSON export, logging, or downstream processing.
+        
+        Returns:
+            Dictionary with all fields, suitable for JSON serialization.
+        """
         return {
             "translation": self.translation,
             "definition_translation": self.definition_translation,
@@ -92,12 +163,27 @@ class TranslationResult:
         }
 
 
-# ==============================================================
-# Schema validation helpers for LangGraphTranslationPipeline
-# ==============================================================
+# ============================================================================
+# PYDANTIC SCHEMAS FOR VALIDATION
+# ============================================================================
+# These schemas define the expected structure of LLM outputs for each stage.
+# Pydantic provides automatic validation, type checking, and error reporting.
+# ============================================================================
+
 
 class SenseAnalysisSchema(BaseModel):
-    """Pydantic schema for sense analysis stage output."""
+    """Schema for validating sense analysis stage output.
+    
+    This stage analyzes the semantic nuances and context of the source synset
+    before translation begins.
+    
+    Attributes:
+        sense_summary: 1-2 sentence English description capturing the specific sense
+        contrastive_note: What distinguishes this sense from other senses of the lemma
+        key_features: List of salient semantic features
+        domain_tags: Optional topical/domain tags (e.g., 'medical', 'legal')
+        confidence: Overall confidence level (high/medium/low)
+    """
     sense_summary: str = Field(..., min_length=3)
     contrastive_note: Optional[str] = None
     key_features: List[str] = Field(default_factory=list)
@@ -106,68 +192,193 @@ class SenseAnalysisSchema(BaseModel):
 
 
 class DefinitionTranslationSchema(BaseModel):
-    """Pydantic schema for definition translation stage output."""
+    """Schema for validating definition translation stage output.
+    
+    This stage translates the WordNet gloss/definition into the target language,
+    maintaining dictionary-style brevity and neutrality.
+    
+    Attributes:
+        definition_translation: Translated gloss in target language
+        notes: Optional lexicographer comments or clarifications
+        examples: Optional usage examples in target language
+    """
     definition_translation: str
     notes: Optional[str] = None
     examples: Optional[List[str]] = Field(default_factory=list)
 
 
 class LemmaTranslationSchema(BaseModel):
-    """Pydantic schema for initial lemma translation stage output."""
+    """Schema for validating initial lemma translation stage output.
+    
+    This stage performs direct 1:1 translation of each English lemma,
+    preserving array order and using null for untranslatable items.
+    
+    Attributes:
+        initial_translations: List of translations (may contain None for untranslatable lemmas)
+        alignment: Dictionary mapping source lemmas to their translations
+    """
     initial_translations: List[Optional[str]]
     alignment: Dict[str, Optional[str]]
 
 
 class ExpansionSchema(BaseModel):
-    """Pydantic schema for synonym expansion stage output."""
+    """Schema for validating synonym expansion stage output.
+    
+    This stage iteratively expands the synonym pool by generating additional
+    target-language synonyms. May run multiple times until convergence.
+    
+    Attributes:
+        expanded_synonyms: List of all candidate synonyms (initial + expanded)
+        rationale: Optional justification for each added synonym
+        iterations_run: Number of expansion iterations performed (default: 1)
+        synonym_provenance: Tracks which iteration found each synonym (0=initial, 1+=iteration)
+        converged: Whether expansion stopped early due to no new synonyms (True)
+                   or hit max iterations (False)
+    """
     expanded_synonyms: List[str]
     rationale: Optional[Dict[str, str]] = Field(default_factory=dict)
+    iterations_run: Optional[int] = 1
+    synonym_provenance: Optional[Dict[str, int]] = Field(default_factory=dict)
+    converged: Optional[bool] = False
 
 
 class FilteringSchema(BaseModel):
-    """Pydantic schema for synonym filtering stage output."""
+    """Schema for validating synonym filtering stage output.
+    
+    This stage performs quality control, removing candidates that don't precisely
+    match the intended sense or exhibit other issues.
+    
+    Attributes:
+        filtered_synonyms: Final list of high-quality synonyms
+        confidence_by_word: Per-synonym confidence scores (high/medium/low)
+        removed: List of rejected candidates with reasons for removal
+        confidence: Overall confidence in the synset quality (high/medium/low)
+    """
     filtered_synonyms: List[str]
+    confidence_by_word: Optional[Dict[str, str]] = Field(default_factory=dict)
     removed: Optional[List[Dict[str, str]]] = Field(default_factory=list)
     confidence: str
 
 
+class DefinitionQualityIssue(BaseModel):
+    """Schema for individual issues flagged during definition quality review."""
+
+    type: Literal["circular", "grammar", "style"]
+    message: str
+
+
+class DefinitionQualitySchema(BaseModel):
+    """Schema for validating post-filter definition quality review output."""
+
+    status: Literal["ok", "needs_revision"]
+    issues: List[DefinitionQualityIssue] = Field(default_factory=list)
+    revised_definition: Optional[str] = None
+    notes: Optional[str] = None
+
+
 def validate_stage_payload(payload: dict, schema_cls: type[BaseModel], stage_name: str) -> dict:
-    """Validate LLM JSON payload against the expected schema.
+    """Validate LLM JSON payload against expected schema with auto-repair.
     
-    Auto-repairs empty or malformed values and logs warnings.
+    Attempts to validate the raw LLM output against a Pydantic schema. If validation
+    fails, logs warnings and returns a fallback dictionary with required fields filled
+    with sensible defaults.
     
     Args:
-        payload: Raw dictionary from LLM output.
-        schema_cls: Pydantic model class to validate against.
-        stage_name: Stage name for logging.
+        payload: Raw dictionary from LLM output (after JSON parsing)
+        schema_cls: Pydantic model class defining the expected structure
+        stage_name: Pipeline stage name for logging (e.g., 'sense_analysis')
         
     Returns:
-        Validated and potentially repaired payload dictionary.
+        Validated payload dictionary. If validation failed, returns a merged dictionary
+        with defaults for missing/invalid fields.
+        
+    Example:
+        >>> payload = {"sense_summary": "test", "confidence": "high"}
+        >>> validated = validate_stage_payload(payload, SenseAnalysisSchema, "sense_analysis")
+        >>> assert "key_features" in validated  # Auto-filled with default empty list
     """
     try:
         model = schema_cls(**payload)
         return model.model_dump()
     except ValidationError as e:
         print(f"[WARN] Validation failed for stage '{stage_name}': {e}")
-        # Return fallback with required keys if possible
+        
+        # Build fallback dictionary with sensible defaults
         fallback = {}
         for field_name, field_info in schema_cls.model_fields.items():
             if field_info.is_required():
+                # Required fields get empty string
                 fallback[field_name] = ""
             elif field_info.default is not PydanticUndefined:
+                # Use explicit default value
                 fallback[field_name] = field_info.default
             elif field_info.default_factory is not None:
-                # Call the factory function to get default value
+                # Call factory function (e.g., list, dict, etc.)
                 fallback[field_name] = field_info.default_factory()
             else:
+                # No default - use None
                 fallback[field_name] = None
+        
+        # Merge fallback with original payload (original values take precedence for valid fields)
         return {**fallback, **payload}
 
 
-class LangGraphTranslationPipeline:
-    """Alternative translation pipeline that uses LangGraph + Ollama."""
+# ============================================================================
+# MAIN PIPELINE CLASS
+# ============================================================================
 
-    # Default configuration constants
+
+class LangGraphTranslationPipeline:
+    """Multi-stage translation pipeline using LangGraph and Ollama.
+    
+    This pipeline orchestrates WordNet synset translation through a sophisticated
+    generate-and-filter workflow with iterative expansion, quality validation,
+    and automatic deduplication.
+    
+    The pipeline is designed for lexicographic quality, producing sets of validated
+    synonyms rather than single headword translations.
+    
+    Class Constants:
+        DEFAULT_SYSTEM_PROMPT: System message defining LLM role and expectations
+        DEFAULT_PROMPT_TEMPLATE: Legacy template (deprecated, use stage-specific prompts)
+        _PREVIEW_LIMIT: Maximum characters to show in log previews (600)
+        _MAX_SYNONYMS_DISPLAY: Maximum synonyms to show in curator summary (5)
+    
+    Instance Attributes:
+        source_lang: Source language code (e.g., 'en')
+        target_lang: Target language code (e.g., 'sr')
+        model: Ollama model name (e.g., 'gpt-oss:120b')
+        temperature: LLM temperature (0.0-1.0, lower = more deterministic)
+        base_url: Ollama API endpoint
+        timeout: LLM request timeout in seconds
+        system_prompt: System message sent with each LLM request
+        prompt_template: Legacy template (not used in multi-stage pipeline)
+        max_expansion_iterations: Maximum synonym expansion iterations (default: 5)
+        llm: LangChain LLM instance
+        _graph: Compiled LangGraph state machine
+    
+    Example:
+        >>> pipeline = LangGraphTranslationPipeline(
+        ...     source_lang="en",
+        ...     target_lang="sr",
+        ...     model="gpt-oss:120b",
+        ...     max_expansion_iterations=5
+        ... )
+        >>> synset = {
+        ...     "id": "eng-30-00001740-n",
+        ...     "lemmas": ["entity"],
+        ...     "definition": "that which is perceived or known or inferred...",
+        ...     "pos": "n"
+        ... }
+        >>> result = pipeline.translate_synset(synset)
+        >>> print(result["payload"]["filtering"]["filtered_synonyms"])
+        ['entitet', 'biće', 'jedinica']
+    """
+
+    # ========================================================================
+    # CLASS CONSTANTS
+    # ========================================================================
+
     DEFAULT_SYSTEM_PROMPT: str = (
         "You are an expert lexicographer helping expand WordNet into less "
         "resourced languages. Produce faithful, idiomatic translations and "
@@ -186,11 +397,12 @@ class LangGraphTranslationPipeline:
         "Linked English ID: {english_id}\n"
     )
 
-    # Response preview limit for logging
-    _PREVIEW_LIMIT: int = 600
-    
-    # Maximum number of synonyms to display in summary
-    _MAX_SYNONYMS_DISPLAY: int = 5
+    _PREVIEW_LIMIT: int = 600  # Log preview character limit
+    _MAX_SYNONYMS_DISPLAY: int = 5  # Curator summary display limit
+
+    # ========================================================================
+    # INITIALIZATION
+    # ========================================================================
 
     def __init__(
         self,
@@ -203,7 +415,30 @@ class LangGraphTranslationPipeline:
         system_prompt: Optional[str] = None,
         prompt_template: Optional[str] = None,
         llm: Optional[Any] = None,
+        max_expansion_iterations: int = 5,
     ) -> None:
+        """Initialize the LangGraph translation pipeline.
+        
+        Args:
+            source_lang: Source language code (default: 'en')
+            target_lang: Target language code (default: 'sr')
+            model: Ollama model name (default: 'gpt-oss:120b')
+            temperature: LLM temperature 0.0-1.0 (default: 0.2 for determinism)
+            base_url: Ollama API endpoint (default: 'http://localhost:11434')
+            timeout: Request timeout in seconds (default: 600 = 10 minutes)
+            system_prompt: Custom system message (optional, uses DEFAULT_SYSTEM_PROMPT if None)
+            prompt_template: Legacy template (deprecated, not used in multi-stage pipeline)
+            llm: Pre-configured LangChain LLM instance (optional, will create if None)
+            max_expansion_iterations: Maximum synonym expansion iterations (default: 5)
+        
+        Raises:
+            ImportError: If required dependencies (langgraph, langchain_ollama) not installed
+        
+        Notes:
+            - The pipeline automatically builds a LangGraph state machine on initialization
+            - If llm is None, creates a ChatOllama instance with the specified configuration
+            - Temperature 0.0 = fully deterministic, 1.0 = maximum creativity
+        """
         self.source_lang = source_lang
         self.target_lang = target_lang
         self.model = model
@@ -212,6 +447,7 @@ class LangGraphTranslationPipeline:
         self.timeout = timeout
         self.system_prompt = system_prompt or self.DEFAULT_SYSTEM_PROMPT
         self.prompt_template = prompt_template or self.DEFAULT_PROMPT_TEMPLATE
+        self.max_expansion_iterations = max_expansion_iterations
 
         (
             self._StateGraph,
@@ -229,11 +465,31 @@ class LangGraphTranslationPipeline:
             base_url=self.base_url,
         )
 
+        # Build and compile the LangGraph state machine
         self._graph = self._build_graph()
+
+    # ========================================================================
+    # GRAPH CONSTRUCTION
+    # ========================================================================
 
     @staticmethod
     def _load_dependencies(provided_llm: Optional[Any]):
-        """Dynamically import LangGraph and Ollama bindings when needed."""
+        """Dynamically import LangGraph and Ollama dependencies.
+        
+        This method lazy-loads the required libraries to avoid import errors
+        when the user hasn't installed the optional dependencies.
+        
+        Args:
+            provided_llm: Optional pre-configured LLM instance. If None, will
+                         also import ChatOllama for creating a new LLM.
+        
+        Returns:
+            Tuple of (StateGraph, START, END, SystemMessage, HumanMessage, chat_factory)
+            where chat_factory is None if provided_llm was given, or ChatOllama otherwise.
+        
+        Raises:
+            ImportError: If required dependencies are not installed.
+        """
 
         try:
             from langgraph.graph import END, START, StateGraph
@@ -260,18 +516,27 @@ class LangGraphTranslationPipeline:
         return StateGraph, START, END, SystemMessage, HumanMessage, chat_factory
 
     def _build_graph(self) -> Any:
-        """Build and compile the LangGraph state machine for translation.
+        """Build and compile the LangGraph state machine for the translation pipeline.
         
-        The graph now uses a multi-step synonym translation approach:
-        1. analyse_sense - Understand semantic features
-        2. translate_definition - Translate the definition
-        3. translate_all_lemmas - Direct translation of each lemma
-        4. expand_synonyms - Broaden the candidate pool
-        5. filter_synonyms - Quality check and validation
-        6. assemble_result - Combine all outputs
+        Constructs a directed graph with 7 stages:
+            1. **analyse_sense**: Understand semantic nuances before translation
+            2. **translate_definition**: Translate the gloss with cultural adaptation
+            3. **translate_all_lemmas**: Direct 1:1 translation of each English lemma
+            4. **expand_synonyms**: Iteratively broaden the candidate pool (up to max_expansion_iterations)
+            5. **filter_synonyms**: Quality check with per-word confidence scores
+            6. **review_definition_quality**: Final pass for grammatical and stylistic polish
+            7. **assemble_result**: Combine outputs, deduplicate, format final synset
+        
+        The graph uses a linear pipeline architecture (no branching or loops).
+        Each stage receives the accumulated state and adds its results.
         
         Returns:
-            Compiled graph ready for invocation.
+            Compiled LangGraph application ready for execution.
+        
+        Notes:
+            - The graph is stateless between synsets (each translation is independent)
+            - State flows sequentially through all 7 stages
+            - Each node is a method of this class (e.g., self._analyse_sense)
         """
         graph = self._StateGraph(TranslationGraphState)
         graph.add_node("analyse_sense", self._analyse_sense)
@@ -279,6 +544,7 @@ class LangGraphTranslationPipeline:
         graph.add_node("translate_all_lemmas", self._translate_all_lemmas)
         graph.add_node("expand_synonyms", self._expand_synonyms)
         graph.add_node("filter_synonyms", self._filter_synonyms)
+        graph.add_node("review_definition_quality", self._review_definition_quality)
         graph.add_node("assemble_result", self._assemble_result)
 
         graph.add_edge(self._START, "analyse_sense")
@@ -286,43 +552,120 @@ class LangGraphTranslationPipeline:
         graph.add_edge("translate_definition", "translate_all_lemmas")
         graph.add_edge("translate_all_lemmas", "expand_synonyms")
         graph.add_edge("expand_synonyms", "filter_synonyms")
-        graph.add_edge("filter_synonyms", "assemble_result")
+        graph.add_edge("filter_synonyms", "review_definition_quality")
+        graph.add_edge("review_definition_quality", "assemble_result")
         graph.add_edge("assemble_result", self._END)
 
         return graph.compile()
 
+    # ========================================================================
+    # PUBLIC API METHODS
+    # ========================================================================
+
     def translate_synset(self, synset: Dict[str, Any]) -> Dict[str, Any]:
-        """Translate a single synset and return a structured dictionary."""
+        """Translate a single synset and return a structured dictionary.
+        
+    This is the primary entry point for translating individual synsets.
+    The method invokes the complete 7-stage pipeline and returns all results.
+        
+        Args:
+            synset: Dictionary containing synset data with fields:
+                   - id: Synset ID (e.g., 'eng-30-00001740-n')
+                   - lemmas: List of English words (e.g., ['entity'])
+                   - definition: WordNet gloss
+                   - pos: Part of speech ('n', 'v', 'a', 'r')
+                   - examples: Optional list of usage examples
+        
+        Returns:
+            Dictionary containing:
+                - translation: Representative literal (first synonym)
+                - translated_synonyms: Full list of validated synonyms
+                - definition_translation: Translated gloss
+                - payload: Complete stage-by-stage outputs
+                - curator_summary: Human-readable summary
+                - lexname: WordNet lexical file category
+                - topic_domains: Semantic field markers
+                And other metadata fields
+        
+        Example:
+            >>> result = pipeline.translate_synset({
+            ...     "id": "eng-30-00001740-n",
+            ...     "lemmas": ["entity"],
+            ...     "definition": "that which is perceived...",
+            ...     "pos": "n"
+            ... })
+            >>> print(result["translated_synonyms"])
+            ['entitet', 'biće', 'jedinica']
+        """
 
         state = self._graph.invoke({"synset": synset})
         result: TranslationResult = state["result"]  # type: ignore[index]
         return result.to_dict()
 
     def translate(self, synsets: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Translate a batch of synsets sequentially."""
+        """Translate a batch of synsets sequentially.
+        
+        Convenience method for translating multiple synsets. Each synset is
+        processed independently through the full pipeline.
+        
+        Args:
+            synsets: Sequence of synset dictionaries (same format as translate_synset)
+        
+        Returns:
+            List of translation result dictionaries, one per input synset.
+        
+        Notes:
+            - Processing is sequential (not parallel)
+            - Each synset takes ~5-10 minutes with iterative expansion
+            - For large batches, consider using translate_stream for memory efficiency
+        """
 
         return [self.translate_synset(synset) for synset in synsets]
 
     def translate_stream(
         self, synsets: Iterable[Dict[str, Any]]
     ) -> Generator[Dict[str, Any], None, None]:
-        """Generator variant that yields translations as they complete."""
+        """Generator variant that yields translations as they complete.
+        
+        Memory-efficient alternative to translate() for large batches.
+        Results are yielded one at a time as they finish processing.
+        
+        Args:
+            synsets: Iterable of synset dictionaries
+        
+        Yields:
+            Translation result dictionaries, one at a time.
+        
+        Example:
+            >>> for result in pipeline.translate_stream(large_dataset):
+            ...     save_to_database(result)  # Process incrementally
+        """
 
         for synset in synsets:
             yield self.translate_synset(synset)
 
-    # ------------------------------------------------------------------
-    # LangGraph node implementations
-    # ------------------------------------------------------------------
+    # ========================================================================
+    # LANGGRAPH NODE METHODS (Pipeline Stages)
+    # ========================================================================
+    # Each method below corresponds to one stage in the 7-stage pipeline.
+    # They are invoked by the LangGraph state machine in sequence.
+    # ========================================================================
 
     def _analyse_sense(self, state: TranslationGraphState) -> TranslationGraphState:
-        """LangGraph node: Analyse synset sense before translation.
+        """LangGraph node: Analyze synset sense before translation.
+        
+        This is Stage 1 of 7. Examines the source synset to understand
+        semantic nuances, distinguish from other senses, and identify key features.
         
         Args:
             state: Current graph state containing synset data.
             
         Returns:
-            Updated state with sense_analysis results.
+            Updated state with sense_analysis results including:
+                - sense_summary: 1-2 sentence description
+                - contrastive_note: What makes this sense unique
+                - key_features: Salient semantic properties
+                - confidence: Overall confidence level
         """
         synset = state["synset"]
         prompt = self._render_sense_prompt(synset)
@@ -365,33 +708,91 @@ class LangGraphTranslationPipeline:
     def _expand_synonyms(self, state: TranslationGraphState) -> TranslationGraphState:
         """LangGraph node: Expand the candidate pool with additional synonyms.
         
-        This is the second step in the multi-step synonym pipeline. It takes
-        the initial translations and finds more synonyms in the target language
-        that align with the sense and definition.
+        This runs expansion iteratively (up to max_expansion_iterations times)
+        until no new synonyms appear, accumulating unique synonyms across runs.
         
         Args:
             state: Current graph state with initial translations.
             
         Returns:
-            Updated state with expansion_call results.
+            Updated state with expansion_call results including iteration metadata.
         """
         initial_payload = state.get("initial_translation_call", {}).get("payload", {})
         sense_payload = state.get("sense_analysis", {}).get("payload", {})
         definition_payload = state.get("definition_translation", {}).get("payload", {})
-        prompt = self._render_expansion_prompt(initial_payload, sense_payload, definition_payload)
-        call_result = self._call_llm(prompt, stage="synonym_expansion")
-        return {"expansion_call": call_result}
+        
+        # Start with initial translations
+        initial_translations = initial_payload.get("initial_translations", [])
+        all_synonyms = set(t for t in initial_translations if t is not None)
+        
+        # Track which iteration found which synonym
+        synonym_provenance = {syn: 0 for syn in all_synonyms}  # 0 = initial
+        all_rationales = {}
+        iteration_calls = []
+        
+        for iteration in range(self.max_expansion_iterations):
+            # Generate prompt with current synonym set
+            prompt = self._render_expansion_prompt(initial_payload, sense_payload, definition_payload)
+            
+            # Call LLM
+            call_result = self._call_llm(prompt, stage=f"expansion_iter_{iteration+1}")
+            iteration_calls.append(call_result)
+            
+            # Extract new synonyms
+            payload = call_result.get("payload", {})
+            if "error" in payload:
+                # Stop on error
+                break
+                
+            new_expanded = payload.get("expanded_synonyms", [])
+            new_rationale = payload.get("rationale", {})
+            
+            # Check for convergence
+            before_count = len(all_synonyms)
+            
+            for syn in new_expanded:
+                if syn and syn not in all_synonyms:
+                    all_synonyms.add(syn)
+                    synonym_provenance[syn] = iteration + 1
+                    if syn in new_rationale:
+                        all_rationales[syn] = new_rationale[syn]
+            
+            new_count = len(all_synonyms) - before_count
+            
+            # Early stopping if no new synonyms
+            if new_count == 0:
+                print(f"[Expansion] Converged after {iteration + 1} iteration(s) - no new synonyms found")
+                break
+            else:
+                print(f"[Expansion] Iteration {iteration + 1}: Added {new_count} new synonym(s), total: {len(all_synonyms)}")
+        
+        # Construct final result
+        final_payload = {
+            "expanded_synonyms": sorted(all_synonyms),
+            "rationale": all_rationales,
+            "iterations_run": iteration + 1,
+            "synonym_provenance": synonym_provenance,
+            "converged": new_count == 0
+        }
+        
+        final_call_result = {
+            "payload": final_payload,
+            "stage": "synonym_expansion",
+            "calls": iteration_calls,  # All LLM calls made
+            "response": f"Iterative expansion completed in {iteration + 1} iteration(s)"
+        }
+        
+        return {"expansion_call": final_call_result}
 
     def _filter_synonyms(self, state: TranslationGraphState) -> TranslationGraphState:
         """LangGraph node: Filter and validate synonym candidates.
-        
-        This is the final step in the multi-step synonym pipeline. It performs
-        a quality check to remove candidates that don't precisely match the
-        intended sense, ensuring high-quality output.
-        
+
+        This stage performs a quality check to remove candidates that don't precisely match the
+        intended sense, ensuring high-quality output before the final definition review.
+
         Args:
             state: Current graph state with expanded synonyms.
-            
+
         Returns:
             Updated state with filtering_call results.
         """
@@ -401,6 +802,24 @@ class LangGraphTranslationPipeline:
         prompt = self._render_filtering_prompt(expansion_payload, sense_payload, definition_payload)
         call_result = self._call_llm(prompt, stage="synonym_filtering")
         return {"filtering_call": call_result}
+
+    def _review_definition_quality(self, state: TranslationGraphState) -> TranslationGraphState:
+        """LangGraph node: Review translated definition for grammar and style."""
+
+        filtering_payload = state.get("filtering_call", {}).get("payload", {})
+        definition_payload = state.get("definition_translation", {}).get("payload", {})
+
+        filtered_synonyms = filtering_payload.get("filtered_synonyms", [])
+        definition_translation = str(definition_payload.get("definition_translation", "") or "")
+
+        prompt = self._render_definition_quality_prompt(
+            filtered_synonyms,
+            definition_translation,
+            self.target_lang,
+        )
+
+        call_result = self._call_llm(prompt, stage="definition_quality")
+        return {"definition_quality_call": call_result}
 
     # ============================================================================
     # PROMPT GENERATION METHODS
@@ -556,7 +975,11 @@ class LangGraphTranslationPipeline:
         sense_payload: Dict[str, Any],
         definition_payload: Dict[str, Any],
     ) -> str:
-        """Generate prompt for synonym expansion stage (improved: requires rationale for each new synonym).
+        """Generate prompt for synonym expansion stage (revised: prevents semantic drift).
+        
+        This revised prompt emphasizes alignment with the core concept to prevent
+        expansion into homonyms or polysemous translations. It instructs the LLM
+        to reason from the concept itself rather than surface word similarity.
         
         Args:
             initial_payload: Output from initial translation stage.
@@ -564,34 +987,44 @@ class LangGraphTranslationPipeline:
             definition_payload: Output from definition translation stage.
             
         Returns:
-            Formatted prompt for LLM.
+            Formatted prompt for LLM that prevents semantic drift across senses.
         """
         target_name = LanguageUtils.get_language_name(self.target_lang)
         initial_translations = initial_payload.get("initial_translations", [])
         # Filter out null values from initial translations
         initial_translations = [t for t in initial_translations if t is not None]
-        initial_str = ", ".join(str(t) for t in initial_translations) if initial_translations else "(none)"
+        base_synonyms = ", ".join(str(t) for t in initial_translations) if initial_translations else "(none)"
         
         sense_summary = sense_payload.get("sense_summary", "")
         definition_translation = definition_payload.get("definition_translation", "")
 
         prompt = textwrap.dedent(
             f"""
-            Generate additional {target_name} synonyms matching this precise sense.
+            You are expanding a synonym set for a WordNet synset in {target_name}.
 
-            Initial translations: {initial_str}
-            Sense summary: {sense_summary or "(no summary available)"}
-            Translated definition: {definition_translation or "(not available)"}
+            Core meaning (sense summary):
+            {sense_summary or "(no summary available)"}
 
-            Tasks:
-            1. Retain all initial translations.
-            2. Add strictly synonymous words—same POS, meaning, and register.
-            3. Exclude hypernyms, antonyms, or stylistic shifts.
+            Translated definition (for reference):
+            {definition_translation or "(not available)"}
+
+            Existing {target_name} translations:
+            {base_synonyms}
+
+            Guidelines:
+            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.
+            - Stay faithful to the described meaning and avoid extensions that fit different senses.
+            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.
+            - Do not rely on surface similarity to the existing words; reason from the concept itself.
+            - Keep to canonical lemma forms and natural, modern vocabulary.
 
             Return JSON:
             {{
-              "expanded_synonyms": ["word1", "word2", ...],
-              "rationale": {{"word2": "colloquial variant", "word3": "archaic synonym"}}
+              "expanded_synonyms": ["lemma1", "lemma2", ...],
+              "rationale": {{
+                 "lemma1": "explanation of conceptual alignment",
+                 "lemma2": "explanation of conceptual alignment"
+              }}
             }}
             """
         ).strip()
@@ -604,7 +1037,11 @@ class LangGraphTranslationPipeline:
         sense_payload: Dict[str, Any],
         definition_payload: Dict[str, Any],
     ) -> str:
-        """Generate prompt for synonym filtering/validation stage (improved: structured rejections + confidence level).
+        """Definition-anchored filtering prompt with balanced scope and hypernym control.
+
+        This version emphasizes strict alignment with the translated definition,
+        robust handling of morphological and polysemous variants, and removal
+        of overly generic or compositional forms.
         
         Args:
             expansion_payload: Output from expansion stage.
@@ -612,33 +1049,100 @@ class LangGraphTranslationPipeline:
             definition_payload: Output from definition translation stage.
             
         Returns:
-            Formatted prompt for LLM.
+            Formatted prompt for LLM with definition-anchored validation and polysemy awareness.
         """
         target_name = LanguageUtils.get_language_name(self.target_lang)
         expanded_synonyms = expansion_payload.get("expanded_synonyms", [])
-        expanded_str = ", ".join(str(t) for t in expanded_synonyms) if expanded_synonyms else "(none)"
+        expanded = ", ".join(str(t) for t in expanded_synonyms) if expanded_synonyms else "(none)"
         
         sense_summary = sense_payload.get("sense_summary", "")
         definition_translation = definition_payload.get("definition_translation", "")
 
         prompt = textwrap.dedent(
             f"""
-            Validate the following {target_name} candidates; keep only *perfect synonyms*.
+            Final validation of {target_name} synonym candidates.
 
-            Candidates: {expanded_str}
+            Candidates: {expanded}
+
             Sense summary: {sense_summary or "(no summary available)"}
-            Definition: {definition_translation or "(not available)"}
+            Definition (translated): {definition_translation or "(not available)"}
 
-            Reject any that:
-            - Differ in meaning or register
-            - Violate POS or grammatical gender/number
-            - Are dialectal or figurative unless universally interchangeable
+            Guidelines:
+            - Evaluate each candidate strictly against the definition, not surface similarity.
+            - Keep words that express the same central meaning or a culturally natural equivalent.
+            - Prefer base lemmas, but also keep aspectual or derivational variants if they express
+              the same action, state, or entity type.
+            - When a candidate's meaning naturally spans multiple related interpretations
+              (e.g., an entity and its location, or an organization and its premises),
+              treat this as normal lexical polysemy. Keep the word if at least one of its
+              established interpretations clearly fits the definition, even if others do not.
+            - Remove candidates that merely restate the generic hypernym from the definition
+              (for instance, a term meaning only "object" or "building" when the sense is a specific kind).
+            - Remove expressions with added modifiers, particles, or typical objects that narrow or
+              shift the intended scope.
+            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.
 
-            Return JSON:
+            Return structured JSON:
             {{
-              "filtered_synonyms": ["final1", "final2"],
-              "removed": [{{"word": "X", "reason": "broader meaning"}}],
+              "filtered_synonyms": ["lemma1", "lemma2"],
+              "confidence_by_word": {{"lemma1": "high", "lemma2": "medium"}},
+              "removed": [{{"word": "X", "reason": "too generic / mismatched sense"}}],
               "confidence": "high|medium|low"
+            }}
+            """
+        ).strip()
+
+        return prompt
+
+    def _render_definition_quality_prompt(
+        self,
+        filtered_synonyms: List[str],
+        definition_translation: str,
+        target_lang: str,
+    ) -> str:
+        """Post-filter definition quality check prompt.
+
+        Performs a neutral, language-independent review for grammatical agreement,
+        fluency, and stylistic clarity of the translated definition.
+        """
+
+        expanded = ", ".join(filtered_synonyms) if filtered_synonyms else "(none)"
+        target_name = LanguageUtils.get_language_name(target_lang)
+
+        prompt = textwrap.dedent(
+            f"""
+            Evaluate the linguistic and stylistic quality of this {target_name} dictionary definition.
+
+            Definition:
+            "{definition_translation}"
+
+            Synonyms (lemmas):
+            {expanded}
+
+            Tasks:
+            1. **Circularity** — Check if any lemma word or its close inflectional form
+               appears directly in the definition, which would create a circular definition.
+               If this occurs, suggest a neutral rephrasing that avoids repetition.
+
+            2. **Grammar and agreement** — Verify correctness of inflection, case,
+               number, and gender, as appropriate for {target_name}. Identify ungrammatical
+               or mechanically translated phrasing.
+
+            3. **Style and fluency** — Ensure the definition is concise, clear, and
+               natural in the lexicographic register of {target_name}. Prefer balanced
+               clause structure and neutral tone over heavy nominalization or literal phrasing.
+
+            4. If any issues are detected, produce a corrected version that maintains
+               the original meaning while improving grammar and style.
+
+            Return structured JSON:
+            {{
+              "status": "ok" | "needs_revision",
+              "issues": [
+                {{"type": "circular" | "grammar" | "style", "message": "brief explanation"}},
+              ],
+              "revised_definition": "rewritten definition if revision is required, otherwise original",
+              "notes": "short summary of evaluation outcome"
             }}
             """
         ).strip()
@@ -765,11 +1269,47 @@ class LangGraphTranslationPipeline:
             "initial_translation": LemmaTranslationSchema,
             "synonym_expansion": ExpansionSchema,
             "synonym_filtering": FilteringSchema,
+            "definition_quality": DefinitionQualitySchema,
         }
         schema_cls = schema_map.get(stage)
         if schema_cls:
             return validate_stage_payload(payload, schema_cls, stage)
         return payload
+
+    # ==============================================================
+    # Deduplication helper: removes redundant compounds and modifiers
+    # ==============================================================
+
+    def _deduplicate_compounds(self, words: list[str]) -> list[str]:
+        """Remove multiword expressions that contain any single-word lemma as a token.
+        
+        This prevents redundancy where both a base word and its compound variants
+        appear in the same synset.
+        
+        Example:
+            Input: ['ustanova', 'centar', 'administrativni centar', 'sedište']
+            Output: ['ustanova', 'centar', 'sedište']
+            (Removes 'administrativni centar' because 'centar' exists as single word)
+        
+        Args:
+            words: List of candidate synonyms (may include multiword expressions)
+            
+        Returns:
+            Cleaned list with redundant compounds removed
+        """
+        words = [w.strip().lower() for w in words if w.strip()]
+        singles = {w for w in words if " " not in w}
+        cleaned, flagged = [], []
+
+        for w in words:
+            if " " in w and any(f" {s} " in f" {w} " for s in singles):
+                flagged.append(w)
+            else:
+                cleaned.append(w)
+
+        if flagged:
+            print(f"[Deduplicate] Flagged: {flagged}")
+        return cleaned
 
     @staticmethod
     def _decode_llm_payload(raw: str) -> Dict[str, Any]:
@@ -910,16 +1450,32 @@ class LangGraphTranslationPipeline:
         initial_call = state.get("initial_translation_call", {}) or {}
         expansion_call = state.get("expansion_call", {}) or {}
         filtering_call = state.get("filtering_call", {}) or {}
+        definition_quality_call = state.get("definition_quality_call", {}) or {}
 
         sense_payload = sense_call.get("payload", {}) or {}
         definition_payload = definition_call.get("payload", {}) or {}
         initial_payload = initial_call.get("payload", {}) or {}
         expansion_payload = expansion_call.get("payload", {}) or {}
         filtering_payload = filtering_call.get("payload", {}) or {}
+        definition_quality_payload = definition_quality_call.get("payload", {}) or {}
 
         definition_translation = str(
             definition_payload.get("definition_translation", "")
         ).strip()
+
+        quality_status = str(definition_quality_payload.get("status", "") or "").lower()
+        quality_revision = definition_quality_payload.get("revised_definition")
+        if isinstance(quality_revision, str):
+            quality_revision_text = quality_revision.strip()
+        elif quality_revision is not None:
+            quality_revision_text = str(quality_revision).strip()
+        else:
+            quality_revision_text = ""
+
+        if quality_revision_text and (
+            quality_status == "needs_revision" or not definition_translation
+        ):
+            definition_translation = quality_revision_text
 
         # Extract the final, validated synonyms from the filtering stage
         # This is the high-quality synset produced by the generate-and-filter pipeline
@@ -942,6 +1498,9 @@ class LangGraphTranslationPipeline:
                 seen.add(syn)
                 deduped_synonyms.append(syn)
         translated_synonyms = deduped_synonyms
+
+        # Apply compound deduplication to remove redundant multiword expressions
+        translated_synonyms = self._deduplicate_compounds(translated_synonyms)
 
         # The "translation" field holds a representative literal for convenience
         # (e.g., for logging or display). This is NOT a formal "headword" - 
@@ -967,8 +1526,11 @@ class LangGraphTranslationPipeline:
         examples = unique_examples
 
         # Gather notes from definition stage
-        notes = definition_payload.get("notes")
-        notes = str(notes).strip() if notes else None
+        definition_notes = definition_payload.get("notes")
+        quality_notes = definition_quality_payload.get("notes")
+        primary_note = str(definition_notes).strip() if definition_notes and str(definition_notes).strip() else ""
+        fallback_note = str(quality_notes).strip() if quality_notes and str(quality_notes).strip() else ""
+        notes = primary_note or fallback_note or None
 
         # Fetch domain information from English WordNet
         english_id = synset.get("id") or synset.get("english_id") or synset.get("ili_id") or ""
@@ -1015,6 +1577,11 @@ class LangGraphTranslationPipeline:
         summary_lines.append(f"  1. Initial translations: {len(initial_payload.get('initial_translations', []))} lemmas")
         summary_lines.append(f"  2. Expanded candidates: {len(expansion_payload.get('expanded_synonyms', []))} synonyms")
         summary_lines.append(f"  3. Filtered results: {len(translated_synonyms)} final literals")
+        issues = definition_quality_payload.get("issues") or []
+        issues_count = len(issues) if isinstance(issues, list) else 0
+        status_label = quality_status or "unknown"
+        issue_suffix = f" ({issues_count} issue(s) flagged)" if issues_count else ""
+        summary_lines.append(f"  4. Definition quality: {status_label}{issue_suffix}")
 
         curator_summary = "\n".join(summary_lines)
 
@@ -1024,12 +1591,14 @@ class LangGraphTranslationPipeline:
             "initial_translation": initial_payload,
             "expansion": expansion_payload,
             "filtering": filtering_payload,
+            "definition_quality": definition_quality_payload,
             "calls": {
                 "sense": sense_call,
                 "definition": definition_call,
                 "initial_translation": initial_call,
                 "expansion": expansion_call,
                 "filtering": filtering_call,
+                "definition_quality": definition_quality_call,
             },
             "logs": {
                 "sense": self._summarise_call(sense_call),
@@ -1037,11 +1606,13 @@ class LangGraphTranslationPipeline:
                 "initial_translation": self._summarise_call(initial_call),
                 "expansion": self._summarise_call(expansion_call),
                 "filtering": self._summarise_call(filtering_call),
+                "definition_quality": self._summarise_call(definition_quality_call),
             },
         }
 
         raw_response = (
-            filtering_call.get("raw_response") 
+            definition_quality_call.get("raw_response")
+            or filtering_call.get("raw_response") 
             or expansion_call.get("raw_response") 
             or initial_call.get("raw_response")
             or definition_call.get("raw_response") 
