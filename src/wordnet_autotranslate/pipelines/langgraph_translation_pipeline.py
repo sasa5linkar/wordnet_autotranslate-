@@ -735,7 +735,7 @@ class LangGraphTranslationPipeline:
             prompt = self._render_expansion_prompt(initial_payload, sense_payload, definition_payload)
             
             # Call LLM
-            call_result = self._call_llm(prompt, stage=f"expansion_iter_{iteration+1}")
+            call_result = self._call_llm(prompt, stage="synonym_expansion")
             iteration_calls.append(call_result)
             
             # Extract new synonyms
@@ -1263,6 +1263,10 @@ class LangGraphTranslationPipeline:
         Returns:
             Validated and potentially repaired payload dictionary.
         """
+        # Defensive fallback: treat expansion_iter_* as synonym_expansion
+        if stage.startswith("expansion_iter_"):
+            stage = "synonym_expansion"
+        
         schema_map = {
             "sense_analysis": SenseAnalysisSchema,
             "definition_translation": DefinitionTranslationSchema,
@@ -1297,12 +1301,12 @@ class LangGraphTranslationPipeline:
         Returns:
             Cleaned list with redundant compounds removed
         """
-        words = [w.strip().lower() for w in words if w.strip()]
-        singles = {w for w in words if " " not in w}
+        originals = [w.strip() for w in words if w.strip()]
+        singles = {w.lower() for w in originals if " " not in w}
         cleaned, flagged = [], []
 
-        for w in words:
-            if " " in w and any(f" {s} " in f" {w} " for s in singles):
+        for w in originals:
+            if " " in w and any(f" {s} " in f" {w.lower()} " for s in singles):
                 flagged.append(w)
             else:
                 cleaned.append(w)
