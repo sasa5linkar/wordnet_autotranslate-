@@ -130,6 +130,42 @@ translations = pipeline.translate(synsets)
 # - payload: full JSON logs (sense analysis, definition translation, synonym decisions)
 ```
 
+### Concept-oriented LangGraph comparison pipeline
+
+To compare the existing generate-and-filter pipeline with a stricter
+multi-phase lexical workflow, use the additional concept-oriented pipeline. It
+reuses the same model configuration style as the standard LangGraph pipeline,
+but returns staged outputs for concept extraction, expanded definitions,
+literal selection, gloss drafting, and validation.
+
+```python
+from wordnet_autotranslate import ConceptualLangGraphTranslationPipeline
+
+pipeline = ConceptualLangGraphTranslationPipeline(
+    source_lang="en",
+    target_lang="sr",
+    model="gpt-oss:120b",
+    timeout=600,
+)
+
+result = pipeline.translate_synset(
+    {
+        "id": "ENG30-00001740-n",
+        "lemmas": ["entity"],
+        "definition": "that which is perceived or known to have its own distinct existence",
+        "examples": [],
+        "pos": "n",
+    }
+)
+
+# Result keys include:
+# - concept_package
+# - expanded_en / expanded_sr
+# - candidates / selection
+# - final_gloss / validation
+# - selected_literals_sr / final_gloss_sr
+```
+
 ### Serbian WordNet Expansion
 
 For Serbian-specific experiments, use `SerbianWordnetPipeline` which bundles
