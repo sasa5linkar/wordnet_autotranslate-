@@ -78,8 +78,18 @@ class LiteralCandidateSchema(BaseModel):
 
     literal: str = ""
     candidate_type: str = ""
-    precision_score: float = Field(default=0.0, ge=0.0, le=1.0)
-    naturalness_score: float = Field(default=0.0, ge=0.0, le=1.0)
+    precision_score: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+        description="How precisely the candidate matches the target synset meaning.",
+    )
+    naturalness_score: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+        description="How natural the candidate sounds as a Serbian lexical item.",
+    )
     rationale: str = ""
     fit_assessment: str = ""
     register_note: str = ""
@@ -460,8 +470,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
                 {{
                   "literal": "candidate",
                   "candidate_type": "primary|secondary|variant|descriptive",
-                  "precision_score": 0.0,
-                  "naturalness_score": 0.0,
+                  "precision_score": 0.85,
+                  "naturalness_score": 0.92,
                   "rationale": "why this candidate fits",
                   "fit_assessment": "good equivalent|too broad|too narrow|descriptive phrase",
                   "register_note": "brief note on register or usage"
