@@ -10,6 +10,9 @@ __author__ = "WordNet Auto-Translation Contributors"
 
 from .pipelines.translation_pipeline import TranslationPipeline
 from .pipelines.langgraph_translation_pipeline import LangGraphTranslationPipeline
+from .pipelines.conceptual_langgraph_pipeline import (
+    ConceptualLangGraphTranslationPipeline,
+)
 from .pipelines.serbian_wordnet_pipeline import SerbianWordnetPipeline
 from .models.synset_handler import SynsetHandler
 from .models.xml_synset_parser import XmlSynsetParser, Synset
@@ -18,9 +21,10 @@ from .utils.language_utils import LanguageUtils
 __all__ = [
     "TranslationPipeline",
     "LangGraphTranslationPipeline",
+    "ConceptualLangGraphTranslationPipeline",
     "SerbianWordnetPipeline",
-    "SynsetHandler", 
+    "SynsetHandler",
     "XmlSynsetParser",
     "Synset",
-    "LanguageUtils"
+    "LanguageUtils",
 ]
