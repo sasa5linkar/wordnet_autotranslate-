@@ -21,7 +21,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import json
 import textwrap
-from typing import Any, Dict, Generator, Iterable, List, Optional, Sequence, TypedDict
+from typing import Any, Dict, Generator, Iterable, List, Sequence, TypedDict
 
 from pydantic import BaseModel, Field
 
@@ -657,6 +657,7 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
             f"  4. Selected literals: {len(selected_literals_sr)}",
             "  5. Final short gloss",
             "  6. Synset validation",
+            "  7. Result assembly",
         ]
         curator_summary = "\n".join(summary_lines)
 
