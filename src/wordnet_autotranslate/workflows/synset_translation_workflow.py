@@ -39,8 +39,14 @@ def parse_eng30_id(english_id: str) -> Tuple[int, str]:
             f"parse_eng30_id: invalid selector {english_id!r}; expected 'ENG30-########-[n|v|a|s|r]'."
         )
 
+    offset_token = parts[1]
+    if len(offset_token) != 8 or not offset_token.isdigit():
+        raise ValueError(
+            f"parse_eng30_id: invalid offset in selector {english_id!r}; offset must be exactly 8 digits."
+        )
+
     try:
-        offset = int(parts[1])
+        offset = int(offset_token)
     except ValueError as exc:
         raise ValueError(
             f"parse_eng30_id: invalid offset in selector {english_id!r}; offset must be an integer."

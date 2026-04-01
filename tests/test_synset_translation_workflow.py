@@ -52,6 +52,13 @@ def test_parse_eng30_id_normalizes_satellite_adjective_pos():
     assert pos == "a"
 
 
+def test_parse_eng30_id_passes_through_adjective_pos():
+    offset, pos = parse_eng30_id("ENG30-00001740-a")
+
+    assert offset == 1740
+    assert pos == "a"
+
+
 def test_parse_eng30_id_rejects_malformed_selector():
     with pytest.raises(ValueError, match="parse_eng30_id"):
         parse_eng30_id("BROKEN-1740-x")
@@ -60,6 +67,44 @@ def test_parse_eng30_id_rejects_malformed_selector():
 def test_parse_eng30_id_rejects_invalid_pos_with_clear_message():
     with pytest.raises(ValueError, match="expected one of n,v,a,s,r"):
         parse_eng30_id("ENG30-00001740-x")
+
+
+def test_parse_eng30_id_rejects_malformed_offset_length():
+    with pytest.raises(ValueError, match="exactly 8 digits"):
+        parse_eng30_id("ENG30-1740-n")
+
+
+def test_parse_eng30_id_rejects_malformed_offset_characters():
+    with pytest.raises(ValueError, match="exactly 8 digits"):
+        parse_eng30_id("ENG30-00A01740-n")
+
+
+def test_parse_eng30_id_seed_fuzz_corpus():
+    valid_selectors = [
+        "ENG30-00001740-n",
+        "ENG30-00001740-v",
+        "ENG30-00001740-a",
+        "ENG30-00001740-s",
+        "ENG30-00001740-r",
+        "ENG30-00001740-b",
+    ]
+    invalid_selectors = [
+        "ENG30-1740-n",
+        "ENG30-00A01740-n",
+        "BROKEN-00001740-n",
+        "ENG30-00001740-x",
+        "ENG30--n",
+        "ENG30-00001740",
+    ]
+
+    for selector in valid_selectors:
+        offset, pos = parse_eng30_id(selector)
+        assert isinstance(offset, int)
+        assert pos in {"n", "v", "a", "r"}
+
+    for selector in invalid_selectors:
+        with pytest.raises(ValueError):
+            parse_eng30_id(selector)
 
 
 def test_synset_to_payload_builds_expected_shape():
