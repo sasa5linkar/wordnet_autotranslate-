@@ -384,6 +384,33 @@ def test_call_llm_retries_on_invoke_exception():
     assert call["payload"]["sense_summary"] == "desc"
 
 
+def test_call_llm_fallback_payload_shape_after_repeated_invoke_exceptions():
+    class _AlwaysFailLLM:
+        def invoke(self, messages):
+            raise RuntimeError("transport down")
+
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_AlwaysFailLLM(),
+    )
+
+    call = pipeline._call_llm("prompt", stage="sense_analysis", retries=1)
+    payload = call["payload"]
+
+    # Ensure fallback payload respects stage schema shape.
+    assert set(payload.keys()) == {
+        "sense_summary",
+        "contrastive_note",
+        "key_features",
+        "domain_tags",
+        "confidence",
+    }
+    assert isinstance(payload["key_features"], list)
+    assert isinstance(payload["domain_tags"], list)
+    assert call["raw_response"] == "transport down"
+
+
 def test_translation_result_to_dict():
     """Test TranslationResult.to_dict() serialization."""
     from wordnet_autotranslate.pipelines.langgraph_translation_pipeline import (
