@@ -36,7 +36,7 @@ def parse_eng30_id(english_id: str) -> Tuple[int, str]:
     parts = str(english_id).strip().split("-")
     if len(parts) != 3 or parts[0] != "ENG30":
         raise ValueError(
-            f"parse_eng30_id: invalid selector {english_id!r}; expected 'ENG30-########-[n|v|a|r|b]'."
+            f"parse_eng30_id: invalid selector {english_id!r}; expected 'ENG30-########-[n|v|a|s|r]'."
         )
 
     try:
@@ -46,10 +46,15 @@ def parse_eng30_id(english_id: str) -> Tuple[int, str]:
             f"parse_eng30_id: invalid offset in selector {english_id!r}; offset must be an integer."
         ) from exc
 
-    pos = LanguageUtils.normalize_pos_for_english(parts[2].lower())
+    raw_pos = parts[2].lower()
+    if raw_pos not in {"n", "v", "a", "s", "r", "b"}:
+        raise ValueError(
+            f"parse_eng30_id: invalid POS in selector {english_id!r}; expected one of n,v,a,s,r."
+        )
+    pos = LanguageUtils.normalize_pos_for_english(raw_pos)
     if pos not in {"n", "v", "a", "r"}:
         raise ValueError(
-            f"parse_eng30_id: invalid POS in selector {english_id!r}; expected one of n,v,a,r,b."
+            f"parse_eng30_id: invalid POS mapping in selector {english_id!r}; normalized POS={pos!r} is unsupported."
         )
 
     return offset, pos

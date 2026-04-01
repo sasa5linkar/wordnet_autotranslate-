@@ -65,6 +65,7 @@ class LanguageUtils:
         'n': 'n',
         'v': 'v',
         'a': 'a',
+        's': 'a',  # satellite adjective -> adjective for WordNet lookups
         # keep any other tag as-is by default
     }
 

@@ -45,9 +45,21 @@ def test_parse_eng30_id_normalizes_adverb_pos():
     assert pos == "r"
 
 
+def test_parse_eng30_id_normalizes_satellite_adjective_pos():
+    offset, pos = parse_eng30_id("ENG30-00001740-s")
+
+    assert offset == 1740
+    assert pos == "a"
+
+
 def test_parse_eng30_id_rejects_malformed_selector():
     with pytest.raises(ValueError, match="parse_eng30_id"):
         parse_eng30_id("BROKEN-1740-x")
+
+
+def test_parse_eng30_id_rejects_invalid_pos_with_clear_message():
+    with pytest.raises(ValueError, match="expected one of n,v,a,s,r"):
+        parse_eng30_id("ENG30-00001740-x")
 
 
 def test_synset_to_payload_builds_expected_shape():
