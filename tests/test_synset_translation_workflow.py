@@ -1,6 +1,8 @@
 import pytest
 
+from wordnet_autotranslate.workflows import synset_translation_workflow as workflow_mod
 from wordnet_autotranslate.workflows.synset_translation_workflow import (
+    WorkflowConfig,
     parse_eng30_id,
     run_translation_workflow,
     synset_to_payload,
@@ -70,3 +72,65 @@ def test_run_translation_workflow_dspy_reports_not_implemented():
 def test_run_translation_workflow_rejects_unknown_pipeline():
     with pytest.raises(ValueError, match="Unsupported pipeline"):
         run_translation_workflow({"id": "ENG30-00001740-n"}, pipeline="unknown")
+
+
+def test_run_translation_workflow_all_includes_dspy(monkeypatch):
+    class _FakeLangGraph:
+        def __init__(self, **kwargs):
+            pass
+
+        def translate_synset(self, synset):
+            return {"translation": "lg"}
+
+    class _FakeConceptual:
+        def __init__(self, **kwargs):
+            pass
+
+        def translate_synset(self, synset):
+            return {"translation": "cg"}
+
+    monkeypatch.setattr(workflow_mod, "LangGraphTranslationPipeline", _FakeLangGraph)
+    monkeypatch.setattr(
+        workflow_mod, "ConceptualLangGraphTranslationPipeline", _FakeConceptual
+    )
+
+    result = run_translation_workflow({"id": "ENG30-00001740-n"}, pipeline="all")
+    assert set(result["pipelines"]) == {"langgraph", "conceptual", "dspy"}
+
+
+def test_run_translation_workflow_capture_errors_when_non_strict(monkeypatch):
+    class _FailingLangGraph:
+        def __init__(self, **kwargs):
+            pass
+
+        def translate_synset(self, synset):
+            raise RuntimeError("llm unavailable")
+
+    monkeypatch.setattr(
+        workflow_mod, "LangGraphTranslationPipeline", _FailingLangGraph
+    )
+    result = run_translation_workflow(
+        {"id": "ENG30-00001740-n"},
+        pipeline="langgraph",
+        config=WorkflowConfig(strict=False),
+    )
+    assert result["pipelines"]["langgraph"]["status"] == "error"
+
+
+def test_run_translation_workflow_raises_when_strict(monkeypatch):
+    class _FailingLangGraph:
+        def __init__(self, **kwargs):
+            pass
+
+        def translate_synset(self, synset):
+            raise RuntimeError("llm unavailable")
+
+    monkeypatch.setattr(
+        workflow_mod, "LangGraphTranslationPipeline", _FailingLangGraph
+    )
+    with pytest.raises(RuntimeError, match="llm unavailable"):
+        run_translation_workflow(
+            {"id": "ENG30-00001740-n"},
+            pipeline="langgraph",
+            config=WorkflowConfig(strict=True),
+        )

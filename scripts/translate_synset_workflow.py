@@ -34,6 +34,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--target-lang", default="sr")
     parser.add_argument("--timeout", type=int, default=600)
     parser.add_argument("--temperature", type=float, default=0.2)
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="Fail immediately if any selected pipeline errors.",
+    )
     return parser
 
 
@@ -56,6 +61,7 @@ def main() -> int:
             timeout=args.timeout,
             base_url=args.base_url,
             temperature=args.temperature,
+            strict=args.strict,
         )
         result = run_translation_workflow(
             synset_payload,

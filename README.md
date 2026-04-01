@@ -139,6 +139,8 @@ resolution and single/multi-pipeline execution), use:
 python scripts/translate_synset_workflow.py --english-id ENG30-00001740-n --pipeline all --model gpt-oss:120b
 ```
 
+Use `--strict` to fail fast when any selected pipeline errors.
+
 Skill documentation for agents is available at:
 `skills/translate-synset-serbian/SKILL.md`.
 

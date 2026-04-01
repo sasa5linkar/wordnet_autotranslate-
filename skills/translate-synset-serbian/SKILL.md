@@ -12,7 +12,7 @@ Use this skill when the user asks to translate by any of:
 ## Pipelines supported
 - `langgraph` (LangGraphTranslationPipeline)
 - `conceptual` (ConceptualLangGraphTranslationPipeline)
-- `all` (runs both)
+- `all` (runs LangGraph + Conceptual + DSPy placeholder)
 - `dspy` (reports not implemented in current repo)
 
 ## Workflow
@@ -37,3 +37,4 @@ python scripts/translate_synset_workflow.py --lemma entity --pos n --sense-index
 - Requires NLTK WordNet availability for lookup.
 - LangGraph pipelines require optional dependencies and a reachable Ollama endpoint.
 - Serbian adverb POS (`b`) is normalized to WordNet adverb POS (`r`) automatically.
+- Add `--strict` when you want non-zero exit on any per-pipeline error.

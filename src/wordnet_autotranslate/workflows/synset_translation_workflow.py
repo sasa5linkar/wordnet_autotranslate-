@@ -14,6 +14,7 @@ import json
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 
+from ..pipelines.translation_pipeline import TranslationPipeline
 from ..pipelines.conceptual_langgraph_pipeline import ConceptualLangGraphTranslationPipeline
 from ..pipelines.langgraph_translation_pipeline import LangGraphTranslationPipeline
 from ..utils.language_utils import LanguageUtils
@@ -27,6 +28,7 @@ class WorkflowConfig:
     timeout: int = 600
     base_url: str = "http://localhost:11434"
     temperature: float = 0.2
+    strict: bool = False
 
 
 def parse_eng30_id(english_id: str) -> Tuple[int, str]:
@@ -114,6 +116,17 @@ def run_translation_workflow(
         "pipelines": {},
     }
 
+    def _run_with_capture(name: str, runner: Any) -> None:
+        try:
+            results["pipelines"][name] = runner()
+        except Exception as exc:
+            if config.strict:
+                raise
+            results["pipelines"][name] = {
+                "status": "error",
+                "message": str(exc),
+            }
+
     if selected in {"langgraph", "all"}:
         lg = LangGraphTranslationPipeline(
             source_lang=config.source_lang,
@@ -123,7 +136,7 @@ def run_translation_workflow(
             base_url=config.base_url,
             temperature=config.temperature,
         )
-        results["pipelines"]["langgraph"] = lg.translate_synset(synset_payload)
+        _run_with_capture("langgraph", lambda: lg.translate_synset(synset_payload))
 
     if selected in {"conceptual", "all"}:
         cg = ConceptualLangGraphTranslationPipeline(
@@ -134,13 +147,21 @@ def run_translation_workflow(
             base_url=config.base_url,
             temperature=config.temperature,
         )
-        results["pipelines"]["conceptual"] = cg.translate_synset(synset_payload)
+        _run_with_capture("conceptual", lambda: cg.translate_synset(synset_payload))
 
-    if selected == "dspy":
-        results["pipelines"]["dspy"] = {
-            "status": "not_implemented",
-            "message": "TranslationPipeline.translate is currently a TODO in this repository.",
-        }
+    if selected in {"dspy", "all"}:
+        dspy_pipeline = TranslationPipeline(
+            source_lang=config.source_lang,
+            target_lang=config.target_lang,
+        )
+        dspy_output = dspy_pipeline.translate([synset_payload])
+        if dspy_output:
+            results["pipelines"]["dspy"] = dspy_output[0]
+        else:
+            results["pipelines"]["dspy"] = {
+                "status": "not_implemented",
+                "message": "TranslationPipeline.translate currently returns no outputs for synsets.",
+            }
 
     if not results["pipelines"]:
         raise ValueError("Unsupported pipeline. Use: langgraph | conceptual | all | dspy")
