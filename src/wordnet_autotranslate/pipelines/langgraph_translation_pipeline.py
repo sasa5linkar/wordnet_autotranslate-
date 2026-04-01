@@ -669,8 +669,20 @@ class LangGraphTranslationPipeline:
                 self._HumanMessage(content=prompt),
             ]
 
-            response = self.llm.invoke(messages)
-            content: Any = getattr(response, "content", response)
+            try:
+                response = self.llm.invoke(messages)
+                content: Any = getattr(response, "content", response)
+            except Exception as exc:
+                raw = str(exc)
+                if attempt < retries:
+                    print(
+                        f"[Retry {attempt + 1}/{retries}] LLM invoke failed for stage '{stage}': {exc}"
+                    )
+                    continue
+                print(
+                    f"[ERROR] LLM invoke failed for stage '{stage}' after retries: {exc}"
+                )
+                break
 
             if isinstance(content, list):
                 combined = "".join(
@@ -893,12 +905,12 @@ class LangGraphTranslationPipeline:
     @staticmethod
     def _coerce_to_str_list(value: Any) -> List[str]:
         """Normalise unknown payload values into a cleaned list of strings."""
-        if value is None:
-            return []
         if isinstance(value, (list, tuple)):
-            return [str(item).strip() for item in value if str(item).strip()]
-        text = str(value).strip()
-        return [text] if text else []
+            return [item.strip() for item in value if isinstance(item, str) and item.strip()]
+        if isinstance(value, str):
+            text = value.strip()
+            return [text] if text else []
+        return []
 
     def _assemble_result(self, state: TranslationGraphState) -> TranslationGraphState:
         """LangGraph node: Combine all stage outputs into final result.

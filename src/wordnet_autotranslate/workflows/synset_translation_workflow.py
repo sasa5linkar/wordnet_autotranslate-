@@ -34,11 +34,40 @@ class WorkflowConfig:
 def parse_eng30_id(english_id: str) -> Tuple[int, str]:
     """Parse ENG30 IDs into (offset, pos)."""
     parts = str(english_id).strip().split("-")
-    if len(parts) < 3:
-        raise ValueError(f"Invalid ENG30 id format: {english_id}")
-    offset = int(parts[1])
-    pos = LanguageUtils.normalize_pos_for_english(parts[2])
+    if len(parts) != 3 or parts[0] != "ENG30":
+        raise ValueError(
+            f"parse_eng30_id: invalid selector {english_id!r}; expected 'ENG30-########-[n|v|a|r|b]'."
+        )
+
+    try:
+        offset = int(parts[1])
+    except ValueError as exc:
+        raise ValueError(
+            f"parse_eng30_id: invalid offset in selector {english_id!r}; offset must be an integer."
+        ) from exc
+
+    pos = LanguageUtils.normalize_pos_for_english(parts[2].lower())
+    if pos not in {"n", "v", "a", "r"}:
+        raise ValueError(
+            f"parse_eng30_id: invalid POS in selector {english_id!r}; expected one of n,v,a,r,b."
+        )
+
     return offset, pos
+
+
+def _resolve_sense_index(sense_index: int, candidate_count: int) -> int:
+    """Resolve 1-based sense index to zero-based list index."""
+    if sense_index <= 0:
+        raise ValueError(
+            f"sense-index resolution routine: invalid sense_index={sense_index}; expected positive integer."
+        )
+    idx = sense_index - 1
+    if idx >= candidate_count:
+        raise ValueError(
+            "sense-index resolution routine: "
+            f"sense_index={sense_index} out of range; available senses={candidate_count}."
+        )
+    return idx
 
 
 def synset_to_payload(synset: Any) -> Dict[str, Any]:
@@ -89,11 +118,7 @@ def resolve_wordnet_synset(
         candidates = wn.synsets(lemma, pos=mapped_pos)
         if not candidates:
             raise LookupError(f"No synsets found for lemma={lemma!r}, pos={pos!r}")
-        idx = max(1, sense_index) - 1
-        if idx >= len(candidates):
-            raise LookupError(
-                f"sense_index={sense_index} out of range; available senses={len(candidates)}"
-            )
+        idx = _resolve_sense_index(sense_index, len(candidates))
         return synset_to_payload(candidates[idx])
 
     raise ValueError(

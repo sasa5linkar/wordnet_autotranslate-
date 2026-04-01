@@ -307,6 +307,14 @@ def test_decode_llm_payload_invalid_json_fallback():
     assert result["translation"] == raw
 
 
+def test_coerce_to_str_list_ignores_non_strings():
+    result = LangGraphTranslationPipeline._coerce_to_str_list(
+        [" valid ", None, 7, {"x": 1}, "", "ok"]
+    )
+    assert result == ["valid", "ok"]
+    assert LangGraphTranslationPipeline._coerce_to_str_list({"bad": "shape"}) == []
+
+
 def test_get_wordnet_domain_info_normalizes_serbian_adverb_pos(monkeypatch):
     """Test ENG IDs using Serbian POS markers (b) are normalized to r."""
 
@@ -342,6 +350,38 @@ def test_get_wordnet_domain_info_normalizes_serbian_adverb_pos(monkeypatch):
     assert observed["offset"] == 1740
     assert result["lexname"] == "adv.all"
     assert result["topic_domains"] == ["topic.test.01"]
+
+
+def test_call_llm_retries_on_invoke_exception():
+    class _FailOnceLLM:
+        def __init__(self):
+            self.calls = 0
+
+        def invoke(self, messages):
+            self.calls += 1
+            if self.calls == 1:
+                raise RuntimeError("temporary transport failure")
+
+            class _Response:
+                content = json.dumps(
+                    {
+                        "sense_summary": "desc",
+                        "contrastive_note": "note",
+                        "key_features": ["f1"],
+                        "domain_tags": [],
+                        "confidence": "high",
+                    }
+                )
+
+            return _Response()
+
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_FailOnceLLM(),
+    )
+    call = pipeline._call_llm("prompt", stage="sense_analysis", retries=1)
+    assert call["payload"]["sense_summary"] == "desc"
 
 
 def test_translation_result_to_dict():

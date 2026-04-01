@@ -6,6 +6,7 @@ from wordnet_autotranslate.workflows.synset_translation_workflow import (
     parse_eng30_id,
     run_translation_workflow,
     synset_to_payload,
+    _resolve_sense_index,
 )
 
 
@@ -44,6 +45,11 @@ def test_parse_eng30_id_normalizes_adverb_pos():
     assert pos == "r"
 
 
+def test_parse_eng30_id_rejects_malformed_selector():
+    with pytest.raises(ValueError, match="parse_eng30_id"):
+        parse_eng30_id("BROKEN-1740-x")
+
+
 def test_synset_to_payload_builds_expected_shape():
     payload = synset_to_payload(_FakeSynset())
 
@@ -72,6 +78,11 @@ def test_run_translation_workflow_dspy_reports_not_implemented():
 def test_run_translation_workflow_rejects_unknown_pipeline():
     with pytest.raises(ValueError, match="Unsupported pipeline"):
         run_translation_workflow({"id": "ENG30-00001740-n"}, pipeline="unknown")
+
+
+def test_resolve_sense_index_requires_positive_integer():
+    with pytest.raises(ValueError, match="sense-index resolution routine"):
+        _resolve_sense_index(0, 3)
 
 
 def test_run_translation_workflow_all_includes_dspy(monkeypatch):

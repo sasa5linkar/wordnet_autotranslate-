@@ -296,7 +296,7 @@ This project supports expansion to any language. Current examples include:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under CC0 1.0 Universal (CC0-1.0) - see the LICENSE file for details.
 
 ## Acknowledgments
 

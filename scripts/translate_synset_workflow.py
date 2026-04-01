@@ -46,6 +46,9 @@ def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
 
+    if args.lemma and not args.pos:
+        parser.error("--lemma requires --pos")
+
     try:
         synset_payload = resolve_wordnet_synset(
             english_id=args.english_id,
@@ -70,8 +73,10 @@ def main() -> int:
         )
         print(results_to_json(result))
         return 0
+    except KeyboardInterrupt:
+        return 130
     except Exception as exc:
-        print(f"[ERROR] {exc}", file=sys.stderr)
+        print(f"[ERROR] {type(exc).__name__}: {exc}", file=sys.stderr)
         return 1
 
 
