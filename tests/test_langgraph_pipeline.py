@@ -411,6 +411,56 @@ def test_call_llm_fallback_payload_shape_after_repeated_invoke_exceptions():
     assert call["raw_response"] == "transport down"
 
 
+@pytest.mark.parametrize(
+    ("stage", "expected_keys"),
+    [
+        (
+            "sense_analysis",
+            {
+                "sense_summary",
+                "contrastive_note",
+                "key_features",
+                "domain_tags",
+                "confidence",
+            },
+        ),
+        (
+            "definition_translation",
+            {"definition_translation", "notes", "examples"},
+        ),
+        (
+            "initial_translation",
+            {"initial_translations", "alignment"},
+        ),
+        (
+            "synonym_expansion",
+            {"expanded_synonyms", "rationale"},
+        ),
+        (
+            "synonym_filtering",
+            {"filtered_synonyms", "removed", "confidence"},
+        ),
+    ],
+)
+def test_call_llm_fallback_payload_shape_matrix_after_repeated_invoke_exceptions(
+    stage, expected_keys
+):
+    class _AlwaysFailLLM:
+        def invoke(self, messages):
+            raise RuntimeError(f"{stage} transport down")
+
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_AlwaysFailLLM(),
+    )
+
+    call = pipeline._call_llm("prompt", stage=stage, retries=1)
+    payload = call["payload"]
+    assert set(payload.keys()) == expected_keys
+    assert call["raw_response"] == f"{stage} transport down"
+
+
 def test_translation_result_to_dict():
     """Test TranslationResult.to_dict() serialization."""
     from wordnet_autotranslate.pipelines.langgraph_translation_pipeline import (
