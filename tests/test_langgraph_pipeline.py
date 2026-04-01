@@ -1,4 +1,6 @@
 import json
+import sys
+import types
 from typing import List, Optional
 
 import pytest
@@ -303,6 +305,160 @@ def test_decode_llm_payload_invalid_json_fallback():
     # Should return the cleaned text as translation
     assert "translation" in result
     assert result["translation"] == raw
+
+
+def test_coerce_to_str_list_ignores_non_strings():
+    result = LangGraphTranslationPipeline._coerce_to_str_list(
+        [" valid ", None, 7, {"x": 1}, "", "ok"]
+    )
+    assert result == ["valid", "ok"]
+    assert LangGraphTranslationPipeline._coerce_to_str_list({"bad": "shape"}) == []
+
+
+def test_get_wordnet_domain_info_normalizes_serbian_adverb_pos(monkeypatch):
+    """Test ENG IDs using Serbian POS markers (b) are normalized to r."""
+
+    observed = {}
+
+    class _FakeTopicDomain:
+        def name(self):
+            return "topic.test.01"
+
+    class _FakeSynset:
+        def lexname(self):
+            return "adv.all"
+
+        def topic_domains(self):
+            return [_FakeTopicDomain()]
+
+    def _fake_lookup(pos_char, offset):
+        observed["pos_char"] = pos_char
+        observed["offset"] = offset
+        return _FakeSynset()
+
+    fake_wordnet = types.SimpleNamespace(synset_from_pos_and_offset=_fake_lookup)
+    fake_corpus = types.SimpleNamespace(wordnet=fake_wordnet)
+    fake_nltk = types.SimpleNamespace(corpus=fake_corpus)
+
+    monkeypatch.setitem(sys.modules, "nltk", fake_nltk)
+    monkeypatch.setitem(sys.modules, "nltk.corpus", fake_corpus)
+    monkeypatch.setitem(sys.modules, "nltk.corpus.wordnet", fake_wordnet)
+
+    result = LangGraphTranslationPipeline._get_wordnet_domain_info("ENG30-00001740-b")
+
+    assert observed["pos_char"] == "r"
+    assert observed["offset"] == 1740
+    assert result["lexname"] == "adv.all"
+    assert result["topic_domains"] == ["topic.test.01"]
+
+
+def test_call_llm_retries_on_invoke_exception():
+    class _FailOnceLLM:
+        def __init__(self):
+            self.calls = 0
+
+        def invoke(self, messages):
+            self.calls += 1
+            if self.calls == 1:
+                raise RuntimeError("temporary transport failure")
+
+            class _Response:
+                content = json.dumps(
+                    {
+                        "sense_summary": "desc",
+                        "contrastive_note": "note",
+                        "key_features": ["f1"],
+                        "domain_tags": [],
+                        "confidence": "high",
+                    }
+                )
+
+            return _Response()
+
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_FailOnceLLM(),
+    )
+    call = pipeline._call_llm("prompt", stage="sense_analysis", retries=1)
+    assert call["payload"]["sense_summary"] == "desc"
+
+
+def test_call_llm_fallback_payload_shape_after_repeated_invoke_exceptions():
+    class _AlwaysFailLLM:
+        def invoke(self, messages):
+            raise RuntimeError("transport down")
+
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_AlwaysFailLLM(),
+    )
+
+    call = pipeline._call_llm("prompt", stage="sense_analysis", retries=1)
+    payload = call["payload"]
+
+    # Ensure fallback payload respects stage schema shape.
+    assert set(payload.keys()) == {
+        "sense_summary",
+        "contrastive_note",
+        "key_features",
+        "domain_tags",
+        "confidence",
+    }
+    assert isinstance(payload["key_features"], list)
+    assert isinstance(payload["domain_tags"], list)
+    assert call["raw_response"] == "transport down"
+
+
+@pytest.mark.parametrize(
+    ("stage", "expected_keys"),
+    [
+        (
+            "sense_analysis",
+            {
+                "sense_summary",
+                "contrastive_note",
+                "key_features",
+                "domain_tags",
+                "confidence",
+            },
+        ),
+        (
+            "definition_translation",
+            {"definition_translation", "notes", "examples"},
+        ),
+        (
+            "initial_translation",
+            {"initial_translations", "alignment"},
+        ),
+        (
+            "synonym_expansion",
+            {"expanded_synonyms", "rationale"},
+        ),
+        (
+            "synonym_filtering",
+            {"filtered_synonyms", "removed", "confidence"},
+        ),
+    ],
+)
+def test_call_llm_fallback_payload_shape_matrix_after_repeated_invoke_exceptions(
+    stage, expected_keys
+):
+    class _AlwaysFailLLM:
+        def invoke(self, messages):
+            raise RuntimeError(f"{stage} transport down")
+
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_AlwaysFailLLM(),
+    )
+
+    call = pipeline._call_llm("prompt", stage=stage, retries=1)
+    payload = call["payload"]
+    assert set(payload.keys()) == expected_keys
+    assert call["raw_response"] == f"{stage} transport down"
 
 
 def test_translation_result_to_dict():

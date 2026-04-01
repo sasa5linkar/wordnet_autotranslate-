@@ -130,6 +130,20 @@ translations = pipeline.translate(synsets)
 # - payload: full JSON logs (sense analysis, definition translation, synonym decisions)
 ```
 
+### Agent workflow: translate by synset ID/name/lemma
+
+For agent-compatible, repeatable translation workflows (including selector
+resolution and single/multi-pipeline execution), use:
+
+```bash
+python scripts/translate_synset_workflow.py --english-id ENG30-00001740-n --pipeline all --model gpt-oss:120b
+```
+
+Use `--strict` to fail fast when any selected pipeline errors.
+
+Skill documentation for agents is available at:
+`skills/translate-synset-serbian/SKILL.md`.
+
 ### Concept-oriented LangGraph comparison pipeline
 
 To compare the existing generate-and-filter pipeline with a stricter
@@ -282,7 +296,7 @@ This project supports expansion to any language. Current examples include:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under CC0 1.0 Universal (CC0-1.0) - see the LICENSE file for details.
 
 ## Acknowledgments
 

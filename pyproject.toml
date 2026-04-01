@@ -10,13 +10,13 @@ authors = [
 ]
 description = "Automatic expansion of WordNet in less-resourced languages using DSPy"
 readme = "README.md"
-license = {text = "MIT"}
+license = {text = "CC0-1.0"}
 requires-python = ">=3.8"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
