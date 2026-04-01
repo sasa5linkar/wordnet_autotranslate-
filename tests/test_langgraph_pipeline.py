@@ -1,4 +1,6 @@
 import json
+import sys
+import types
 from typing import List, Optional
 
 import pytest
@@ -303,6 +305,43 @@ def test_decode_llm_payload_invalid_json_fallback():
     # Should return the cleaned text as translation
     assert "translation" in result
     assert result["translation"] == raw
+
+
+def test_get_wordnet_domain_info_normalizes_serbian_adverb_pos(monkeypatch):
+    """Test ENG IDs using Serbian POS markers (b) are normalized to r."""
+
+    observed = {}
+
+    class _FakeTopicDomain:
+        def name(self):
+            return "topic.test.01"
+
+    class _FakeSynset:
+        def lexname(self):
+            return "adv.all"
+
+        def topic_domains(self):
+            return [_FakeTopicDomain()]
+
+    def _fake_lookup(pos_char, offset):
+        observed["pos_char"] = pos_char
+        observed["offset"] = offset
+        return _FakeSynset()
+
+    fake_wordnet = types.SimpleNamespace(synset_from_pos_and_offset=_fake_lookup)
+    fake_corpus = types.SimpleNamespace(wordnet=fake_wordnet)
+    fake_nltk = types.SimpleNamespace(corpus=fake_corpus)
+
+    monkeypatch.setitem(sys.modules, "nltk", fake_nltk)
+    monkeypatch.setitem(sys.modules, "nltk.corpus", fake_corpus)
+    monkeypatch.setitem(sys.modules, "nltk.corpus.wordnet", fake_wordnet)
+
+    result = LangGraphTranslationPipeline._get_wordnet_domain_info("ENG30-00001740-b")
+
+    assert observed["pos_char"] == "r"
+    assert observed["offset"] == 1740
+    assert result["lexname"] == "adv.all"
+    assert result["topic_domains"] == ["topic.test.01"]
 
 
 def test_translation_result_to_dict():
