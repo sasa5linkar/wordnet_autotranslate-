@@ -1,4 +1,6 @@
 import pytest
+import random
+import string
 
 from wordnet_autotranslate.workflows import synset_translation_workflow as workflow_mod
 from wordnet_autotranslate.workflows.synset_translation_workflow import (
@@ -101,6 +103,77 @@ def test_parse_eng30_id_seed_fuzz_corpus():
         offset, pos = parse_eng30_id(selector)
         assert isinstance(offset, int)
         assert pos in {"n", "v", "a", "r"}
+
+    for selector in invalid_selectors:
+        with pytest.raises(ValueError):
+            parse_eng30_id(selector)
+
+
+@pytest.mark.parametrize(
+    ("selector", "expected_pos"),
+    [
+        ("ENG30-00001740-N", "n"),
+        ("ENG30-00001740-V", "v"),
+        ("ENG30-00001740-A", "a"),
+        ("ENG30-00001740-S", "a"),
+        ("ENG30-00001740-R", "r"),
+        ("ENG30-00001740-B", "r"),
+    ],
+)
+def test_parse_eng30_id_uppercase_pos_inputs(selector, expected_pos):
+    offset, pos = parse_eng30_id(selector)
+    assert offset == 1740
+    assert pos == expected_pos
+
+
+@pytest.mark.parametrize(
+    ("selector", "expected_pos"),
+    [
+        ("ENG30-00001740-n", "n"),
+        ("ENG30-00001740-v", "v"),
+        ("ENG30-00001740-a", "a"),
+        ("ENG30-00001740-s", "a"),
+        ("ENG30-00001740-r", "r"),
+        ("ENG30-00001740-b", "r"),
+    ],
+)
+def test_parse_eng30_id_allowed_pos_table(selector, expected_pos):
+    offset, pos = parse_eng30_id(selector)
+    assert offset == 1740
+    assert pos == expected_pos
+
+
+def test_parse_eng30_id_generated_fuzz_cases():
+    rng = random.Random(1337)
+    delimiters = ["_", "/", "—", " "]
+
+    invalid_selectors = []
+    # Random wrong delimiters, malformed offsets, and invalid POS tokens.
+    for _ in range(40):
+        delim = rng.choice(delimiters)
+        offset_len = rng.choice([1, 2, 3, 4, 5, 6, 7, 9, 10])
+        offset = "".join(rng.choice(string.digits) for _ in range(offset_len))
+        pos = rng.choice([ch for ch in (string.ascii_letters + "!?") if ch.lower() not in "nvasrb"])
+        parts = ["ENG30", offset, pos]
+        if rng.random() < 0.5:
+            parts.append("extra")
+        invalid_selectors.append(delim.join(parts))
+
+    # Unicode/punctuation noise and partial tokens.
+    invalid_selectors.extend(
+        [
+            "ENG30-00001740-ñ",
+            "ENG30-００００１７４０-n",  # full-width digits
+            "ENG30-00001740-",
+            "ENG30-0000174-n",  # short offset
+            "ENG30-000017400-n",  # long offset
+            "ENG30-0000A740-n",
+            "ENG30-💥-n",
+            "ENG30-n",
+            "ENG30--",
+            "ENG3O-00001740-n",  # letter O in prefix
+        ]
+    )
 
     for selector in invalid_selectors:
         with pytest.raises(ValueError):

@@ -40,7 +40,7 @@ def parse_eng30_id(english_id: str) -> Tuple[int, str]:
         )
 
     offset_token = parts[1]
-    if len(offset_token) != 8 or not offset_token.isdigit():
+    if len(offset_token) != 8 or not offset_token.isascii() or not offset_token.isdigit():
         raise ValueError(
             f"parse_eng30_id: invalid offset in selector {english_id!r}; offset must be exactly 8 digits."
         )
