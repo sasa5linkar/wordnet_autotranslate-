@@ -139,7 +139,15 @@ resolution and single/multi-pipeline execution), use:
 python scripts/translate_synset_workflow.py --english-id ENG30-00001740-n --pipeline all --model gpt-oss:120b
 ```
 
+Selector families are mutually exclusive: provide exactly one of
+`--english-id`, `--synset-name`, or `--lemma` + `--pos`. If multiple are
+provided (or none), the CLI fails fast with a usage error.
+
 Use `--strict` to fail fast when any selected pipeline errors.
+Use `--timeout 1800` (default) for local long-running prompts on large models,
+and increase up to 3600 seconds when needed.
+Use `--max-retries` and `--retry-delay-seconds` to bound retry behavior for
+temporary local LLM/network failures.
 
 Skill documentation for agents is available at:
 `skills/translate-synset-serbian/SKILL.md`.

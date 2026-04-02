@@ -26,10 +26,8 @@ from typing import Any, Dict, Generator, Iterable, List, Sequence, TypedDict
 from pydantic import BaseModel, Field
 
 from ..utils.language_utils import LanguageUtils
-from .langgraph_translation_pipeline import (
-    LangGraphTranslationPipeline,
-    validate_stage_payload,
-)
+from .langgraph_translation_pipeline import LangGraphTranslationPipeline
+from .stages.schema_validation import validate_stage_payload
 
 
 class RelatedSynsetSchema(BaseModel):
@@ -392,7 +390,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
         """Render the prompt for the expanded English definition stage."""
 
         concept_json = self._to_pretty_json(concept_package)
-        return textwrap.dedent(f"""
+        return textwrap.dedent(
+            f"""
             Create an expanded English semantic definition for a WordNet synset.
 
             Rules:
@@ -411,7 +410,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
 
             Concept package:
             {concept_json}
-            """).strip()
+            """
+        ).strip()
 
     def _render_expanded_definition_sr_prompt(
         self,
@@ -422,7 +422,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
 
         concept_json = self._to_pretty_json(concept_package)
         expanded_en_json = self._to_pretty_json(expanded_en)
-        return textwrap.dedent(f"""
+        return textwrap.dedent(
+            f"""
             Translate and adapt the expanded English semantic definition into Serbian.
 
             Rules:
@@ -444,7 +445,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
 
             Expanded English output:
             {expanded_en_json}
-            """).strip()
+            """
+        ).strip()
 
     def _render_literal_candidates_prompt(
         self,
@@ -455,7 +457,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
 
         concept_json = self._to_pretty_json(concept_package)
         expanded_sr_json = self._to_pretty_json(expanded_sr)
-        return textwrap.dedent(f"""
+        return textwrap.dedent(
+            f"""
             Propose Serbian literal candidates for a Serbian WordNet synset.
 
             Rules:
@@ -484,7 +487,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
 
             Expanded Serbian output:
             {expanded_sr_json}
-            """).strip()
+            """
+        ).strip()
 
     def _render_literal_selection_prompt(
         self,
@@ -497,7 +501,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
         concept_json = self._to_pretty_json(concept_package)
         expanded_sr_json = self._to_pretty_json(expanded_sr)
         candidates_json = self._to_pretty_json(literal_candidates)
-        return textwrap.dedent(f"""
+        return textwrap.dedent(
+            f"""
             Select the final Serbian literals for this WordNet synset.
 
             Rules:
@@ -520,7 +525,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
 
             Candidate literals:
             {candidates_json}
-            """).strip()
+            """
+        ).strip()
 
     def _render_final_gloss_prompt(
         self,
@@ -533,7 +539,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
         concept_json = self._to_pretty_json(concept_package)
         expanded_sr_json = self._to_pretty_json(expanded_sr)
         selection_json = self._to_pretty_json(selection)
-        return textwrap.dedent(f"""
+        return textwrap.dedent(
+            f"""
             Write a final short Serbian WordNet gloss.
 
             Rules:
@@ -556,7 +563,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
 
             Selected literals:
             {selection_json}
-            """).strip()
+            """
+        ).strip()
 
     def _render_validation_prompt(
         self,
@@ -571,7 +579,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
         expanded_sr_json = self._to_pretty_json(expanded_sr)
         selection_json = self._to_pretty_json(selection)
         final_gloss_json = self._to_pretty_json(final_gloss)
-        return textwrap.dedent(f"""
+        return textwrap.dedent(
+            f"""
             Validate a drafted Serbian WordNet synset.
 
             Check:
@@ -605,7 +614,8 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
 
             Final gloss:
             {final_gloss_json}
-            """).strip()
+            """
+        ).strip()
 
     def _assemble_result(
         self, state: ConceptualTranslationGraphState

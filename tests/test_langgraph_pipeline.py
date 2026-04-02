@@ -409,6 +409,7 @@ def test_call_llm_fallback_payload_shape_after_repeated_invoke_exceptions():
     assert isinstance(payload["key_features"], list)
     assert isinstance(payload["domain_tags"], list)
     assert call["raw_response"] == "transport down"
+    assert "request_id" in call
 
 
 @pytest.mark.parametrize(
@@ -459,6 +460,16 @@ def test_call_llm_fallback_payload_shape_matrix_after_repeated_invoke_exceptions
     payload = call["payload"]
     assert set(payload.keys()) == expected_keys
     assert call["raw_response"] == f"{stage} transport down"
+
+
+def test_pipeline_bounds_timeout_to_maximum():
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+        timeout=99999,
+    )
+    assert pipeline.timeout == LangGraphTranslationPipeline.MAX_TIMEOUT
 
 
 def test_translation_result_to_dict():

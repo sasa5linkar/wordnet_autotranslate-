@@ -6,6 +6,7 @@ from wordnet_autotranslate.workflows import synset_translation_workflow as workf
 from wordnet_autotranslate.workflows.synset_translation_workflow import (
     WorkflowConfig,
     parse_eng30_id,
+    resolve_wordnet_synset,
     run_translation_workflow,
     synset_to_payload,
     _resolve_sense_index,
@@ -153,7 +154,9 @@ def test_parse_eng30_id_generated_fuzz_cases():
         delim = rng.choice(delimiters)
         offset_len = rng.choice([1, 2, 3, 4, 5, 6, 7, 9, 10])
         offset = "".join(rng.choice(string.digits) for _ in range(offset_len))
-        pos = rng.choice([ch for ch in (string.ascii_letters + "!?") if ch.lower() not in "nvasrb"])
+        pos = rng.choice(
+            [ch for ch in (string.ascii_letters + "!?") if ch.lower() not in "nvasrb"]
+        )
         parts = ["ENG30", offset, pos]
         if rng.random() < 0.5:
             parts.append("extra")
@@ -247,9 +250,7 @@ def test_run_translation_workflow_capture_errors_when_non_strict(monkeypatch):
         def translate_synset(self, synset):
             raise RuntimeError("llm unavailable")
 
-    monkeypatch.setattr(
-        workflow_mod, "LangGraphTranslationPipeline", _FailingLangGraph
-    )
+    monkeypatch.setattr(workflow_mod, "LangGraphTranslationPipeline", _FailingLangGraph)
     result = run_translation_workflow(
         {"id": "ENG30-00001740-n"},
         pipeline="langgraph",
@@ -266,12 +267,23 @@ def test_run_translation_workflow_raises_when_strict(monkeypatch):
         def translate_synset(self, synset):
             raise RuntimeError("llm unavailable")
 
-    monkeypatch.setattr(
-        workflow_mod, "LangGraphTranslationPipeline", _FailingLangGraph
-    )
+    monkeypatch.setattr(workflow_mod, "LangGraphTranslationPipeline", _FailingLangGraph)
     with pytest.raises(RuntimeError, match="llm unavailable"):
         run_translation_workflow(
             {"id": "ENG30-00001740-n"},
             pipeline="langgraph",
             config=WorkflowConfig(strict=True),
+        )
+
+
+def test_resolve_wordnet_synset_requires_exactly_one_selector_missing():
+    with pytest.raises(ValueError, match="exactly one selector"):
+        resolve_wordnet_synset()
+
+
+def test_resolve_wordnet_synset_requires_exactly_one_selector_conflict():
+    with pytest.raises(ValueError, match="exactly one selector"):
+        resolve_wordnet_synset(
+            english_id="ENG30-00001740-n",
+            synset_name="entity.n.01",
         )

@@ -15,9 +15,12 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 
 from ..pipelines.translation_pipeline import TranslationPipeline
-from ..pipelines.conceptual_langgraph_pipeline import ConceptualLangGraphTranslationPipeline
+from ..pipelines.conceptual_langgraph_pipeline import (
+    ConceptualLangGraphTranslationPipeline,
+)
 from ..pipelines.langgraph_translation_pipeline import LangGraphTranslationPipeline
 from ..utils.language_utils import LanguageUtils
+from .selector_validation import validate_selector_families
 
 
 @dataclass(frozen=True)
@@ -25,9 +28,11 @@ class WorkflowConfig:
     source_lang: str = "en"
     target_lang: str = "sr"
     model: str = "gpt-oss:120b"
-    timeout: int = 600
+    timeout: int = 1800
     base_url: str = "http://localhost:11434"
     temperature: float = 0.2
+    max_retries: int = 2
+    retry_delay_seconds: float = 1.0
     strict: bool = False
 
 
@@ -40,7 +45,11 @@ def parse_eng30_id(english_id: str) -> Tuple[int, str]:
         )
 
     offset_token = parts[1]
-    if len(offset_token) != 8 or not offset_token.isascii() or not offset_token.isdigit():
+    if (
+        len(offset_token) != 8
+        or not offset_token.isascii()
+        or not offset_token.isdigit()
+    ):
         raise ValueError(
             f"parse_eng30_id: invalid offset in selector {english_id!r}; offset must be exactly 8 digits."
         )
@@ -115,6 +124,13 @@ def resolve_wordnet_synset(
     """Resolve a synset from one of the supported selectors and return payload."""
     from nltk.corpus import wordnet as wn
 
+    validate_selector_families(
+        english_id=english_id,
+        synset_name=synset_name,
+        lemma=lemma,
+        pos=pos,
+    )
+
     if english_id:
         offset, mapped_pos = parse_eng30_id(english_id)
         synset = wn.synset_from_pos_and_offset(mapped_pos, offset)
@@ -133,7 +149,7 @@ def resolve_wordnet_synset(
         return synset_to_payload(candidates[idx])
 
     raise ValueError(
-        "Provide one selector: english_id OR synset_name OR lemma+pos."
+        "Provide exactly one selector: english_id OR synset_name OR lemma+pos."
     )
 
 
@@ -171,6 +187,9 @@ def run_translation_workflow(
             timeout=config.timeout,
             base_url=config.base_url,
             temperature=config.temperature,
+            max_retries=config.max_retries,
+            retry_delay_seconds=config.retry_delay_seconds,
+            request_id=synset_payload.get("id") or synset_payload.get("english_id"),
         )
         _run_with_capture("langgraph", lambda: lg.translate_synset(synset_payload))
 
@@ -182,6 +201,9 @@ def run_translation_workflow(
             timeout=config.timeout,
             base_url=config.base_url,
             temperature=config.temperature,
+            max_retries=config.max_retries,
+            retry_delay_seconds=config.retry_delay_seconds,
+            request_id=synset_payload.get("id") or synset_payload.get("english_id"),
         )
         _run_with_capture("conceptual", lambda: cg.translate_synset(synset_payload))
 
@@ -200,7 +222,9 @@ def run_translation_workflow(
             }
 
     if not results["pipelines"]:
-        raise ValueError("Unsupported pipeline. Use: langgraph | conceptual | all | dspy")
+        raise ValueError(
+            "Unsupported pipeline. Use: langgraph | conceptual | all | dspy"
+        )
 
     return results
 

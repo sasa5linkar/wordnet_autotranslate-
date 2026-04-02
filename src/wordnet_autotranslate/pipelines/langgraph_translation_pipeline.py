@@ -30,13 +30,13 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
+import time
 import textwrap
 from typing import Any, Dict, Generator, Iterable, List, Optional, Sequence, TypedDict
 
-from pydantic import BaseModel, Field, ValidationError
-from pydantic_core import PydanticUndefined
-
+from .stages.schema_validation import BASE_STAGE_SCHEMA_MAP, validate_stage_payload
 from ..utils.language_utils import LanguageUtils
+from ..utils.observability import ensure_request_id, get_structured_logger, log_event
 
 
 class TranslationGraphState(TypedDict, total=False):
@@ -45,12 +45,12 @@ class TranslationGraphState(TypedDict, total=False):
     synset: Dict[str, Any]
     sense_analysis: Dict[str, Any]
     definition_translation: Dict[str, Any]
-    
+
     # New keys for multi-step synonym translation (generate-and-filter approach)
     initial_translation_call: Dict[str, Any]
     expansion_call: Dict[str, Any]
     filtering_call: Dict[str, Any]
-    
+
     result: Dict[str, Any]
 
 
@@ -70,8 +70,12 @@ class TranslationResult:
     payload: Dict[str, Any]
     curator_summary: str
     # English WordNet domain information (automatically fetched from NLTK)
-    lexname: Optional[str] = None  # Broad lexical category (e.g., "noun.artifact", "verb.motion")
-    topic_domains: Optional[List[str]] = None  # Semantic field markers (e.g., ["biochemistry.n.01"])
+    lexname: Optional[str] = (
+        None  # Broad lexical category (e.g., "noun.artifact", "verb.motion")
+    )
+    topic_domains: Optional[List[str]] = (
+        None  # Semantic field markers (e.g., ["biochemistry.n.01"])
+    )
 
     def to_dict(self) -> Dict[str, Any]:
         """Return a serialisable representation for downstream usage."""
@@ -90,78 +94,6 @@ class TranslationResult:
             "lexname": self.lexname,
             "topic_domains": self.topic_domains,
         }
-
-
-# ==============================================================
-# Schema validation helpers for LangGraphTranslationPipeline
-# ==============================================================
-
-class SenseAnalysisSchema(BaseModel):
-    """Pydantic schema for sense analysis stage output."""
-    sense_summary: str = Field(..., min_length=3)
-    contrastive_note: Optional[str] = None
-    key_features: List[str] = Field(default_factory=list)
-    domain_tags: Optional[List[str]] = Field(default_factory=list)
-    confidence: str
-
-
-class DefinitionTranslationSchema(BaseModel):
-    """Pydantic schema for definition translation stage output."""
-    definition_translation: str
-    notes: Optional[str] = None
-    examples: Optional[List[str]] = Field(default_factory=list)
-
-
-class LemmaTranslationSchema(BaseModel):
-    """Pydantic schema for initial lemma translation stage output."""
-    initial_translations: List[Optional[str]]
-    alignment: Dict[str, Optional[str]]
-
-
-class ExpansionSchema(BaseModel):
-    """Pydantic schema for synonym expansion stage output."""
-    expanded_synonyms: List[str]
-    rationale: Optional[Dict[str, str]] = Field(default_factory=dict)
-
-
-class FilteringSchema(BaseModel):
-    """Pydantic schema for synonym filtering stage output."""
-    filtered_synonyms: List[str]
-    removed: Optional[List[Dict[str, str]]] = Field(default_factory=list)
-    confidence: str
-
-
-def validate_stage_payload(payload: dict, schema_cls: type[BaseModel], stage_name: str) -> dict:
-    """Validate LLM JSON payload against the expected schema.
-    
-    Auto-repairs empty or malformed values and logs warnings.
-    
-    Args:
-        payload: Raw dictionary from LLM output.
-        schema_cls: Pydantic model class to validate against.
-        stage_name: Stage name for logging.
-        
-    Returns:
-        Validated and potentially repaired payload dictionary.
-    """
-    try:
-        model = schema_cls(**payload)
-        return model.model_dump()
-    except ValidationError as e:
-        print(f"[WARN] Validation failed for stage '{stage_name}': {e}")
-        # Return fallback with required keys if possible
-        fallback = {}
-        for field_name, field_info in schema_cls.model_fields.items():
-            if field_info.is_required():
-                fallback[field_name] = ""
-            elif field_info.default is not PydanticUndefined:
-                fallback[field_name] = field_info.default
-            elif field_info.default_factory is not None:
-                # Call the factory function to get default value
-                fallback[field_name] = field_info.default_factory()
-            else:
-                fallback[field_name] = None
-        return {**fallback, **payload}
 
 
 class LangGraphTranslationPipeline:
@@ -188,9 +120,11 @@ class LangGraphTranslationPipeline:
 
     # Response preview limit for logging
     _PREVIEW_LIMIT: int = 600
-    
+
     # Maximum number of synonyms to display in summary
     _MAX_SYNONYMS_DISPLAY: int = 5
+    DEFAULT_TIMEOUT: int = 1800
+    MAX_TIMEOUT: int = 3600
 
     def __init__(
         self,
@@ -199,7 +133,10 @@ class LangGraphTranslationPipeline:
         model: str = "gpt-oss:120b",
         temperature: float = 0.2,
         base_url: str = "http://localhost:11434",
-        timeout: int = 600,
+        timeout: int = DEFAULT_TIMEOUT,
+        max_retries: int = 2,
+        retry_delay_seconds: float = 1.0,
+        request_id: Optional[str] = None,
         system_prompt: Optional[str] = None,
         prompt_template: Optional[str] = None,
         llm: Optional[Any] = None,
@@ -209,7 +146,12 @@ class LangGraphTranslationPipeline:
         self.model = model
         self.temperature = temperature
         self.base_url = base_url
-        self.timeout = timeout
+        bounded_timeout = max(30, min(int(timeout), self.MAX_TIMEOUT))
+        self.timeout = bounded_timeout
+        self.max_retries = max(0, int(max_retries))
+        self.retry_delay_seconds = max(0.0, float(retry_delay_seconds))
+        self.request_id = ensure_request_id(request_id)
+        self.logger = get_structured_logger("wordnet_autotranslate.pipeline")
         self.system_prompt = system_prompt or self.DEFAULT_SYSTEM_PROMPT
         self.prompt_template = prompt_template or self.DEFAULT_PROMPT_TEMPLATE
 
@@ -222,11 +164,15 @@ class LangGraphTranslationPipeline:
             chat_factory,
         ) = self._load_dependencies(llm)
 
-        self.llm = llm if llm is not None else chat_factory(
-            model=self.model,
-            temperature=self.temperature,
-            timeout=self.timeout,
-            base_url=self.base_url,
+        self.llm = (
+            llm
+            if llm is not None
+            else chat_factory(
+                model=self.model,
+                temperature=self.temperature,
+                timeout=self.timeout,
+                base_url=self.base_url,
+            )
         )
 
         self._graph = self._build_graph()
@@ -261,7 +207,7 @@ class LangGraphTranslationPipeline:
 
     def _build_graph(self) -> Any:
         """Build and compile the LangGraph state machine for translation.
-        
+
         The graph now uses a multi-step synonym translation approach:
         1. analyse_sense - Understand semantic features
         2. translate_definition - Translate the definition
@@ -269,7 +215,7 @@ class LangGraphTranslationPipeline:
         4. expand_synonyms - Broaden the candidate pool
         5. filter_synonyms - Quality check and validation
         6. assemble_result - Combine all outputs
-        
+
         Returns:
             Compiled graph ready for invocation.
         """
@@ -293,9 +239,21 @@ class LangGraphTranslationPipeline:
 
     def translate_synset(self, synset: Dict[str, Any]) -> Dict[str, Any]:
         """Translate a single synset and return a structured dictionary."""
-
+        log_event(
+            self.logger,
+            event="translation_started",
+            request_id=self.request_id,
+            synset_id=synset.get("id") or synset.get("english_id"),
+        )
         state = self._graph.invoke({"synset": synset})
         result: TranslationResult = state["result"]  # type: ignore[index]
+        log_event(
+            self.logger,
+            event="translation_completed",
+            request_id=self.request_id,
+            synset_id=synset.get("id") or synset.get("english_id"),
+            translated_synonyms=len(result.translated_synonyms),
+        )
         return result.to_dict()
 
     def translate(self, synsets: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -317,10 +275,10 @@ class LangGraphTranslationPipeline:
 
     def _analyse_sense(self, state: TranslationGraphState) -> TranslationGraphState:
         """LangGraph node: Analyse synset sense before translation.
-        
+
         Args:
             state: Current graph state containing synset data.
-            
+
         Returns:
             Updated state with sense_analysis results.
         """
@@ -329,12 +287,14 @@ class LangGraphTranslationPipeline:
         call_result = self._call_llm(prompt, stage="sense_analysis")
         return {"sense_analysis": call_result}
 
-    def _translate_definition(self, state: TranslationGraphState) -> TranslationGraphState:
+    def _translate_definition(
+        self, state: TranslationGraphState
+    ) -> TranslationGraphState:
         """LangGraph node: Translate synset definition.
-        
+
         Args:
             state: Current graph state with sense analysis.
-            
+
         Returns:
             Updated state with definition_translation results.
         """
@@ -344,15 +304,17 @@ class LangGraphTranslationPipeline:
         call_result = self._call_llm(prompt, stage="definition_translation")
         return {"definition_translation": call_result}
 
-    def _translate_all_lemmas(self, state: TranslationGraphState) -> TranslationGraphState:
+    def _translate_all_lemmas(
+        self, state: TranslationGraphState
+    ) -> TranslationGraphState:
         """LangGraph node: Translate all English lemmas directly.
-        
+
         This is the first step in the multi-step synonym pipeline. It gets
         initial direct translations for each English lemma in the source synset.
-        
+
         Args:
             state: Current graph state with synset and sense_analysis.
-            
+
         Returns:
             Updated state with initial_translation_call results.
         """
@@ -364,41 +326,45 @@ class LangGraphTranslationPipeline:
 
     def _expand_synonyms(self, state: TranslationGraphState) -> TranslationGraphState:
         """LangGraph node: Expand the candidate pool with additional synonyms.
-        
+
         This is the second step in the multi-step synonym pipeline. It takes
         the initial translations and finds more synonyms in the target language
         that align with the sense and definition.
-        
+
         Args:
             state: Current graph state with initial translations.
-            
+
         Returns:
             Updated state with expansion_call results.
         """
         initial_payload = state.get("initial_translation_call", {}).get("payload", {})
         sense_payload = state.get("sense_analysis", {}).get("payload", {})
         definition_payload = state.get("definition_translation", {}).get("payload", {})
-        prompt = self._render_expansion_prompt(initial_payload, sense_payload, definition_payload)
+        prompt = self._render_expansion_prompt(
+            initial_payload, sense_payload, definition_payload
+        )
         call_result = self._call_llm(prompt, stage="synonym_expansion")
         return {"expansion_call": call_result}
 
     def _filter_synonyms(self, state: TranslationGraphState) -> TranslationGraphState:
         """LangGraph node: Filter and validate synonym candidates.
-        
+
         This is the final step in the multi-step synonym pipeline. It performs
         a quality check to remove candidates that don't precisely match the
         intended sense, ensuring high-quality output.
-        
+
         Args:
             state: Current graph state with expanded synonyms.
-            
+
         Returns:
             Updated state with filtering_call results.
         """
         expansion_payload = state.get("expansion_call", {}).get("payload", {})
         sense_payload = state.get("sense_analysis", {}).get("payload", {})
         definition_payload = state.get("definition_translation", {}).get("payload", {})
-        prompt = self._render_filtering_prompt(expansion_payload, sense_payload, definition_payload)
+        prompt = self._render_filtering_prompt(
+            expansion_payload, sense_payload, definition_payload
+        )
         call_result = self._call_llm(prompt, stage="synonym_filtering")
         return {"filtering_call": call_result}
 
@@ -411,23 +377,31 @@ class LangGraphTranslationPipeline:
 
     def _render_sense_prompt(self, synset: Dict[str, Any]) -> str:
         """Generate prompt for sense analysis stage (improved with contrastive notes).
-        
+
         Args:
             synset: Source synset with lemmas, definition, examples.
-            
+
         Returns:
             Formatted prompt for LLM.
         """
         lemmas = synset.get("lemmas") or synset.get("literals") or []
-        lemmas_str = ", ".join(lemmas) if isinstance(lemmas, (list, tuple)) else str(lemmas)
+        lemmas_str = (
+            ", ".join(lemmas) if isinstance(lemmas, (list, tuple)) else str(lemmas)
+        )
 
         definition = synset.get("definition") or synset.get("gloss") or ""
         examples = synset.get("examples") or []
-        examples_str = "\n- ".join(str(ex) for ex in examples) if examples else "(no examples)"
+        examples_str = (
+            "\n- ".join(str(ex) for ex in examples) if examples else "(no examples)"
+        )
 
         pos = synset.get("pos") or synset.get("part_of_speech") or ""
-        normalized_pos = LanguageUtils.normalize_pos_for_english(str(pos)) if pos else ""
-        english_id = synset.get("id") or synset.get("english_id") or synset.get("ili_id") or ""
+        normalized_pos = (
+            LanguageUtils.normalize_pos_for_english(str(pos)) if pos else ""
+        )
+        english_id = (
+            synset.get("id") or synset.get("english_id") or synset.get("ili_id") or ""
+        )
 
         # Fetch domain information from English WordNet
         domain_info = self._get_wordnet_domain_info(english_id)
@@ -468,11 +442,11 @@ class LangGraphTranslationPipeline:
         sense_payload: Dict[str, Any],
     ) -> str:
         """Generate prompt for definition translation stage (improved: concise gloss style + fallback rules).
-        
+
         Args:
             synset: Source synset data.
             sense_payload: Output from sense analysis stage.
-            
+
         Returns:
             Formatted prompt for LLM.
         """
@@ -481,7 +455,11 @@ class LangGraphTranslationPipeline:
 
         sense_summary = sense_payload.get("sense_summary", "")
         key_features = sense_payload.get("key_features") or []
-        key_features_str = "\n- ".join(str(item) for item in key_features) if key_features else "(none)"
+        key_features_str = (
+            "\n- ".join(str(item) for item in key_features)
+            if key_features
+            else "(none)"
+        )
 
         prompt = textwrap.dedent(
             f"""
@@ -514,11 +492,11 @@ class LangGraphTranslationPipeline:
         sense_payload: Dict[str, Any],
     ) -> str:
         """Generate prompt for initial lemma translation stage (improved: 1:1 alignment + null placeholders).
-        
+
         Args:
             synset: Source synset data.
             sense_payload: Output from sense analysis stage.
-            
+
         Returns:
             Formatted prompt for LLM.
         """
@@ -557,12 +535,12 @@ class LangGraphTranslationPipeline:
         definition_payload: Dict[str, Any],
     ) -> str:
         """Generate prompt for synonym expansion stage (improved: requires rationale for each new synonym).
-        
+
         Args:
             initial_payload: Output from initial translation stage.
             sense_payload: Output from sense analysis stage.
             definition_payload: Output from definition translation stage.
-            
+
         Returns:
             Formatted prompt for LLM.
         """
@@ -570,8 +548,12 @@ class LangGraphTranslationPipeline:
         initial_translations = initial_payload.get("initial_translations", [])
         # Filter out null values from initial translations
         initial_translations = [t for t in initial_translations if t is not None]
-        initial_str = ", ".join(str(t) for t in initial_translations) if initial_translations else "(none)"
-        
+        initial_str = (
+            ", ".join(str(t) for t in initial_translations)
+            if initial_translations
+            else "(none)"
+        )
+
         sense_summary = sense_payload.get("sense_summary", "")
         definition_translation = definition_payload.get("definition_translation", "")
 
@@ -605,19 +587,23 @@ class LangGraphTranslationPipeline:
         definition_payload: Dict[str, Any],
     ) -> str:
         """Generate prompt for synonym filtering/validation stage (improved: structured rejections + confidence level).
-        
+
         Args:
             expansion_payload: Output from expansion stage.
             sense_payload: Output from sense analysis stage.
             definition_payload: Output from definition translation stage.
-            
+
         Returns:
             Formatted prompt for LLM.
         """
         target_name = LanguageUtils.get_language_name(self.target_lang)
         expanded_synonyms = expansion_payload.get("expanded_synonyms", [])
-        expanded_str = ", ".join(str(t) for t in expanded_synonyms) if expanded_synonyms else "(none)"
-        
+        expanded_str = (
+            ", ".join(str(t) for t in expanded_synonyms)
+            if expanded_synonyms
+            else "(none)"
+        )
+
         sense_summary = sense_payload.get("sense_summary", "")
         definition_translation = definition_payload.get("definition_translation", "")
 
@@ -649,51 +635,82 @@ class LangGraphTranslationPipeline:
     # END OF PROMPT GENERATION METHODS
     # ============================================================================
 
-    def _call_llm(self, prompt: str, stage: str, retries: int = 2) -> Dict[str, Any]:
+    def _call_llm(
+        self, prompt: str, stage: str, retries: Optional[int] = None
+    ) -> Dict[str, Any]:
         """Invoke LLM with automatic JSON validation + retry on malformed output.
-        
+
         Args:
             prompt: User message to send to LLM.
             stage: Current pipeline stage (for logging).
             retries: Number of retry attempts on validation failure.
-            
+
         Returns:
             Dict containing prompt, response, parsed payload, and metadata.
         """
+        max_retries = self.max_retries if retries is None else max(0, int(retries))
         system_content = ""
         raw = ""
-        for attempt in range(retries + 1):
-            system_content = self.system_prompt + f"\nCurrent stage: {stage}. Return valid JSON as instructed."
+        for attempt in range(max_retries + 1):
+            system_content = (
+                self.system_prompt
+                + f"\nCurrent stage: {stage}. Return valid JSON as instructed."
+            )
             messages = [
                 self._SystemMessage(content=system_content),
                 self._HumanMessage(content=prompt),
             ]
+            log_event(
+                self.logger,
+                event="llm_call_attempt",
+                request_id=self.request_id,
+                stage=stage,
+                attempt=attempt + 1,
+                max_attempts=max_retries + 1,
+                timeout_seconds=self.timeout,
+            )
 
             try:
                 response = self.llm.invoke(messages)
                 content: Any = getattr(response, "content", response)
             except Exception as exc:
                 raw = str(exc)
-                if attempt < retries:
-                    print(
-                        f"[Retry {attempt + 1}/{retries}] LLM invoke failed for stage '{stage}': {exc}"
+                if attempt < max_retries:
+                    log_event(
+                        self.logger,
+                        event="llm_call_retry",
+                        request_id=self.request_id,
+                        stage=stage,
+                        level="warning",
+                        reason="invoke_exception",
+                        error=str(exc),
                     )
+                    time.sleep(self.retry_delay_seconds * (attempt + 1))
                     continue
-                print(
-                    f"[ERROR] LLM invoke failed for stage '{stage}' after retries: {exc}"
+                log_event(
+                    self.logger,
+                    event="llm_call_failed",
+                    request_id=self.request_id,
+                    stage=stage,
+                    level="error",
+                    error=str(exc),
                 )
                 break
 
             if isinstance(content, list):
                 combined = "".join(
-                    fragment.get("text", "") if isinstance(fragment, dict) else str(fragment)
+                    (
+                        fragment.get("text", "")
+                        if isinstance(fragment, dict)
+                        else str(fragment)
+                    )
                     for fragment in content
                 )
                 content = combined
 
             raw = str(content).strip()
             payload = self._decode_llm_payload(raw)
-            
+
             # Validate payload against schema for this stage
             payload = self._validate_payload_for_stage(stage, payload)
 
@@ -701,6 +718,7 @@ class LangGraphTranslationPipeline:
             if payload and any(payload.values()):
                 call_log = {
                     "stage": stage,
+                    "request_id": self.request_id,
                     "prompt": prompt,
                     "system_prompt": system_content,
                     "raw_response": raw,
@@ -710,20 +728,43 @@ class LangGraphTranslationPipeline:
                         {"role": "user", "content": prompt},
                     ],
                 }
+                log_event(
+                    self.logger,
+                    event="llm_call_succeeded",
+                    request_id=self.request_id,
+                    stage=stage,
+                    attempt=attempt + 1,
+                )
                 return call_log
-            
+
             # Log retry attempt
-            if attempt < retries:
-                print(f"[Retry {attempt + 1}/{retries}] Invalid or empty JSON for stage '{stage}'")
-        
+            if attempt < max_retries:
+                log_event(
+                    self.logger,
+                    event="llm_call_retry",
+                    request_id=self.request_id,
+                    stage=stage,
+                    level="warning",
+                    reason="invalid_or_empty_payload",
+                )
+                time.sleep(self.retry_delay_seconds * (attempt + 1))
+
         # Fallback return after max retries
-        print(f"[ERROR] Max retries exceeded for stage '{stage}', returning error payload")
+        log_event(
+            self.logger,
+            event="llm_call_max_retries_exceeded",
+            request_id=self.request_id,
+            stage=stage,
+            level="error",
+            max_attempts=max_retries + 1,
+        )
         fallback_payload = self._validate_payload_for_stage(stage, {})
         if not fallback_payload:
             fallback_payload = {"error": "max retries exceeded"}
 
         return {
             "stage": stage,
+            "request_id": self.request_id,
             "prompt": prompt,
             "system_prompt": system_content,
             "raw_response": raw,
@@ -737,10 +778,10 @@ class LangGraphTranslationPipeline:
     @staticmethod
     def _summarise_call(call: Dict[str, Any]) -> Dict[str, Any]:
         """Create a concise summary of an LLM call for logging.
-        
+
         Args:
             call: Full LLM call record with prompt, response, etc.
-            
+
         Returns:
             Summarised version with truncated response.
         """
@@ -749,13 +790,14 @@ class LangGraphTranslationPipeline:
 
         raw = call.get("raw_response", "")
         raw_preview = (
-            raw[:LangGraphTranslationPipeline._PREVIEW_LIMIT] + "… [truncated]" 
-            if raw and len(raw) > LangGraphTranslationPipeline._PREVIEW_LIMIT 
+            raw[: LangGraphTranslationPipeline._PREVIEW_LIMIT] + "… [truncated]"
+            if raw and len(raw) > LangGraphTranslationPipeline._PREVIEW_LIMIT
             else raw
         )
 
         return {
             "stage": call.get("stage"),
+            "request_id": call.get("request_id"),
             "prompt": call.get("prompt"),
             "system_prompt": call.get("system_prompt"),
             "raw_response_preview": raw_preview,
@@ -767,22 +809,15 @@ class LangGraphTranslationPipeline:
 
     def _validate_payload_for_stage(self, stage: str, payload: dict) -> dict:
         """Auto-choose schema based on stage name and validate payload.
-        
+
         Args:
             stage: Current pipeline stage name.
             payload: Raw dictionary from LLM output.
-            
+
         Returns:
             Validated and potentially repaired payload dictionary.
         """
-        schema_map = {
-            "sense_analysis": SenseAnalysisSchema,
-            "definition_translation": DefinitionTranslationSchema,
-            "initial_translation": LemmaTranslationSchema,
-            "synonym_expansion": ExpansionSchema,
-            "synonym_filtering": FilteringSchema,
-        }
-        schema_cls = schema_map.get(stage)
+        schema_cls = BASE_STAGE_SCHEMA_MAP.get(stage)
         if schema_cls:
             return validate_stage_payload(payload, schema_cls, stage)
         return payload
@@ -852,52 +887,54 @@ class LangGraphTranslationPipeline:
     @staticmethod
     def _get_wordnet_domain_info(english_id: str) -> Dict[str, Any]:
         """Fetch domain information from NLTK WordNet using english_id.
-        
+
         Returns both lexname (broad category) and topic_domains (semantic field markers).
-        
+
         Args:
             english_id: English WordNet synset ID (e.g., "ENG30-03574555-n")
-            
+
         Returns:
             Dictionary with 'lexname' and 'topic_domains' keys, or empty dict if not found.
         """
         if not english_id:
             return {}
-        
+
         try:
             from nltk.corpus import wordnet as wn
         except ImportError:
             # NLTK not available, skip domain lookup
             return {}
-        
+
         try:
             # Parse the english_id format (e.g., "ENG30-03574555-n")
             # Extract offset and POS
-            parts = english_id.split('-')
+            parts = english_id.split("-")
             if len(parts) < 3:
                 return {}
-            
+
             offset_str = parts[1]
             pos_char = LanguageUtils.normalize_pos_for_english(parts[2])
-            
+
             # Convert offset to integer
             offset = int(offset_str)
-            
+
             # Get the synset from WordNet
             synset = wn.synset_from_pos_and_offset(pos_char, offset)
-            
+
             # Get lexname (broad category like "noun.artifact", "verb.motion")
             lexname = synset.lexname()
-            
+
             # Get topic domains (semantic field markers like "biology.n.01", "music.n.01")
             topic_domains = synset.topic_domains()
-            topic_domain_names = [td.name() for td in topic_domains] if topic_domains else []
-            
+            topic_domain_names = (
+                [td.name() for td in topic_domains] if topic_domains else []
+            )
+
             return {
                 "lexname": lexname,
                 "topic_domains": topic_domain_names,
             }
-            
+
         except (ValueError, LookupError, AttributeError):
             # Could not parse or find synset
             return {}
@@ -906,7 +943,9 @@ class LangGraphTranslationPipeline:
     def _coerce_to_str_list(value: Any) -> List[str]:
         """Normalise unknown payload values into a cleaned list of strings."""
         if isinstance(value, (list, tuple)):
-            return [item.strip() for item in value if isinstance(item, str) and item.strip()]
+            return [
+                item.strip() for item in value if isinstance(item, str) and item.strip()
+            ]
         if isinstance(value, str):
             text = value.strip()
             return [text] if text else []
@@ -914,17 +953,17 @@ class LangGraphTranslationPipeline:
 
     def _assemble_result(self, state: TranslationGraphState) -> TranslationGraphState:
         """LangGraph node: Combine all stage outputs into final result.
-        
+
         Args:
             state: Complete graph state with all translation stages.
-            
+
         Returns:
             Updated state with assembled TranslationResult.
         """
         synset = state["synset"]
         sense_call = state.get("sense_analysis", {}) or {}
         definition_call = state.get("definition_translation", {}) or {}
-        
+
         # Get results from the new multi-step synonym pipeline
         initial_call = state.get("initial_translation_call", {}) or {}
         expansion_call = state.get("expansion_call", {}) or {}
@@ -944,7 +983,7 @@ class LangGraphTranslationPipeline:
         # This is the high-quality synset produced by the generate-and-filter pipeline
         filtered_synonyms = filtering_payload.get("filtered_synonyms", [])
         translated_synonyms = self._coerce_to_str_list(filtered_synonyms)
-        
+
         # Remove any empty strings and deduplicate while preserving order
         seen = set()
         deduped_synonyms: List[str] = []
@@ -955,7 +994,7 @@ class LangGraphTranslationPipeline:
         translated_synonyms = deduped_synonyms
 
         # The "translation" field holds a representative literal for convenience
-        # (e.g., for logging or display). This is NOT a formal "headword" - 
+        # (e.g., for logging or display). This is NOT a formal "headword" -
         # the final output is a synset (set of synonymous literals).
         # We simply use the first item from the filtered list if available.
         translation = translated_synonyms[0] if translated_synonyms else ""
@@ -978,7 +1017,9 @@ class LangGraphTranslationPipeline:
         notes = str(notes).strip() if notes else None
 
         # Fetch domain information from English WordNet
-        english_id = synset.get("id") or synset.get("english_id") or synset.get("ili_id") or ""
+        english_id = (
+            synset.get("id") or synset.get("english_id") or synset.get("ili_id") or ""
+        )
         domain_info = self._get_wordnet_domain_info(english_id)
         lexname = domain_info.get("lexname")
         topic_domains = domain_info.get("topic_domains", [])
@@ -988,16 +1029,14 @@ class LangGraphTranslationPipeline:
         summary_lines.append(
             f"Representative literal ({self.target_lang}): {translation or '—'}"
         )
-        summary_lines.append(
-            f"Definition translation: {definition_translation or '—'}"
-        )
+        summary_lines.append(f"Definition translation: {definition_translation or '—'}")
         if lexname:
             summary_lines.append(f"Lexname: {lexname}")
         if topic_domains:
             summary_lines.append(f"Topic domains: {', '.join(topic_domains)}")
         if translated_synonyms:
             summary_lines.append(f"Synset literals ({len(translated_synonyms)} total):")
-            for syn in translated_synonyms[:self._MAX_SYNONYMS_DISPLAY]:
+            for syn in translated_synonyms[: self._MAX_SYNONYMS_DISPLAY]:
                 summary_lines.append(f"  • {syn}")
             if len(translated_synonyms) > self._MAX_SYNONYMS_DISPLAY:
                 summary_lines.append(
@@ -1007,16 +1046,14 @@ class LangGraphTranslationPipeline:
             summary_lines.append("Synset literals: (none returned)")
 
         if examples:
-            summary_lines.append(
-                f"Example sentences: {len(examples)} (showing first)"
-            )
+            summary_lines.append(f"Example sentences: {len(examples)} (showing first)")
             summary_lines.append(f"  “{examples[0]}”")
         else:
             summary_lines.append("Example sentences: none")
 
         if notes:
             summary_lines.append(f"Notes: {notes}")
-        
+
         # Add pipeline stage info
         summary_lines.append(f"\nPipeline stages completed:")
         summary_lines.append(
@@ -1027,7 +1064,9 @@ class LangGraphTranslationPipeline:
             "  2. Expanded candidates: "
             f"{len(self._coerce_to_str_list(expansion_payload.get('expanded_synonyms')))} synonyms"
         )
-        summary_lines.append(f"  3. Filtered results: {len(translated_synonyms)} final literals")
+        summary_lines.append(
+            f"  3. Filtered results: {len(translated_synonyms)} final literals"
+        )
 
         curator_summary = "\n".join(summary_lines)
 
@@ -1054,10 +1093,10 @@ class LangGraphTranslationPipeline:
         }
 
         raw_response = (
-            filtering_call.get("raw_response") 
-            or expansion_call.get("raw_response") 
+            filtering_call.get("raw_response")
+            or expansion_call.get("raw_response")
             or initial_call.get("raw_response")
-            or definition_call.get("raw_response") 
+            or definition_call.get("raw_response")
             or sense_call.get("raw_response", "")
         )
 
