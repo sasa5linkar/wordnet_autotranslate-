@@ -1,0 +1,13 @@
+title = "wordnet_autotranslate gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Known non-secret generated/demo content and notebooks"
+paths = [
+  '''(^|/)notebooks/''',
+  '''(^|/)examples/''',
+  '''(^|/)demo_gui\.html$''',
+  '''(^|/)translation_graph\.(png|txt|mmd)$''',
+]

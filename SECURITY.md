@@ -29,3 +29,5 @@ When reporting, include:
 - Keep dependency versions pinned/minimum-bounded and run dependency audits
   regularly.
 - CI includes secret scanning and dependency auditing workflows.
+- Secret scanning uses `.gitleaks.toml` to ignore generated/non-sensitive
+  fixture directories while still enforcing leaks in source and config files.
