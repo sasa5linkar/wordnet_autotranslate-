@@ -58,7 +58,7 @@ jupyter notebook
 
 ## Usage
 
-## Dissertation workflow framing
+### Dissertation workflow framing
 
 The repository currently exposes three synset-translation workflows:
 
