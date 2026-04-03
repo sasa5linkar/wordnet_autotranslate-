@@ -46,6 +46,7 @@ def test_language_utils():
     # Test language names
     assert LanguageUtils.get_language_name('en') == 'English'
     assert LanguageUtils.get_language_name('es') == 'Spanish'
+    assert LanguageUtils.get_language_name('sr') == 'Serbian'
     
     # Test text cleaning
     test_text = "  Hello,   world!  "
