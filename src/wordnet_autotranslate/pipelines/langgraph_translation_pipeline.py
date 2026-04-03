@@ -165,7 +165,7 @@ def validate_stage_payload(payload: dict, schema_cls: type[BaseModel], stage_nam
 
 
 class LangGraphTranslationPipeline:
-    """Alternative translation pipeline that uses LangGraph + Ollama."""
+    """Dissertation multi-phase workflow implemented with LangGraph + Ollama."""
 
     # Default configuration constants
     DEFAULT_SYSTEM_PROMPT: str = (

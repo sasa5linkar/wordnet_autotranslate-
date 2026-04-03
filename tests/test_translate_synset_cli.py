@@ -26,3 +26,9 @@ def test_cli_keyboard_interrupt_returns_130(monkeypatch):
 
     monkeypatch.setattr(cli, "resolve_wordnet_synset", _raise_interrupt)
     assert cli.main() == 130
+
+
+def test_cli_pipeline_choices_include_baseline():
+    parser = cli.build_parser()
+    pipeline_action = next(action for action in parser._actions if action.dest == "pipeline")
+    assert "baseline" in pipeline_action.choices

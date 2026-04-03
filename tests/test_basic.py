@@ -27,7 +27,7 @@ def test_translation_pipeline_init():
     
     pipeline = TranslationPipeline()
     assert pipeline.source_lang == 'en'
-    assert pipeline.target_lang == 'es'
+    assert pipeline.target_lang == 'sr'
     
     pipeline_custom = TranslationPipeline(source_lang='en', target_lang='fr')
     assert pipeline_custom.source_lang == 'en'
