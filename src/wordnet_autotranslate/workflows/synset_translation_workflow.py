@@ -175,8 +175,16 @@ def run_translation_workflow(
         baseline = BaselineTranslationPipeline(
             source_lang=config.source_lang,
             target_lang=config.target_lang,
+            model=config.model,
+            base_url=config.base_url,
+            temperature=config.temperature,
+            timeout=config.timeout,
         )
         _run_with_capture("baseline", lambda: baseline.translate_synset(synset_payload))
+        # Backwards compatibility: callers using "dspy" may read results["pipelines"]["dspy"].
+        # Share the same result object to avoid a second LLM call.
+        if selected == "dspy" and "baseline" in results["pipelines"]:
+            results["pipelines"]["dspy"] = results["pipelines"]["baseline"]
 
     if selected in {"langgraph", "all"}:
         lg = LangGraphTranslationPipeline(

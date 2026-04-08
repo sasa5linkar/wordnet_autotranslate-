@@ -29,7 +29,7 @@ class BaselineTranslationPipeline:
     """Simple direct-translation baseline for WordNet synsets."""
 
     DEFAULT_SYSTEM_PROMPT: str = (
-        "You are a bilingual lexicographer. Translate only the provided English "
+        "You are a bilingual lexicographer. Translate only the provided "
         "WordNet gloss and literals into the target language. Return JSON only."
     )
 
@@ -37,14 +37,26 @@ class BaselineTranslationPipeline:
         self,
         source_lang: str = "en",
         target_lang: str = "sr",
+        model: str = "gpt-oss:120b",
+        temperature: float = 0.2,
+        base_url: str = "http://localhost:11434",
+        timeout: int = 600,
         llm: Optional[Any] = None,
         system_prompt: Optional[str] = None,
     ) -> None:
         self.source_lang = source_lang
         self.target_lang = target_lang
-        self.llm = llm
+        self.model = model
+        self.temperature = temperature
+        self.base_url = base_url
+        self.timeout = timeout
         self.system_prompt = system_prompt or self.DEFAULT_SYSTEM_PROMPT
         self.examples_path = Path(__file__).parent.parent.parent.parent / "examples"
+
+        if llm is not None:
+            self.llm = llm
+        else:
+            self.llm = self._build_llm()
 
     def load_english_synsets(self) -> List[Dict[str, Any]]:
         """Load English synsets (placeholder for future dataset adapters)."""
@@ -129,6 +141,20 @@ class BaselineTranslationPipeline:
         for synset in synsets:
             yield self.translate_synset(synset)
 
+    def _build_llm(self) -> Optional[Any]:
+        """Build a ChatOllama LLM instance if langchain_ollama is available."""
+        try:
+            from langchain_ollama import ChatOllama  # type: ignore[import]
+
+            return ChatOllama(
+                model=self.model,
+                temperature=self.temperature,
+                timeout=self.timeout,
+                base_url=self.base_url,
+            )
+        except ImportError:
+            return None
+
     def _call_llm(self, *, lemmas: List[str], definition: str) -> Dict[str, Any]:
         """Call the configured LLM if present; otherwise use deterministic fallback."""
         prompt = self._render_prompt(lemmas=lemmas, definition=definition)
@@ -145,12 +171,11 @@ class BaselineTranslationPipeline:
                 "payload": fallback_payload,
             }
 
-        response = self.llm.invoke(
-            [
-                {"role": "system", "content": self.system_prompt},
-                {"role": "user", "content": prompt},
-            ]
+        combined_prompt = (
+            f"System instructions:\n{self.system_prompt}\n\n"
+            f"User request:\n{prompt}"
         )
+        response = self.llm.invoke(combined_prompt)
         content: Any = getattr(response, "content", response)
         raw_response = str(content).strip()
         payload = self._decode_llm_payload(raw_response)
@@ -162,13 +187,14 @@ class BaselineTranslationPipeline:
         }
 
     def _render_prompt(self, *, lemmas: List[str], definition: str) -> str:
+        source_name = LanguageUtils.get_language_name(self.source_lang)
         target_name = LanguageUtils.get_language_name(self.target_lang)
         return (
             "Baseline WordNet synset translation. Use only the provided gloss and literals.\n"
-            f"Source language: {self.source_lang}\n"
+            f"Source language: {self.source_lang} ({source_name})\n"
             f"Target language: {self.target_lang} ({target_name})\n"
-            f"English literals: {lemmas}\n"
-            f"English gloss: {definition or '(missing)'}\n\n"
+            f"{source_name} literals: {lemmas}\n"
+            f"{source_name} gloss: {definition or '(missing)'}\n\n"
             "Return JSON with keys:\n"
             "- definition_translation: translated gloss\n"
             "- translated_synonyms: list of translated literals\n"

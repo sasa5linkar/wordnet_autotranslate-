@@ -202,6 +202,7 @@ def test_run_translation_workflow_baseline_runs_for_legacy_dspy_alias():
     )
 
     assert "baseline" in result["pipelines"]
+    assert "dspy" in result["pipelines"]
     assert result["pipelines"]["baseline"]["source_lang"] == "en"
     assert result["pipelines"]["baseline"]["target_lang"] == "sr"
 
