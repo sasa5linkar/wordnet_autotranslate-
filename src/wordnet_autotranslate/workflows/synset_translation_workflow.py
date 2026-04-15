@@ -14,7 +14,7 @@ import json
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 
-from ..pipelines.translation_pipeline import TranslationPipeline
+from ..pipelines.translation_pipeline import BaselineTranslationPipeline
 from ..pipelines.conceptual_langgraph_pipeline import ConceptualLangGraphTranslationPipeline
 from ..pipelines.langgraph_translation_pipeline import LangGraphTranslationPipeline
 from ..utils.language_utils import LanguageUtils
@@ -143,7 +143,14 @@ def run_translation_workflow(
     pipeline: str = "langgraph",
     config: WorkflowConfig = WorkflowConfig(),
 ) -> Dict[str, Any]:
-    """Run requested pipeline(s) for a synset payload."""
+    """Run requested pipeline(s) for a synset payload.
+
+    Supported workflows:
+    - baseline: dissertation baseline workflow (gloss + literals only)
+    - langgraph: dissertation multi-phase workflow
+    - conceptual: dissertation concept-oriented workflow
+    - dspy: legacy alias for baseline
+    """
     selected = pipeline.lower().strip()
 
     results: Dict[str, Any] = {
@@ -162,6 +169,22 @@ def run_translation_workflow(
                 "status": "error",
                 "message": str(exc),
             }
+
+    if selected in {"baseline", "dspy", "all"}:
+        # Legacy compatibility: "dspy" selector now maps to the dissertation baseline workflow.
+        baseline = BaselineTranslationPipeline(
+            source_lang=config.source_lang,
+            target_lang=config.target_lang,
+            model=config.model,
+            base_url=config.base_url,
+            temperature=config.temperature,
+            timeout=config.timeout,
+        )
+        _run_with_capture("baseline", lambda: baseline.translate_synset(synset_payload))
+        # Backwards compatibility: callers using "dspy" may read results["pipelines"]["dspy"].
+        # Share the same result object to avoid a second LLM call.
+        if selected == "dspy" and "baseline" in results["pipelines"]:
+            results["pipelines"]["dspy"] = results["pipelines"]["baseline"]
 
     if selected in {"langgraph", "all"}:
         lg = LangGraphTranslationPipeline(
@@ -185,22 +208,8 @@ def run_translation_workflow(
         )
         _run_with_capture("conceptual", lambda: cg.translate_synset(synset_payload))
 
-    if selected in {"dspy", "all"}:
-        dspy_pipeline = TranslationPipeline(
-            source_lang=config.source_lang,
-            target_lang=config.target_lang,
-        )
-        dspy_output = dspy_pipeline.translate([synset_payload])
-        if dspy_output:
-            results["pipelines"]["dspy"] = dspy_output[0]
-        else:
-            results["pipelines"]["dspy"] = {
-                "status": "not_implemented",
-                "message": "TranslationPipeline.translate currently returns no outputs for synsets.",
-            }
-
     if not results["pipelines"]:
-        raise ValueError("Unsupported pipeline. Use: langgraph | conceptual | all | dspy")
+        raise ValueError("Unsupported pipeline. Use: baseline | langgraph | conceptual | all | dspy")
 
     return results
 

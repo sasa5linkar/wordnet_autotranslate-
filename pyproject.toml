@@ -8,7 +8,7 @@ version = "0.1.0"
 authors = [
     {name = "WordNet Auto-Translation Contributors"},
 ]
-description = "Automatic expansion of WordNet in less-resourced languages using DSPy"
+description = "Automatic expansion of WordNet in less-resourced languages with baseline and LangGraph workflows"
 readme = "README.md"
 license = {text = "CC0-1.0"}
 requires-python = ">=3.8"

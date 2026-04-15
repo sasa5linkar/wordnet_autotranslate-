@@ -19,6 +19,7 @@ class LanguageUtils:
         'pt': 'Portuguese',
         'it': 'Italian',
         'ru': 'Russian',
+        'sr': 'Serbian',
         'zh': 'Chinese',
         'ja': 'Japanese',
         'ko': 'Korean'

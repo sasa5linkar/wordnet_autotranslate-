@@ -193,7 +193,7 @@ class ConceptualTranslationResult:
 
 
 class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
-    """Alternative LangGraph pipeline based on a concept package workflow."""
+    """Dissertation concept-oriented workflow using a concept-package graph."""
 
     def _build_graph(self) -> Any:
         """Build and compile the concept-oriented LangGraph state machine."""

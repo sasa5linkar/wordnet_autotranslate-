@@ -1,18 +1,18 @@
 # WordNet Auto-Translation
 
-A core tool for automatic expansion of WordNet in less-resourced languages, using precision words and examples from target languages. This project leverages DSPy Pipelines & Prompt Optimization to load synsets in both English and target languages, utilizing a trained translation pipeline.
+A tool for automatic expansion of WordNet in less-resourced languages, with workflows for Serbian synset drafting and side-by-side pipeline comparison.
 
 ## Overview
 
 This project aims to bridge the gap in WordNet coverage for less-resourced languages by:
 - Loading existing synsets from both English and target languages
-- Using DSPy pipelines for optimized prompt-based translation
+- Running three dissertation-aligned synset translation workflows
 - Leveraging precision words and contextual examples for accurate translations
 - Providing tools for automatic WordNet expansion
 
 ## Features
 
-- **DSPy Integration**: Uses DSPy pipelines and prompt optimization for robust translation
+- **Three-workflow framing**: baseline, multi-phase (LangGraph), and concept-oriented pipelines
 - **Multi-language Support**: Handles English as source and various target languages
 - **Example-based Learning**: Utilizes examples from target languages for better context
 - **Serbian WordNet GUI**: Interactive browser for Serbian synsets with English pairing functionality
@@ -58,6 +58,16 @@ jupyter notebook
 
 ## Usage
 
+### Dissertation workflow framing
+
+The repository currently exposes three synset-translation workflows:
+
+1. **Baseline workflow** (`baseline`): direct translation using only English gloss + English literals.
+2. **Multi-phase workflow** (`langgraph`): analyze sense → translate gloss → translate literals → expand candidates → filter → assemble.
+3. **Concept-oriented workflow** (`conceptual`): concept package → expanded EN/SR definitions → candidate generation/selection → final gloss → validation.
+
+Use `scripts/translate_synset_workflow.py --pipeline all` for side-by-side comparison output.
+
 ### Serbian WordNet Synset Browser (GUI)
 
 Launch the interactive GUI for browsing and pairing Serbian synsets.
@@ -80,23 +90,28 @@ The GUI provides:
 
 See [GUI_README.md](GUI_README.md) for detailed usage instructions.
 
-### Basic Translation Pipeline
+### Baseline Translation Workflow (direct gloss + literals)
 
 ```python
-from wordnet_autotranslate import TranslationPipeline
+from wordnet_autotranslate import BaselineTranslationPipeline
 
-# Initialize pipeline for target language
-pipeline = TranslationPipeline(
-    source_lang='en',
-    target_lang='your_target_language'
+pipeline = BaselineTranslationPipeline(source_lang="en", target_lang="sr")
+
+result = pipeline.translate_synset(
+    {
+        "id": "ENG30-00001740-n",
+        "lemmas": ["entity"],
+        "definition": "that which is perceived or known to have its own distinct existence",
+        "pos": "n",
+    }
 )
 
-# Load synsets
-english_synsets = pipeline.load_english_synsets()
-target_synsets = pipeline.load_target_synsets()
-
-# Run translation
-translated_synsets = pipeline.translate(english_synsets)
+# Result keys include:
+# - translation
+# - definition_translation
+# - translated_synonyms
+# - payload
+# - curator_summary
 ```
 
 ### LangGraph + Ollama Translation Pipeline
@@ -235,7 +250,7 @@ Explore the interactive notebooks in the `notebooks/` directory for:
 ```
 wordnet_autotranslate/
 ├── src/                    # Core source code
-│   ├── pipelines/         # DSPy translation pipelines
+│   ├── pipelines/         # Translation workflow implementations
 │   ├── models/            # Language models and synset handlers
 │   │   ├── synset_handler.py      # English WordNet interface
 │   │   └── xml_synset_parser.py   # Serbian synset XML parser
@@ -289,7 +304,7 @@ This project supports expansion to any language. Current examples include:
 ## Requirements
 
 - Python 3.8+
-- DSPy framework
+- Optional LangGraph stack for multi-phase workflows
 - Jupyter (for interactive development)
 - NLTK (for WordNet access)
 - Transformers (for language models)
@@ -301,5 +316,5 @@ This project is licensed under CC0 1.0 Universal (CC0-1.0) - see the LICENSE fil
 ## Acknowledgments
 
 - WordNet project for the foundational lexical database
-- DSPy team for the optimization framework
+- LangGraph and Ollama communities for orchestration/runtime tooling
 - Contributors to less-resourced language resources

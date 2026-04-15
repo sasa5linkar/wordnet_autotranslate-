@@ -2,13 +2,13 @@
 WordNet Auto-Translation Package
 
 A core tool for automatic expansion of WordNet in less-resourced languages.
-Uses DSPy pipelines and prompt optimization for translation tasks.
+Provides baseline, multi-phase, and concept-oriented translation workflows.
 """
 
 __version__ = "0.1.0"
 __author__ = "WordNet Auto-Translation Contributors"
 
-from .pipelines.translation_pipeline import TranslationPipeline
+from .pipelines.translation_pipeline import BaselineTranslationPipeline, TranslationPipeline
 from .pipelines.langgraph_translation_pipeline import LangGraphTranslationPipeline
 from .pipelines.conceptual_langgraph_pipeline import (
     ConceptualLangGraphTranslationPipeline,
@@ -24,6 +24,7 @@ from .workflows.synset_translation_workflow import (
 )
 
 __all__ = [
+    "BaselineTranslationPipeline",
     "TranslationPipeline",
     "LangGraphTranslationPipeline",
     "ConceptualLangGraphTranslationPipeline",

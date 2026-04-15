@@ -189,7 +189,7 @@ def test_synset_to_payload_builds_expected_shape():
     assert payload["pos"] == "n"
 
 
-def test_run_translation_workflow_dspy_reports_not_implemented():
+def test_run_translation_workflow_baseline_runs_for_legacy_dspy_alias():
     result = run_translation_workflow(
         {
             "id": "ENG30-00001740-n",
@@ -201,9 +201,24 @@ def test_run_translation_workflow_dspy_reports_not_implemented():
         pipeline="dspy",
     )
 
+    assert "baseline" in result["pipelines"]
     assert "dspy" in result["pipelines"]
-    assert result["pipelines"]["dspy"]["status"] == "not_implemented"
+    assert result["pipelines"]["baseline"]["source_lang"] == "en"
+    assert result["pipelines"]["baseline"]["target_lang"] == "sr"
 
+
+def test_run_translation_workflow_baseline_selector(monkeypatch):
+    class _FakeBaseline:
+        def __init__(self, **kwargs):
+            pass
+
+        def translate_synset(self, synset):
+            return {"translation": "baseline-only"}
+
+    monkeypatch.setattr(workflow_mod, "BaselineTranslationPipeline", _FakeBaseline)
+    result = run_translation_workflow({"id": "ENG30-00001740-n"}, pipeline="baseline")
+
+    assert result["pipelines"]["baseline"]["translation"] == "baseline-only"
 
 def test_run_translation_workflow_rejects_unknown_pipeline():
     with pytest.raises(ValueError, match="Unsupported pipeline"):
@@ -215,7 +230,7 @@ def test_resolve_sense_index_requires_positive_integer():
         _resolve_sense_index(0, 3)
 
 
-def test_run_translation_workflow_all_includes_dspy(monkeypatch):
+def test_run_translation_workflow_all_includes_baseline(monkeypatch):
     class _FakeLangGraph:
         def __init__(self, **kwargs):
             pass
@@ -230,13 +245,21 @@ def test_run_translation_workflow_all_includes_dspy(monkeypatch):
         def translate_synset(self, synset):
             return {"translation": "cg"}
 
+    class _FakeBaseline:
+        def __init__(self, **kwargs):
+            pass
+
+        def translate_synset(self, synset):
+            return {"translation": "base"}
+
+    monkeypatch.setattr(workflow_mod, "BaselineTranslationPipeline", _FakeBaseline)
     monkeypatch.setattr(workflow_mod, "LangGraphTranslationPipeline", _FakeLangGraph)
     monkeypatch.setattr(
         workflow_mod, "ConceptualLangGraphTranslationPipeline", _FakeConceptual
     )
 
     result = run_translation_workflow({"id": "ENG30-00001740-n"}, pipeline="all")
-    assert set(result["pipelines"]) == {"langgraph", "conceptual", "dspy"}
+    assert set(result["pipelines"]) == {"baseline", "langgraph", "conceptual"}
 
 
 def test_run_translation_workflow_capture_errors_when_non_strict(monkeypatch):

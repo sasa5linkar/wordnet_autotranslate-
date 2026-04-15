@@ -25,8 +25,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--pipeline",
         default="langgraph",
-        choices=["langgraph", "conceptual", "all", "dspy"],
-        help="Pipeline(s) to run",
+        choices=["baseline", "langgraph", "conceptual", "all", "dspy"],
+        help="Pipeline(s) to run (dspy is a legacy alias for baseline)",
     )
     parser.add_argument("--model", default="gpt-oss:120b", help="Ollama model name")
     parser.add_argument("--base-url", default="http://localhost:11434", help="Ollama base URL")
