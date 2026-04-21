@@ -313,7 +313,7 @@ This project supports expansion to any language. Current examples include:
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.9+
 - Optional LangGraph stack for multi-phase workflows
 - Jupyter (for interactive development)
 - NLTK (for WordNet access)
