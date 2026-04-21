@@ -214,6 +214,16 @@ def run_translation_workflow(
     return results
 
 
+def build_resolution_result(synset_payload: Dict[str, Any]) -> Dict[str, Any]:
+    """Build a JSON-friendly result for selector resolution without translation."""
+    return {
+        "mode": "resolve-only",
+        "selector_id": synset_payload.get("id") or synset_payload.get("english_id"),
+        "source_synset": synset_payload,
+        "pipelines": {},
+    }
+
+
 def results_to_json(data: Dict[str, Any]) -> str:
     """Serialize workflow output for CLI/tools."""
     return json.dumps(data, ensure_ascii=False, indent=2)

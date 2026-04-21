@@ -1,6 +1,7 @@
 """Workflow utilities for agent-oriented translation operations."""
 
 from .synset_translation_workflow import (
+    build_resolution_result,
     WorkflowConfig,
     parse_eng30_id,
     resolve_wordnet_synset,
@@ -9,6 +10,7 @@ from .synset_translation_workflow import (
 )
 
 __all__ = [
+    "build_resolution_result",
     "WorkflowConfig",
     "parse_eng30_id",
     "resolve_wordnet_synset",

@@ -18,6 +18,7 @@ from .models.synset_handler import SynsetHandler
 from .models.xml_synset_parser import XmlSynsetParser, Synset
 from .utils.language_utils import LanguageUtils
 from .workflows.synset_translation_workflow import (
+    build_resolution_result,
     WorkflowConfig,
     resolve_wordnet_synset,
     run_translation_workflow,
@@ -33,6 +34,7 @@ __all__ = [
     "XmlSynsetParser",
     "Synset",
     "LanguageUtils",
+    "build_resolution_result",
     "WorkflowConfig",
     "resolve_wordnet_synset",
     "run_translation_workflow",

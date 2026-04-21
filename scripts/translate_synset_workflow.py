@@ -7,6 +7,7 @@ import argparse
 import sys
 
 from wordnet_autotranslate.workflows.synset_translation_workflow import (
+    build_resolution_result,
     WorkflowConfig,
     resolve_wordnet_synset,
     results_to_json,
@@ -35,6 +36,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--timeout", type=int, default=600)
     parser.add_argument("--temperature", type=float, default=0.2)
     parser.add_argument(
+        "--resolve-only",
+        action="store_true",
+        help="Resolve the selector and print the synset payload without running a translation pipeline.",
+    )
+    parser.add_argument(
         "--strict",
         action="store_true",
         help="Fail immediately if any selected pipeline errors.",
@@ -57,6 +63,10 @@ def main() -> int:
             pos=args.pos,
             sense_index=args.sense_index,
         )
+        if args.resolve_only:
+            print(results_to_json(build_resolution_result(synset_payload)))
+            return 0
+
         config = WorkflowConfig(
             source_lang=args.source_lang,
             target_lang=args.target_lang,
