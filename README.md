@@ -159,6 +159,41 @@ Use `--strict` to fail fast when any selected pipeline errors.
 Skill documentation for agents is available at:
 `skills/translate-synset-serbian/SKILL.md`.
 
+### Batch workflow: translate from a Google Sheet, CSV, or XLSX
+
+For sheet-driven batches that auto-detect selector columns, validate inputs,
+classify malformed or missing synsets, and write nested result folders, use:
+
+```bash
+python scripts/translate_synset_sheet.py "https://docs.google.com/spreadsheets/d/1H9ylWjSPmBCytT4D1y241Vq68Cy7sl8ji13FMeTueck/edit?usp=sharing" --pipeline all
+```
+
+The batch runner accepts either a public Google Sheet URL or a local CSV/XLSX
+download. For local `.xlsx` workbooks that are not already tabular, it scans
+the sheets for ENG-style synset IDs and flattens them into a normalized CSV
+snapshot before validation. It looks for selector columns such as `english_id`,
+`synset_name`, or `lemma` + `pos`, and it writes a timestamped run folder
+with:
+
+- `input/` snapshot of the processed sheet
+- `logs/` run log
+- `results/success/`, `results/invalid_format/`, `results/not_found/`, and `results/errors/`
+- `summary/run_summary.json`, `summary/rows.jsonl`, and `summary/rows.csv`
+
+If your header names differ from the defaults, pass explicit column names such
+as `--english-id-column`, `--synset-name-column`, `--lemma-column`, and
+`--pipeline-column`.
+
+If you want a grouped list that follows workbook column order and first-row
+headlines before running any pipelines, use:
+
+```bash
+python scripts/export_workbook_synset_lists.py path/to/workbook.xlsx
+```
+
+This writes flat and grouped exports under `data/workbook_imports/...`,
+including a text report organized by sheet and source header.
+
 ### Concept-oriented LangGraph comparison pipeline
 
 To compare the existing generate-and-filter pipeline with a stricter

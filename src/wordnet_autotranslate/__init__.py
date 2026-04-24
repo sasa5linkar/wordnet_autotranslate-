@@ -22,6 +22,18 @@ from .workflows.synset_translation_workflow import (
     resolve_wordnet_synset,
     run_translation_workflow,
 )
+from .workflows.sheet_translation_workflow import (
+    SheetBatchConfig,
+    SheetColumnMapping,
+    SheetColumnOverrides,
+    build_google_sheet_csv_export_url,
+    detect_column_mapping,
+    group_candidate_records_by_sheet_header,
+    render_grouped_candidate_text,
+    run_sheet_translation_batch,
+    sort_candidate_records_by_sheet_column,
+    validate_sheet_row,
+)
 
 __all__ = [
     "BaselineTranslationPipeline",
@@ -33,7 +45,17 @@ __all__ = [
     "XmlSynsetParser",
     "Synset",
     "LanguageUtils",
+    "SheetBatchConfig",
+    "SheetColumnMapping",
+    "SheetColumnOverrides",
     "WorkflowConfig",
+    "build_google_sheet_csv_export_url",
+    "detect_column_mapping",
+    "group_candidate_records_by_sheet_header",
+    "render_grouped_candidate_text",
     "resolve_wordnet_synset",
+    "run_sheet_translation_batch",
     "run_translation_workflow",
+    "sort_candidate_records_by_sheet_column",
+    "validate_sheet_row",
 ]
