@@ -16,6 +16,7 @@ from wordnet_autotranslate.workflows.synset_translation_workflow import (
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Translate an English WordNet synset to Serbian.")
+    parser.add_argument("--ili", help="ILI selector (e.g., i35545)")
     parser.add_argument("--english-id", help="ENG30 ID (e.g., ENG30-00001740-n)")
     parser.add_argument("--synset-name", help="WordNet synset name (e.g., entity.n.01)")
     parser.add_argument("--lemma", help="English lemma (requires --pos)")
@@ -51,6 +52,7 @@ def main() -> int:
 
     try:
         synset_payload = resolve_wordnet_synset(
+            ili=args.ili,
             english_id=args.english_id,
             synset_name=args.synset_name,
             lemma=args.lemma,

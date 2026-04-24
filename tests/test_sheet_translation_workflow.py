@@ -11,6 +11,7 @@ from wordnet_autotranslate.workflows.sheet_translation_workflow import (
     build_google_sheet_csv_export_url,
     detect_column_mapping,
     group_candidate_records_by_sheet_header,
+    prepare_native_sheet_translation_batch,
     render_grouped_candidate_text,
     sort_candidate_records_by_sheet_column,
     validate_sheet_row,
@@ -120,10 +121,11 @@ def test_build_google_sheet_csv_export_url_prefers_explicit_gid():
 
 
 def test_detect_column_mapping_auto_detects_common_aliases():
-    headers = ["ENG30 ID", "WordNet Synset Name", "English Lemma", "Part of Speech", "Workflow"]
+    headers = ["ILI ID", "ENG30 ID", "WordNet Synset Name", "English Lemma", "Part of Speech", "Workflow"]
 
     mapping = detect_column_mapping(headers)
 
+    assert mapping.ili == "ILI ID"
     assert mapping.english_id == "ENG30 ID"
     assert mapping.synset_name == "WordNet Synset Name"
     assert mapping.lemma == "English Lemma"
@@ -155,9 +157,10 @@ def test_validate_sheet_row_prefers_english_id_when_multiple_selectors_are_fille
         },
     )
 
-    mapping = detect_column_mapping(["english_id", "lemma", "pos", "pipeline"])
+    mapping = detect_column_mapping(["english_id", "ili", "lemma", "pos", "pipeline"])
     row = {
         "english_id": "ENG30-00001740-n",
+        "ili": "i35545",
         "lemma": "entity",
         "pos": "n",
         "pipeline": "langgraph",
@@ -169,6 +172,28 @@ def test_validate_sheet_row_prefers_english_id_when_multiple_selectors_are_fille
     assert result["selector_kind"] == "english_id"
     assert result["pipeline"] == "langgraph"
     assert "Multiple selector columns" in result["note"]
+
+
+def test_validate_sheet_row_accepts_ili_selector(monkeypatch):
+    monkeypatch.setattr(
+        sheet_mod,
+        "resolve_wordnet_synset",
+        lambda **kwargs: {
+            "ili_id": kwargs["ili"],
+            "english_id": "ENG30-00001740-n",
+            "id": "ENG30-00001740-n",
+            "pos": "n",
+        },
+    )
+
+    mapping = detect_column_mapping(["ili"])
+    row = {"ili": "i35545"}
+
+    result = validate_sheet_row(2, row, mapping, default_pipeline="all")
+
+    assert result["status"] == "valid"
+    assert result["selector_kind"] == "ili"
+    assert result["synset_payload"]["ili_id"] == "i35545"
 
 
 def test_validate_sheet_row_rejects_bad_eng30_format():
@@ -306,6 +331,58 @@ def test_run_sheet_translation_batch_accepts_local_xlsx(monkeypatch):
         assert list((run_dir / "results" / "success").rglob("row_00002.json"))
         assert list((run_dir / "results" / "invalid_format").rglob("row_00003.json"))
         assert list((run_dir / "results" / "success").rglob("row_00004.json"))
+    finally:
+        shutil.rmtree(scratch_dir, ignore_errors=True)
+
+
+def test_prepare_native_sheet_translation_batch_writes_pending_items(monkeypatch):
+    artifacts_root = Path.cwd() / ".test_artifacts"
+    artifacts_root.mkdir(exist_ok=True)
+    scratch_dir = Path(tempfile.mkdtemp(prefix="native_sheet_batch_", dir=str(artifacts_root)))
+
+    try:
+        source_csv = scratch_dir / "input.csv"
+        source_csv.write_text(
+            "ili,pipeline\n"
+            "i35545,conceptual\n"
+            "bad-ili,\n",
+            encoding="utf-8",
+        )
+
+        monkeypatch.setattr(sheet_mod, "ensure_wordnet_available", lambda: None)
+        monkeypatch.setattr(
+            sheet_mod,
+            "resolve_wordnet_synset",
+            lambda **kwargs: {
+                "ili_id": kwargs["ili"],
+                "english_id": "ENG30-00001740-n",
+                "id": "ENG30-00001740-n",
+                "pos": "n",
+                "lemmas": ["entity"],
+                "definition": "something that exists",
+                "examples": [],
+            },
+        )
+
+        summary = prepare_native_sheet_translation_batch(
+            SheetBatchConfig(
+                source=str(source_csv),
+                output_dir=scratch_dir / "runs",
+                workflow=WorkflowConfig(strict=False),
+                default_pipeline="all",
+            )
+        )
+
+        run_dir = Path(summary["run_dir"])
+        assert summary["translation_mode"] == "native_agent"
+        assert summary["counts"] == {
+            "pending": 1,
+            "invalid_format": 1,
+            "not_found": 0,
+            "error": 0,
+        }
+        assert list((run_dir / "work_items" / "pending").rglob("row_00002.json"))
+        assert list((run_dir / "results" / "invalid_format").rglob("row_00003.json"))
     finally:
         shutil.rmtree(scratch_dir, ignore_errors=True)
 

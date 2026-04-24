@@ -6,6 +6,7 @@ from wordnet_autotranslate.workflows import synset_translation_workflow as workf
 from wordnet_autotranslate.workflows.synset_translation_workflow import (
     WorkflowConfig,
     parse_eng30_id,
+    parse_ili_id,
     run_translation_workflow,
     synset_to_payload,
     _resolve_sense_index,
@@ -64,6 +65,15 @@ def test_parse_eng30_id_passes_through_adjective_pos():
 def test_parse_eng30_id_rejects_malformed_selector():
     with pytest.raises(ValueError, match="parse_eng30_id"):
         parse_eng30_id("BROKEN-1740-x")
+
+
+def test_parse_ili_id_normalizes_uppercase_input():
+    assert parse_ili_id("I35545") == "i35545"
+
+
+def test_parse_ili_id_rejects_malformed_selector():
+    with pytest.raises(ValueError, match="parse_ili_id"):
+        parse_ili_id("ENG30-00001740-n")
 
 
 def test_parse_eng30_id_rejects_invalid_pos_with_clear_message():
@@ -187,6 +197,48 @@ def test_synset_to_payload_builds_expected_shape():
     assert payload["name"] == "entity.n.01"
     assert payload["lemmas"] == ["entity", "physical entity"]
     assert payload["pos"] == "n"
+
+
+def test_resolve_wordnet_synset_ili_uses_shared_payload_resolver(monkeypatch):
+    monkeypatch.setattr(
+        workflow_mod,
+        "resolve_ili_to_payload",
+        lambda ili: {
+            "id": "ENG30-00001740-n",
+            "english_id": "ENG30-00001740-n",
+            "ili_id": ili,
+            "name": "entity.n.01",
+            "lemmas": ["entity"],
+            "definition": "something that exists",
+            "examples": [],
+            "pos": "n",
+        },
+    )
+
+    payload = workflow_mod.resolve_wordnet_synset(ili="i35545")
+
+    assert payload["english_id"] == "ENG30-00001740-n"
+    assert payload["ili_id"] == "i35545"
+
+
+def test_resolve_wordnet_synset_include_relations_enriches_ili_payload(monkeypatch):
+    monkeypatch.setattr(
+        workflow_mod,
+        "resolve_ili_to_payload",
+        lambda ili: {"english_id": "ENG30-00001740-n", "ili_id": ili},
+    )
+    monkeypatch.setattr(
+        workflow_mod,
+        "enrich_synset_payload",
+        lambda payload: {**payload, "hypernyms": [{"name": "thing.n.01"}]},
+    )
+
+    payload = workflow_mod.resolve_wordnet_synset(
+        ili="i35545",
+        include_relations=True,
+    )
+
+    assert payload["hypernyms"] == [{"name": "thing.n.01"}]
 
 
 def test_run_translation_workflow_baseline_runs_for_legacy_dspy_alias():

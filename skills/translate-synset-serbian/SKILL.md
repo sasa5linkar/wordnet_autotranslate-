@@ -38,3 +38,5 @@ python scripts/translate_synset_workflow.py --lemma entity --pos n --sense-index
 - LangGraph pipelines require optional dependencies and a reachable Ollama endpoint.
 - Serbian adverb POS (`b`) is normalized to WordNet adverb POS (`r`) automatically.
 - Add `--strict` when you want non-zero exit on any per-pipeline error.
+- For particles, conjunctions, discourse markers, and other function words, prefer short Serbian dictionary-style glosses and verify them against natural Serbian examples before accepting the output.
+- Separate stable literals from context-bound variants such as negation-specific constructions when curating final JSON output.

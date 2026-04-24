@@ -32,3 +32,9 @@ def test_cli_pipeline_choices_include_baseline():
     parser = cli.build_parser()
     pipeline_action = next(action for action in parser._actions if action.dest == "pipeline")
     assert "baseline" in pipeline_action.choices
+
+
+def test_cli_accepts_ili_selector():
+    parser = cli.build_parser()
+    ili_action = next(action for action in parser._actions if action.dest == "ili")
+    assert ili_action is not None

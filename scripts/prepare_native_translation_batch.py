@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CLI wrapper for Google Sheet or CSV driven synset translation batches."""
+"""Prepare a sheet/xlsx/csv batch for native-agent translation without invoking model backends."""
 
 from __future__ import annotations
 
@@ -11,15 +11,15 @@ from pathlib import Path
 from wordnet_autotranslate.workflows.sheet_translation_workflow import (
     SheetBatchConfig,
     SheetColumnOverrides,
+    prepare_native_sheet_translation_batch,
     WorkflowConfig,
-    run_sheet_translation_batch,
 )
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "Translate WordNet synsets from a public Google Sheet or a local CSV/XLSX snapshot."
+            "Prepare a public Google Sheet or local CSV/XLSX snapshot for native-agent Serbian translation."
         )
     )
     parser.add_argument(
@@ -32,35 +32,23 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--output-dir",
-        default="batch_runs",
-        help="Base directory under which a timestamped batch run folder will be created",
+        default="native_batch_runs",
+        help="Base directory under which a timestamped native-agent batch run folder will be created",
     )
     parser.add_argument(
         "--pipeline",
         default="all",
         choices=["baseline", "langgraph", "conceptual", "all", "dspy"],
-        help="Default pipeline when a row does not define its own pipeline column",
+        help="Default reasoning mode when a row does not define its own pipeline column",
     )
-    parser.add_argument("--model", default="gpt-oss:120b", help="Ollama model name")
-    parser.add_argument("--base-url", default="http://localhost:11434", help="Ollama base URL")
-    parser.add_argument("--source-lang", default="en")
-    parser.add_argument("--target-lang", default="sr")
-    parser.add_argument("--timeout", type=int, default=600)
-    parser.add_argument("--temperature", type=float, default=0.2)
     parser.add_argument(
         "--download-timeout",
         type=int,
         default=30,
         help="Timeout in seconds for downloading the input sheet snapshot",
     )
-    parser.add_argument(
-        "--strict",
-        action="store_true",
-        help="Fail immediately if any selected pipeline errors.",
-    )
-
-    parser.add_argument("--english-id-column", help="Exact header name for ENG30 selectors")
     parser.add_argument("--ili-column", help="Exact header name for ILI selectors")
+    parser.add_argument("--english-id-column", help="Exact header name for ENG30 selectors")
     parser.add_argument("--synset-name-column", help="Exact header name for synset names")
     parser.add_argument("--lemma-column", help="Exact header name for lemma lookup")
     parser.add_argument("--pos-column", help="Exact header name for POS lookup")
@@ -76,15 +64,7 @@ def main() -> int:
     config = SheetBatchConfig(
         source=args.source,
         output_dir=Path(args.output_dir),
-        workflow=WorkflowConfig(
-            source_lang=args.source_lang,
-            target_lang=args.target_lang,
-            model=args.model,
-            timeout=args.timeout,
-            base_url=args.base_url,
-            temperature=args.temperature,
-            strict=args.strict,
-        ),
+        workflow=WorkflowConfig(),
         default_pipeline=args.pipeline,
         gid=args.gid,
         columns=SheetColumnOverrides(
@@ -100,7 +80,7 @@ def main() -> int:
     )
 
     try:
-        summary = run_sheet_translation_batch(config)
+        summary = prepare_native_sheet_translation_batch(config)
         print(json.dumps(summary, ensure_ascii=False, indent=2))
         return 0
     except KeyboardInterrupt:
