@@ -1,0 +1,6 @@
+interface:
+  display_name: "Serbian Synset Translator"
+  short_description: "Translate WordNet synsets to Serbian"
+  default_prompt: "Use $translate-synset-serbian to translate these English WordNet synsets to Serbian with agent-all."
+policy:
+  allow_implicit_invocation: true
