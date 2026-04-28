@@ -1,0 +1,2225 @@
+{
+  "metadata": {
+    "model": "gpt-oss:120b",
+    "model_resolution": {
+      "requested": "gpt-oss:120b",
+      "resolved": "gpt-oss:120b",
+      "resolved_safe": "gpt-oss-120b",
+      "fallback_used": false,
+      "resolution_strategy": "preferred",
+      "available_models": [
+        "deepseek-r1:70b",
+        "deepseek-r1:8b",
+        "deepseek-r1:latest",
+        "deepseek-v3.1:671b",
+        "gemma3:1b",
+        "gemma3:27b",
+        "gpt-oss:120b",
+        "gpt-oss:20b",
+        "qwen3:235b",
+        "qwen3:30b"
+      ]
+    },
+    "timestamp_utc": "20251025T194126Z",
+    "source_lang": "en",
+    "target_lang": "sr",
+    "total_synsets": 27,
+    "batch_total_seconds": 1142.346193699981
+  },
+  "entries": [
+    {
+      "synset": {
+        "id": "ENG30-03574555-n",
+        "lemmas": [
+          "institution"
+        ],
+        "definition": "an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated",
+        "examples": [],
+        "pos": "n",
+        "display_name": "institution.n.02"
+      },
+      "result": {
+        "translation": "institucija",
+        "definition_translation": "ustanova koja se sastoji od jedne zgrade ili kompleksa zgrada u kojima se nalazi organizacija za promovisanje nekog cilja",
+        "translated_synonyms": [
+          "institucija",
+          "ustanova"
+        ],
+        "curator_summary": "Primary literal: institucija\nSynonyms: institucija, ustanova\nGloss: ustanova koja se sastoji od jedne zgrade ili kompleksa zgrada u kojima se nalazi organizacija za promovisanje nekog cilj…",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-03574555-n\n            Part of speech: n\n            English lemmas: institution\n            Definition: an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-03574555-n\n            Part of speech: n\n            English lemmas: institution\n            Definition: an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "institucija",
+            "synonyms": [
+              "institucija",
+              "ustanova"
+            ],
+            "definition_translation": "ustanova koja se sastoji od jedne zgrade ili kompleksa zgrada u kojima se nalazi organizacija za promovisanje nekog cilja",
+            "examples": [],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"institucija\",\n  \"synonyms\": [\"institucija\", \"ustanova\"],\n  \"definition_translation\": \"ustanova koja se sastoji od jedne zgrade ili kompleksa zgrada u kojima se nalazi organizacija za promovisanje nekog cilja\",\n  \"examples\": [],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 1521.8567324999603,
+        "reused_single": true
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-07810907-n",
+        "lemmas": [
+          "condiment"
+        ],
+        "definition": "a preparation (a sauce or relish or spice) to enhance flavor or enjoyment",
+        "examples": [
+          "mustard and ketchup are condiments"
+        ],
+        "pos": "n",
+        "display_name": "condiment.n.01"
+      },
+      "result": {
+        "translation": "začin",
+        "definition_translation": "priprema (sos, prilog ili začin) koja poboljšava ukus ili uživanje",
+        "translated_synonyms": [
+          "preliv",
+          "dodatak",
+          "začin"
+        ],
+        "curator_summary": "Primary literal: začin\nSynonyms: preliv, dodatak, začin\nGloss: priprema (sos, prilog ili začin) koja poboljšava ukus ili uživanje",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "senf i kečap su začini"
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-07810907-n\n            Part of speech: n\n            English lemmas: condiment\n            Definition: a preparation (a sauce or relish or spice) to enhance flavor or enjoyment\n            Usage examples:\n            - mustard and ketchup are condiments\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-07810907-n\n            Part of speech: n\n            English lemmas: condiment\n            Definition: a preparation (a sauce or relish or spice) to enhance flavor or enjoyment\n            Usage examples:\n            - mustard and ketchup are condiments\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "začin",
+            "synonyms": [
+              "preliv",
+              "dodatak"
+            ],
+            "definition_translation": "priprema (sos, prilog ili začin) koja poboljšava ukus ili uživanje",
+            "examples": [
+              "senf i kečap su začini"
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"začin\",\n  \"synonyms\": [\"preliv\", \"dodatak\"],\n  \"definition_translation\": \"priprema (sos, prilog ili začin) koja poboljšava ukus ili uživanje\",\n  \"examples\": [\"senf i kečap su začini\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 28.601910699973814,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01376245-v",
+        "lemmas": [
+          "scatter",
+          "sprinkle",
+          "dot",
+          "dust",
+          "disperse"
+        ],
+        "definition": "distribute loosely",
+        "examples": [
+          "He scattered gun powder under the wagon"
+        ],
+        "pos": "v",
+        "display_name": "scatter.v.03"
+      },
+      "result": {
+        "translation": "raspršiti",
+        "definition_translation": "raspršeno raspoređivati",
+        "translated_synonyms": [
+          "raspršiti",
+          "posipati",
+          "prskati",
+          "prašiti",
+          "raspršivati"
+        ],
+        "curator_summary": "Primary literal: raspršiti\nSynonyms: raspršiti, posipati, prskati, prašiti, raspršivati\nGloss: raspršeno raspoređivati",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Posuo je barut ispod kolica."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01376245-v\n            Part of speech: v\n            English lemmas: scatter, sprinkle, dot, dust, disperse\n            Definition: distribute loosely\n            Usage examples:\n            - He scattered gun powder under the wagon\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01376245-v\n            Part of speech: v\n            English lemmas: scatter, sprinkle, dot, dust, disperse\n            Definition: distribute loosely\n            Usage examples:\n            - He scattered gun powder under the wagon\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "raspršiti",
+            "synonyms": [
+              "raspršiti",
+              "posipati",
+              "prskati",
+              "prašiti",
+              "raspršivati"
+            ],
+            "definition_translation": "raspršeno raspoređivati",
+            "examples": [
+              "Posuo je barut ispod kolica."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"raspršiti\",\n  \"synonyms\": [\"raspršiti\", \"posipati\", \"prskati\", \"prašiti\", \"raspršivati\"],\n  \"definition_translation\": \"raspršeno raspoređivati\",\n  \"examples\": [\"Posuo je barut ispod kolica.\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 57.97908900002949,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01382083-v",
+        "lemmas": [
+          "pick",
+          "pluck",
+          "cull"
+        ],
+        "definition": "look for and gather",
+        "examples": [
+          "pick mushrooms",
+          "pick flowers"
+        ],
+        "pos": "v",
+        "display_name": "pick.v.02"
+      },
+      "result": {
+        "translation": "brati",
+        "definition_translation": "tražiti i sakupljati",
+        "translated_synonyms": [
+          "skupljati",
+          "ćupati",
+          "prikupljati",
+          "brati"
+        ],
+        "curator_summary": "Primary literal: brati\nSynonyms: skupljati, ćupati, prikupljati, brati\nGloss: tražiti i sakupljati",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "brati gljive",
+          "brati cveće"
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01382083-v\n            Part of speech: v\n            English lemmas: pick, pluck, cull\n            Definition: look for and gather\n            Usage examples:\n            - pick mushrooms\n- pick flowers\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01382083-v\n            Part of speech: v\n            English lemmas: pick, pluck, cull\n            Definition: look for and gather\n            Usage examples:\n            - pick mushrooms\n- pick flowers\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "brati",
+            "synonyms": [
+              "skupljati",
+              "ćupati",
+              "prikupljati"
+            ],
+            "definition_translation": "tražiti i sakupljati",
+            "examples": [
+              "brati gljive",
+              "brati cveće"
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"brati\",\n  \"synonyms\": [\"skupljati\", \"ćupati\", \"prikupljati\"],\n  \"definition_translation\": \"tražiti i sakupljati\",\n  \"examples\": [\"brati gljive\", \"brati cveće\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 30.231851000047754,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01393996-v",
+        "lemmas": [
+          "sweep"
+        ],
+        "definition": "clean by sweeping",
+        "examples": [
+          "Please sweep the floor"
+        ],
+        "pos": "v",
+        "display_name": "sweep.v.06"
+      },
+      "result": {
+        "translation": "metati",
+        "definition_translation": "očistiti metanjem",
+        "translated_synonyms": [
+          "pomesti",
+          "čistiti metanjem",
+          "metati"
+        ],
+        "curator_summary": "Primary literal: metati\nSynonyms: pomesti, čistiti metanjem, metati\nGloss: očistiti metanjem",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Molim, pomesti pod."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01393996-v\n            Part of speech: v\n            English lemmas: sweep\n            Definition: clean by sweeping\n            Usage examples:\n            - Please sweep the floor\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01393996-v\n            Part of speech: v\n            English lemmas: sweep\n            Definition: clean by sweeping\n            Usage examples:\n            - Please sweep the floor\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "metati",
+            "synonyms": [
+              "pomesti",
+              "čistiti metanjem"
+            ],
+            "definition_translation": "očistiti metanjem",
+            "examples": [
+              "Molim, pomesti pod."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"metati\",\n  \"synonyms\": [\"pomesti\", \"čistiti metanjem\"],\n  \"definition_translation\": \"očistiti metanjem\",\n  \"examples\": [\"Molim, pomesti pod.\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 35.74844259995734,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01421622-v",
+        "lemmas": [
+          "insert",
+          "infix",
+          "enter",
+          "introduce"
+        ],
+        "definition": "put or introduce into something",
+        "examples": [
+          "insert a picture into the text"
+        ],
+        "pos": "v",
+        "display_name": "insert.v.01"
+      },
+      "result": {
+        "translation": "ubaciti",
+        "definition_translation": "staviti ili uvesti nešto u nešto drugo",
+        "translated_synonyms": [
+          "ubaciti",
+          "umetnuti",
+          "unesi",
+          "uvesti"
+        ],
+        "curator_summary": "Primary literal: ubaciti\nSynonyms: ubaciti, umetnuti, unesi, uvesti\nGloss: staviti ili uvesti nešto u nešto drugo",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Ubaciti sliku u tekst."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01421622-v\n            Part of speech: v\n            English lemmas: insert, infix, enter, introduce\n            Definition: put or introduce into something\n            Usage examples:\n            - insert a picture into the text\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01421622-v\n            Part of speech: v\n            English lemmas: insert, infix, enter, introduce\n            Definition: put or introduce into something\n            Usage examples:\n            - insert a picture into the text\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "ubaciti",
+            "synonyms": [
+              "ubaciti",
+              "umetnuti",
+              "unesi",
+              "uvesti"
+            ],
+            "definition_translation": "staviti ili uvesti nešto u nešto drugo",
+            "examples": [
+              "Ubaciti sliku u tekst."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"ubaciti\",\n  \"synonyms\": [\"ubaciti\", \"umetnuti\", \"unesi\", \"uvesti\"],\n  \"definition_translation\": \"staviti ili uvesti nešto u nešto drugo\",\n  \"examples\": [\"Ubaciti sliku u tekst.\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 57.02684920001775,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01437254-v",
+        "lemmas": [
+          "send",
+          "send_out"
+        ],
+        "definition": "to cause or order to be taken, directed, or transmitted to another place",
+        "examples": [
+          "He had sent the dispatches downtown to the proper people and had slept"
+        ],
+        "pos": "v",
+        "display_name": "send.v.02"
+      },
+      "result": {
+        "translation": "poslati",
+        "definition_translation": "prouzrokovati ili narediti da se nešto uzme, usmeri ili prenese na drugo mesto",
+        "translated_synonyms": [
+          "poslati",
+          "poslati dalje",
+          "prebaciti",
+          "prenositi"
+        ],
+        "curator_summary": "Primary literal: poslati\nSynonyms: poslati, poslati dalje, prebaciti, prenositi\nGloss: prouzrokovati ili narediti da se nešto uzme, usmeri ili prenese na drugo mesto",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Poslao je izveštaje u centar pravim ljudima i zatim je zaspao."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01437254-v\n            Part of speech: v\n            English lemmas: send, send_out\n            Definition: to cause or order to be taken, directed, or transmitted to another place\n            Usage examples:\n            - He had sent the dispatches downtown to the proper people and had slept\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01437254-v\n            Part of speech: v\n            English lemmas: send, send_out\n            Definition: to cause or order to be taken, directed, or transmitted to another place\n            Usage examples:\n            - He had sent the dispatches downtown to the proper people and had slept\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "poslati",
+            "synonyms": [
+              "poslati",
+              "poslati dalje",
+              "prebaciti",
+              "prenositi"
+            ],
+            "definition_translation": "prouzrokovati ili narediti da se nešto uzme, usmeri ili prenese na drugo mesto",
+            "examples": [
+              "Poslao je izveštaje u centar pravim ljudima i zatim je zaspao."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"poslati\",\n  \"synonyms\": [\"poslati\", \"poslati dalje\", \"prebaciti\", \"prenositi\"],\n  \"definition_translation\": \"prouzrokovati ili narediti da se nešto uzme, usmeri ili prenese na drugo mesto\",\n  \"examples\": [\"Poslao je izveštaje u centar pravim ljudima i zatim je zaspao.\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 42.110715099959634,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01441100-v",
+        "lemmas": [
+          "pierce"
+        ],
+        "definition": "make a hole into",
+        "examples": [
+          "The needle pierced her flesh"
+        ],
+        "pos": "v",
+        "display_name": "pierce.v.05"
+      },
+      "result": {
+        "translation": "probosti",
+        "definition_translation": "napraviti rupu u nečemu",
+        "translated_synonyms": [
+          "probosti",
+          "probušiti",
+          "prodrijeti"
+        ],
+        "curator_summary": "Primary literal: probosti\nSynonyms: probosti, probušiti, prodrijeti\nGloss: napraviti rupu u nečemu",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Igla je probila njeno meso."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01441100-v\n            Part of speech: v\n            English lemmas: pierce\n            Definition: make a hole into\n            Usage examples:\n            - The needle pierced her flesh\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01441100-v\n            Part of speech: v\n            English lemmas: pierce\n            Definition: make a hole into\n            Usage examples:\n            - The needle pierced her flesh\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "probosti",
+            "synonyms": [
+              "probosti",
+              "probušiti",
+              "prodrijeti"
+            ],
+            "definition_translation": "napraviti rupu u nečemu",
+            "examples": [
+              "Igla je probila njeno meso."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"probosti\",\n  \"synonyms\": [\"probosti\", \"probušiti\", \"prodrijeti\"],\n  \"definition_translation\": \"napraviti rupu u nečemu\",\n  \"examples\": [\"Igla je probila njeno meso.\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 47.76856769999722,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01445932-v",
+        "lemmas": [
+          "bite",
+          "seize_with_teeth"
+        ],
+        "definition": "to grip, cut off, or tear with or as if with the teeth or jaws",
+        "examples": [
+          "Gunny invariably tried to bite her"
+        ],
+        "pos": "v",
+        "display_name": "bite.v.01"
+      },
+      "result": {
+        "translation": "ugriznuti",
+        "definition_translation": "uhvatiti, odseći ili rastrgati zubima ili vilicama, ili kao da se to radi zubima ili vilicama",
+        "translated_synonyms": [
+          "zagrizati",
+          "zagriznuti",
+          "ugrizati",
+          "ugriznuti"
+        ],
+        "curator_summary": "Primary literal: ugriznuti\nSynonyms: zagrizati, zagriznuti, ugrizati, ugriznuti\nGloss: uhvatiti, odseći ili rastrgati zubima ili vilicama, ili kao da se to radi zubima ili vilicama",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Gunny je stalno pokušavala da je ugrize."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01445932-v\n            Part of speech: v\n            English lemmas: bite, seize_with_teeth\n            Definition: to grip, cut off, or tear with or as if with the teeth or jaws\n            Usage examples:\n            - Gunny invariably tried to bite her\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01445932-v\n            Part of speech: v\n            English lemmas: bite, seize_with_teeth\n            Definition: to grip, cut off, or tear with or as if with the teeth or jaws\n            Usage examples:\n            - Gunny invariably tried to bite her\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "ugriznuti",
+            "synonyms": [
+              "zagrizati",
+              "zagriznuti",
+              "ugrizati"
+            ],
+            "definition_translation": "uhvatiti, odseći ili rastrgati zubima ili vilicama, ili kao da se to radi zubima ili vilicama",
+            "examples": [
+              "Gunny je stalno pokušavala da je ugrize."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"ugriznuti\",\n  \"synonyms\": [\"zagrizati\", \"zagriznuti\", \"ugrizati\"],\n  \"definition_translation\": \"uhvatiti, odseći ili rastrgati zubima ili vilicama, ili kao da se to radi zubima ili vilicama\",\n  \"examples\": [\"Gunny je stalno pokušavala da je ugrize.\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 42.61107779998565,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01370561-v",
+        "lemmas": [
+          "kick"
+        ],
+        "definition": "strike with the foot",
+        "examples": [
+          "The boy kicked the dog",
+          "Kick the door down"
+        ],
+        "pos": "v",
+        "display_name": "kick.v.03"
+      },
+      "result": {
+        "translation": "šutnuti",
+        "definition_translation": "udariti nečim nogom",
+        "translated_synonyms": [
+          "udariti nogom",
+          "kopnuti",
+          "šutnuti"
+        ],
+        "curator_summary": "Primary literal: šutnuti\nSynonyms: udariti nogom, kopnuti, šutnuti\nGloss: udariti nečim nogom",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Dečak je šutnuo psa.",
+          "Šutni vrata da se otvore."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01370561-v\n            Part of speech: v\n            English lemmas: kick\n            Definition: strike with the foot\n            Usage examples:\n            - The boy kicked the dog\n- Kick the door down\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01370561-v\n            Part of speech: v\n            English lemmas: kick\n            Definition: strike with the foot\n            Usage examples:\n            - The boy kicked the dog\n- Kick the door down\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "šutnuti",
+            "synonyms": [
+              "udariti nogom",
+              "kopnuti",
+              "šutnuti"
+            ],
+            "definition_translation": "udariti nečim nogom",
+            "examples": [
+              "Dečak je šutnuo psa.",
+              "Šutni vrata da se otvore."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"šutnuti\",\n  \"synonyms\": [\"udariti nogom\", \"kopnuti\", \"šutnuti\"],\n  \"definition_translation\": \"udariti nečim nogom\",\n  \"examples\": [\n    \"Dečak je šutnuo psa.\",\n    \"Šutni vrata da se otvore.\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 36.05373330001021,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01391280-v",
+        "lemmas": [
+          "roll_out",
+          "roll"
+        ],
+        "definition": "flatten or spread with a roller",
+        "examples": [
+          "roll out the paper"
+        ],
+        "pos": "v",
+        "display_name": "roll_out.v.01"
+      },
+      "result": {
+        "translation": "razvaljati",
+        "definition_translation": "izravnati ili rasporediti pomoću valjka",
+        "translated_synonyms": [
+          "valjati",
+          "rasprostrti valjkom",
+          "izravnati valjkom",
+          "razvaljati"
+        ],
+        "curator_summary": "Primary literal: razvaljati\nSynonyms: valjati, rasprostrti valjkom, izravnati valjkom, razvaljati\nGloss: izravnati ili rasporediti pomoću valjka",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Razvaljajte papir."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01391280-v\n            Part of speech: v\n            English lemmas: roll_out, roll\n            Definition: flatten or spread with a roller\n            Usage examples:\n            - roll out the paper\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01391280-v\n            Part of speech: v\n            English lemmas: roll_out, roll\n            Definition: flatten or spread with a roller\n            Usage examples:\n            - roll out the paper\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "razvaljati",
+            "synonyms": [
+              "valjati",
+              "rasprostrti valjkom",
+              "izravnati valjkom"
+            ],
+            "definition_translation": "izravnati ili rasporediti pomoću valjka",
+            "examples": [
+              "Razvaljajte papir."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"razvaljati\",\n  \"synonyms\": [\"valjati\", \"rasprostrti valjkom\", \"izravnati valjkom\"],\n  \"definition_translation\": \"izravnati ili rasporediti pomoću valjka\",\n  \"examples\": [\"Razvaljajte papir.\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 30.70636910002213,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01435380-v",
+        "lemmas": [
+          "transmit",
+          "transfer",
+          "transport",
+          "channel",
+          "channelize",
+          "channelise"
+        ],
+        "definition": "send from one person or place to another",
+        "examples": [
+          "transmit a message"
+        ],
+        "pos": "v",
+        "display_name": "transmit.v.04"
+      },
+      "result": {
+        "translation": "prenositi",
+        "definition_translation": "slati od jedne osobe ili mesta do druge",
+        "translated_synonyms": [
+          "prenositi",
+          "transportovati",
+          "prebacivati",
+          "usmeravati",
+          "kanalizovati"
+        ],
+        "curator_summary": "Primary literal: prenositi\nSynonyms: prenositi, transportovati, prebacivati, usmeravati, kanalizovati\nGloss: slati od jedne osobe ili mesta do druge",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "prenositi poruku"
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01435380-v\n            Part of speech: v\n            English lemmas: transmit, transfer, transport, channel, channelize, channelise\n            Definition: send from one person or place to another\n            Usage examples:\n            - transmit a message\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01435380-v\n            Part of speech: v\n            English lemmas: transmit, transfer, transport, channel, channelize, channelise\n            Definition: send from one person or place to another\n            Usage examples:\n            - transmit a message\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "prenositi",
+            "synonyms": [
+              "prenositi",
+              "transportovati",
+              "prebacivati",
+              "usmeravati",
+              "kanalizovati"
+            ],
+            "definition_translation": "slati od jedne osobe ili mesta do druge",
+            "examples": [
+              "prenositi poruku"
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"prenositi\",\n  \"synonyms\": [\"prenositi\", \"transportovati\", \"prebacivati\", \"usmeravati\", \"kanalizovati\"],\n  \"definition_translation\": \"slati od jedne osobe ili mesta do druge\",\n  \"examples\": [\"prenositi poruku\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 32.48120580002433,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01456771-v",
+        "lemmas": [
+          "pinch",
+          "squeeze",
+          "twinge",
+          "tweet",
+          "nip",
+          "twitch"
+        ],
+        "definition": "squeeze tightly between the fingers",
+        "examples": [
+          "He pinched her behind",
+          "She squeezed the bottle"
+        ],
+        "pos": "v",
+        "display_name": "pinch.v.01"
+      },
+      "result": {
+        "translation": "stisnuti",
+        "definition_translation": "čvrsto stisnuti između prstiju",
+        "translated_synonyms": [
+          "pritisnuti",
+          "zgrčiti",
+          "uhvatiti",
+          "skratiti",
+          "napeti",
+          "stisnuti"
+        ],
+        "curator_summary": "Primary literal: stisnuti\nSynonyms: pritisnuti, zgrčiti, uhvatiti, skratiti, napeti\nGloss: čvrsto stisnuti između prstiju",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "On ju je stisnuo za leđa.",
+          "Ona je stisnula bocu."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01456771-v\n            Part of speech: v\n            English lemmas: pinch, squeeze, twinge, tweet, nip, twitch\n            Definition: squeeze tightly between the fingers\n            Usage examples:\n            - He pinched her behind\n- She squeezed the bottle\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01456771-v\n            Part of speech: v\n            English lemmas: pinch, squeeze, twinge, tweet, nip, twitch\n            Definition: squeeze tightly between the fingers\n            Usage examples:\n            - He pinched her behind\n- She squeezed the bottle\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "stisnuti",
+            "synonyms": [
+              "pritisnuti",
+              "zgrčiti",
+              "uhvatiti",
+              "skratiti",
+              "napeti"
+            ],
+            "definition_translation": "čvrsto stisnuti između prstiju",
+            "examples": [
+              "On ju je stisnuo za leđa.",
+              "Ona je stisnula bocu."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"stisnuti\",\n  \"synonyms\": [\"pritisnuti\", \"zgrčiti\", \"uhvatiti\", \"skratiti\", \"napeti\"],\n  \"definition_translation\": \"čvrsto stisnuti između prstiju\",\n  \"examples\": [\n    \"On ju je stisnuo za leđa.\",\n    \"Ona je stisnula bocu.\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 43.597781700023916,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01461328-v",
+        "lemmas": [
+          "compound",
+          "combine"
+        ],
+        "definition": "combine so as to form a whole; mix",
+        "examples": [
+          "compound the ingredients"
+        ],
+        "pos": "v",
+        "display_name": "compound.v.05"
+      },
+      "result": {
+        "translation": "spojiti",
+        "definition_translation": "spojiti tako da se formira celina; mešati",
+        "translated_synonyms": [
+          "kombinovati",
+          "mešati",
+          "sastaviti",
+          "spojiti"
+        ],
+        "curator_summary": "Primary literal: spojiti\nSynonyms: kombinovati, mešati, sastaviti, spojiti\nGloss: spojiti tako da se formira celina; mešati",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "spojite sastojke"
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01461328-v\n            Part of speech: v\n            English lemmas: compound, combine\n            Definition: combine so as to form a whole; mix\n            Usage examples:\n            - compound the ingredients\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01461328-v\n            Part of speech: v\n            English lemmas: compound, combine\n            Definition: combine so as to form a whole; mix\n            Usage examples:\n            - compound the ingredients\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "spojiti",
+            "synonyms": [
+              "kombinovati",
+              "mešati",
+              "sastaviti"
+            ],
+            "definition_translation": "spojiti tako da se formira celina; mešati",
+            "examples": [
+              "spojite sastojke"
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"spojiti\",\n  \"synonyms\": [\"kombinovati\", \"mešati\", \"sastaviti\"],\n  \"definition_translation\": \"spojiti tako da se formira celina; mešati\",\n  \"examples\": [\"spojite sastojke\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 28.397260099998675,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01487311-v",
+        "lemmas": [
+          "burden",
+          "burthen",
+          "weight",
+          "weight_down"
+        ],
+        "definition": "weight down with a load",
+        "examples": [],
+        "pos": "v",
+        "display_name": "burden.v.01"
+      },
+      "result": {
+        "translation": "opterećivati",
+        "definition_translation": "opterećivati nečim, učiniti da nešto bude teže zbog dodatnog tereta",
+        "translated_synonyms": [
+          "opterećivati",
+          "opterećivati teretom",
+          "težiti"
+        ],
+        "curator_summary": "Primary literal: opterećivati\nSynonyms: opterećivati, opterećivati teretom, težiti\nGloss: opterećivati nečim, učiniti da nešto bude teže zbog dodatnog tereta",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Težak teret je opterećivao kolica.",
+          "Vetar je opterećivao krov."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01487311-v\n            Part of speech: v\n            English lemmas: burden, burthen, weight, weight_down\n            Definition: weight down with a load\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01487311-v\n            Part of speech: v\n            English lemmas: burden, burthen, weight, weight_down\n            Definition: weight down with a load\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "opterećivati",
+            "synonyms": [
+              "opterećivati",
+              "opterećivati teretom",
+              "težiti"
+            ],
+            "definition_translation": "opterećivati nečim, učiniti da nešto bude teže zbog dodatnog tereta",
+            "examples": [
+              "Težak teret je opterećivao kolica.",
+              "Vetar je opterećivao krov."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"opterećivati\",\n  \"synonyms\": [\"opterećivati\", \"opterećivati teretom\", \"težiti\"],\n  \"definition_translation\": \"opterećivati nečim, učiniti da nešto bude teže zbog dodatnog tereta\",\n  \"examples\": [\n    \"Težak teret je opterećivao kolica.\",\n    \"Vetar je opterećivao krov.\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 52.00709549995372,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01489989-v",
+        "lemmas": [
+          "load",
+          "lade",
+          "laden",
+          "load_up"
+        ],
+        "definition": "fill or place a load on",
+        "examples": [
+          "load a car",
+          "load the truck with hay"
+        ],
+        "pos": "v",
+        "display_name": "load.v.01"
+      },
+      "result": {
+        "translation": "utovariti",
+        "definition_translation": "napuniti ili postaviti teret na nešto",
+        "translated_synonyms": [
+          "utovariti",
+          "napuniti"
+        ],
+        "curator_summary": "Primary literal: utovariti\nSynonyms: utovariti, napuniti\nGloss: napuniti ili postaviti teret na nešto",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "utovari automobil",
+          "utovari kamion sijenom"
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01489989-v\n            Part of speech: v\n            English lemmas: load, lade, laden, load_up\n            Definition: fill or place a load on\n            Usage examples:\n            - load a car\n- load the truck with hay\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01489989-v\n            Part of speech: v\n            English lemmas: load, lade, laden, load_up\n            Definition: fill or place a load on\n            Usage examples:\n            - load a car\n- load the truck with hay\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "utovariti",
+            "synonyms": [
+              "utovariti",
+              "napuniti"
+            ],
+            "definition_translation": "napuniti ili postaviti teret na nešto",
+            "examples": [
+              "utovari automobil",
+              "utovari kamion sijenom"
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"utovariti\",\n  \"synonyms\": [\"utovariti\", \"napuniti\"],\n  \"definition_translation\": \"napuniti ili postaviti teret na nešto\",\n  \"examples\": [\n    \"utovari automobil\",\n    \"utovari kamion sijenom\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 45.17285819997778,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01493619-v",
+        "lemmas": [
+          "ensconce",
+          "settle"
+        ],
+        "definition": "fix firmly",
+        "examples": [
+          "He ensconced himself in the chair"
+        ],
+        "pos": "v",
+        "display_name": "ensconce.v.01"
+      },
+      "result": {
+        "translation": "utisnuti",
+        "definition_translation": "čvrsto fiksirati",
+        "translated_synonyms": [
+          "učvrstiti",
+          "usidriti se",
+          "smestiti se",
+          "utisnuti"
+        ],
+        "curator_summary": "Primary literal: utisnuti\nSynonyms: učvrstiti, usidriti se, smestiti se, utisnuti\nGloss: čvrsto fiksirati",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "On se utisnuo u stolicu."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01493619-v\n            Part of speech: v\n            English lemmas: ensconce, settle\n            Definition: fix firmly\n            Usage examples:\n            - He ensconced himself in the chair\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01493619-v\n            Part of speech: v\n            English lemmas: ensconce, settle\n            Definition: fix firmly\n            Usage examples:\n            - He ensconced himself in the chair\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "utisnuti",
+            "synonyms": [
+              "učvrstiti",
+              "usidriti se",
+              "smestiti se"
+            ],
+            "definition_translation": "čvrsto fiksirati",
+            "examples": [
+              "On se utisnuo u stolicu."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"utisnuti\",\n  \"synonyms\": [\"učvrstiti\", \"usidriti se\", \"smestiti se\"],\n  \"definition_translation\": \"čvrsto fiksirati\",\n  \"examples\": [\"On se utisnuo u stolicu.\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 32.58311050001066,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01536168-v",
+        "lemmas": [
+          "rinse",
+          "rinse_off"
+        ],
+        "definition": "wash off soap or remaining dirt",
+        "examples": [],
+        "pos": "v",
+        "display_name": "rinse.v.01"
+      },
+      "result": {
+        "translation": "ispirati",
+        "definition_translation": "ispirati sapun ili preostalu prljavštinu",
+        "translated_synonyms": [
+          "ispirati",
+          "ispiraj",
+          "ispirajte",
+          "ispirati se"
+        ],
+        "curator_summary": "Primary literal: ispirati\nSynonyms: ispirati, ispiraj, ispirajte, ispirati se\nGloss: ispirati sapun ili preostalu prljavštinu",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Isprati ruke vodom nakon sapunice.",
+          "Isprati povrće pod mlazom vode."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01536168-v\n            Part of speech: v\n            English lemmas: rinse, rinse_off\n            Definition: wash off soap or remaining dirt\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01536168-v\n            Part of speech: v\n            English lemmas: rinse, rinse_off\n            Definition: wash off soap or remaining dirt\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "ispirati",
+            "synonyms": [
+              "ispirati",
+              "ispiraj",
+              "ispirajte",
+              "ispirati se"
+            ],
+            "definition_translation": "ispirati sapun ili preostalu prljavštinu",
+            "examples": [
+              "Isprati ruke vodom nakon sapunice.",
+              "Isprati povrće pod mlazom vode."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"ispirati\",\n  \"synonyms\": [\"ispirati\", \"ispiraj\", \"ispirajte\", \"ispirati se\"],\n  \"definition_translation\": \"ispirati sapun ili preostalu prljavštinu\",\n  \"examples\": [\n    \"Isprati ruke vodom nakon sapunice.\",\n    \"Isprati povrće pod mlazom vode.\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 44.46811850002268,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01573515-v",
+        "lemmas": [
+          "tear",
+          "rupture",
+          "snap",
+          "bust"
+        ],
+        "definition": "separate or cause to separate abruptly",
+        "examples": [
+          "The rope snapped",
+          "tear the paper"
+        ],
+        "pos": "v",
+        "display_name": "tear.v.01"
+      },
+      "result": {
+        "translation": "pucati",
+        "definition_translation": "odvojiti ili uzrokovati naglo odvajanje",
+        "translated_synonyms": [
+          "rastrgati",
+          "prekinuti",
+          "slomiti",
+          "pucnuti",
+          "pucati"
+        ],
+        "curator_summary": "Primary literal: pucati\nSynonyms: rastrgati, prekinuti, slomiti, pucnuti, pucati\nGloss: odvojiti ili uzrokovati naglo odvajanje",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Uže je pucalo.",
+          "Papir je rastrgnut."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01573515-v\n            Part of speech: v\n            English lemmas: tear, rupture, snap, bust\n            Definition: separate or cause to separate abruptly\n            Usage examples:\n            - The rope snapped\n- tear the paper\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01573515-v\n            Part of speech: v\n            English lemmas: tear, rupture, snap, bust\n            Definition: separate or cause to separate abruptly\n            Usage examples:\n            - The rope snapped\n- tear the paper\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "pucati",
+            "synonyms": [
+              "rastrgati",
+              "prekinuti",
+              "slomiti",
+              "pucnuti"
+            ],
+            "definition_translation": "odvojiti ili uzrokovati naglo odvajanje",
+            "examples": [
+              "Uže je pucalo.",
+              "Papir je rastrgnut."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"pucati\",\n  \"synonyms\": [\"rastrgati\", \"prekinuti\", \"slomiti\", \"pucnuti\"],\n  \"definition_translation\": \"odvojiti ili uzrokovati naglo odvajanje\",\n  \"examples\": [\n    \"Uže je pucalo.\",\n    \"Papir je rastrgnut.\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 42.442196399962995,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01631534-v",
+        "lemmas": [
+          "create_by_mental_act",
+          "create_mentally"
+        ],
+        "definition": "create mentally and abstractly rather than with one's hands",
+        "examples": [],
+        "pos": "v",
+        "display_name": "create_by_mental_act.v.01"
+      },
+      "result": {
+        "translation": "mentalno stvarati",
+        "definition_translation": "stvarati mentalno i apstraktno, a ne rukama",
+        "translated_synonyms": [
+          "osmišljavati",
+          "koncipirati",
+          "izmisliti",
+          "smišljati",
+          "mentalno stvarati"
+        ],
+        "curator_summary": "Primary literal: mentalno stvarati\nSynonyms: osmišljavati, koncipirati, izmisliti, smišljati, mentalno stvarati\nGloss: stvarati mentalno i apstraktno, a ne rukama",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "On je zamislio novi sistem, ali ga još nije fizički izgradio.",
+          "Autor je konceptualno osmislio priču pre nego što je započeo pisanje."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01631534-v\n            Part of speech: v\n            English lemmas: create_by_mental_act, create_mentally\n            Definition: create mentally and abstractly rather than with one's hands\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01631534-v\n            Part of speech: v\n            English lemmas: create_by_mental_act, create_mentally\n            Definition: create mentally and abstractly rather than with one's hands\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "mentalno stvarati",
+            "synonyms": [
+              "osmišljavati",
+              "koncipirati",
+              "izmisliti",
+              "smišljati"
+            ],
+            "definition_translation": "stvarati mentalno i apstraktno, a ne rukama",
+            "examples": [
+              "On je zamislio novi sistem, ali ga još nije fizički izgradio.",
+              "Autor je konceptualno osmislio priču pre nego što je započeo pisanje."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"mentalno stvarati\",\n  \"synonyms\": [\"osmišljavati\", \"koncipirati\", \"izmisliti\", \"smišljati\"],\n  \"definition_translation\": \"stvarati mentalno i apstraktno, a ne rukama\",\n  \"examples\": [\n    \"On je zamislio novi sistem, ali ga još nije fizički izgradio.\",\n    \"Autor je konceptualno osmislio priču pre nego što je započeo pisanje.\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 45.03298050002195,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01723690-v",
+        "lemmas": [
+          "impersonate",
+          "portray"
+        ],
+        "definition": "assume or act the character of",
+        "examples": [
+          "She impersonates Madonna",
+          "The actor portrays an elderly, lonely man"
+        ],
+        "pos": "v",
+        "display_name": "impersonate.v.01"
+      },
+      "result": {
+        "translation": "imitirati",
+        "definition_translation": "preuzeti ili igrati lik",
+        "translated_synonyms": [
+          "glumiti",
+          "prikazivati",
+          "odglumiti",
+          "imitirati"
+        ],
+        "curator_summary": "Primary literal: imitirati\nSynonyms: glumiti, prikazivati, odglumiti, imitirati\nGloss: preuzeti ili igrati lik",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Ona imitira Madonu.",
+          "Glumac prikazuje starog, usamljenog čoveka."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01723690-v\n            Part of speech: v\n            English lemmas: impersonate, portray\n            Definition: assume or act the character of\n            Usage examples:\n            - She impersonates Madonna\n- The actor portrays an elderly, lonely man\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01723690-v\n            Part of speech: v\n            English lemmas: impersonate, portray\n            Definition: assume or act the character of\n            Usage examples:\n            - She impersonates Madonna\n- The actor portrays an elderly, lonely man\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "imitirati",
+            "synonyms": [
+              "glumiti",
+              "prikazivati",
+              "odglumiti"
+            ],
+            "definition_translation": "preuzeti ili igrati lik",
+            "examples": [
+              "Ona imitira Madonu.",
+              "Glumac prikazuje starog, usamljenog čoveka."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"imitirati\",\n  \"synonyms\": [\"glumiti\", \"prikazivati\", \"odglumiti\"],\n  \"definition_translation\": \"preuzeti ili igrati lik\",\n  \"examples\": [\n    \"Ona imitira Madonu.\",\n    \"Glumac prikazuje starog, usamljenog čoveka.\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 36.6230443000095,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01797051-v",
+        "lemmas": [
+          "mourn"
+        ],
+        "definition": "feel sadness",
+        "examples": [
+          "She is mourning her dead child"
+        ],
+        "pos": "v",
+        "display_name": "mourn.v.01"
+      },
+      "result": {
+        "translation": "tugovati",
+        "definition_translation": "osjećati tugu",
+        "translated_synonyms": [
+          "tugovati",
+          "žaliti se"
+        ],
+        "curator_summary": "Primary literal: tugovati\nSynonyms: tugovati, žaliti se\nGloss: osjećati tugu",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Ona tuguje za svojim mrtvim djetetom."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01797051-v\n            Part of speech: v\n            English lemmas: mourn\n            Definition: feel sadness\n            Usage examples:\n            - She is mourning her dead child\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01797051-v\n            Part of speech: v\n            English lemmas: mourn\n            Definition: feel sadness\n            Usage examples:\n            - She is mourning her dead child\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "tugovati",
+            "synonyms": [
+              "tugovati",
+              "žaliti se"
+            ],
+            "definition_translation": "osjećati tugu",
+            "examples": [
+              "Ona tuguje za svojim mrtvim djetetom."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"tugovati\",\n  \"synonyms\": [\"tugovati\", \"žaliti se\"],\n  \"definition_translation\": \"osjećati tugu\",\n  \"examples\": [\"Ona tuguje za svojim mrtvim djetetom.\"],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 50.53886430000421,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01824532-v",
+        "lemmas": [
+          "wish",
+          "wish_well"
+        ],
+        "definition": "feel or express a desire or hope concerning the future or fortune of",
+        "examples": [],
+        "pos": "v",
+        "display_name": "wish.v.04"
+      },
+      "result": {
+        "translation": "želeti",
+        "definition_translation": "osjećati ili izraziti želju ili nadu u vezi s budućnošću ili sudbinom",
+        "translated_synonyms": [
+          "poželeti",
+          "željiti",
+          "želeći",
+          "želeti"
+        ],
+        "curator_summary": "Primary literal: želeti\nSynonyms: poželeti, željiti, želeći, želeti\nGloss: osjećati ili izraziti želju ili nadu u vezi s budućnošću ili sudbinom",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Želim ti sve najbolje.",
+          "Nadam se da ćeš uspjeti."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01824532-v\n            Part of speech: v\n            English lemmas: wish, wish_well\n            Definition: feel or express a desire or hope concerning the future or fortune of\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01824532-v\n            Part of speech: v\n            English lemmas: wish, wish_well\n            Definition: feel or express a desire or hope concerning the future or fortune of\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "želeti",
+            "synonyms": [
+              "poželeti",
+              "željiti",
+              "želeći"
+            ],
+            "definition_translation": "osjećati ili izraziti želju ili nadu u vezi s budućnošću ili sudbinom",
+            "examples": [
+              "Želim ti sve najbolje.",
+              "Nadam se da ćeš uspjeti."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"želeti\",\n  \"synonyms\": [\"poželeti\", \"željiti\", \"želeći\"],\n  \"definition_translation\": \"osjećati ili izraziti želju ili nadu u vezi s budućnošću ili sudbinom\",\n  \"examples\": [\n    \"Želim ti sve najbolje.\",\n    \"Nadam se da ćeš uspjeti.\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 38.84107069997117,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01828405-v",
+        "lemmas": [
+          "hanker",
+          "long",
+          "yearn"
+        ],
+        "definition": "desire strongly or persistently",
+        "examples": [],
+        "pos": "v",
+        "display_name": "hanker.v.01"
+      },
+      "result": {
+        "translation": "žudeti",
+        "definition_translation": "želi snažno i uporno",
+        "translated_synonyms": [
+          "željno težiti",
+          "žudjeti",
+          "želeti snažno",
+          "žudeti"
+        ],
+        "curator_summary": "Primary literal: žudeti\nSynonyms: željno težiti, žudjeti, želeti snažno, žudeti\nGloss: želi snažno i uporno",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Dugo je žudeo za slobodom.",
+          "On žudi za uspehom."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01828405-v\n            Part of speech: v\n            English lemmas: hanker, long, yearn\n            Definition: desire strongly or persistently\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01828405-v\n            Part of speech: v\n            English lemmas: hanker, long, yearn\n            Definition: desire strongly or persistently\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "žudeti",
+            "synonyms": [
+              "željno težiti",
+              "žudjeti",
+              "želeti snažno"
+            ],
+            "definition_translation": "želi snažno i uporno",
+            "examples": [
+              "Dugo je žudeo za slobodom.",
+              "On žudi za uspehom."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"žudeti\",\n  \"synonyms\": [\"željno težiti\", \"žudjeti\", \"želeti snažno\"],\n  \"definition_translation\": \"želi snažno i uporno\",\n  \"examples\": [\n    \"Dugo je žudeo za slobodom.\",\n    \"On žudi za uspehom.\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 46.86473739997018,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01868370-v",
+        "lemmas": [
+          "writhe",
+          "wrestle",
+          "wriggle",
+          "worm",
+          "squirm",
+          "twist"
+        ],
+        "definition": "to move in a twisting or contorted motion, (especially when struggling)",
+        "examples": [
+          "The prisoner writhed in discomfort",
+          "The child tried to wriggle free from his aunt's embrace"
+        ],
+        "pos": "v",
+        "display_name": "writhe.v.01"
+      },
+      "result": {
+        "translation": "uvijati se",
+        "definition_translation": "pomera se uvijanim ili iskrivljenim pokretom, naročito kada se bori",
+        "translated_synonyms": [
+          "uvijati se",
+          "uvijati"
+        ],
+        "curator_summary": "Primary literal: uvijati se\nSynonyms: uvijati se, uvijati\nGloss: pomera se uvijanim ili iskrivljenim pokretom, naročito kada se bori",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Zatvorenik se uvijao od nelagodnosti.",
+          "Dete je pokušavalo da se uvije iz zagrljaja tete."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01868370-v\n            Part of speech: v\n            English lemmas: writhe, wrestle, wriggle, worm, squirm, twist\n            Definition: to move in a twisting or contorted motion, (especially when struggling)\n            Usage examples:\n            - The prisoner writhed in discomfort\n- The child tried to wriggle free from his aunt's embrace\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01868370-v\n            Part of speech: v\n            English lemmas: writhe, wrestle, wriggle, worm, squirm, twist\n            Definition: to move in a twisting or contorted motion, (especially when struggling)\n            Usage examples:\n            - The prisoner writhed in discomfort\n- The child tried to wriggle free from his aunt's embrace\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "uvijati se",
+            "synonyms": [
+              "uvijati se",
+              "uvijati"
+            ],
+            "definition_translation": "pomera se uvijanim ili iskrivljenim pokretom, naročito kada se bori",
+            "examples": [
+              "Zatvorenik se uvijao od nelagodnosti.",
+              "Dete je pokušavalo da se uvije iz zagrljaja tete."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"uvijati se\",\n  \"synonyms\": [\"uvijati se\", \"uvijati\"],\n  \"definition_translation\": \"pomera se uvijanim ili iskrivljenim pokretom, naročito kada se bori\",\n  \"examples\": [\n    \"Zatvorenik se uvijao od nelagodnosti.\",\n    \"Dete je pokušavalo da se uvije iz zagrljaja tete.\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 110.91795159998583,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01876530-v",
+        "lemmas": [
+          "move_back_and_forth"
+        ],
+        "definition": "move in one direction and then into the opposite direction",
+        "examples": [],
+        "pos": "v",
+        "display_name": "move_back_and_forth.v.01"
+      },
+      "result": {
+        "translation": "kretati se napred-nazad",
+        "definition_translation": "kretati se u jednom pravcu, a zatim u suprotnom pravcu",
+        "translated_synonyms": [
+          "pomera se napred-nazad",
+          "klizi napred-nazad",
+          "treperi napred-nazad",
+          "kretati se napred-nazad"
+        ],
+        "curator_summary": "Primary literal: kretati se napred-nazad\nSynonyms: pomera se napred-nazad, klizi napred-nazad, treperi napred-nazad, kretati se napred-nazad\nGloss: kretati se u jednom pravcu, a zatim u suprotnom pravcu",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "Pas je šetao napred-nazad po hodniku.",
+          "Deca su se igrala i kretala napred-nazad po igralištu."
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01876530-v\n            Part of speech: v\n            English lemmas: move_back_and_forth\n            Definition: move in one direction and then into the opposite direction\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01876530-v\n            Part of speech: v\n            English lemmas: move_back_and_forth\n            Definition: move in one direction and then into the opposite direction\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "kretati se napred-nazad",
+            "synonyms": [
+              "pomera se napred-nazad",
+              "klizi napred-nazad",
+              "treperi napred-nazad"
+            ],
+            "definition_translation": "kretati se u jednom pravcu, a zatim u suprotnom pravcu",
+            "examples": [
+              "Pas je šetao napred-nazad po hodniku.",
+              "Deca su se igrala i kretala napred-nazad po igralištu."
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"kretati se napred-nazad\",\n  \"synonyms\": [\"pomera se napred-nazad\", \"klizi napred-nazad\", \"treperi napred-nazad\"],\n  \"definition_translation\": \"kretati se u jednom pravcu, a zatim u suprotnom pravcu\",\n  \"examples\": [\n    \"Pas je šetao napred-nazad po hodniku.\",\n    \"Deca su se igrala i kretala napred-nazad po igralištu.\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 41.012716299970634,
+        "reused_single": false
+      }
+    },
+    {
+      "synset": {
+        "id": "ENG30-01902405-v",
+        "lemmas": [
+          "scurry",
+          "scamper",
+          "skitter",
+          "scuttle"
+        ],
+        "definition": "to move about or proceed hurriedly",
+        "examples": [
+          "so terrified by the extraordinary ebbing of the sea that they scurried to higher ground"
+        ],
+        "pos": "v",
+        "display_name": "scurry.v.01"
+      },
+      "result": {
+        "translation": "žuriti",
+        "definition_translation": "kretati se ili ići žurno",
+        "translated_synonyms": [
+          "trčati",
+          "pobjeći",
+          "škiliti",
+          "žuriti"
+        ],
+        "curator_summary": "Primary literal: žuriti\nSynonyms: trčati, pobjeći, škiliti, žuriti\nGloss: kretati se ili ići žurno",
+        "model": {
+          "requested": "gpt-oss:120b",
+          "resolved": "gpt-oss:120b",
+          "resolved_safe": "gpt-oss-120b",
+          "fallback_used": false,
+          "resolution_strategy": "preferred",
+          "available_models": [
+            "deepseek-r1:70b",
+            "deepseek-r1:8b",
+            "deepseek-r1:latest",
+            "deepseek-v3.1:671b",
+            "gemma3:1b",
+            "gemma3:27b",
+            "gpt-oss:120b",
+            "gpt-oss:20b",
+            "qwen3:235b",
+            "qwen3:30b"
+          ]
+        },
+        "notes": null,
+        "examples": [
+          "tako uplašeni izvanrednim povlačenjem mora da su se žurili na višu zemlju"
+        ],
+        "payload": {
+          "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01902405-v\n            Part of speech: v\n            English lemmas: scurry, scamper, skitter, scuttle\n            Definition: to move about or proceed hurriedly\n            Usage examples:\n            - so terrified by the extraordinary ebbing of the sea that they scurried to higher ground\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+          "messages": [
+            {
+              "type": "system",
+              "content": "You are a concise lexicographer translating WordNet synsets into target languages. Return structured JSON and avoid extra prose."
+            },
+            {
+              "type": "human",
+              "content": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-01902405-v\n            Part of speech: v\n            English lemmas: scurry, scamper, skitter, scuttle\n            Definition: to move about or proceed hurriedly\n            Usage examples:\n            - so terrified by the extraordinary ebbing of the sea that they scurried to higher ground\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}"
+            }
+          ],
+          "parsed": {
+            "translation": "žuriti",
+            "synonyms": [
+              "trčati",
+              "pobjeći",
+              "škiliti",
+              "pobjeći"
+            ],
+            "definition_translation": "kretati se ili ići žurno",
+            "examples": [
+              "tako uplašeni izvanrednim povlačenjem mora da su se žurili na višu zemlju"
+            ],
+            "notes": null
+          }
+        },
+        "raw_response": "{\n  \"translation\": \"žuriti\",\n  \"synonyms\": [\"trčati\", \"pobjeći\", \"škiliti\", \"pobjeći\"],\n  \"definition_translation\": \"kretati se ili ići žurno\",\n  \"examples\": [\n    \"tako uplašeni izvanrednim povlačenjem mora da su se žurili na višu zemlju\"\n  ],\n  \"notes\": null\n}"
+      },
+      "timing": {
+        "seconds": 42.499230800021905,
+        "reused_single": false
+      }
+    }
+  ]
+}

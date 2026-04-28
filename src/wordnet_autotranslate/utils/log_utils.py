@@ -1,16 +1,43 @@
-"""Utility functions for saving and analyzing full LLM logs from translation pipeline."""
+"""Utility helpers for saving and analyzing full LLM logs from the translation pipeline."""
+
+from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Any, Dict, List, Mapping
 from datetime import datetime
 
 
+def sanitize_model_name(model_name: str | None) -> str:
+    """Return a filesystem-safe representation of an LLM model name.
+
+    This helper normalises model identifiers so they can be embedded into
+    filenames without leaking path separators or other unsafe characters.
+
+    Args:
+        model_name: Raw model identifier (e.g., ``"deepseek-r1:32b"``).
+
+    Returns:
+        Sanitised model string using only ``A-Za-z0-9_-`` characters. Falls back
+        to ``"unknown-model"`` when the input is empty or only contains stripped
+        characters.
+    """
+
+    if not model_name:
+        return "unknown-model"
+
+    cleaned = re.sub(r"[^A-Za-z0-9_-]+", "-", model_name.strip())
+    cleaned = cleaned.strip("-")
+    return cleaned or "unknown-model"
+
+
 def save_full_logs(
-    result: Dict[str, Any], 
-    output_path: str | Path = None,
+    result: Dict[str, Any],
+    output_path: str | Path | None = None,
+    *,
     include_prompts: bool = True,
-    include_messages: bool = True
+    include_messages: bool = True,
 ) -> Path:
     """Save complete untruncated LLM logs to a JSON file.
     
@@ -28,16 +55,26 @@ def save_full_logs(
         >>> log_path = save_full_logs(result)
         >>> print(f"Logs saved to: {log_path}")
     """
+    model_field = result.get("model")
+    if isinstance(model_field, Mapping):
+        model_safe_name = sanitize_model_name(
+            model_field.get("resolved") or model_field.get("requested")
+        )
+    else:
+        model_safe_name = sanitize_model_name(str(model_field) if model_field else None)
+
     if output_path is None:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         synset_id = result.get("source", {}).get("id", "unknown").replace(":", "_")
-        output_path = Path(f"logs/full_log_{synset_id}_{timestamp}.json")
+        output_path = Path(
+            f"logs/full_log_{model_safe_name}_{synset_id}_{timestamp}.json"
+        )
     
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
     # Extract all full calls
-    full_logs = {
+    full_logs: Dict[str, Any] = {
         "metadata": {
             "synset_id": result["source"]["id"],
             "translation": result["translation"],
@@ -45,8 +82,9 @@ def save_full_logs(
             "source_lang": result["source_lang"],
             "timestamp": datetime.now().isoformat(),
             "translated_synonyms": result["translated_synonyms"],
+            "model": model_field,
         },
-        "stages": {}
+        "stages": {},
     }
     
     # Add each stage's complete data

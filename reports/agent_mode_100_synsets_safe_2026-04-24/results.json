@@ -1,0 +1,2215 @@
+{
+  "summary": {
+    "run_id": "agent_mode_100_synsets_safe_2026-04-24",
+    "date_utc": "2026-04-24",
+    "processed_synsets": 100,
+    "backend_reachable": false,
+    "base_url": "http://localhost:11434",
+    "elapsed_seconds": 24.131,
+    "baseline_ok": 100,
+    "langgraph_skipped": 100,
+    "conceptual_skipped": 100
+  },
+  "rows": [
+    {
+      "index": 1,
+      "id": "ENG30-08641944-n",
+      "name": "'hood.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "'hood",
+          "definition_translation": "(slang) a neighborhood",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 2,
+      "id": "ENG30-03146310-a",
+      "name": ".22_caliber.a.01",
+      "pos": "a",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": ".22 caliber",
+          "definition_translation": "of or relating to the bore of a gun (or its ammunition) that measures twenty-two hundredths of an inch in diameter",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 3,
+      "id": "ENG30-03146602-a",
+      "name": ".38_caliber.a.01",
+      "pos": "a",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": ".38 caliber",
+          "definition_translation": "of or relating to the bore of a gun (or its ammunition) that measures thirty-eight hundredths of an inch in diameter",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 4,
+      "id": "ENG30-03146895-a",
+      "name": ".45_caliber.a.01",
+      "pos": "a",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": ".45 caliber",
+          "definition_translation": "of or relating to the bore of a gun (or its ammunition) that measures forty-five hundredths of an inch in diameter",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 5,
+      "id": "ENG30-15148787-n",
+      "name": "1530s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1530s",
+          "definition_translation": "the decade from 1530 to 1539",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 6,
+      "id": "ENG30-08039312-n",
+      "name": "15_may_organization.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "15 May Organization",
+          "definition_translation": "a terrorist organization formed in 1979 by a faction of the Popular Front for the Liberation of Palestine but disbanded in the 1980s when key members left to join a faction of al-Fatah",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 7,
+      "id": "ENG30-15149933-n",
+      "name": "1750s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1750s",
+          "definition_translation": "the decade from 1750 to 1759",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 8,
+      "id": "ENG30-15150304-n",
+      "name": "1760s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1760s",
+          "definition_translation": "the decade from 1760 to 1769",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 9,
+      "id": "ENG30-15150790-n",
+      "name": "1770s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1770s",
+          "definition_translation": "the decade from 1770 to 1779",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 10,
+      "id": "ENG30-15151175-n",
+      "name": "1780s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1780s",
+          "definition_translation": "the decade from 1780 to 1789",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 11,
+      "id": "ENG30-15151561-n",
+      "name": "1790s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1790s",
+          "definition_translation": "the decade from 1790 to 1799",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 12,
+      "id": "ENG30-14639269-n",
+      "name": "18-karat_gold.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "18-karat gold",
+          "definition_translation": "an alloy that contains 75 per cent gold",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 13,
+      "id": "ENG30-15148958-n",
+      "name": "1820s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1820s",
+          "definition_translation": "the decade from 1820 to 1829",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 14,
+      "id": "ENG30-15149271-n",
+      "name": "1830s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1830s",
+          "definition_translation": "the decade from 1830 to 1839",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 15,
+      "id": "ENG30-15149562-n",
+      "name": "1840s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1840s",
+          "definition_translation": "the decade from 1840 to 1849",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 16,
+      "id": "ENG30-15149853-n",
+      "name": "1850s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1850s",
+          "definition_translation": "the decade from 1850 to 1859",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 17,
+      "id": "ENG30-15150224-n",
+      "name": "1860s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1860s",
+          "definition_translation": "the decade from 1860 to 1869",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 18,
+      "id": "ENG30-15150710-n",
+      "name": "1870s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1870s",
+          "definition_translation": "the decade from 1870 to 1879",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 19,
+      "id": "ENG30-15148707-n",
+      "name": "1900s.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "1900s",
+          "definition_translation": "the decade from 1900 to 1909",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 20,
+      "id": "ENG30-14639368-n",
+      "name": "22-karat_gold.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "22-karat gold",
+          "definition_translation": "an alloy that contains 87 per cent gold",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 21,
+      "id": "ENG30-14639467-n",
+      "name": "24-karat_gold.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "24-karat gold",
+          "definition_translation": "100 per cent gold",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 22,
+      "id": "ENG30-15118011-n",
+      "name": "24/7.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "24/7",
+          "definition_translation": "uptime is 24 hours a day 7 days a week",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 23,
+      "id": "ENG30-05911560-n",
+      "name": "401-k_plan.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "401-k plan",
+          "definition_translation": "a retirement savings plan that is funded by employee contributions and (often) matching contributions from the employer; contributions are made from your salary before taxes and the funds grow tax-free until they are withdrawn, at which point they can be converted into an IRA; funds can be transferred if you change employers and you can (to some extent) manage the investments yourself",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 24,
+      "id": "ENG30-15300051-n",
+      "name": "9/11.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "9/11",
+          "definition_translation": "the day in 2001 when Arab suicide bombers hijacked United States airliners and used them as bombs",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 25,
+      "id": "ENG30-08346286-n",
+      "name": "a'man.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "A'man",
+          "definition_translation": "the Israeli military intelligence which produces comprehensive national intelligence briefings for the prime minister and the cabinet",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 26,
+      "id": "ENG30-08658469-n",
+      "name": "a-horizon.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "A-horizon",
+          "definition_translation": "the top layer of a soil profile; usually contains humus",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 27,
+      "id": "ENG30-02697221-n",
+      "name": "a-line.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "A-line",
+          "definition_translation": "women's clothing that has a fitted top and a flared skirt that is widest at the hemline",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 28,
+      "id": "ENG30-06485431-n",
+      "name": "a-list.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "A-list",
+          "definition_translation": "a list of names of specially favored people",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 29,
+      "id": "ENG30-01122907-s",
+      "name": "a-ok.s.01",
+      "pos": "s",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a-ok",
+          "definition_translation": "in perfect condition or order",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 30,
+      "id": "ENG30-00902108-n",
+      "name": "a-scan_ultrasonography.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "A-scan ultrasonography",
+          "definition_translation": "the use of ultrasonography to measure the length of the eyeball",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 31,
+      "id": "ENG30-08077035-n",
+      "name": "a-team.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "A-team",
+          "definition_translation": "a group of elite soldiers or a leadership group of advisors or workers in an organization",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 32,
+      "id": "ENG30-06831177-n",
+      "name": "a.n.06",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "A",
+          "definition_translation": "the 1st letter of the Roman alphabet",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 33,
+      "id": "ENG30-05400860-n",
+      "name": "a.n.07",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "A",
+          "definition_translation": "the blood group whose red cells carry the A antigen",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 34,
+      "id": "ENG30-02666624-n",
+      "name": "a_battery.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "A battery",
+          "definition_translation": "the battery used to heat the filaments of a vacuum tube",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 35,
+      "id": "ENG30-00033663-r",
+      "name": "a_bit.r.01",
+      "pos": "r",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a bit",
+          "definition_translation": "to a small degree; somewhat",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 36,
+      "id": "ENG30-00001740-r",
+      "name": "a_cappella.r.01",
+      "pos": "r",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a cappella",
+          "definition_translation": "without musical accompaniment",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 37,
+      "id": "ENG30-02252352-s",
+      "name": "a_cappella.s.01",
+      "pos": "s",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a cappella",
+          "definition_translation": "sung without instrumental accompaniment",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 38,
+      "id": "ENG30-00546070-n",
+      "name": "a_cappella_singing.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a cappella singing",
+          "definition_translation": "singing without instrumental accompaniment",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 39,
+      "id": "ENG30-01553340-s",
+      "name": "a_few.s.01",
+      "pos": "s",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a few",
+          "definition_translation": "more than one but indefinitely small in number",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 40,
+      "id": "ENG30-00063483-r",
+      "name": "a_fortiori.r.01",
+      "pos": "r",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a fortiori",
+          "definition_translation": "with greater reason; for a still stronger, more certain reason",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 41,
+      "id": "ENG30-10810818-n",
+      "name": "a_kempis.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a Kempis",
+          "definition_translation": "German ecclesiastic (1380-1471)",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 42,
+      "id": "ENG30-02453183-a",
+      "name": "a_la_carte.a.01",
+      "pos": "a",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a la carte",
+          "definition_translation": "(of a restaurant meal) having unlimited choices with a separate price for each item",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 43,
+      "id": "ENG30-06497117-n",
+      "name": "a_la_carte.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a la carte",
+          "definition_translation": "a menu having individual dishes listed with separate prices",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 44,
+      "id": "ENG30-00257981-r",
+      "name": "a_la_carte.r.01",
+      "pos": "r",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a la carte",
+          "definition_translation": "by ordering items listed individually on a menu",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 45,
+      "id": "ENG30-00498182-r",
+      "name": "a_la_mode.r.01",
+      "pos": "r",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a la mode",
+          "definition_translation": "with ice cream on top or on the side",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 46,
+      "id": "ENG30-14431015-n",
+      "name": "a_level.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "A level",
+          "definition_translation": "the advanced level of a subject taken in school (usually two years after O level)",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 47,
+      "id": "ENG30-00059171-r",
+      "name": "a_lot.r.01",
+      "pos": "r",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a lot",
+          "definition_translation": "to a very great degree or extent",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 48,
+      "id": "ENG30-00139126-a",
+      "name": "a_posteriori.a.01",
+      "pos": "a",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "definition_translation": "involving reasoning from facts or particulars to general principles or from effects to causes",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 49,
+      "id": "ENG30-00251525-r",
+      "name": "a_posteriori.r.01",
+      "pos": "r",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "definition_translation": "derived from observed facts",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 50,
+      "id": "ENG30-00859350-s",
+      "name": "a_posteriori.s.01",
+      "pos": "s",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "definition_translation": "requiring evidence for validation or support",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 51,
+      "id": "ENG30-00138912-a",
+      "name": "a_priori.a.01",
+      "pos": "a",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a priori",
+          "definition_translation": "involving deductive reasoning from a general principle to a necessary effect; not supported by fact",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 52,
+      "id": "ENG30-00251611-r",
+      "name": "a_priori.r.01",
+      "pos": "r",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a priori",
+          "definition_translation": "derived by logic, without observed facts",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 53,
+      "id": "ENG30-00861109-s",
+      "name": "a_priori.s.01",
+      "pos": "s",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "a priori",
+          "definition_translation": "based on hypothesis or theory rather than experiment",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 54,
+      "id": "ENG30-14931472-n",
+      "name": "aa.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "aa",
+          "definition_translation": "a dry form of lava resembling clinkers",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 55,
+      "id": "ENG30-08769439-n",
+      "name": "aachen.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "Aachen",
+          "definition_translation": "a city in western Germany near the Dutch and Belgian borders; formerly it was Charlemagne's northern capital",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 56,
+      "id": "ENG30-08762243-n",
+      "name": "aalborg.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "Aalborg",
+          "definition_translation": "a city and port in northern Jutland",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 57,
+      "id": "ENG30-12740967-n",
+      "name": "aalii.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "aalii",
+          "definition_translation": "a small Hawaiian tree with hard dark wood",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 58,
+      "id": "ENG30-08850663-n",
+      "name": "aalst.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "Aalst",
+          "definition_translation": "a town in central Belgium",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 59,
+      "id": "ENG30-10806693-n",
+      "name": "aalto.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "Aalto",
+          "definition_translation": "Finnish architect and designer of furniture (1898-1976)",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 60,
+      "id": "ENG30-02082791-n",
+      "name": "aardvark.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "aardvark",
+          "definition_translation": "nocturnal burrowing mammal of the grasslands of Africa that feeds on termites; sole extant representative of the order Tubulidentata",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 61,
+      "id": "ENG30-02118176-n",
+      "name": "aardwolf.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "aardwolf",
+          "definition_translation": "striped hyena of southeast Africa that feeds chiefly on insects",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 62,
+      "id": "ENG30-09186064-n",
+      "name": "aare.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "Aare",
+          "definition_translation": "a river in north central Switzerland that runs northeast into the Rhine",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 63,
+      "id": "ENG30-10807016-n",
+      "name": "aaron.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "Aaron",
+          "definition_translation": "United States professional baseball player who hit more home runs than Babe Ruth (born in 1934)",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 64,
+      "id": "ENG30-10806841-n",
+      "name": "aaron.n.02",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "Aaron",
+          "definition_translation": "(Old Testament) elder brother of Moses and first high priest of the Israelites; created the golden calf",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 65,
+      "id": "ENG30-15216563-n",
+      "name": "ab.n.02",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "Ab",
+          "definition_translation": "the eleventh month of the civil year; the fifth month of the ecclesiastical year in the Jewish calendar (in July and August)",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 66,
+      "id": "ENG30-05401096-n",
+      "name": "ab.n.04",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "AB",
+          "definition_translation": "the blood group whose red cells carry both the A and B antigens",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 67,
+      "id": "ENG30-02666079-n",
+      "name": "aba.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "aba",
+          "definition_translation": "a loose sleeveless outer garment made from aba cloth; worn by Arabs",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 68,
+      "id": "ENG30-02665985-n",
+      "name": "aba.n.02",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "aba",
+          "definition_translation": "a fabric woven from goat hair and camel hair",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 69,
+      "id": "ENG30-12353431-n",
+      "name": "abaca.n.02",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abaca",
+          "definition_translation": "Philippine banana tree having leafstalks that yield Manila hemp used for rope and paper etc",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 70,
+      "id": "ENG30-02168378-v",
+      "name": "abacinate.v.01",
+      "pos": "v",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abacinate",
+          "definition_translation": "blind by holding a red-hot metal plate before someone's eyes",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 71,
+      "id": "ENG30-00075739-r",
+      "name": "aback.r.01",
+      "pos": "r",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "aback",
+          "definition_translation": "having the wind against the forward side of the sails",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 72,
+      "id": "ENG30-00075656-r",
+      "name": "aback.r.02",
+      "pos": "r",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "aback",
+          "definition_translation": "by surprise",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 73,
+      "id": "ENG30-01665972-a",
+      "name": "abactinal.a.01",
+      "pos": "a",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abactinal",
+          "definition_translation": "(of radiate animals) located on the surface or end opposite to that on which the mouth is situated",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 74,
+      "id": "ENG30-02666347-n",
+      "name": "abacus.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abacus",
+          "definition_translation": "a tablet placed horizontally on top of the capital of a column as an aid in supporting the architrave",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 75,
+      "id": "ENG30-02666196-n",
+      "name": "abacus.n.02",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abacus",
+          "definition_translation": "a calculator that performs arithmetic functions by manually sliding counters on rods or in grooves",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 76,
+      "id": "ENG30-08911602-n",
+      "name": "abadan.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "Abadan",
+          "definition_translation": "a port city in southwestern Iran",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 77,
+      "id": "ENG30-01942869-n",
+      "name": "abalone.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abalone",
+          "definition_translation": "any of various large edible marine gastropods of the genus Haliotis having an ear-shaped shell with pearly interior",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 78,
+      "id": "ENG30-13637722-n",
+      "name": "abampere.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abampere",
+          "definition_translation": "a unit of current equal to 10 amperes",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 79,
+      "id": "ENG30-04885398-n",
+      "name": "abandon.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abandon",
+          "definition_translation": "the trait of lacking restraint or control; reckless freedom from inhibition or worry",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 80,
+      "id": "ENG30-02228031-v",
+      "name": "abandon.v.01",
+      "pos": "v",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abandon",
+          "definition_translation": "forsake, leave behind",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 81,
+      "id": "ENG30-02227741-v",
+      "name": "abandon.v.02",
+      "pos": "v",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abandon",
+          "definition_translation": "give up with the intent of never claiming again",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 82,
+      "id": "ENG30-00613393-v",
+      "name": "abandon.v.04",
+      "pos": "v",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abandon",
+          "definition_translation": "stop maintaining or insisting on; of ideas or claims",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 83,
+      "id": "ENG30-00614057-v",
+      "name": "abandon.v.05",
+      "pos": "v",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abandon",
+          "definition_translation": "leave someone who needs or counts on you; leave in the lurch",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 84,
+      "id": "ENG30-01313004-s",
+      "name": "abandoned.s.01",
+      "pos": "s",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abandoned",
+          "definition_translation": "forsaken by owner or inhabitants",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 85,
+      "id": "ENG30-01317231-s",
+      "name": "abandoned.s.02",
+      "pos": "s",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abandoned",
+          "definition_translation": "free from constraint; - Liam O'Flaherty",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 86,
+      "id": "ENG30-09753930-n",
+      "name": "abandoned_person.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abandoned person",
+          "definition_translation": "someone for whom hope has been abandoned",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 87,
+      "id": "ENG30-02666501-n",
+      "name": "abandoned_ship.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abandoned ship",
+          "definition_translation": "a ship abandoned on the high seas",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 88,
+      "id": "ENG30-00204439-n",
+      "name": "abandonment.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abandonment",
+          "definition_translation": "the act of giving something up",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 89,
+      "id": "ENG30-00091013-n",
+      "name": "abandonment.n.03",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abandonment",
+          "definition_translation": "the voluntary surrender of property (or a right to property) without attempting to reclaim it or give it away",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 90,
+      "id": "ENG30-14294271-n",
+      "name": "abarticulation.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abarticulation",
+          "definition_translation": "dislocation of a joint",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 91,
+      "id": "ENG30-14440623-n",
+      "name": "abasement.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abasement",
+          "definition_translation": "a low or downcast state; - H.L.Menchken",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 92,
+      "id": "ENG30-00531628-s",
+      "name": "abashed.s.01",
+      "pos": "s",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abashed",
+          "definition_translation": "feeling or caused to feel uneasy and self-conscious",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 93,
+      "id": "ENG30-07508092-n",
+      "name": "abashment.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abashment",
+          "definition_translation": "feeling embarrassed due to modesty",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 94,
+      "id": "ENG30-14549070-n",
+      "name": "abasia.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abasia",
+          "definition_translation": "inability to walk",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 95,
+      "id": "ENG30-14549284-n",
+      "name": "abasia_trepidans.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abasia trepidans",
+          "definition_translation": "abasia due to trembling of the legs",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 96,
+      "id": "ENG30-02598608-a",
+      "name": "abasic.a.01",
+      "pos": "a",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abasic",
+          "definition_translation": "of or relating to abasia (inability to walk)",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 97,
+      "id": "ENG30-02288022-s",
+      "name": "abatable.s.01",
+      "pos": "s",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abatable",
+          "definition_translation": "capable of being abated",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 98,
+      "id": "ENG30-05830832-n",
+      "name": "abatable_nuisance.n.01",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abatable nuisance",
+          "definition_translation": "a nuisance that can remedied (suppressed or extinguished or rendered harmless)",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 99,
+      "id": "ENG30-00245059-v",
+      "name": "abate.v.02",
+      "pos": "v",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abate",
+          "definition_translation": "become less in amount or intensity",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    },
+    {
+      "index": 100,
+      "id": "ENG30-00361333-n",
+      "name": "abatement.n.02",
+      "pos": "n",
+      "pipelines": {
+        "baseline": {
+          "status": "ok",
+          "translation": "abatement",
+          "definition_translation": "the act of abating",
+          "notes": "No LLM configured; returned deterministic baseline fallback."
+        },
+        "langgraph": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        },
+        "conceptual": {
+          "status": "skipped_unavailable_backend",
+          "message": "Skipped in safe agent mode (requires reachable Ollama backend)."
+        }
+      }
+    }
+  ]
+}

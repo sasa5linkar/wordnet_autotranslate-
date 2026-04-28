@@ -160,11 +160,11 @@ class BaselineTranslationPipeline:
         prompt = self._render_prompt(lemmas=lemmas, definition=definition)
 
         if self.llm is None:
-            fallback_payload = {
-                "definition_translation": definition,
-                "translated_synonyms": lemmas,
-                "notes": "No LLM configured; returned deterministic baseline fallback.",
-            }
+            fallback_payload = self._deterministic_fallback_payload(
+                lemmas=lemmas,
+                definition=definition,
+                reason="No LLM configured; returned deterministic baseline fallback.",
+            )
             return {
                 "prompt": prompt,
                 "raw_response": json.dumps(fallback_payload, ensure_ascii=False),
@@ -175,10 +175,23 @@ class BaselineTranslationPipeline:
             f"System instructions:\n{self.system_prompt}\n\n"
             f"User request:\n{prompt}"
         )
-        response = self.llm.invoke(combined_prompt)
-        content: Any = getattr(response, "content", response)
-        raw_response = str(content).strip()
-        payload = self._decode_llm_payload(raw_response)
+        try:
+            response = self.llm.invoke(combined_prompt)
+            content: Any = getattr(response, "content", response)
+            raw_response = str(content).strip()
+            payload = self._decode_llm_payload(raw_response)
+        except Exception as exc:
+            fallback_payload = self._deterministic_fallback_payload(
+                lemmas=lemmas,
+                definition=definition,
+                reason=f"LLM invocation failed ({type(exc).__name__}: {exc}); "
+                "returned deterministic baseline fallback.",
+            )
+            return {
+                "prompt": prompt,
+                "raw_response": json.dumps(fallback_payload, ensure_ascii=False),
+                "payload": fallback_payload,
+            }
 
         return {
             "prompt": prompt,
@@ -233,6 +246,17 @@ class BaselineTranslationPipeline:
             text = value.strip()
             return [text] if text else []
         return []
+
+    @staticmethod
+    def _deterministic_fallback_payload(
+        *, lemmas: List[str], definition: str, reason: str
+    ) -> Dict[str, Any]:
+        """Build deterministic payload when live model invocation is unavailable."""
+        return {
+            "definition_translation": definition,
+            "translated_synonyms": lemmas,
+            "notes": reason,
+        }
 
 
 class TranslationPipeline(BaselineTranslationPipeline):

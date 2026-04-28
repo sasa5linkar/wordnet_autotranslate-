@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "model": "gemma3:27b",
+    "model_resolution": {
+      "requested": "gemma3:27b",
+      "resolved": "gemma3:27b",
+      "resolved_safe": "gemma3-27b",
+      "fallback_used": false,
+      "resolution_strategy": "preferred",
+      "available_models": [
+        "deepseek-r1:70b",
+        "deepseek-r1:8b",
+        "deepseek-r1:latest",
+        "deepseek-v3.1:671b",
+        "gemma3:1b",
+        "gemma3:27b",
+        "gpt-oss:120b",
+        "gpt-oss:20b",
+        "qwen3:235b",
+        "qwen3:30b"
+      ]
+    },
+    "timestamp_utc": "20251025T150022Z",
+    "synset_id": "ENG30-03574555-n",
+    "execution_seconds": 417.7114506000071,
+    "source_lang": "en",
+    "target_lang": "sr"
+  },
+  "result": {
+    "translation": "институција",
+    "definition_translation": "Зграда или комплекс зграда у којој се налази организација која ради на промовисању неког циља.",
+    "translated_synonyms": [
+      "установа",
+      "завод",
+      "организација",
+      "институција"
+    ],
+    "curator_summary": "Primary literal: институција\nSynonyms: установа, завод, организација, институција\nGloss: Зграда или комплекс зграда у којој се налази организација која ради на промовисању неког циља.",
+    "model": {
+      "requested": "gemma3:27b",
+      "resolved": "gemma3:27b",
+      "resolved_safe": "gemma3-27b",
+      "fallback_used": false,
+      "resolution_strategy": "preferred",
+      "available_models": [
+        "deepseek-r1:70b",
+        "deepseek-r1:8b",
+        "deepseek-r1:latest",
+        "deepseek-v3.1:671b",
+        "gemma3:1b",
+        "gemma3:27b",
+        "gpt-oss:120b",
+        "gpt-oss:20b",
+        "qwen3:235b",
+        "qwen3:30b"
+      ]
+    },
+    "payload": {
+      "prompt": "Translate the following WordNet synset from EN to Unknown (sr).\n            Keep lexical meaning precise and stay within dictionary tone.\n\n            Synset ID: ENG30-03574555-n\n            Part of speech: n\n            English lemmas: institution\n            Definition: an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated\n            Usage examples:\n            (none)\n\n            Return strict JSON with keys:\n{\n  \"translation\": \"single string literal in target language\",\n  \"synonyms\": [\"list of unique synonyms\"],\n  \"definition_translation\": \"gloss translated into target language\",\n  \"examples\": [\"short example sentences\"],\n  \"notes\": \"optional translator notes or null\"\n}",
+      "messages": [
+      ]
+    }
+  }
+}
