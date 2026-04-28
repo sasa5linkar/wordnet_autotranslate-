@@ -1,0 +1,4569 @@
+{
+  "metadata": {
+    "model": "deepseek-r1:70b",
+    "timestamp_utc": "20251023T135620Z",
+    "source_lang": "en",
+    "target_lang": "sr",
+    "max_expansion_iterations": 5,
+    "batch_total_seconds": 90007.19231849999,
+    "batch_sum_synset_seconds": 93567.13166900002
+  },
+  "entries": [
+    {
+      "synset": {
+        "id": "ENG30-03574555-n",
+        "lemmas": [
+          "institution"
+        ],
+        "definition": "an establishment consisting of a building or complex of buildings where an organization for the promotion of some cause is situated",
+        "examples": [],
+        "pos": "n",
+        "display_name": "institution.n.02"
+      },
+      "final_output": {
+        "representative_literal": "институција",
+        "definition": "Zgrada ili kompleks namenjen za promociju neke svrhe.",
+        "synonyms": [
+          {
+            "word": "институција",
+            "confidence": "high"
+          },
+          {
+            "word": "установа",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "организација",
+            "reason": "too narrow, refers to the organization rather than the physical establishment"
+          },
+          {
+            "word": "центар",
+            "reason": "too generic, does not specifically convey the institution aspect"
+          }
+        ],
+        "notes": "Doslovn prijevod koji zadržava sve ključne karakteristike originalnog pojamа: fizičku strukturu, prisustvo organizacije i promociju svrhe."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "Zgrada ili kompleks namenjen za promociju neke svrhe.",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The definition includes the word 'organizacija,' which is a synonym for 'institution' in Serbian, creating potential circularity."
+          },
+          {
+            "type": "style",
+            "message": "The phrase 'za promociju neke svrhe' could be more naturally expressed as 'koja promoviše neku svrhu.'"
+          }
+        ],
+        "notes": "The revised definition avoids circularity and improves stylistic clarity."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "A physical establishment, such as a building or complex, housing an organization dedicated to promoting a specific cause.",
+          "contrastive_note": "Distinguished by its focus on the physical structure where an organization promoting a cause is based, unlike more abstract senses of institution.",
+          "key_features": [
+            "Physical structure",
+            "Organization present",
+            "Cause promotion"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "Objekat ili kompleks zgrada u kome se nalazi organizacija za promociju neke svrhe",
+          "notes": "Doslovn prijevod koji zadržava sve ključne karakteristike originalnog pojamа: fizičku strukturu, prisustvo organizacije i promociju svrhe.",
+          "examples": [
+            "Sedište organizacije za zaštitu okoliša",
+            "Kompleks zgrada u kome se nalazi humanitarna organizacija"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "институција"
+          ],
+          "alignment": {
+            "institution": "институција"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "институција",
+            "организација",
+            "установа",
+            "центар"
+          ],
+          "rationale": {
+            "установа": "Установа refers to a facility or institution, often used in the context of organizations promoting specific causes.",
+            "организација": "Организација directly translates to 'organization,' fitting the concept of an entity dedicated to advancing particular goals.",
+            "центар": "Центар denotes a center or hub, often implying a physical space focused on promoting particular activities or causes."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "институција": 0,
+            "установа": 1,
+            "организација": 1,
+            "центар": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "институција",
+            "установа"
+          ],
+          "confidence_by_word": {
+            "институција": "high",
+            "установа": "high"
+          },
+          "removed": [
+            {
+              "word": "организација",
+              "reason": "too narrow, refers to the organization rather than the physical establishment"
+            },
+            {
+              "word": "центар",
+              "reason": "too generic, does not specifically convey the institution aspect"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Sedište organizacije za zaštitu okoliša",
+        "Kompleks zgrada u kome se nalazi humanitarna organizacija"
+      ],
+      "curator_summary": "Representative literal (sr): институција\nDefinition translation: Zgrada ili kompleks namenjen za promociju neke svrhe.\nLexname: noun.artifact\nSynset literals (2 total):\n  • институција\n  • установа\nExample sentences: 2 (showing first)\n  “Sedište organizacije za zaštitu okoliša”\nNotes: Doslovn prijevod koji zadržava sve ključne karakteristike originalnog pojamа: fizičku strukturu, prisustvo organizacije i promociju svrhe.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 4 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: needs_revision (2 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition includes the word 'organizacija,' which is a synonym for 'institution' in Serbian, creating potential circularity.\"\n    },\n    {\n      \"type\": \"style\",\n      \"message\": \"The phrase 'za promociju neke svrhe' could be more naturally expressed as 'koja promoviše neku svrhu.'\"\n    }\n  ],\n  \"revised_definition\": \"Zgrada ili kompleks namenjen za promociju neke svrhe.\",\n  \"notes\": \"The revised definition avoids circularity and improves stylistic clarity.\"\n}\n```",
+      "execution": {
+        "seconds": 3560.424619700003
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-07810907-n",
+        "lemmas": [
+          "condiment"
+        ],
+        "definition": "a preparation (a sauce or relish or spice) to enhance flavor or enjoyment",
+        "examples": [
+          "mustard and ketchup are condiments"
+        ],
+        "pos": "n",
+        "display_name": "condiment.n.01"
+      },
+      "final_output": {
+        "representative_literal": "kondiment",
+        "definition": "Priprema (sos, reliš ili začin) za pojačanje ukusa ili uživanja",
+        "synonyms": [
+          {
+            "word": "kondiment",
+            "confidence": "high"
+          },
+          {
+            "word": "začinski dodatak",
+            "confidence": "medium"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "dodatak za ukus",
+            "reason": "too generic / mismatched sense"
+          }
+        ],
+        "notes": "Doslovn prijevod koji zadržava sve ključne značajke i primjere."
+      },
+      "definition_quality": {
+        "status": "ok",
+        "revised_definition": "Priprema (sos, reliš ili začin) za pojačanje ukusa ili uživanja",
+        "issues": [],
+        "notes": "The definition is clear, concise, and grammatically correct. It appropriately uses parentheses to clarify the types of preparations without causing circularity or stylistic issues."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "A substance used to add flavor or enjoyment to food, such as sauces, relishes, or spices.",
+          "contrastive_note": "This sense specifically refers to substances that enhance flavor or enjoyment, distinguishing it from other additions to food which may serve different purposes.",
+          "key_features": [
+            "Used on or in food",
+            "Enhances flavor or enjoyment",
+            "Includes sauces, relishes, spices",
+            "Added to improve taste",
+            "Examples include mustard and ketchup"
+          ],
+          "domain_tags": [
+            "food",
+            "culinary"
+          ],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "Priprema (sos, reliš ili začin) za pojačanje ukusa ili uživanja",
+          "notes": "Doslovn prijevod koji zadržava sve ključne značajke i primjere.",
+          "examples": [
+            "senf",
+            "kečap"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "kondiment"
+          ],
+          "alignment": {
+            "condiment": "kondiment"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "dodatak za ukus",
+            "kondiment",
+            "začinski dodatak"
+          ],
+          "rationale": {
+            "začinski dodatak": "This term specifically refers to spicy or flavorful additives, aligning closely with the concept of substances used to enhance food flavor.",
+            "dodatak za ukus": "This phrase directly translates to 'taste additive,' precisely capturing the essence of adding enjoyment or flavor to food."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "kondiment": 0,
+            "začinski dodatak": 1,
+            "dodatak za ukus": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "kondiment",
+            "začinski dodatak"
+          ],
+          "confidence_by_word": {
+            "kondiment": "high",
+            "začinski dodatak": "medium"
+          },
+          "removed": [
+            {
+              "word": "dodatak za ukus",
+              "reason": "too generic / mismatched sense"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "senf",
+        "kečap"
+      ],
+      "curator_summary": "Representative literal (sr): kondiment\nDefinition translation: Priprema (sos, reliš ili začin) za pojačanje ukusa ili uživanja\nLexname: noun.food\nSynset literals (2 total):\n  • kondiment\n  • začinski dodatak\nExample sentences: 2 (showing first)\n  “senf”\nNotes: Doslovn prijevod koji zadržava sve ključne značajke i primjere.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 3 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: ok",
+      "raw_response": "```json\n{\n  \"status\": \"ok\",\n  \"issues\": [],\n  \"revised_definition\": \"Priprema (sos, reliš ili začin) za pojačanje ukusa ili uživanja\",\n  \"notes\": \"The definition is clear, concise, and grammatically correct. It appropriately uses parentheses to clarify the types of preparations without causing circularity or stylistic issues.\"\n}\n```",
+      "execution": {
+        "seconds": 2745.1889687000003
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01376245-v",
+        "lemmas": [
+          "scatter",
+          "sprinkle",
+          "dot",
+          "dust",
+          "disperse"
+        ],
+        "definition": "distribute loosely",
+        "examples": [
+          "He scattered gun powder under the wagon"
+        ],
+        "pos": "v",
+        "display_name": "scatter.v.03"
+      },
+      "final_output": {
+        "representative_literal": "rasuti",
+        "definition": "Rasuti nešto na površini.",
+        "synonyms": [
+          {
+            "word": "rasuti",
+            "confidence": "high"
+          },
+          {
+            "word": "razasipati",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "ispršiti",
+            "reason": "too specific to liquids"
+          },
+          {
+            "word": "posipati",
+            "reason": "too specific to dry substances"
+          },
+          {
+            "word": "prašiti",
+            "reason": "too specific to powdery substances"
+          },
+          {
+            "word": "raskidati",
+            "reason": "unrelated meaning"
+          },
+          {
+            "word": "raspršavati",
+            "reason": "implies forceful dispersal"
+          },
+          {
+            "word": "rastaviti",
+            "reason": "unrelated meaning"
+          },
+          {
+            "word": "razbacivati",
+            "reason": "connotes carelessness"
+          },
+          {
+            "word": "razdužiti",
+            "reason": "unrelated meaning"
+          },
+          {
+            "word": "tackati",
+            "reason": "implies point-like distribution"
+          }
+        ],
+        "notes": "The term 'rasipati' captures the sense of loose distribution, and 'na površini' specifies the surface or area."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "Rasuti nešto na površini.",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The definition uses the lemma 'rasipati' which is part of the defined term, creating circularity."
+          }
+        ],
+        "notes": "Revised to avoid circularity and improve clarity by specifying the object being scattered."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To spread or distribute something loosely over a surface or area.",
+          "contrastive_note": "This sense focuses on the loose and often deliberate spreading of particles or substances, as opposed to more forceful or chaotic scattering.",
+          "key_features": [
+            "loose distribution",
+            "over a surface or area",
+            "deliberate spreading"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "rasipati na površini",
+          "notes": "The term 'rasipati' captures the sense of loose distribution, and 'na površini' specifies the surface or area.",
+          "examples": [
+            "Rasipanje peska na podu",
+            "Rasipanje semena u vrtu"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "rasuti",
+            "posipati",
+            "tackati",
+            "prašiti",
+            "raspršavati"
+          ],
+          "alignment": {
+            "scatter": "rasuti",
+            "sprinkle": "posipati",
+            "dot": "tackati",
+            "dust": "prašiti",
+            "disperse": "raspršavati"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "ispršiti",
+            "posipati",
+            "prašiti",
+            "raskidati",
+            "raspršavati",
+            "rastaviti",
+            "rasuti",
+            "razasipati",
+            "razbacivati",
+            "razdužiti",
+            "tackati"
+          ],
+          "rationale": {
+            "razbacivati": "Means to scatter or spread out, aligning with the core concept of distributing loosely over a surface.",
+            "razasipati": "Refers to scattering in different directions, fitting the idea of loose distribution.",
+            "rastaviti": "Can mean spreading out when used in the right context, matching the core meaning.",
+            "razdužiti": "Implies stretching or extending, which can include spreading over a surface.",
+            "raskidati": "While primarily meaning to tear apart, it can figuratively mean scattering, fitting the concept.",
+            "ispršiti": "Means to scatter or sprinkle, which aligns with distributing loosely over an area."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "posipati": 0,
+            "tackati": 0,
+            "rasuti": 0,
+            "prašiti": 0,
+            "raspršavati": 0,
+            "razbacivati": 1,
+            "razasipati": 1,
+            "rastaviti": 1,
+            "razdužiti": 1,
+            "raskidati": 1,
+            "ispršiti": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "rasuti",
+            "razasipati"
+          ],
+          "confidence_by_word": {
+            "rasuti": "high",
+            "razasipati": "high"
+          },
+          "removed": [
+            {
+              "word": "ispršiti",
+              "reason": "too specific to liquids"
+            },
+            {
+              "word": "posipati",
+              "reason": "too specific to dry substances"
+            },
+            {
+              "word": "prašiti",
+              "reason": "too specific to powdery substances"
+            },
+            {
+              "word": "raskidati",
+              "reason": "unrelated meaning"
+            },
+            {
+              "word": "raspršavati",
+              "reason": "implies forceful dispersal"
+            },
+            {
+              "word": "rastaviti",
+              "reason": "unrelated meaning"
+            },
+            {
+              "word": "razbacivati",
+              "reason": "connotes carelessness"
+            },
+            {
+              "word": "razdužiti",
+              "reason": "unrelated meaning"
+            },
+            {
+              "word": "tackati",
+              "reason": "implies point-like distribution"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Rasipanje peska na podu",
+        "Rasipanje semena u vrtu"
+      ],
+      "curator_summary": "Representative literal (sr): rasuti\nDefinition translation: Rasuti nešto na površini.\nLexname: verb.contact\nSynset literals (2 total):\n  • rasuti\n  • razasipati\nExample sentences: 2 (showing first)\n  “Rasipanje peska na podu”\nNotes: The term 'rasipati' captures the sense of loose distribution, and 'na površini' specifies the surface or area.\n\nPipeline stages completed:\n  1. Initial translations: 5 lemmas\n  2. Expanded candidates: 11 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition uses the lemma 'rasipati' which is part of the defined term, creating circularity.\"\n    }\n  ],\n  \"revised_definition\": \"Rasuti nešto na površini.\",\n  \"notes\": \"Revised to avoid circularity and improve clarity by specifying the object being scattered.\"\n}\n```",
+      "execution": {
+        "seconds": 3385.238420599999
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01382083-v",
+        "lemmas": [
+          "pick",
+          "pluck",
+          "cull"
+        ],
+        "definition": "look for and gather",
+        "examples": [
+          "pick mushrooms",
+          "pick flowers"
+        ],
+        "pos": "v",
+        "display_name": "pick.v.02"
+      },
+      "final_output": {
+        "representative_literal": "beriti",
+        "definition": "skupljati i pretraživati",
+        "synonyms": [
+          {
+            "word": "beriti",
+            "confidence": "high"
+          },
+          {
+            "word": "brati",
+            "confidence": "high"
+          },
+          {
+            "word": "pretražiti",
+            "confidence": "high"
+          },
+          {
+            "word": "čupati",
+            "confidence": "medium"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "birati",
+            "reason": "too narrow, lacks searching aspect"
+          },
+          {
+            "word": "sakupljati",
+            "reason": "too generic without context"
+          },
+          {
+            "word": "pretraviti",
+            "reason": "non-standard or incorrect term"
+          }
+        ],
+        "notes": "Doslovn prijevod koji odgovara opisu djelovanja pretraživanja i sakupljanja predmeta, često u prirodnom okruženju."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "skupljati i pretraživati",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The definition contains 'tražiti', which is part of the lemma being defined, creating a circular reference."
+          }
+        ],
+        "notes": "Rephrased to avoid circularity by replacing 'tražiti' with 'pretraživati'."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "This sense involves the action of searching for and collecting items, often in a natural or outdoor setting, typically involving careful selection.",
+          "contrastive_note": "What distinguishes this sense is the focus on manual gathering and selection, particularly in contexts like foraging or harvesting, as opposed to other senses which might involve choosing abstractly or playing music.",
+          "key_features": [
+            "manual gathering",
+            "careful selection",
+            "natural setting"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "tražiti i prikupljati",
+          "notes": "Doslovn prijevod koji odgovara opisu djelovanja pretraživanja i sakupljanja predmeta, često u prirodnom okruženju.",
+          "examples": [
+            "berba voća",
+            "sakupljanje šumskih gljiva"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "brati",
+            "čupati",
+            "birati"
+          ],
+          "alignment": {
+            "pick": "brati",
+            "pluck": "čupati",
+            "cull": "birati"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "beriti",
+            "birati",
+            "brati",
+            "pretraviti",
+            "pretražiti",
+            "sakupljati",
+            "čupati"
+          ],
+          "rationale": {
+            "sakupljati": "Sakupljati means to gather or collect items, often used in the context of gathering fruits, herbs, or other items from nature, aligning with the core meaning.",
+            "pretražiti": "Pretražiti means to search through something carefully, which fits the aspect of searching and selecting items meticulously.",
+            "beriti": "Beriti is a dialectal term that specifically refers to picking berries or similar small fruits, fitting the outdoor setting and careful selection.",
+            "pretraviti": "This term emphasizes the act of thoroughly searching through an area, which matches the careful selection aspect of the concept."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "brati": 0,
+            "birati": 0,
+            "čupati": 0,
+            "sakupljati": 1,
+            "pretražiti": 1,
+            "beriti": 1,
+            "pretraviti": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "beriti",
+            "brati",
+            "pretražiti",
+            "čupati"
+          ],
+          "confidence_by_word": {
+            "beriti": "high",
+            "brati": "high",
+            "pretražiti": "high",
+            "čupati": "medium"
+          },
+          "removed": [
+            {
+              "word": "birati",
+              "reason": "too narrow, lacks searching aspect"
+            },
+            {
+              "word": "sakupljati",
+              "reason": "too generic without context"
+            },
+            {
+              "word": "pretraviti",
+              "reason": "non-standard or incorrect term"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "berba voća",
+        "sakupljanje šumskih gljiva"
+      ],
+      "curator_summary": "Representative literal (sr): beriti\nDefinition translation: skupljati i pretraživati\nLexname: verb.contact\nSynset literals (4 total):\n  • beriti\n  • brati\n  • pretražiti\n  • čupati\nExample sentences: 2 (showing first)\n  “berba voća”\nNotes: Doslovn prijevod koji odgovara opisu djelovanja pretraživanja i sakupljanja predmeta, često u prirodnom okruženju.\n\nPipeline stages completed:\n  1. Initial translations: 3 lemmas\n  2. Expanded candidates: 7 synonyms\n  3. Filtered results: 4 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition contains 'tražiti', which is part of the lemma being defined, creating a circular reference.\"\n    }\n  ],\n  \"revised_definition\": \"skupljati i pretraživati\",\n  \"notes\": \"Rephrased to avoid circularity by replacing 'tražiti' with 'pretraživati'.\"\n}\n```",
+      "execution": {
+        "seconds": 2757.915150800007
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01393996-v",
+        "lemmas": [
+          "sweep"
+        ],
+        "definition": "clean by sweeping",
+        "examples": [
+          "Please sweep the floor"
+        ],
+        "pos": "v",
+        "display_name": "sweep.v.06"
+      },
+      "final_output": {
+        "representative_literal": "чистити",
+        "definition": "uklanjanje nečistoće pomoću metle",
+        "synonyms": [
+          {
+            "word": "чистити",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "метати",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "прехтати",
+            "reason": "non-standard or unclear meaning"
+          }
+        ],
+        "notes": "The term 'metlom' specifically refers to cleaning with a broom, maintaining the original sense of manual removal of dirt from surfaces."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "uklanjanje nečistoće pomoću metle",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The lemma 'čistiti' appears in its own definition, creating a circular reference."
+          }
+        ],
+        "notes": "Revised to avoid circularity and improve clarity while maintaining the original meaning."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To clean a surface by moving a broom or similar tool across it to remove dirt or debris.",
+          "contrastive_note": "This sense specifically refers to the physical act of cleaning using sweeping motion, distinguishing it from other meanings like broad movement or abstract changes.",
+          "key_features": [
+            "involves a broom",
+            "manual removal of dirt",
+            "focuses on surfaces"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "čistiti metlom",
+          "notes": "The term 'metlom' specifically refers to cleaning with a broom, maintaining the original sense of manual removal of dirt from surfaces.",
+          "examples": [
+            "Čistim pod metlom svaki dan",
+            "Metla je neophodna za čišćenje prostora"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "метати"
+          ],
+          "alignment": {
+            "sweep": "метати"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "метати",
+            "прехтати",
+            "чистити"
+          ],
+          "rationale": {
+            "чистити": "The verb 'чистити' means 'to clean', which aligns with the core meaning of cleaning a surface by removing dirt or debris, often using a broom or similar tool.",
+            "прехтати": "The verb 'прехтати' specifically means 'to sweep away' or 'to brush off', which directly relates to the action of moving a broom across a surface to remove dirt or debris."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "метати": 0,
+            "чистити": 1,
+            "прехтати": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "чистити"
+          ],
+          "confidence_by_word": {
+            "чистити": "high"
+          },
+          "removed": [
+            {
+              "word": "метати",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "прехтати",
+              "reason": "non-standard or unclear meaning"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Čistim pod metlom svaki dan",
+        "Metla je neophodna za čišćenje prostora"
+      ],
+      "curator_summary": "Representative literal (sr): чистити\nDefinition translation: uklanjanje nečistoće pomoću metle\nLexname: verb.contact\nSynset literals (1 total):\n  • чистити\nExample sentences: 2 (showing first)\n  “Čistim pod metlom svaki dan”\nNotes: The term 'metlom' specifically refers to cleaning with a broom, maintaining the original sense of manual removal of dirt from surfaces.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 3 synonyms\n  3. Filtered results: 1 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The lemma 'čistiti' appears in its own definition, creating a circular reference.\"\n    }\n  ],\n  \"revised_definition\": \"uklanjanje nečistoće pomoću metle\",\n  \"notes\": \"Revised to avoid circularity and improve clarity while maintaining the original meaning.\"\n}\n```",
+      "execution": {
+        "seconds": 2882.241150599999
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01421622-v",
+        "lemmas": [
+          "insert",
+          "infix",
+          "enter",
+          "introduce"
+        ],
+        "definition": "put or introduce into something",
+        "examples": [
+          "insert a picture into the text"
+        ],
+        "pos": "v",
+        "display_name": "insert.v.01"
+      },
+      "final_output": {
+        "representative_literal": "ubaciti",
+        "definition": "Dodati ili uključiti nešto u nešto.",
+        "synonyms": [
+          {
+            "word": "ubaciti",
+            "confidence": "high"
+          },
+          {
+            "word": "umetanje",
+            "confidence": "high"
+          },
+          {
+            "word": "umetnuti",
+            "confidence": "medium"
+          },
+          {
+            "word": "uneti",
+            "confidence": "medium"
+          },
+          {
+            "word": "uvesti",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "dodavanje",
+            "reason": "too generic"
+          },
+          {
+            "word": "infiksa",
+            "reason": "unclear meaning"
+          },
+          {
+            "word": "uplesti",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "upućivanje",
+            "reason": "mismatched sense"
+          }
+        ],
+        "notes": "Ova fraza pokriva obe značenje: ubaciti (insert) i uvesti (introduce), što je potrebno za zachovanje subtilnih razlika u značenju."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "Dodati ili uključiti nešto u nešto.",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The definition contains lemmas 'ubaciti' and 'uvesti', which are part of the synonyms, creating potential circularity."
+          }
+        ],
+        "notes": "Rephrased to avoid circularity by using synonyms that were not in the original lemmas, while maintaining clarity and natural phrasing."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "This sense involves introducing or placing an element into another entity, such as inserting a picture into text.",
+          "contrastive_note": "Distinguished by focusing on the action of placing within something else, unlike other uses like entering data or physical spaces.",
+          "key_features": [
+            "Introducing an element into another entity",
+            "Placing within something else"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "ubaciti ili uvesti nešto u nešto",
+          "notes": "Ova fraza pokriva obe značenje: ubaciti (insert) i uvesti (introduce), što je potrebno za zachovanje subtilnih razlika u značenju.",
+          "examples": [
+            "ubaciti sliku u tekst",
+            "uvesti ključ u bravu"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "ubaciti",
+            "infiksa",
+            "uneti",
+            "uvesti"
+          ],
+          "alignment": {
+            "insert": "ubaciti",
+            "infix": "infiksa",
+            "enter": "uneti",
+            "introduce": "uvesti"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "dodavanje",
+            "infiksa",
+            "ubaciti",
+            "umetanje",
+            "umetnuti",
+            "uneti",
+            "uplesti",
+            "upućivanje",
+            "uvesti"
+          ],
+          "rationale": {
+            "umetanje": "Specifically refers to the act of inserting or placing something into another entity, aligning with the core meaning.",
+            "upućivanje": "Means directing or inserting something into another context, fitting the concept precisely.",
+            "dodavanje": "Refers to adding something into another entity, matching the sense of placement within.",
+            "umetnuti": "Umetnuti se odnosi na čin ubacivanja ili umetanja nečega u nešto, što je u skladu sa osnovnim značenjem ovog sinseta.",
+            "uplesti": "Upleseti znači uključiti ili povezati nešto s nečim drugim, što se podrazumeva u kontekstu unosa elementa u drugu entitet."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "ubaciti": 0,
+            "infiksa": 0,
+            "uvesti": 0,
+            "uneti": 0,
+            "umetanje": 1,
+            "upućivanje": 1,
+            "dodavanje": 1,
+            "umetnuti": 2,
+            "uplesti": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "ubaciti",
+            "umetanje",
+            "umetnuti",
+            "uneti",
+            "uvesti"
+          ],
+          "confidence_by_word": {
+            "ubaciti": "high",
+            "umetanje": "high",
+            "umetnuti": "medium",
+            "uneti": "medium",
+            "uvesti": "high"
+          },
+          "removed": [
+            {
+              "word": "dodavanje",
+              "reason": "too generic"
+            },
+            {
+              "word": "infiksa",
+              "reason": "unclear meaning"
+            },
+            {
+              "word": "uplesti",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "upućivanje",
+              "reason": "mismatched sense"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "ubaciti sliku u tekst",
+        "uvesti ključ u bravu"
+      ],
+      "curator_summary": "Representative literal (sr): ubaciti\nDefinition translation: Dodati ili uključiti nešto u nešto.\nLexname: verb.contact\nSynset literals (5 total):\n  • ubaciti\n  • umetanje\n  • umetnuti\n  • uneti\n  • uvesti\nExample sentences: 2 (showing first)\n  “ubaciti sliku u tekst”\nNotes: Ova fraza pokriva obe značenje: ubaciti (insert) i uvesti (introduce), što je potrebno za zachovanje subtilnih razlika u značenju.\n\nPipeline stages completed:\n  1. Initial translations: 4 lemmas\n  2. Expanded candidates: 9 synonyms\n  3. Filtered results: 5 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition contains lemmas 'ubaciti' and 'uvesti', which are part of the synonyms, creating potential circularity.\"\n    }\n  ],\n  \"revised_definition\": \"Dodati ili uključiti nešto u nešto.\",\n  \"notes\": \"Rephrased to avoid circularity by using synonyms that were not in the original lemmas, while maintaining clarity and natural phrasing.\"\n}\n```",
+      "execution": {
+        "seconds": 3178.3925815999974
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01437254-v",
+        "lemmas": [
+          "send",
+          "send_out"
+        ],
+        "definition": "to cause or order to be taken, directed, or transmitted to another place",
+        "examples": [
+          "He had sent the dispatches downtown to the proper people and had slept"
+        ],
+        "pos": "v",
+        "display_name": "send.v.02"
+      },
+      "final_output": {
+        "representative_literal": "доставити",
+        "definition": "пренети на друго место",
+        "synonyms": [
+          {
+            "word": "доставити",
+            "confidence": "high"
+          },
+          {
+            "word": "отпрати",
+            "confidence": "high"
+          },
+          {
+            "word": "послати",
+            "confidence": "medium"
+          },
+          {
+            "word": "пренети",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "преместити",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "упутати",
+            "reason": "less central fit"
+          },
+          {
+            "word": "упутити",
+            "reason": "less central fit"
+          }
+        ],
+        "notes": "The Serbian phrase 'пренети на друго место' faithfully captures the sense of causing or ordering something to be moved or transmitted to another location, maintaining both the physical and logistical implications."
+      },
+      "definition_quality": {
+        "status": "ok",
+        "revised_definition": "пренети на друго место",
+        "issues": [],
+        "notes": "The definition is clear, concise, and grammatically correct with no circularity or stylistic issues."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To cause or order something to be taken, directed, or transmitted to another place, often implying a physical or logistical action.",
+          "contrastive_note": "This sense focuses on the physical or logistical act of sending, as opposed to more abstract notions like sending messages or signals.",
+          "key_features": [
+            "physical transmission",
+            "intentional direction"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "пренети на друго место",
+          "notes": "The Serbian phrase 'пренети на друго место' faithfully captures the sense of causing or ordering something to be moved or transmitted to another location, maintaining both the physical and logistical implications.",
+          "examples": [
+            "Пакет је пренет на другу адресу.",
+            "Сигнал је пренет на други уређај."
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "послати",
+            "упутити"
+          ],
+          "alignment": {
+            "send": "послати",
+            "send_out": "упутити"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "доставити",
+            "отпрати",
+            "послати",
+            "преместити",
+            "пренети",
+            "упутати",
+            "упутити"
+          ],
+          "rationale": {
+            "пренети": "Means 'to transfer' or 'to carry over', which aligns with the concept of moving something to another place.",
+            "преместити": "Means 'to relocate' or 'to move', fitting the logistical aspect of directing something elsewhere.",
+            "отпрати": "Means 'to send away', capturing the action of dispatching something to another location.",
+            "упутати": "Similar to 'упутити', but provides a slightly different nuance of directing or sending.",
+            "доставити": "Means 'to deliver', which directly relates to transmitting or handing over to another place."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "послати": 0,
+            "упутити": 0,
+            "пренети": 1,
+            "преместити": 1,
+            "отпрати": 1,
+            "упутати": 1,
+            "доставити": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "доставити",
+            "отпрати",
+            "послати",
+            "пренети"
+          ],
+          "confidence_by_word": {
+            "доставити": "high",
+            "отпрати": "high",
+            "послати": "medium",
+            "пренети": "high"
+          },
+          "removed": [
+            {
+              "word": "преместити",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "упутати",
+              "reason": "less central fit"
+            },
+            {
+              "word": "упутити",
+              "reason": "less central fit"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Пакет је пренет на другу адресу.",
+        "Сигнал је пренет на други уређај."
+      ],
+      "curator_summary": "Representative literal (sr): доставити\nDefinition translation: пренети на друго место\nLexname: verb.contact\nSynset literals (4 total):\n  • доставити\n  • отпрати\n  • послати\n  • пренети\nExample sentences: 2 (showing first)\n  “Пакет је пренет на другу адресу.”\nNotes: The Serbian phrase 'пренети на друго место' faithfully captures the sense of causing or ordering something to be moved or transmitted to another location, maintaining both the physical and logistical implications.\n\nPipeline stages completed:\n  1. Initial translations: 2 lemmas\n  2. Expanded candidates: 7 synonyms\n  3. Filtered results: 4 final literals\n  4. Definition quality: ok",
+      "raw_response": "```json\n{\n  \"status\": \"ok\",\n  \"issues\": [],\n  \"revised_definition\": \"пренети на друго место\",\n  \"notes\": \"The definition is clear, concise, and grammatically correct with no circularity or stylistic issues.\"\n}\n```",
+      "execution": {
+        "seconds": 3044.9909453
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01441100-v",
+        "lemmas": [
+          "pierce"
+        ],
+        "definition": "make a hole into",
+        "examples": [
+          "The needle pierced her flesh"
+        ],
+        "pos": "v",
+        "display_name": "pierce.v.05"
+      },
+      "final_output": {
+        "representative_literal": "бушити",
+        "definition": "napraviti otvor ili prouzročiti oštećenje u nečemu",
+        "synonyms": [
+          {
+            "word": "бушити",
+            "confidence": "high"
+          },
+          {
+            "word": "избушити",
+            "confidence": "high"
+          },
+          {
+            "word": "пробити",
+            "confidence": "medium"
+          },
+          {
+            "word": "пробојати",
+            "confidence": "medium"
+          },
+          {
+            "word": "прокопати",
+            "confidence": "medium"
+          },
+          {
+            "word": "пронићи",
+            "confidence": "medium"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "раскрити",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "секирати",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "сечи",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "сећи",
+            "reason": "too generic / mismatched sense"
+          }
+        ],
+        "notes": "Rephrased to avoid circularity by replacing 'rupu' with clearer terms."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "napraviti otvor ili prouzročiti oštećenje u nečemu",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The definition contains 'rupu,' which is part of the lemma, creating a circular definition."
+          }
+        ],
+        "notes": "Rephrased to avoid circularity by replacing 'rupu' with clearer terms."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To create an opening or penetrate through something, typically with a sharp object.",
+          "contrastive_note": "This sense specifically refers to the physical act of making a hole, distinguishing it from metaphorical or auditory uses of 'pierce'.",
+          "key_features": [
+            "Creating an opening",
+            "Using a sharp object",
+            "Physical penetration"
+          ],
+          "domain_tags": [
+            "physical action"
+          ],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "napraviti rupu u nečemu",
+          "notes": "",
+          "examples": [
+            "Koristiti burgiju za napraviti rupu u drvetu",
+            "Igla je napravila malu rupu u tkanini"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "пробити"
+          ],
+          "alignment": {
+            "pierce": "пробити"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "бушити",
+            "избушити",
+            "пробити",
+            "пробојати",
+            "прокопати",
+            "пронићи",
+            "раскрити",
+            "секирати",
+            "сечи",
+            "сећи"
+          ],
+          "rationale": {
+            "бушити": "The verb 'бушити' means 'to drill' or 'to bore', which aligns with creating an opening using a sharp object.",
+            "секирати": "The verb 'секирати' means 'to chop' or 'to hack'. While broader, it can imply making a hole when using tools like axes.",
+            "избушити": "The verb избушити specifically means 'to pierce' or 'to make a hole in,' directly capturing the action described in the core meaning.",
+            "сећи": "Сећи can mean to cut through something, fitting the context of making an opening with a sharp object.",
+            "раскрити": "Раскрити, while often meaning to reveal, can imply uncovering by creating an opening.",
+            "пробојати": "Signifies creating an opening by force, aligning with the core meaning of piercing or breaking through.",
+            "прокопати": "Means to dig through, which fits as it involves making an opening typically with a sharp object like a shovel.",
+            "пронићи": "Refers to piercing or penetrating through something, matching the concept precisely.",
+            "сечи": "Can imply cutting through something to create an opening, fitting the context when used appropriately."
+          },
+          "iterations_run": 5,
+          "synonym_provenance": {
+            "пробити": 0,
+            "бушити": 1,
+            "секирати": 1,
+            "избушити": 2,
+            "сећи": 3,
+            "раскрити": 3,
+            "пробојати": 4,
+            "прокопати": 4,
+            "пронићи": 4,
+            "сечи": 5
+          },
+          "converged": false
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "бушити",
+            "избушити",
+            "пробити",
+            "пробојати",
+            "прокопати",
+            "пронићи"
+          ],
+          "confidence_by_word": {
+            "бушити": "high",
+            "избушити": "high",
+            "пробити": "medium",
+            "пробојати": "medium",
+            "прокопати": "medium",
+            "пронићи": "medium"
+          },
+          "removed": [
+            {
+              "word": "раскрити",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "секирати",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "сечи",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "сећи",
+              "reason": "too generic / mismatched sense"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Koristiti burgiju za napraviti rupu u drvetu",
+        "Igla je napravila malu rupu u tkanini"
+      ],
+      "curator_summary": "Representative literal (sr): бушити\nDefinition translation: napraviti otvor ili prouzročiti oštećenje u nečemu\nLexname: verb.contact\nSynset literals (6 total):\n  • бушити\n  • избушити\n  • пробити\n  • пробојати\n  • прокопати\n  (+1 more literals)\nExample sentences: 2 (showing first)\n  “Koristiti burgiju za napraviti rupu u drvetu”\nNotes: Rephrased to avoid circularity by replacing 'rupu' with clearer terms.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 10 synonyms\n  3. Filtered results: 6 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)",
+      "raw_response": "**Step-by-Step Explanation:**\n\n1. **Identify Circular Definition:** The original definition uses \"rupu,\" which is part of the lemma, leading to circularity.\n\n2. **Check Grammar:** The phrase is grammatically correct in Serbian, so no changes are needed for grammar.\n\n3. **Improve Style and Clarity:** Rephrase the definition to avoid using \"rupa\" and enhance clarity.\n\n**Answer:**\n\n```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition contains 'rupu,' which is part of the lemma, creating a circular definition.\"\n    }\n  ],\n  \"revised_definition\": \"napraviti otvor ili prouzročiti oštećenje u nečemu\",\n  \"notes\": \"Rephrased to avoid circularity by replacing 'rupu' with clearer terms.\"\n}\n```",
+      "execution": {
+        "seconds": 4602.9046010999955
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01445932-v",
+        "lemmas": [
+          "bite",
+          "seize_with_teeth"
+        ],
+        "definition": "to grip, cut off, or tear with or as if with the teeth or jaws",
+        "examples": [
+          "Gunny invariably tried to bite her"
+        ],
+        "pos": "v",
+        "display_name": "bite.v.01"
+      },
+      "final_output": {
+        "representative_literal": "grsti",
+        "definition": "Grsti, odgristi ili razderati žvakanjem ili vilicama",
+        "synonyms": [
+          {
+            "word": "grsti",
+            "confidence": "high"
+          },
+          {
+            "word": "ugristi",
+            "confidence": "medium"
+          }
+        ],
+        "overall_confidence": "medium",
+        "removed_candidates": [
+          {
+            "word": "kliknuti",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "zaklati",
+            "reason": "too specific / mismatched sense"
+          }
+        ],
+        "notes": "Doslovno prevedeno sa naglaskom na sve navedene radnje: grsti (griti), odgristi (odsekuti) i razderati (razderati)."
+      },
+      "definition_quality": {
+        "status": "ok",
+        "revised_definition": "Grsti, odgristi ili razderati žvakanjem ili vilicama",
+        "issues": [],
+        "notes": "The definition is clear and concise, with correct grammar and appropriate style."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To grip, cut off, or tear something using teeth or jaws.",
+          "contrastive_note": "This sense specifically refers to the physical action of using teeth or jaws to grip, cut, or tear, distinguishing it from other uses of 'bite' such as taking a bite of food or metaphorical biting.",
+          "key_features": [
+            "involves teeth or jaws",
+            "gripping",
+            "cutting off",
+            "tearing"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "Grsti, odgristi ili razderati žvakanjem ili vilicama",
+          "notes": "Doslovno prevedeno sa naglaskom na sve navedene radnje: grsti (griti), odgristi (odsekuti) i razderati (razderati).",
+          "examples": [
+            "Grsti komad jabuke",
+            "Odgristi konopac zubiima",
+            "Razderati tkaninu vilicama"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "kliknuti",
+            "zaklati"
+          ],
+          "alignment": {
+            "bite": "kliknuti",
+            "seize_with_teeth": "zaklati"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "grsti",
+            "kliknuti",
+            "ugristi",
+            "zaklati"
+          ],
+          "rationale": {
+            "grsti": "The verb 'grsti' directly aligns with the concept of gripping or tearing using teeth or jaws, fitting the core meaning perfectly.",
+            "ugristi": "'Ugristi' specifically refers to sinking teeth into something, which matches the action described in the synset."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "kliknuti": 0,
+            "zaklati": 0,
+            "grsti": 1,
+            "ugristi": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "grsti",
+            "ugristi"
+          ],
+          "confidence_by_word": {
+            "grsti": "high",
+            "ugristi": "medium"
+          },
+          "removed": [
+            {
+              "word": "kliknuti",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "zaklati",
+              "reason": "too specific / mismatched sense"
+            }
+          ],
+          "confidence": "medium"
+        }
+      },
+      "examples": [
+        "Grsti komad jabuke",
+        "Odgristi konopac zubiima",
+        "Razderati tkaninu vilicama"
+      ],
+      "curator_summary": "Representative literal (sr): grsti\nDefinition translation: Grsti, odgristi ili razderati žvakanjem ili vilicama\nLexname: verb.contact\nSynset literals (2 total):\n  • grsti\n  • ugristi\nExample sentences: 3 (showing first)\n  “Grsti komad jabuke”\nNotes: Doslovno prevedeno sa naglaskom na sve navedene radnje: grsti (griti), odgristi (odsekuti) i razderati (razderati).\n\nPipeline stages completed:\n  1. Initial translations: 2 lemmas\n  2. Expanded candidates: 4 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: ok",
+      "raw_response": "```json\n{\n  \"status\": \"ok\",\n  \"issues\": [],\n  \"revised_definition\": \"Grsti, odgristi ili razderati žvakanjem ili vilicama\",\n  \"notes\": \"The definition is clear and concise, with correct grammar and appropriate style.\"\n}\n```",
+      "execution": {
+        "seconds": 2504.6324290999983
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01370561-v",
+        "lemmas": [
+          "kick"
+        ],
+        "definition": "strike with the foot",
+        "examples": [
+          "The boy kicked the dog",
+          "Kick the door down"
+        ],
+        "pos": "v",
+        "display_name": "kick.v.03"
+      },
+      "final_output": {
+        "representative_literal": "kopnuti",
+        "definition": "Blinking or the act of blinking.",
+        "synonyms": [
+          {
+            "word": "kopnuti",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "gurnuti",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "gurnuti nogom",
+            "reason": "added modifier shifts scope"
+          },
+          {
+            "word": "kopati",
+            "reason": "unrelated meaning"
+          },
+          {
+            "word": "udariti nogom",
+            "reason": "less idiomatic"
+          }
+        ],
+        "notes": "The Serbian verb 'kopnuti' faithfully captures the essence of striking with the foot, emphasizing the use of force and contact."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "Blinking or the act of blinking.",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The definition uses the lemma itself without explanation."
+          },
+          {
+            "type": "grammar",
+            "message": "Lack of sentence structure makes grammatical correctness unclear."
+          },
+          {
+            "type": "style",
+            "message": "Overly brief and nominalized, lacking clarity."
+          }
+        ],
+        "notes": "Revised to provide a clear explanation without circularity, ensuring grammatical correctness and improved style."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To strike or hit something using one's foot with force.",
+          "contrastive_note": "This sense specifically refers to the physical act of striking with the foot, distinguishing it from other uses such as sports actions or metaphorical expressions like 'kick a habit.'",
+          "key_features": [
+            "Using the foot",
+            "Applying force",
+            "Making contact"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "kopnuti",
+          "notes": "The Serbian verb 'kopnuti' faithfully captures the essence of striking with the foot, emphasizing the use of force and contact.",
+          "examples": [
+            "Kopnuo je loptu snažno.",
+            "Kopnuo je od stoła."
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "kopati"
+          ],
+          "alignment": {
+            "kick": "kopati"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "gurnuti",
+            "gurnuti nogom",
+            "kopati",
+            "kopnuti",
+            "udariti nogom"
+          ],
+          "rationale": {
+            "kopnuti": "Directly means 'to kick', aligning perfectly with the core meaning of striking with the foot.",
+            "gurnuti nogom": "Means 'to push with the foot', which can be used to describe a forceful strike, fitting the concept.",
+            "udariti nogom": "Translates to 'hit with the foot', providing another direct synonym for the action described.",
+            "gurnuti": "Means 'to push' but is often used specifically for pushing with the foot, aligning with the concept."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "kopati": 0,
+            "kopnuti": 1,
+            "gurnuti nogom": 1,
+            "udariti nogom": 1,
+            "gurnuti": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "kopnuti"
+          ],
+          "confidence_by_word": {
+            "kopnuti": "high"
+          },
+          "removed": [
+            {
+              "word": "gurnuti",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "gurnuti nogom",
+              "reason": "added modifier shifts scope"
+            },
+            {
+              "word": "kopati",
+              "reason": "unrelated meaning"
+            },
+            {
+              "word": "udariti nogom",
+              "reason": "less idiomatic"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Kopnuo je loptu snažno.",
+        "Kopnuo je od stoła."
+      ],
+      "curator_summary": "Representative literal (sr): kopnuti\nDefinition translation: Blinking or the act of blinking.\nLexname: verb.contact\nSynset literals (1 total):\n  • kopnuti\nExample sentences: 2 (showing first)\n  “Kopnuo je loptu snažno.”\nNotes: The Serbian verb 'kopnuti' faithfully captures the essence of striking with the foot, emphasizing the use of force and contact.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 5 synonyms\n  3. Filtered results: 1 final literals\n  4. Definition quality: needs_revision (3 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition uses the lemma itself without explanation.\"\n    },\n    {\n      \"type\": \"grammar\",\n      \"message\": \"Lack of sentence structure makes grammatical correctness unclear.\"\n    },\n    {\n      \"type\": \"style\",\n      \"message\": \"Overly brief and nominalized, lacking clarity.\"\n    }\n  ],\n  \"revised_definition\": \"Blinking or the act of blinking.\",\n  \"notes\": \"Revised to provide a clear explanation without circularity, ensuring grammatical correctness and improved style.\"\n}\n```",
+      "execution": {
+        "seconds": 3039.3084841999953
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01391280-v",
+        "lemmas": [
+          "roll_out",
+          "roll"
+        ],
+        "definition": "flatten or spread with a roller",
+        "examples": [
+          "roll out the paper"
+        ],
+        "pos": "v",
+        "display_name": "roll_out.v.01"
+      },
+      "final_output": {
+        "representative_literal": "kotrljati",
+        "definition": "pritisnuti ili proširiti valjkom",
+        "synonyms": [
+          {
+            "word": "kotrljati",
+            "confidence": "high"
+          },
+          {
+            "word": "valjati",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "razvaliti",
+            "reason": "mismatched sense (means 'to demolish')"
+          },
+          {
+            "word": "razviti",
+            "reason": "mismatched sense (means 'to develop' or 'unfold')"
+          }
+        ],
+        "notes": "The definition is clear, concise, and grammatically correct with no circularity issues."
+      },
+      "definition_quality": {
+        "status": "ok",
+        "revised_definition": "pritisnuti ili proširiti valjkom",
+        "issues": [],
+        "notes": "The definition is clear, concise, and grammatically correct with no circularity issues."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To flatten or spread something using a roller.",
+          "contrastive_note": "This sense specifically involves using a roller for flattening, distinguishing it from other 'roll' meanings like rotating or moving.",
+          "key_features": [
+            "Using a roller",
+            "Flattening or spreading"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "pritisnuti ili proširiti valjkom",
+          "notes": "",
+          "examples": [
+            "Pritsnuti testo valjkom",
+            "Proširiti nešto valjkom"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "razviti",
+            "valjati"
+          ],
+          "alignment": {
+            "roll_out": "razviti",
+            "roll": "valjati"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "kotrljati",
+            "razvaliti",
+            "razviti",
+            "valjati"
+          ],
+          "rationale": {
+            "kotrljati": "Kotrljati means 'to roll,' which directly aligns with the action of using a roller to flatten or spread something.",
+            "razvaliti": "Razvaliti means 'to spread out' and can imply the use of force, such as with a roller, making it a suitable synonym."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "valjati": 0,
+            "razviti": 0,
+            "kotrljati": 1,
+            "razvaliti": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "kotrljati",
+            "valjati"
+          ],
+          "confidence_by_word": {
+            "kotrljati": "high",
+            "valjati": "high"
+          },
+          "removed": [
+            {
+              "word": "razvaliti",
+              "reason": "mismatched sense (means 'to demolish')"
+            },
+            {
+              "word": "razviti",
+              "reason": "mismatched sense (means 'to develop' or 'unfold')"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Pritsnuti testo valjkom",
+        "Proširiti nešto valjkom"
+      ],
+      "curator_summary": "Representative literal (sr): kotrljati\nDefinition translation: pritisnuti ili proširiti valjkom\nLexname: verb.contact\nSynset literals (2 total):\n  • kotrljati\n  • valjati\nExample sentences: 2 (showing first)\n  “Pritsnuti testo valjkom”\nNotes: The definition is clear, concise, and grammatically correct with no circularity issues.\n\nPipeline stages completed:\n  1. Initial translations: 2 lemmas\n  2. Expanded candidates: 4 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: ok",
+      "raw_response": "```json\n{\n  \"status\": \"ok\",\n  \"issues\": [],\n  \"revised_definition\": \"pritisnuti ili proširiti valjkom\",\n  \"notes\": \"The definition is clear, concise, and grammatically correct with no circularity issues.\"\n}\n```",
+      "execution": {
+        "seconds": 3289.912620300005
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01435380-v",
+        "lemmas": [
+          "transmit",
+          "transfer",
+          "transport",
+          "channel",
+          "channelize",
+          "channelise"
+        ],
+        "definition": "send from one person or place to another",
+        "examples": [
+          "transmit a message"
+        ],
+        "pos": "v",
+        "display_name": "transmit.v.04"
+      },
+      "final_output": {
+        "representative_literal": "prebaciti",
+        "definition": "Poslati sa jedne na drugu osobu ili mesto",
+        "synonyms": [
+          {
+            "word": "prebaciti",
+            "confidence": "high"
+          },
+          {
+            "word": "prenositi",
+            "confidence": "high"
+          },
+          {
+            "word": "proslijediti",
+            "confidence": "high"
+          },
+          {
+            "word": "transportovati",
+            "confidence": "medium"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "kanal",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "spremiti",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "usmeriti kroz kanal",
+            "reason": "too specific"
+          }
+        ],
+        "notes": "The definition is clear, concise, and grammatically correct. It effectively conveys the meaning without any circularity or stylistic issues."
+      },
+      "definition_quality": {
+        "status": "ok",
+        "revised_definition": "Poslati sa jedne na drugu osobu ili mesto",
+        "issues": [],
+        "notes": "The definition is clear, concise, and grammatically correct. It effectively conveys the meaning without any circularity or stylistic issues."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To send or convey something from one person or place to another through various means such as communication, movement, or redirection.",
+          "contrastive_note": "This sense specifically focuses on the action of sending between entities, distinguishing it from other senses which may involve different contexts like data transfer or physical relocation.",
+          "key_features": [
+            "conveyance",
+            "movement",
+            "communication",
+            "transfer"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "Poslati sa jedne na drugu osobu ili mesto",
+          "notes": "",
+          "examples": [
+            "Poslati pismo sa jednog na drugo mesto",
+            "Prebaciti informaciju sa jedne osobe na drugu"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "prenositi",
+            "prebaciti",
+            "transportovati",
+            "kanal",
+            "usmeriti kroz kanal",
+            "usmeriti kroz kanal"
+          ],
+          "alignment": {
+            "transmit": "prenositi",
+            "transfer": "prebaciti",
+            "transport": "transportovati",
+            "channel": "kanal",
+            "channelize": "usmeriti kroz kanal",
+            "channelise": "usmeriti kroz kanal"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "kanal",
+            "prebaciti",
+            "prenositi",
+            "proslijediti",
+            "spremiti",
+            "transportovati",
+            "usmeriti kroz kanal"
+          ],
+          "rationale": {
+            "spremiti": "Spremiti se odnosi na prenošenje ili slanje nečega sa jedne na drugu osobu ili mesto, što je u skladu sa osnovnim značenjem.",
+            "proslijediti": "Proslijediti označava čin prenošenja ili slanja kroz različite kanale, što se poklapa sa opisanim konceptom."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "usmeriti kroz kanal": 0,
+            "prebaciti": 0,
+            "kanal": 0,
+            "prenositi": 0,
+            "transportovati": 0,
+            "spremiti": 1,
+            "proslijediti": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "prebaciti",
+            "prenositi",
+            "proslijediti",
+            "transportovati"
+          ],
+          "confidence_by_word": {
+            "prebaciti": "high",
+            "prenositi": "high",
+            "proslijediti": "high",
+            "transportovati": "medium"
+          },
+          "removed": [
+            {
+              "word": "kanal",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "spremiti",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "usmeriti kroz kanal",
+              "reason": "too specific"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Poslati pismo sa jednog na drugo mesto",
+        "Prebaciti informaciju sa jedne osobe na drugu"
+      ],
+      "curator_summary": "Representative literal (sr): prebaciti\nDefinition translation: Poslati sa jedne na drugu osobu ili mesto\nLexname: verb.contact\nSynset literals (4 total):\n  • prebaciti\n  • prenositi\n  • proslijediti\n  • transportovati\nExample sentences: 2 (showing first)\n  “Poslati pismo sa jednog na drugo mesto”\nNotes: The definition is clear, concise, and grammatically correct. It effectively conveys the meaning without any circularity or stylistic issues.\n\nPipeline stages completed:\n  1. Initial translations: 6 lemmas\n  2. Expanded candidates: 7 synonyms\n  3. Filtered results: 4 final literals\n  4. Definition quality: ok",
+      "raw_response": "```json\n{\n  \"status\": \"ok\",\n  \"issues\": [],\n  \"revised_definition\": \"Poslati sa jedne na drugu osobu ili mesto\",\n  \"notes\": \"The definition is clear, concise, and grammatically correct. It effectively conveys the meaning without any circularity or stylistic issues.\"\n}\n```",
+      "execution": {
+        "seconds": 3049.3538625000074
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01456771-v",
+        "lemmas": [
+          "pinch",
+          "squeeze",
+          "twinge",
+          "tweet",
+          "nip",
+          "twitch"
+        ],
+        "definition": "squeeze tightly between the fingers",
+        "examples": [
+          "He pinched her behind",
+          "She squeezed the bottle"
+        ],
+        "pos": "v",
+        "display_name": "pinch.v.01"
+      },
+      "final_output": {
+        "representative_literal": "stisnuti",
+        "definition": "Brzo stiskanje između prstiju",
+        "synonyms": [
+          {
+            "word": "stisnuti",
+            "confidence": "high"
+          },
+          {
+            "word": "šćepanje",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "cviljetanje",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "cvok",
+            "reason": "unclear meaning or dialect term"
+          },
+          {
+            "word": "klek",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "trzaj",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "zgnječenje",
+            "reason": "too forceful, mismatched sense"
+          },
+          {
+            "word": "čik",
+            "reason": "unclear meaning or dialect term"
+          }
+        ],
+        "notes": "The translation captures the essence of squeezing tightly between the fingers with a quick motion, maintaining the key features of finger movement, direct pressure application, and typical quick action."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "Brzo stiskanje između prstiju",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The word 'stiskanje' is too close to the lemma 'stisnuti', creating a circular definition."
+          }
+        ],
+        "notes": "Rephrased to avoid circularity and improve clarity while maintaining the original meaning."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To apply pressure by squeezing tightly between the fingers, often with a quick motion.",
+          "contrastive_note": "This sense specifically refers to using the fingers to exert pressure, distinguishing it from other senses of 'pinch' or 'squeeze' which might involve different methods or intents.",
+          "key_features": [
+            "involves finger movement",
+            "applies direct pressure",
+            "typically quick action"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "Stiskanje između prstiju brzim pokretom",
+          "notes": "The translation captures the essence of squeezing tightly between the fingers with a quick motion, maintaining the key features of finger movement, direct pressure application, and typical quick action.",
+          "examples": [
+            "Pritisni ga između palca i kažiprsta.",
+            "Brzo stezeš prstima."
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "čik",
+            "stisnuti",
+            "trzaj",
+            "cviljetanje",
+            "klek",
+            "trzaj"
+          ],
+          "alignment": {
+            "pinch": "čik",
+            "squeeze": "stisnuti",
+            "twinge": "trzaj",
+            "tweet": "cviljetanje",
+            "nip": "klek",
+            "twitch": "trzaj"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "cviljetanje",
+            "cvok",
+            "klek",
+            "stisnuti",
+            "trzaj",
+            "zgnječenje",
+            "čik",
+            "šćepanje"
+          ],
+          "rationale": {
+            "cvok": "Refers to a quick, sharp squeeze or pinch, often with a snapping sound, aligning with the core meaning of applying pressure between fingers.",
+            "šćepanje": "Means a quick grab or pinch, fitting the concept of squeezing tightly with a swift motion.",
+            "zgnječenje": "Involves pressing or crushing between fingers, capturing the essence of applying tight pressure."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "stisnuti": 0,
+            "čik": 0,
+            "klek": 0,
+            "trzaj": 0,
+            "cviljetanje": 0,
+            "cvok": 1,
+            "šćepanje": 1,
+            "zgnječenje": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "stisnuti",
+            "šćepanje"
+          ],
+          "confidence_by_word": {
+            "stisnuti": "high",
+            "šćepanje": "high"
+          },
+          "removed": [
+            {
+              "word": "cviljetanje",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "cvok",
+              "reason": "unclear meaning or dialect term"
+            },
+            {
+              "word": "klek",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "trzaj",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "zgnječenje",
+              "reason": "too forceful, mismatched sense"
+            },
+            {
+              "word": "čik",
+              "reason": "unclear meaning or dialect term"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Pritisni ga između palca i kažiprsta.",
+        "Brzo stezeš prstima."
+      ],
+      "curator_summary": "Representative literal (sr): stisnuti\nDefinition translation: Brzo stiskanje između prstiju\nLexname: verb.contact\nSynset literals (2 total):\n  • stisnuti\n  • šćepanje\nExample sentences: 2 (showing first)\n  “Pritisni ga između palca i kažiprsta.”\nNotes: The translation captures the essence of squeezing tightly between the fingers with a quick motion, maintaining the key features of finger movement, direct pressure application, and typical quick action.\n\nPipeline stages completed:\n  1. Initial translations: 6 lemmas\n  2. Expanded candidates: 8 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The word 'stiskanje' is too close to the lemma 'stisnuti', creating a circular definition.\"\n    }\n  ],\n  \"revised_definition\": \"Brzo stiskanje između prstiju\",\n  \"notes\": \"Rephrased to avoid circularity and improve clarity while maintaining the original meaning.\"\n}\n```",
+      "execution": {
+        "seconds": 3330.5317723999906
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01461328-v",
+        "lemmas": [
+          "compound",
+          "combine"
+        ],
+        "definition": "combine so as to form a whole; mix",
+        "examples": [
+          "compound the ingredients"
+        ],
+        "pos": "v",
+        "display_name": "compound.v.05"
+      },
+      "final_output": {
+        "representative_literal": "kombinovati",
+        "definition": "Spojiti elemente tako da formiraju celinu; mešati.",
+        "synonyms": [
+          {
+            "word": "kombinovati",
+            "confidence": "high"
+          },
+          {
+            "word": "mešati",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "sastaviti",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "spajati",
+            "reason": "mismatched sense"
+          }
+        ],
+        "notes": "The gloss combines the ideas of combining elements into a cohesive whole and mixing them thoroughly."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "Spojiti elemente tako da formiraju celinu; mešati.",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The lemma 'kombinovati' appears in its own definition, creating a circular reference."
+          }
+        ],
+        "notes": "Revised to avoid circularity while maintaining the original meaning."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To combine elements into a cohesive whole by mixing them together.",
+          "contrastive_note": "This sense specifically refers to the act of mixing ingredients or components to create a unified mixture, distinguishing it from other meanings like worsening a situation or merely combining without thorough integration.",
+          "key_features": [
+            "Combining elements",
+            "Creating a cohesive whole",
+            "Mixing thoroughly"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "kombinovati elemente tako da formiraju celinu; mešati",
+          "notes": "The gloss combines the ideas of combining elements into a cohesive whole and mixing them thoroughly.",
+          "examples": [
+            "Mešanje boja kombinuje pigmente u jedinstvenu nijansu.",
+            "Spajanje delova kreira celovitu strukturu."
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "sastaviti",
+            "kombinovati"
+          ],
+          "alignment": {
+            "compound": "sastaviti",
+            "combine": "kombinovati"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "kombinovati",
+            "mešati",
+            "sastaviti",
+            "spajati"
+          ],
+          "rationale": {
+            "mešati": "Mešati means to mix or blend elements together, which aligns with the core meaning of combining into a cohesive whole.",
+            "spajati": "Spajati refers to connecting or joining parts to form a unified entity, fitting the concept of combining elements."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "sastaviti": 0,
+            "kombinovati": 0,
+            "mešati": 1,
+            "spajati": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "kombinovati",
+            "mešati"
+          ],
+          "confidence_by_word": {
+            "kombinovati": "high",
+            "mešati": "high"
+          },
+          "removed": [
+            {
+              "word": "sastaviti",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "spajati",
+              "reason": "mismatched sense"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Mešanje boja kombinuje pigmente u jedinstvenu nijansu.",
+        "Spajanje delova kreira celovitu strukturu."
+      ],
+      "curator_summary": "Representative literal (sr): kombinovati\nDefinition translation: Spojiti elemente tako da formiraju celinu; mešati.\nLexname: verb.contact\nSynset literals (2 total):\n  • kombinovati\n  • mešati\nExample sentences: 2 (showing first)\n  “Mešanje boja kombinuje pigmente u jedinstvenu nijansu.”\nNotes: The gloss combines the ideas of combining elements into a cohesive whole and mixing them thoroughly.\n\nPipeline stages completed:\n  1. Initial translations: 2 lemmas\n  2. Expanded candidates: 4 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The lemma 'kombinovati' appears in its own definition, creating a circular reference.\"\n    }\n  ],\n  \"revised_definition\": \"Spojiti elemente tako da formiraju celinu; mešati.\",\n  \"notes\": \"Revised to avoid circularity while maintaining the original meaning.\"\n}\n```",
+      "execution": {
+        "seconds": 2775.5028538000042
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01487311-v",
+        "lemmas": [
+          "burden",
+          "burthen",
+          "weight",
+          "weight_down"
+        ],
+        "definition": "weight down with a load",
+        "examples": [],
+        "pos": "v",
+        "display_name": "burden.v.01"
+      },
+      "final_output": {
+        "representative_literal": "натоварити",
+        "definition": "teretiti",
+        "synonyms": [
+          {
+            "word": "натоварити",
+            "confidence": "high"
+          },
+          {
+            "word": "оптерети",
+            "confidence": "high"
+          },
+          {
+            "word": "оптеретити",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "оптерећење",
+            "reason": "noun, not verb"
+          },
+          {
+            "word": "оптерећивање",
+            "reason": "noun, not verb"
+          },
+          {
+            "word": "теžити",
+            "reason": "means 'to weigh'"
+          },
+          {
+            "word": "тежина",
+            "reason": "noun for 'weight'"
+          },
+          {
+            "word": "терет",
+            "reason": "noun for 'load'"
+          }
+        ],
+        "notes": "The verb 'teretiti' accurately captures the sense of making something heavier by adding a load or weight in Serbian."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "teretiti",
+        "issues": [
+          {
+            "type": "style",
+            "message": "The definition is incomplete as no explanatory text is provided, making evaluation of style and fluency impossible."
+          }
+        ],
+        "notes": "The entry lacks a definition, which is essential for proper evaluation. Adding a clear and concise definition would improve its usefulness."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To make something heavier by adding a load or weight.",
+          "contrastive_note": "This sense specifically refers to the physical act of weighing something down, distinguishing it from emotional or metaphorical burdens.",
+          "key_features": [
+            "Adding physical weight",
+            "Causing heaviness",
+            "Implying a load"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "teretiti",
+          "notes": "The verb 'teretiti' accurately captures the sense of making something heavier by adding a load or weight in Serbian.",
+          "examples": []
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "оптерећење",
+            "терет",
+            "тежина",
+            "оптерети"
+          ],
+          "alignment": {
+            "burden": "оптерећење",
+            "burthen": "терет",
+            "weight": "тежина",
+            "weight_down": "оптерети"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "натоварити",
+            "оптерети",
+            "оптеретити",
+            "оптерећење",
+            "оптерећивати",
+            "оптерећивање",
+            "теžити",
+            "тежина",
+            "терет"
+          ],
+          "rationale": {
+            "оптеретити": "This verb directly conveys the action of making something heavier by adding a load or weight, aligning perfectly with the core meaning.",
+            "натоварити": "This term specifically refers to loading or burdening, which matches the concept of increasing heaviness by adding weight.",
+            "оптерећивати": "Means 'to burden' or 'make heavier', directly aligning with the concept of adding weight.",
+            "оптерећивање": "This noun form directly refers to the action of making something heavier by adding a load or weight, aligning perfectly with the core meaning.",
+            "теžити": "This verb specifically means 'to weigh down' or 'to make heavier,' accurately capturing the concept of adding weight."
+          },
+          "iterations_run": 4,
+          "synonym_provenance": {
+            "оптерети": 0,
+            "тежина": 0,
+            "терет": 0,
+            "оптерећење": 0,
+            "оптеретити": 1,
+            "натоварити": 1,
+            "оптерећивати": 2,
+            "оптерећивање": 3,
+            "теžити": 3
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "натоварити",
+            "оптерети",
+            "оптеретити"
+          ],
+          "confidence_by_word": {
+            "натоварити": "high",
+            "оптерети": "high",
+            "оптеретити": "high"
+          },
+          "removed": [
+            {
+              "word": "оптерећење",
+              "reason": "noun, not verb"
+            },
+            {
+              "word": "оптерећивање",
+              "reason": "noun, not verb"
+            },
+            {
+              "word": "теžити",
+              "reason": "means 'to weigh'"
+            },
+            {
+              "word": "тежина",
+              "reason": "noun for 'weight'"
+            },
+            {
+              "word": "терет",
+              "reason": "noun for 'load'"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [],
+      "curator_summary": "Representative literal (sr): натоварити\nDefinition translation: teretiti\nLexname: verb.contact\nSynset literals (3 total):\n  • натоварити\n  • оптерети\n  • оптеретити\nExample sentences: none\nNotes: The verb 'teretiti' accurately captures the sense of making something heavier by adding a load or weight in Serbian.\n\nPipeline stages completed:\n  1. Initial translations: 4 lemmas\n  2. Expanded candidates: 9 synonyms\n  3. Filtered results: 3 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"style\",\n      \"message\": \"The definition is incomplete as no explanatory text is provided, making evaluation of style and fluency impossible.\"\n    }\n  ],\n  \"revised_definition\": \"teretiti\",\n  \"notes\": \"The entry lacks a definition, which is essential for proper evaluation. Adding a clear and concise definition would improve its usefulness.\"\n}\n```",
+      "execution": {
+        "seconds": 3396.454815600009
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01489989-v",
+        "lemmas": [
+          "load",
+          "lade",
+          "laden",
+          "load_up"
+        ],
+        "definition": "fill or place a load on",
+        "examples": [
+          "load a car",
+          "load the truck with hay"
+        ],
+        "pos": "v",
+        "display_name": "load.v.01"
+      },
+      "final_output": {
+        "representative_literal": "натовари",
+        "definition": "to load or burden something heavily",
+        "synonyms": [
+          {
+            "word": "натовари",
+            "confidence": "high"
+          },
+          {
+            "word": "утоварити",
+            "confidence": "medium"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "испунити",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "напунити",
+            "reason": "too specific in meaning"
+          },
+          {
+            "word": "напуњавати",
+            "reason": "same issues as напунити"
+          },
+          {
+            "word": "натоварити",
+            "reason": "redundant with натовари"
+          },
+          {
+            "word": "оптерети",
+            "reason": "implies excessive load"
+          },
+          {
+            "word": "оптеретити",
+            "reason": "same connotation as оптерети"
+          },
+          {
+            "word": "теретити",
+            "reason": "ambiguous meaning"
+          },
+          {
+            "word": "укрцати",
+            "reason": "refers to people boarding"
+          }
+        ],
+        "notes": "The verb 'natovariti' accurately captures the action of loading or placing a load on something, typically a vehicle or container."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "to load or burden something heavily",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The synonym 'натовари' is too close to the lemma 'natovariti', creating a circular reference."
+          },
+          {
+            "type": "style",
+            "message": "The definition is overly concise and could be more explanatory for clarity."
+          }
+        ],
+        "notes": "Revised to avoid circularity and improve clarity by providing a descriptive explanation."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "This synset captures the action of placing or filling a load onto something, typically a vehicle or container.",
+          "contrastive_note": "Distinguished by focusing on the act of moving items onto a conveyance, unlike other senses which might relate to weight or pressure without movement.",
+          "key_features": [
+            "Intentional placement",
+            "Involves moving objects",
+            "Target is a vehicle/container"
+          ],
+          "domain_tags": [
+            "transportation"
+          ],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "natovariti",
+          "notes": "The verb 'natovariti' accurately captures the action of loading or placing a load on something, typically a vehicle or container.",
+          "examples": [
+            "Natovariti kamion",
+            "Natovariti robe u kontejner"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "оптерети",
+            "натовари",
+            "напунити",
+            "напуњавати"
+          ],
+          "alignment": {
+            "load": "оптерети",
+            "lade": "натовари",
+            "laden": "напунити",
+            "load_up": "напуњавати"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "испунити",
+            "напунити",
+            "напуњавати",
+            "натовари",
+            "натоварити",
+            "оптерети",
+            "оптеретити",
+            "теретити",
+            "укрцати",
+            "утоварити"
+          ],
+          "rationale": {
+            "оптеретити": "Means 'to load' or 'to burden', specifically referring to placing a load on something, aligning with the core meaning.",
+            "утоварити": "Specifically means 'to load goods onto a vehicle', fitting the concept of placing a load onto something.",
+            "теретити": "Means 'to load' or 'to burden with cargo', directly relating to the action described.",
+            "испунити": "Means 'to load' or 'to fill', specifically in the context of placing goods or cargo onto a vehicle or container.",
+            "укрцати": "Means 'to load onto a vehicle', specifically capturing the action of placing goods on a means of transport.",
+            "натоварити": "Directly translates to 'to load', fitting precisely within the described meaning."
+          },
+          "iterations_run": 4,
+          "synonym_provenance": {
+            "оптерети": 0,
+            "натовари": 0,
+            "напуњавати": 0,
+            "напунити": 0,
+            "оптеретити": 1,
+            "утоварити": 1,
+            "теретити": 1,
+            "испунити": 2,
+            "укрцати": 3,
+            "натоварити": 3
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "натовари",
+            "утоварити"
+          ],
+          "confidence_by_word": {
+            "натовари": "high",
+            "утоварити": "medium"
+          },
+          "removed": [
+            {
+              "word": "испунити",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "напунити",
+              "reason": "too specific in meaning"
+            },
+            {
+              "word": "напуњавати",
+              "reason": "same issues as напунити"
+            },
+            {
+              "word": "натоварити",
+              "reason": "redundant with натовари"
+            },
+            {
+              "word": "оптерети",
+              "reason": "implies excessive load"
+            },
+            {
+              "word": "оптеретити",
+              "reason": "same connotation as оптерети"
+            },
+            {
+              "word": "теретити",
+              "reason": "ambiguous meaning"
+            },
+            {
+              "word": "укрцати",
+              "reason": "refers to people boarding"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Natovariti kamion",
+        "Natovariti robe u kontejner"
+      ],
+      "curator_summary": "Representative literal (sr): натовари\nDefinition translation: to load or burden something heavily\nLexname: verb.contact\nSynset literals (2 total):\n  • натовари\n  • утоварити\nExample sentences: 2 (showing first)\n  “Natovariti kamion”\nNotes: The verb 'natovariti' accurately captures the action of loading or placing a load on something, typically a vehicle or container.\n\nPipeline stages completed:\n  1. Initial translations: 4 lemmas\n  2. Expanded candidates: 10 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: needs_revision (2 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The synonym 'натовари' is too close to the lemma 'natovariti', creating a circular reference.\"\n    },\n    {\n      \"type\": \"style\",\n      \"message\": \"The definition is overly concise and could be more explanatory for clarity.\"\n    }\n  ],\n  \"revised_definition\": \"to load or burden something heavily\",\n  \"notes\": \"Revised to avoid circularity and improve clarity by providing a descriptive explanation.\"\n}\n```",
+      "execution": {
+        "seconds": 4182.932936700003
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01493619-v",
+        "lemmas": [
+          "ensconce",
+          "settle"
+        ],
+        "definition": "fix firmly",
+        "examples": [
+          "He ensconced himself in the chair"
+        ],
+        "pos": "v",
+        "display_name": "ensconce.v.01"
+      },
+      "final_output": {
+        "representative_literal": "",
+        "definition": "čvrsto zatvoriti",
+        "synonyms": [],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "nasednuti",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "pribrati se",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "smestiti se",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "usaditi se",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "uspostaviti se",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "zasaditi se",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "zatvoriti se",
+            "reason": "too generic"
+          }
+        ],
+        "notes": "The term 'zamknuti čvrsto' accurately conveys the sense of firmly fixing something in a secure position, which aligns with the English gloss 'fix firmly'. It maintains the subtle distinctions related to security and comfort in positioning."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "čvrsto zatvoriti",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The definition 'zamknuti čvrsto' is circular as it repeats the lemma without providing an explanation."
+          }
+        ],
+        "notes": "Rephrased to avoid circularity and improve clarity while maintaining the original meaning."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To fix oneself or something firmly in a position, often comfortably or securely.",
+          "contrastive_note": "This sense focuses on the act of positioning with comfort and security, distinguishing it from other uses of 'ensconce' and 'settle' which might imply resolution or decision-making.",
+          "key_features": [
+            "Fixing firmly",
+            "Comfortable positioning",
+            "Security in placement"
+          ],
+          "domain_tags": [
+            "physical placement"
+          ],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "zamknuti čvrsto",
+          "notes": "The term 'zamknuti čvrsto' accurately conveys the sense of firmly fixing something in a secure position, which aligns with the English gloss 'fix firmly'. It maintains the subtle distinctions related to security and comfort in positioning.",
+          "examples": [
+            "Zamknite vrata čvrsto pre spavanja",
+            "Zamknula je remene čvrsto da bi bila sigurna"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "smestiti se",
+            "nasednuti"
+          ],
+          "alignment": {
+            "ensconce": "smestiti se",
+            "settle": "nasednuti"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "nasednuti",
+            "pribrati se",
+            "smestiti se",
+            "usaditi se",
+            "uspostaviti se",
+            "zasaditi se",
+            "zatvoriti se"
+          ],
+          "rationale": {
+            "uspostaviti se": "This verb means 'to establish oneself,' which aligns with the concept of fixing oneself firmly in a position, often comfortably or securely.",
+            "zasaditi se": "This verb typically means 'to plant oneself' but can be used figuratively to mean settling down securely, fitting the core meaning.",
+            "zatvoriti se": "This verb means 'to close oneself off' but can also imply securing something tightly in place, fitting the core meaning of fixing firmly.",
+            "usaditi se": "This verb means to settle or sit down comfortably, which aligns perfectly with the core meaning of fixing oneself firmly in a position.",
+            "pribrati se": "This phrase suggests settling down or getting comfortable, fitting well within the concept of securing oneself in a position."
+          },
+          "iterations_run": 4,
+          "synonym_provenance": {
+            "smestiti se": 0,
+            "nasednuti": 0,
+            "uspostaviti se": 1,
+            "zasaditi se": 1,
+            "zatvoriti se": 2,
+            "usaditi se": 3,
+            "pribrati se": 3
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [],
+          "confidence_by_word": {},
+          "removed": [
+            {
+              "word": "nasednuti",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "pribrati se",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "smestiti se",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "usaditi se",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "uspostaviti se",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "zasaditi se",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "zatvoriti se",
+              "reason": "too generic"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Zamknite vrata čvrsto pre spavanja",
+        "Zamknula je remene čvrsto da bi bila sigurna"
+      ],
+      "curator_summary": "Representative literal (sr): —\nDefinition translation: čvrsto zatvoriti\nLexname: verb.contact\nSynset literals: (none returned)\nExample sentences: 2 (showing first)\n  “Zamknite vrata čvrsto pre spavanja”\nNotes: The term 'zamknuti čvrsto' accurately conveys the sense of firmly fixing something in a secure position, which aligns with the English gloss 'fix firmly'. It maintains the subtle distinctions related to security and comfort in positioning.\n\nPipeline stages completed:\n  1. Initial translations: 2 lemmas\n  2. Expanded candidates: 7 synonyms\n  3. Filtered results: 0 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition 'zamknuti čvrsto' is circular as it repeats the lemma without providing an explanation.\"\n    }\n  ],\n  \"revised_definition\": \"čvrsto zatvoriti\",\n  \"notes\": \"Rephrased to avoid circularity and improve clarity while maintaining the original meaning.\"\n}\n```",
+      "execution": {
+        "seconds": 3618.312461900001
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01536168-v",
+        "lemmas": [
+          "rinse",
+          "rinse_off"
+        ],
+        "definition": "wash off soap or remaining dirt",
+        "examples": [],
+        "pos": "v",
+        "display_name": "rinse.v.01"
+      },
+      "final_output": {
+        "representative_literal": "isprati",
+        "definition": "ukloniti sapun ili preostalu prljavštinu",
+        "synonyms": [
+          {
+            "word": "isprati",
+            "confidence": "high"
+          },
+          {
+            "word": "oprati",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "operiti",
+            "reason": "not a recognized term in this context"
+          },
+          {
+            "word": "skinuti sa",
+            "reason": "does not fit the specific sense of washing away residue"
+          }
+        ],
+        "notes": "The translation captures the deliberate action of removing soap or remaining dirt by washing, maintaining the key features and sense summary."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "ukloniti sapun ili preostalu prljavštinu",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The lemma 'oprati' appears in its own definition, creating a circular reference."
+          }
+        ],
+        "notes": "Revised to avoid circularity and improve natural phrasing."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To remove soap or remaining dirt by washing.",
+          "contrastive_note": "This sense specifically refers to removing soap or dirt, distinguishing it from general rinsing without such removal.",
+          "key_features": [
+            "removing soap",
+            "removing remaining dirt",
+            "deliberate action"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "oprati sapun ili preostali prljavštinu",
+          "notes": "The translation captures the deliberate action of removing soap or remaining dirt by washing, maintaining the key features and sense summary.",
+          "examples": [
+            "Oprati sapun sa ruku.",
+            "Oprati preostalu prljavštinu sa odeće."
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "isprati",
+            "skinuti sa"
+          ],
+          "alignment": {
+            "rinse": "isprati",
+            "rinse_off": "skinuti sa"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "isprati",
+            "operiti",
+            "oprati",
+            "skinuti sa"
+          ],
+          "rationale": {
+            "oprati": "Oprati means to wash something off, which aligns with removing soap or dirt.",
+            "operiti": "Operiti refers to rinsing thoroughly, fitting the context of washing away residue."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "skinuti sa": 0,
+            "isprati": 0,
+            "oprati": 1,
+            "operiti": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "isprati",
+            "oprati"
+          ],
+          "confidence_by_word": {
+            "isprati": "high",
+            "oprati": "high"
+          },
+          "removed": [
+            {
+              "word": "operiti",
+              "reason": "not a recognized term in this context"
+            },
+            {
+              "word": "skinuti sa",
+              "reason": "does not fit the specific sense of washing away residue"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Oprati sapun sa ruku.",
+        "Oprati preostalu prljavštinu sa odeće."
+      ],
+      "curator_summary": "Representative literal (sr): isprati\nDefinition translation: ukloniti sapun ili preostalu prljavštinu\nLexname: verb.contact\nSynset literals (2 total):\n  • isprati\n  • oprati\nExample sentences: 2 (showing first)\n  “Oprati sapun sa ruku.”\nNotes: The translation captures the deliberate action of removing soap or remaining dirt by washing, maintaining the key features and sense summary.\n\nPipeline stages completed:\n  1. Initial translations: 2 lemmas\n  2. Expanded candidates: 4 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The lemma 'oprati' appears in its own definition, creating a circular reference.\"\n    }\n  ],\n  \"revised_definition\": \"ukloniti sapun ili preostalu prljavštinu\",\n  \"notes\": \"Revised to avoid circularity and improve natural phrasing.\"\n}\n```",
+      "execution": {
+        "seconds": 2399.0340232000017
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01573515-v",
+        "lemmas": [
+          "tear",
+          "rupture",
+          "snap",
+          "bust"
+        ],
+        "definition": "separate or cause to separate abruptly",
+        "examples": [
+          "The rope snapped",
+          "tear the paper"
+        ],
+        "pos": "v",
+        "display_name": "tear.v.01"
+      },
+      "final_output": {
+        "representative_literal": "",
+        "definition": "naglo odvojiti",
+        "synonyms": [],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "isprsnuti",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "prekinuti",
+            "reason": "too generic"
+          },
+          {
+            "word": "prsnuti",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "pukotina",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "raskoliti",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "raspariti",
+            "reason": "unclear meaning"
+          },
+          {
+            "word": "razbiti",
+            "reason": "mismatched sense"
+          }
+        ],
+        "notes": "The definition is clear and grammatically correct with no circularity or stylistic issues."
+      },
+      "definition_quality": {
+        "status": "ok",
+        "revised_definition": "naglo odvojiti",
+        "issues": [],
+        "notes": "The definition is clear and grammatically correct with no circularity or stylistic issues."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To separate or cause to separate abruptly, often due to force or pressure.",
+          "contrastive_note": "This sense specifically refers to a sudden and forceful separation, distinguishing it from other senses of 'tear' (e.g., crying) or 'snap' (e.g., making a sharp sound).",
+          "key_features": [
+            "abrupt",
+            "forceful",
+            "separation",
+            "physical"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "naglo odvojiti",
+          "notes": "",
+          "examples": [
+            "Fizička sila je naglo odvojila predmete.",
+            "Eksplozija je naglo odvojila komade metala."
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "raspariti",
+            "pukotina",
+            "prsnuti",
+            "razbiti"
+          ],
+          "alignment": {
+            "tear": "raspariti",
+            "rupture": "pukotina",
+            "snap": "prsnuti",
+            "bust": "razbiti"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "isprsnuti",
+            "prekinuti",
+            "prsnuti",
+            "pukotina",
+            "raskoliti",
+            "raspariti",
+            "razbiti"
+          ],
+          "rationale": {
+            "raskoliti": "This verb specifically conveys the sense of splitting apart abruptly, often due to external force or pressure.",
+            "isprsnuti": "This term captures the idea of something breaking open or separating suddenly, fitting the core meaning well.",
+            "prekinuti": "While commonly meaning 'to interrupt,' in certain contexts it can imply a sudden separation caused by external forces, fitting the concept."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "raspariti": 0,
+            "pukotina": 0,
+            "razbiti": 0,
+            "prsnuti": 0,
+            "raskoliti": 1,
+            "isprsnuti": 1,
+            "prekinuti": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [],
+          "confidence_by_word": {},
+          "removed": [
+            {
+              "word": "isprsnuti",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "prekinuti",
+              "reason": "too generic"
+            },
+            {
+              "word": "prsnuti",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "pukotina",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "raskoliti",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "raspariti",
+              "reason": "unclear meaning"
+            },
+            {
+              "word": "razbiti",
+              "reason": "mismatched sense"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Fizička sila je naglo odvojila predmete.",
+        "Eksplozija je naglo odvojila komade metala."
+      ],
+      "curator_summary": "Representative literal (sr): —\nDefinition translation: naglo odvojiti\nLexname: verb.contact\nSynset literals: (none returned)\nExample sentences: 2 (showing first)\n  “Fizička sila je naglo odvojila predmete.”\nNotes: The definition is clear and grammatically correct with no circularity or stylistic issues.\n\nPipeline stages completed:\n  1. Initial translations: 4 lemmas\n  2. Expanded candidates: 7 synonyms\n  3. Filtered results: 0 final literals\n  4. Definition quality: ok",
+      "raw_response": "```json\n{\n  \"status\": \"ok\",\n  \"issues\": [],\n  \"revised_definition\": \"naglo odvojiti\",\n  \"notes\": \"The definition is clear and grammatically correct with no circularity or stylistic issues.\"\n}\n```",
+      "execution": {
+        "seconds": 2717.478725800014
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01631534-v",
+        "lemmas": [
+          "create_by_mental_act",
+          "create_mentally"
+        ],
+        "definition": "create mentally and abstractly rather than with one's hands",
+        "examples": [],
+        "pos": "v",
+        "display_name": "create_by_mental_act.v.01"
+      },
+      "final_output": {
+        "representative_literal": "apstrahovati",
+        "definition": "Stvarati nešto na mentalnom i apstraktnom nivou, bez fizičkog dodira.",
+        "synonyms": [
+          {
+            "word": "apstrahovati",
+            "confidence": "high"
+          },
+          {
+            "word": "formulisati",
+            "confidence": "high"
+          },
+          {
+            "word": "idejizirati",
+            "confidence": "high"
+          },
+          {
+            "word": "konceptualizovati",
+            "confidence": "high"
+          },
+          {
+            "word": "koncepirati",
+            "confidence": "high"
+          },
+          {
+            "word": "zamisliti",
+            "confidence": "high"
+          },
+          {
+            "word": "stvoriti_mentalno",
+            "confidence": "medium"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "kreativirati",
+            "reason": "non-standard and too specific"
+          },
+          {
+            "word": "kreirati_misao",
+            "reason": "redundant and too narrow"
+          },
+          {
+            "word": "napraviti_mislim",
+            "reason": "awkward phrasing and not idiomatic"
+          },
+          {
+            "word": "napraviti_naumom",
+            "reason": "too specific to intent rather than abstract creation"
+          },
+          {
+            "word": "nastaviti",
+            "reason": "unrelated to mental creation"
+          },
+          {
+            "word": "razmisliti_koncepciju",
+            "reason": "too wordy and less idiomatic"
+          }
+        ],
+        "notes": "Doslovn prijevod koji zadržava smisao originalne definicije. 'Mentalno' i 'apstraktno' naglašavaju nematerijalni karakter stvaranja."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "Stvarati nešto na mentalnom i apstraktnom nivou, bez fizičkog dodira.",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The lemma 'stvoriti_mentalno' appears in a slightly altered form ('stvarati') within the definition, creating potential circularity."
+          },
+          {
+            "type": "style",
+            "message": "The phrase 'a ne rukama' could be more naturally phrased as 'bez fizičkog dodira' for better clarity and flow in Serbian."
+          }
+        ],
+        "notes": "Revised to eliminate circularity and improve stylistic naturalness while preserving the original meaning."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To create mentally or abstractly, focusing on ideas and concepts rather than physical objects.",
+          "contrastive_note": "This sense differs by emphasizing the absence of physical creation, highlighting purely mental processes.",
+          "key_features": [
+            "mental",
+            "abstract",
+            "non-physical"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "stvarati mentalno i apstraktno, a ne rukama",
+          "notes": "Doslovn prijevod koji zadržava smisao originalne definicije. 'Mentalno' i 'apstraktno' naglašavaju nematerijalni karakter stvaranja.",
+          "examples": []
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "stvoriti_mentalnim_aktom",
+            "stvoriti_mentalno"
+          ],
+          "alignment": {
+            "create_by_mental_act": "stvoriti_mentalnim_aktom",
+            "create_mentally": "stvoriti_mentalno"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "apstrahovati",
+            "formulisati",
+            "idejizirati",
+            "izmisliš",
+            "konceptualizovati",
+            "koncipirati",
+            "kreativirati",
+            "kreirati_misao",
+            "napraviti_mislim",
+            "napraviti_naumom",
+            "nastaviti",
+            "razmisliti_koncepciju",
+            "stvoriti_mentalnim_aktom",
+            "stvoriti_mentalno",
+            "zamisliti"
+          ],
+          "rationale": {
+            "izmisliš": "This verb directly conveys the idea of mentally creating or inventing something, focusing on abstract concepts rather than physical objects.",
+            "koncipirati": "This term emphasizes the process of forming ideas or concepts in a mental or abstract manner, aligning with the core meaning.",
+            "napraviti_naumom": "Although 'naum' can sometimes imply intention or purpose, in this context it refers to creating mentally or abstractly, fitting the described concept.",
+            "nastaviti": "This verb means 'to create' or 'to form,' often used in the context of abstract ideas or mental constructs, aligning with the core meaning.",
+            "konceptualizovati": "Directly translates to 'to conceptualize,' which perfectly captures the essence of creating mentally or abstractly.",
+            "zamisliti": "Means 'to imagine' or 'to think up,' fitting the concept of mental creation without physical involvement.",
+            "formulisati": "Refers to 'to formulate,' emphasizing the creation of ideas or concepts in an abstract sense.",
+            "idejizirati": "Although not a standard word, it is understood in context as creating ideas, fitting the mental creation aspect.",
+            "apstrahovati": "Means to abstract or generalize, which ties into creating abstractly and conceptually.",
+            "kreativirati": "While more general, in this context it emphasizes creative thinking rather than physical making.",
+            "napraviti_mislim": "This phrase combines 'napraviti' (to make/create) with 'mislim' (I think), directly conveying the idea of creating mentally or abstractly.",
+            "kreirati_misao": "'Kreirati' means 'to create' and 'misao' means 'thought' or 'idea', making this a natural fit for abstract creation.",
+            "razmisliti_koncepciju": "'Razmisliti' means 'to think through' and 'koncepcija' means 'concept,' making this a precise match for the described sense."
+          },
+          "iterations_run": 5,
+          "synonym_provenance": {
+            "stvoriti_mentalno": 0,
+            "stvoriti_mentalnim_aktom": 0,
+            "izmisliš": 1,
+            "koncipirati": 1,
+            "napraviti_naumom": 1,
+            "nastaviti": 2,
+            "konceptualizovati": 2,
+            "zamisliti": 2,
+            "formulisati": 2,
+            "idejizirati": 3,
+            "apstrahovati": 3,
+            "kreativirati": 3,
+            "napraviti_mislim": 4,
+            "kreirati_misao": 4,
+            "razmisliti_koncepciju": 4
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "apstrahovati",
+            "formulisati",
+            "idejizirati",
+            "konceptualizovati",
+            "koncepirati",
+            "zamisliti",
+            "stvoriti_mentalno"
+          ],
+          "confidence_by_word": {
+            "apstrahovati": "high",
+            "formulisati": "high",
+            "idejizirati": "high",
+            "konceptualizovati": "high",
+            "koncepirati": "high",
+            "zamisliti": "high",
+            "stvoriti_mentalno": "medium"
+          },
+          "removed": [
+            {
+              "word": "kreativirati",
+              "reason": "non-standard and too specific"
+            },
+            {
+              "word": "kreirati_misao",
+              "reason": "redundant and too narrow"
+            },
+            {
+              "word": "napraviti_mislim",
+              "reason": "awkward phrasing and not idiomatic"
+            },
+            {
+              "word": "napraviti_naumom",
+              "reason": "too specific to intent rather than abstract creation"
+            },
+            {
+              "word": "nastaviti",
+              "reason": "unrelated to mental creation"
+            },
+            {
+              "word": "razmisliti_koncepciju",
+              "reason": "too wordy and less idiomatic"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [],
+      "curator_summary": "Representative literal (sr): apstrahovati\nDefinition translation: Stvarati nešto na mentalnom i apstraktnom nivou, bez fizičkog dodira.\nLexname: verb.creation\nSynset literals (7 total):\n  • apstrahovati\n  • formulisati\n  • idejizirati\n  • konceptualizovati\n  • koncepirati\n  (+2 more literals)\nExample sentences: none\nNotes: Doslovn prijevod koji zadržava smisao originalne definicije. 'Mentalno' i 'apstraktno' naglašavaju nematerijalni karakter stvaranja.\n\nPipeline stages completed:\n  1. Initial translations: 2 lemmas\n  2. Expanded candidates: 15 synonyms\n  3. Filtered results: 7 final literals\n  4. Definition quality: needs_revision (2 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The lemma 'stvoriti_mentalno' appears in a slightly altered form ('stvarati') within the definition, creating potential circularity.\"\n    },\n    {\n      \"type\": \"style\",\n      \"message\": \"The phrase 'a ne rukama' could be more naturally phrased as 'bez fizičkog dodira' for better clarity and flow in Serbian.\"\n    }\n  ],\n  \"revised_definition\": \"Stvarati nešto na mentalnom i apstraktnom nivou, bez fizičkog dodira.\",\n  \"notes\": \"Revised to eliminate circularity and improve stylistic naturalness while preserving the original meaning.\"\n}\n```",
+      "execution": {
+        "seconds": 4630.698850000001
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01723690-v",
+        "lemmas": [
+          "impersonate",
+          "portray"
+        ],
+        "definition": "assume or act the character of",
+        "examples": [
+          "She impersonates Madonna",
+          "The actor portrays an elderly, lonely man"
+        ],
+        "pos": "v",
+        "display_name": "impersonate.v.01"
+      },
+      "final_output": {
+        "representative_literal": "glumiti ulogu",
+        "definition": "preuzeti ili glumiti lik",
+        "synonyms": [
+          {
+            "word": "glumiti ulogu",
+            "confidence": "high"
+          },
+          {
+            "word": "preuzeti lik",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "impersonirati",
+            "reason": "mismatched sense"
+          },
+          {
+            "word": "inkarnirati",
+            "reason": "too abstract"
+          },
+          {
+            "word": "osobenjevati",
+            "reason": "non-standard term"
+          },
+          {
+            "word": "portretisati",
+            "reason": "too specific to visual arts"
+          },
+          {
+            "word": "tumačiti",
+            "reason": "too generic"
+          }
+        ],
+        "notes": "This translation captures the essence of assuming or acting a character, particularly in performance contexts."
+      },
+      "definition_quality": {
+        "status": "ok",
+        "revised_definition": "preuzeti ili glumiti lik",
+        "issues": [],
+        "notes": "The definition is clear, concise, and grammatically correct with no circularity or stylistic issues."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To represent or depict someone's character through performance, typically in acting or entertainment.",
+          "contrastive_note": "This sense focuses on artistic representation rather than deception, differing from other senses where impersonation might imply fraud.",
+          "key_features": [
+            "performance context",
+            "artistic intent",
+            "character depiction"
+          ],
+          "domain_tags": [
+            "performing_arts.n.01"
+          ],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "preuzeti ili glumiti lik",
+          "notes": "This translation captures the essence of assuming or acting a character, particularly in performance contexts.",
+          "examples": [
+            "Glumac preuzima lik junaka u predstavi",
+            "Glumica glumi lik zlikovca u filmu"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "impersonirati",
+            "portretisati"
+          ],
+          "alignment": {
+            "impersonate": "impersonirati",
+            "portray": "portretisati"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "glumiti ulogu",
+            "impersonirati",
+            "inkarnirati",
+            "osobenjevati",
+            "portretisati",
+            "preuzeti lik",
+            "tumačiti"
+          ],
+          "rationale": {
+            "tumačiti": "Means 'to interpret' in the context of roles or characters, aligning with the core meaning.",
+            "glumiti ulogu": "Directly translates to 'to play a role', fitting the acting and entertainment context.",
+            "inkarnirati": "Means 'to embody' or 'personify', which matches depicting a character through performance.",
+            "osobenjevati": "Refers to 'portraying' or 'depicting' a character, closely matching the core meaning.",
+            "preuzeti lik": "Translates to 'to take on a role,' which is idiomatic and faithful to the concept of representing a character."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "impersonirati": 0,
+            "portretisati": 0,
+            "tumačiti": 1,
+            "glumiti ulogu": 1,
+            "inkarnirati": 1,
+            "osobenjevati": 2,
+            "preuzeti lik": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "glumiti ulogu",
+            "preuzeti lik"
+          ],
+          "confidence_by_word": {
+            "glumiti ulogu": "high",
+            "preuzeti lik": "high"
+          },
+          "removed": [
+            {
+              "word": "impersonirati",
+              "reason": "mismatched sense"
+            },
+            {
+              "word": "inkarnirati",
+              "reason": "too abstract"
+            },
+            {
+              "word": "osobenjevati",
+              "reason": "non-standard term"
+            },
+            {
+              "word": "portretisati",
+              "reason": "too specific to visual arts"
+            },
+            {
+              "word": "tumačiti",
+              "reason": "too generic"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Glumac preuzima lik junaka u predstavi",
+        "Glumica glumi lik zlikovca u filmu"
+      ],
+      "curator_summary": "Representative literal (sr): glumiti ulogu\nDefinition translation: preuzeti ili glumiti lik\nLexname: verb.creation\nTopic domains: performing_arts.n.01\nSynset literals (2 total):\n  • glumiti ulogu\n  • preuzeti lik\nExample sentences: 2 (showing first)\n  “Glumac preuzima lik junaka u predstavi”\nNotes: This translation captures the essence of assuming or acting a character, particularly in performance contexts.\n\nPipeline stages completed:\n  1. Initial translations: 2 lemmas\n  2. Expanded candidates: 7 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: ok",
+      "raw_response": "```json\n{\n  \"status\": \"ok\",\n  \"issues\": [],\n  \"revised_definition\": \"preuzeti ili glumiti lik\",\n  \"notes\": \"The definition is clear, concise, and grammatically correct with no circularity or stylistic issues.\"\n}\n```",
+      "execution": {
+        "seconds": 2910.043793799996
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01797051-v",
+        "lemmas": [
+          "mourn"
+        ],
+        "definition": "feel sadness",
+        "examples": [
+          "She is mourning her dead child"
+        ],
+        "pos": "v",
+        "display_name": "mourn.v.01"
+      },
+      "final_output": {
+        "representative_literal": "туговати",
+        "definition": "osećati tugu",
+        "synonyms": [
+          {
+            "word": "туговати",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "болети",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "жалети",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "пати",
+            "reason": "too generic / mismatched sense"
+          }
+        ],
+        "notes": "The phrase 'osećati tugu' faithfully captures the sense of feeling deep sadness or sorrow in response to a loss, maintaining both factual and stylistic fidelity."
+      },
+      "definition_quality": {
+        "status": "ok",
+        "revised_definition": "osećati tugu",
+        "issues": [],
+        "notes": "The definition is concise, clear, and grammatically correct with no circularity or stylistic issues."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To experience deep sadness or sorrow, typically in response to a loss.",
+          "contrastive_note": "This sense focuses on the emotional state of feeling sadness rather than the act of expressing it through rituals or public displays.",
+          "key_features": [
+            "feeling sadness",
+            "emotional response to loss"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "osećati tugu",
+          "notes": "The phrase 'osećati tugu' faithfully captures the sense of feeling deep sadness or sorrow in response to a loss, maintaining both factual and stylistic fidelity.",
+          "examples": [
+            "Osjećao sam duboku tugu zbog njene odsutnosti.",
+            "Tuga ga je sve više pritiskala."
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "туговати"
+          ],
+          "alignment": {
+            "mourn": "туговати"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "болети",
+            "жалети",
+            "пати",
+            "туговати"
+          ],
+          "rationale": {
+            "жалети": "Means 'to grieve' or 'to mourn', which aligns with experiencing deep sadness, especially in response to a loss.",
+            "болети": "Translates to 'to ache' or 'to hurt', often used to describe emotional pain and sorrow.",
+            "пати": "Means 'to suffer', which can specifically refer to enduring sorrow or grief."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "туговати": 0,
+            "жалети": 1,
+            "болети": 1,
+            "пати": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "туговати"
+          ],
+          "confidence_by_word": {
+            "туговати": "high"
+          },
+          "removed": [
+            {
+              "word": "болети",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "жалети",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "пати",
+              "reason": "too generic / mismatched sense"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Osjećao sam duboku tugu zbog njene odsutnosti.",
+        "Tuga ga je sve više pritiskala."
+      ],
+      "curator_summary": "Representative literal (sr): туговати\nDefinition translation: osećati tugu\nLexname: verb.emotion\nSynset literals (1 total):\n  • туговати\nExample sentences: 2 (showing first)\n  “Osjećao sam duboku tugu zbog njene odsutnosti.”\nNotes: The phrase 'osećati tugu' faithfully captures the sense of feeling deep sadness or sorrow in response to a loss, maintaining both factual and stylistic fidelity.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 4 synonyms\n  3. Filtered results: 1 final literals\n  4. Definition quality: ok",
+      "raw_response": "```json\n{\n  \"status\": \"ok\",\n  \"issues\": [],\n  \"revised_definition\": \"osećati tugu\",\n  \"notes\": \"The definition is concise, clear, and grammatically correct with no circularity or stylistic issues.\"\n}\n```",
+      "execution": {
+        "seconds": 2466.0963809999957
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01824532-v",
+        "lemmas": [
+          "wish",
+          "wish_well"
+        ],
+        "definition": "feel or express a desire or hope concerning the future or fortune of",
+        "examples": [],
+        "pos": "v",
+        "display_name": "wish.v.04"
+      },
+      "final_output": {
+        "representative_literal": "klinuti",
+        "definition": "Osjećati ili izraziti želju ili nadu u vezi budućnosti ili sreće nekog drugog",
+        "synonyms": [
+          {
+            "word": "klinuti",
+            "confidence": "high"
+          },
+          {
+            "word": "nadati se",
+            "confidence": "high"
+          },
+          {
+            "word": "najbolje želiti",
+            "confidence": "high"
+          },
+          {
+            "word": "očekivati s nade",
+            "confidence": "high"
+          },
+          {
+            "word": "želeći sve najbolje",
+            "confidence": "medium"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "krajnje željeti",
+            "reason": "too specific or intense, not directly about hoping for someone else's success"
+          },
+          {
+            "word": "najžaljenije želiti",
+            "reason": "adds emotional layer beyond hope"
+          },
+          {
+            "word": "osjećati dobrovoljno",
+            "reason": "too generic, doesn't specifically relate to hoping"
+          },
+          {
+            "word": "želati",
+            "reason": "too generic"
+          },
+          {
+            "word": "želeći dobro",
+            "reason": "vague but could fit; excluded for precision"
+          },
+          {
+            "word": "željeti",
+            "reason": "too generic"
+          },
+          {
+            "word": "žuditi za",
+            "reason": "more about personal longing"
+          }
+        ],
+        "notes": "Direct translation aiming to preserve the original meaning and sense distinctions."
+      },
+      "definition_quality": {
+        "status": "",
+        "revised_definition": null,
+        "issues": [],
+        "notes": null
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To feel or express a desire or hope for someone else's future success or well-being.",
+          "contrastive_note": "This sense specifically focuses on wishing well for others, distinguishing it from other senses of 'wish' that may relate to oneself or more general desires.",
+          "key_features": [
+            "benevolence",
+            "future-oriented",
+            "concern for others"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "Osjećati ili izraziti želju ili nadu u vezi budućnosti ili sreće nekog drugog",
+          "notes": "Direct translation aiming to preserve the original meaning and sense distinctions.",
+          "examples": [
+            "Želim mu sve najbolje",
+            "Vjerujem da će uspjeti"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "želati",
+            "želeći dobro"
+          ],
+          "alignment": {
+            "wish": "želati",
+            "wish_well": "želeći dobro"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "klinuti",
+            "krajnje željeti",
+            "nadati se",
+            "najbolje željeti",
+            "najžaljenije želiti",
+            "osjećati dobrovoljno",
+            "očekivati s nade",
+            "želati",
+            "želeći dobro",
+            "želeći sve najbolje",
+            "željeti",
+            "žuditi za"
+          ],
+          "rationale": {
+            "željeti": "This verb directly conveys wishing someone well, aligning with the core meaning of expressing a desire for another's success or well-being.",
+            "žuditi za": "Implies a strong yearning for someone else's prosperity or happiness, fitting the concept precisely.",
+            "nadati se": "Means to hope for something, which matches the aspect of hoping for another's future success or well-being.",
+            "klinuti": "Refers to wishing someone good fortune, directly tied to the core meaning.",
+            "krajnje željeti": "This term emphasizes a deep and sincere wish for someone else's positive outcomes, capturing the essence of hope and goodwill.",
+            "osjećati dobrovoljno": "This phrase specifically refers to feeling goodwill toward others, which is central to the concept of wishing them well.",
+            "najbolje željeti": "This expression means 'to wish someone all the best,' directly aligning with the idea of hoping for their success and well-being.",
+            "najžaljenije želiti": "Signifies wishing someone the best, aligning with the concept of expressing hope for their success.",
+            "očekivati s nade": "This phrase captures the idea of expecting good things with hope, aligning with the concept of hoping for success or well-being.",
+            "želeći sve najbolje": "This expression directly translates to 'wishing all the best,' which is idiomatic and faithful to the core meaning."
+          },
+          "iterations_run": 5,
+          "synonym_provenance": {
+            "želati": 0,
+            "želeći dobro": 0,
+            "željeti": 1,
+            "žuditi za": 1,
+            "nadati se": 1,
+            "klinuti": 1,
+            "krajnje željeti": 2,
+            "osjećati dobrovoljno": 2,
+            "najbolje željeti": 2,
+            "najžaljenije želiti": 3,
+            "očekivati s nade": 4,
+            "želeći sve najbolje": 5
+          },
+          "converged": false
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "klinuti",
+            "nadati se",
+            "najbolje želiti",
+            "očekivati s nade",
+            "želeći sve najbolje"
+          ],
+          "confidence_by_word": {
+            "klinuti": "high",
+            "nadati se": "high",
+            "najbolje želiti": "high",
+            "očekivati s nade": "high",
+            "želeći sve najbolje": "medium"
+          },
+          "removed": [
+            {
+              "word": "krajnje željeti",
+              "reason": "too specific or intense, not directly about hoping for someone else's success"
+            },
+            {
+              "word": "najžaljenije želiti",
+              "reason": "adds emotional layer beyond hope"
+            },
+            {
+              "word": "osjećati dobrovoljno",
+              "reason": "too generic, doesn't specifically relate to hoping"
+            },
+            {
+              "word": "želati",
+              "reason": "too generic"
+            },
+            {
+              "word": "želeći dobro",
+              "reason": "vague but could fit; excluded for precision"
+            },
+            {
+              "word": "željeti",
+              "reason": "too generic"
+            },
+            {
+              "word": "žuditi za",
+              "reason": "more about personal longing"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Želim mu sve najbolje",
+        "Vjerujem da će uspjeti"
+      ],
+      "curator_summary": "Representative literal (sr): klinuti\nDefinition translation: Osjećati ili izraziti želju ili nadu u vezi budućnosti ili sreće nekog drugog\nLexname: verb.emotion\nSynset literals (5 total):\n  • klinuti\n  • nadati se\n  • najbolje želiti\n  • očekivati s nade\n  • želeći sve najbolje\nExample sentences: 2 (showing first)\n  “Želim mu sve najbolje”\nNotes: Direct translation aiming to preserve the original meaning and sense distinctions.\n\nPipeline stages completed:\n  1. Initial translations: 2 lemmas\n  2. Expanded candidates: 12 synonyms\n  3. Filtered results: 5 final literals\n  4. Definition quality: unknown",
+      "raw_response": "**Step-by-Step Explanation:**\n\n1. **Check for Circularity:** The lemmas (synonyms) provided do not appear in the definition, so there's no circularity.\n\n2. **Grammar Check:** The phrase \"u vezi budućnosti ili sreće nekog drugog\" is grammatically incorrect because it should be \"budućnosti nekog drugog\" without a preposition before \"nekog.\"\n\n3. **Style and Fluency:** The definition can be made more concise by slightly adjusting the phrasing for better flow.\n\n**Revised Definition:**\n\"Osjećati ili izraziti želju ili nadu u budućnosti nekog drugog.\"",
+      "execution": {
+        "seconds": 5093.267627900001
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01828405-v",
+        "lemmas": [
+          "hanker",
+          "long",
+          "yearn"
+        ],
+        "definition": "desire strongly or persistently",
+        "examples": [],
+        "pos": "v",
+        "display_name": "hanker.v.01"
+      },
+      "final_output": {
+        "representative_literal": "aspirtovati",
+        "definition": "Želite jakim i upornim željama.",
+        "synonyms": [
+          {
+            "word": "aspirtovati",
+            "confidence": "high"
+          },
+          {
+            "word": "hajkovati",
+            "confidence": "medium"
+          },
+          {
+            "word": "težiti",
+            "confidence": "high"
+          },
+          {
+            "word": "žudeti",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "hteti",
+            "reason": "too generic"
+          },
+          {
+            "word": "željeti",
+            "reason": "too generic"
+          },
+          {
+            "word": "železti",
+            "reason": "mismatched sense"
+          }
+        ],
+        "notes": "The verb 'težiti' is chosen because it conveys a strong, persistent, and often emotional longing or striving for something. It captures the essence of both the intensity and duration aspects of the desire."
+      },
+      "definition_quality": {
+        "status": "needs_revision",
+        "revised_definition": "Želite jakim i upornim željama.",
+        "issues": [
+          {
+            "type": "circular",
+            "message": "The word 'težiti' appears in both the definition and the lemmas, creating a circular definition."
+          }
+        ],
+        "notes": "Rephrased to avoid circularity by removing 'težiti' from the definition while maintaining clarity and natural phrasing in Serbian."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To feel a strong, persistent, and often emotional desire for something.",
+          "contrastive_note": "This sense emphasizes the intensity and duration of the desire, distinguishing it from more casual or fleeting wishes.",
+          "key_features": [
+            "strong desire",
+            "persistence",
+            "emotionality"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "težiti jakim i upornim željama",
+          "notes": "The verb 'težiti' is chosen because it conveys a strong, persistent, and often emotional longing or striving for something. It captures the essence of both the intensity and duration aspects of the desire.",
+          "examples": [
+            "Težiti ka boljem životu",
+            "Težiti ka uspehu"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "žudeti",
+            "težiti",
+            null
+          ],
+          "alignment": {
+            "hanker": "žudeti",
+            "long": "težiti",
+            "yearn": null
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "aspirtovati",
+            "hajkovati",
+            "hteti",
+            "težiti",
+            "železti",
+            "željeti",
+            "žudeti"
+          ],
+          "rationale": {
+            "hteti": "Hteti carries a sense of strong and persistent desire, aligning closely with the core meaning of yearning for something.",
+            "željeti": "Željeti conveys a deep emotional wanting, fitting well within the described concept.",
+            "železti": "This term captures a strong and persistent desire, often with emotional undertones, aligning closely with the core meaning.",
+            "hajkovati": "Conveys a deep yearning or pining for something, fitting the emotional aspect of the concept.",
+            "aspirtovati": "Though less common, it can imply a strong aspiration, suitable in specific contexts."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "žudeti": 0,
+            "težiti": 0,
+            "hteti": 1,
+            "željeti": 1,
+            "železti": 2,
+            "hajkovati": 2,
+            "aspirtovati": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "aspirtovati",
+            "hajkovati",
+            "težiti",
+            "žudeti"
+          ],
+          "confidence_by_word": {
+            "aspirtovati": "high",
+            "hajkovati": "medium",
+            "težiti": "high",
+            "žudeti": "high"
+          },
+          "removed": [
+            {
+              "word": "hteti",
+              "reason": "too generic"
+            },
+            {
+              "word": "željeti",
+              "reason": "too generic"
+            },
+            {
+              "word": "železti",
+              "reason": "mismatched sense"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Težiti ka boljem životu",
+        "Težiti ka uspehu"
+      ],
+      "curator_summary": "Representative literal (sr): aspirtovati\nDefinition translation: Želite jakim i upornim željama.\nLexname: verb.emotion\nSynset literals (4 total):\n  • aspirtovati\n  • hajkovati\n  • težiti\n  • žudeti\nExample sentences: 2 (showing first)\n  “Težiti ka boljem životu”\nNotes: The verb 'težiti' is chosen because it conveys a strong, persistent, and often emotional longing or striving for something. It captures the essence of both the intensity and duration aspects of the desire.\n\nPipeline stages completed:\n  1. Initial translations: 3 lemmas\n  2. Expanded candidates: 7 synonyms\n  3. Filtered results: 4 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The word 'težiti' appears in both the definition and the lemmas, creating a circular definition.\"\n    }\n  ],\n  \"revised_definition\": \"Želite jakim i upornim željama.\",\n  \"notes\": \"Rephrased to avoid circularity by removing 'težiti' from the definition while maintaining clarity and natural phrasing in Serbian.\"\n}\n```",
+      "execution": {
+        "seconds": 3738.4162225000036
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01868370-v",
+        "lemmas": [
+          "writhe",
+          "wrestle",
+          "wriggle",
+          "worm",
+          "squirm",
+          "twist"
+        ],
+        "definition": "to move in a twisting or contorted motion, (especially when struggling)",
+        "examples": [
+          "The prisoner writhed in discomfort",
+          "The child tried to wriggle free from his aunt's embrace"
+        ],
+        "pos": "v",
+        "display_name": "writhe.v.01"
+      },
+      "final_output": {
+        "representative_literal": "змијати се",
+        "definition": "kretanje u uvijenoj ili iskošenoj formi, naročito prilikom borbe ili pokušaja bekstva",
+        "synonyms": [
+          {
+            "word": "змијати се",
+            "confidence": "high"
+          },
+          {
+            "word": "извијати се",
+            "confidence": "high"
+          },
+          {
+            "word": "искривљати се",
+            "confidence": "high"
+          },
+          {
+            "word": "превијати се",
+            "confidence": "high"
+          },
+          {
+            "word": "пузати",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "глиста",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "ковати",
+            "reason": "unrelated to movement or struggle"
+          },
+          {
+            "word": "кувати се",
+            "reason": "unrelated to physical movement"
+          },
+          {
+            "word": "клекнути",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "мрдати се",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "мучити се",
+            "reason": "emotional state, not physical movement"
+          },
+          {
+            "word": "осијети се",
+            "reason": "sensory perception, not movement"
+          },
+          {
+            "word": "осуџити се",
+            "reason": "unrelated to the definition"
+          }
+        ],
+        "notes": "The definition is clear, concise, and free of any circularity or grammatical issues. It effectively uses appropriate lexicographic style."
+      },
+      "definition_quality": {
+        "status": "ok",
+        "revised_definition": "kretanje u uvijenoj ili iskošenoj formi, naročito prilikom borbe ili pokušaja bekstva",
+        "issues": [],
+        "notes": "The definition is clear, concise, and free of any circularity or grammatical issues. It effectively uses appropriate lexicographic style."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "This synset describes movement characterized by twisting or contorting, often indicating struggle or an attempt to escape.",
+          "contrastive_note": "What distinguishes this sense is the emphasis on struggling or attempting to break free, setting it apart from other uses of these verbs which might not involve such intent.",
+          "key_features": [
+            "Twisting motion",
+            "Contorted movement",
+            "Struggling or attempting to escape"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "kretanje u uvijenoj ili iskošenoj formi, naročito prilikom borbe ili pokušaja bekstva",
+          "notes": "",
+          "examples": [
+            "Kao što se riba uvija u mreži",
+            "Gledao sam ga kako se iskićuje da pobegne"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "кувати се",
+            "рвачити се",
+            "мрдати се",
+            "глиста",
+            "извијати се",
+            "торити"
+          ],
+          "alignment": {
+            "writhe": "кувати се",
+            "wrestle": "рвачити се",
+            "wriggle": "мрдати се",
+            "worm": "глиста",
+            "squirm": "извијати се",
+            "twist": "торити"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "глиста",
+            "змијати се",
+            "извијати се",
+            "изврнути се",
+            "извртати се",
+            "искривљати се",
+            "клекнути",
+            "ковати",
+            "кувати се",
+            "мрдати се",
+            "мучити се",
+            "осијети се",
+            "осуџити се",
+            "превијати се",
+            "пузати",
+            "рвачити се",
+            "торити"
+          ],
+          "rationale": {
+            "клекнути": "Клекнути се односи на покрет којим неко мучно и напорно креће, често у борби или покушају бекства.",
+            "осуџити се": "Осужити се описује покрет којим се тело извлачи или ослобађа од неког стиска, што одговара концепту борбе и напора.",
+            "превијати се": "Превијати се односи на силовито скрућивање или окретање тела, што је у складу са описом покрета приликом борбе.",
+            "изврнути се": "Изврнути се значи окренути се или скренути са puta, често под притиском, што одговара концепту напорног кретања.",
+            "мучити се": "This verb captures the struggle aspect of the movement, often implying a difficult or forced twisting motion.",
+            "извртати се": "This term specifically refers to twisting around, fitting well with the contorting movement described.",
+            "ковати": "Ковати refers to the act of twisting or turning, often in a forceful manner, which aligns with the concept of struggling or attempting to escape.",
+            "искривљати се": "Искривљати се means to distort or twist oneself, fitting the idea of contorting in an attempt to break free.",
+            "осијети се": "Осијети се може означавати кретање којим неко покушава да побегне или да се извуче, често праћено конторзом или напором.",
+            "пузати": "Пузати значи кретати се полако и напorno, често у тесном простору или под притиском, што одговара опису борбе или покушaja bekstva.",
+            "змијати се": "Directly means 'to twist' or 'to turn,' fitting perfectly with the idea of movement characterized by twisting or contorting."
+          },
+          "iterations_run": 5,
+          "synonym_provenance": {
+            "торити": 0,
+            "рвачити се": 0,
+            "извијати се": 0,
+            "глиста": 0,
+            "мрдати се": 0,
+            "кувати се": 0,
+            "клекнути": 1,
+            "осуџити се": 1,
+            "превијати се": 1,
+            "изврнути се": 1,
+            "мучити се": 2,
+            "извртати се": 2,
+            "ковати": 3,
+            "искривљати се": 3,
+            "осијети се": 4,
+            "пузати": 4,
+            "змијати се": 5
+          },
+          "converged": false
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "змијати се",
+            "извијати се",
+            "искривљати се",
+            "превијати се",
+            "пузати"
+          ],
+          "confidence_by_word": {
+            "змијати се": "high",
+            "извијати се": "high",
+            "искривљати се": "high",
+            "превијати се": "high",
+            "пузати": "high"
+          },
+          "removed": [
+            {
+              "word": "глиста",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "ковати",
+              "reason": "unrelated to movement or struggle"
+            },
+            {
+              "word": "кувати се",
+              "reason": "unrelated to physical movement"
+            },
+            {
+              "word": "клекнути",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "мрдати се",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "мучити се",
+              "reason": "emotional state, not physical movement"
+            },
+            {
+              "word": "осијети се",
+              "reason": "sensory perception, not movement"
+            },
+            {
+              "word": "осуџити се",
+              "reason": "unrelated to the definition"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Kao što se riba uvija u mreži",
+        "Gledao sam ga kako se iskićuje da pobegne"
+      ],
+      "curator_summary": "Representative literal (sr): змијати се\nDefinition translation: kretanje u uvijenoj ili iskošenoj formi, naročito prilikom borbe ili pokušaja bekstva\nLexname: verb.motion\nSynset literals (5 total):\n  • змијати се\n  • извијати се\n  • искривљати се\n  • превијати се\n  • пузати\nExample sentences: 2 (showing first)\n  “Kao što se riba uvija u mreži”\nNotes: The definition is clear, concise, and free of any circularity or grammatical issues. It effectively uses appropriate lexicographic style.\n\nPipeline stages completed:\n  1. Initial translations: 6 lemmas\n  2. Expanded candidates: 17 synonyms\n  3. Filtered results: 5 final literals\n  4. Definition quality: ok",
+      "raw_response": "```json\n{\n  \"status\": \"ok\",\n  \"issues\": [],\n  \"revised_definition\": \"kretanje u uvijenoj ili iskošenoj formi, naročito prilikom borbe ili pokušaja bekstva\",\n  \"notes\": \"The definition is clear, concise, and free of any circularity or grammatical issues. It effectively uses appropriate lexicographic style.\"\n}\n```",
+      "execution": {
+        "seconds": 6554.839261599991
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01876530-v",
+        "lemmas": [
+          "move_back_and_forth"
+        ],
+        "definition": "move in one direction and then into the opposite direction",
+        "examples": [],
+        "pos": "v",
+        "display_name": "move_back_and_forth.v.01"
+      },
+      "final_output": {
+        "representative_literal": "климати се",
+        "definition": "kretanje u jednom smjeru, pa u suprotnom",
+        "synonyms": [
+          {
+            "word": "климати се",
+            "confidence": "high"
+          },
+          {
+            "word": "колебати се",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "кретати се тамо и назад",
+            "reason": "too specific about location rather than oscillating movement"
+          },
+          {
+            "word": "нагибати се",
+            "reason": "primarily means 'to bend' or 'to incline'"
+          },
+          {
+            "word": "нализати",
+            "reason": "less common usage for the intended sense"
+          }
+        ],
+        "notes": "The definition is clear and concise, with correct grammar and appropriate style."
+      },
+      "definition_quality": {
+        "status": "ok",
+        "revised_definition": "kretanje u jednom smjeru, pa u suprotnom",
+        "issues": [],
+        "notes": "The definition is clear and concise, with correct grammar and appropriate style."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To move repeatedly between two points or directions in an oscillating manner.",
+          "contrastive_note": "This sense emphasizes continuous back-and-forth movement, distinguishing it from a single reversal of direction.",
+          "key_features": [
+            "bidirectional",
+            "repetitive",
+            "oscillating"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "kretanje u jednom smjeru, pa u suprotnom",
+          "notes": "",
+          "examples": [
+            "mahanje ruke unapred i nazad",
+            "kretanje kalema u moru"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "кретати се тамо и назад"
+          ],
+          "alignment": {
+            "move_back_and_forth": "кретати се тамо и назад"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "климати се",
+            "колебати се",
+            "кретати се тамо и назад",
+            "нагибати се",
+            "нализати"
+          ],
+          "rationale": {
+            "нагибати се": "This verb captures the idea of moving back and forth in an oscillating manner, similar to 'кретати се тамо и назад'. It specifically conveys the motion of swaying or swinging from one side to another.",
+            "климати се": "This term also fits the core meaning by describing a repetitive movement between two points or directions. It is often used to describe oscillating or swinging motions, aligning closely with the concept.",
+            "колебати се": "This verb captures the oscillating motion between two points or directions, fitting the core meaning perfectly.",
+            "нализати": "This term specifically refers to moving back and forth repeatedly, aligning with the concept of oscillation."
+          },
+          "iterations_run": 3,
+          "synonym_provenance": {
+            "кретати се тамо и назад": 0,
+            "нагибати се": 1,
+            "климати се": 1,
+            "колебати се": 2,
+            "нализати": 2
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "климати се",
+            "колебати се"
+          ],
+          "confidence_by_word": {
+            "климати се": "high",
+            "колебати се": "high"
+          },
+          "removed": [
+            {
+              "word": "кретати се тамо и назад",
+              "reason": "too specific about location rather than oscillating movement"
+            },
+            {
+              "word": "нагибати се",
+              "reason": "primarily means 'to bend' or 'to incline'"
+            },
+            {
+              "word": "нализати",
+              "reason": "less common usage for the intended sense"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "mahanje ruke unapred i nazad",
+        "kretanje kalema u moru"
+      ],
+      "curator_summary": "Representative literal (sr): климати се\nDefinition translation: kretanje u jednom smjeru, pa u suprotnom\nLexname: verb.motion\nSynset literals (2 total):\n  • климати се\n  • колебати се\nExample sentences: 2 (showing first)\n  “mahanje ruke unapred i nazad”\nNotes: The definition is clear and concise, with correct grammar and appropriate style.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 5 synonyms\n  3. Filtered results: 2 final literals\n  4. Definition quality: ok",
+      "raw_response": "```json\n{\n  \"status\": \"ok\",\n  \"issues\": [],\n  \"revised_definition\": \"kretanje u jednom smjeru, pa u suprotnom\",\n  \"notes\": \"The definition is clear and concise, with correct grammar and appropriate style.\"\n}\n```",
+      "execution": {
+        "seconds": 2857.5084226000035
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    },
+    {
+      "synset": {
+        "id": "ENG30-01902405-v",
+        "lemmas": [
+          "scurry",
+          "scamper",
+          "skitter",
+          "scuttle"
+        ],
+        "definition": "to move about or proceed hurriedly",
+        "examples": [
+          "so terrified by the extraordinary ebbing of the sea that they scurried to higher ground"
+        ],
+        "pos": "v",
+        "display_name": "scurry.v.01"
+      },
+      "final_output": {
+        "representative_literal": "bezati",
+        "definition": "brzo se kretati",
+        "synonyms": [
+          {
+            "word": "bezati",
+            "confidence": "high"
+          },
+          {
+            "word": "jurnuti",
+            "confidence": "high"
+          },
+          {
+            "word": "jurnuti se",
+            "confidence": "high"
+          },
+          {
+            "word": "trčiti",
+            "confidence": "high"
+          }
+        ],
+        "overall_confidence": "high",
+        "removed_candidates": [
+          {
+            "word": "brinuti se",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "kasniti",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "kliziti se",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "leteti",
+            "reason": "too specific / mismatched sense"
+          },
+          {
+            "word": "letiti",
+            "reason": "too specific / mismatched sense"
+          },
+          {
+            "word": "skakutati",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "strahovati se",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "štangavati",
+            "reason": "too generic / mismatched sense"
+          },
+          {
+            "word": "šturovati",
+            "reason": "too generic / mismatched sense"
+          }
+        ],
+        "notes": "The term 'brzo se kretati' captures the essence of moving quickly with urgency, fitting the dictionary gloss requirements."
+      },
+      "definition_quality": {
+        "status": "ok",
+        "revised_definition": "brzo se kretati",
+        "issues": [],
+        "notes": "The definition is clear and grammatically correct with no circularity or stylistic issues."
+      },
+      "stages": {
+        "sense_analysis": {
+          "sense_summary": "To move quickly with a sense of urgency or fear, often implying short, rapid steps.",
+          "contrastive_note": "This sense emphasizes hurried movement driven by strong emotions like fear or the need to escape, distinguishing it from more neutral or playful forms of quick movement.",
+          "key_features": [
+            "Quickness",
+            "Urgency",
+            "Short steps",
+            "Emotional drive"
+          ],
+          "domain_tags": [],
+          "confidence": "high"
+        },
+        "definition_translation": {
+          "definition_translation": "brzo se kretati",
+          "notes": "The term 'brzo se kretati' captures the essence of moving quickly with urgency, fitting the dictionary gloss requirements.",
+          "examples": [
+            "Brzo se kreću jer kašnjavaju",
+            "Brzo se kreću da bi izbegli opasnost"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "šturovati",
+            "skakutati",
+            "kliziti se",
+            "štangavati"
+          ],
+          "alignment": {
+            "scurry": "šturovati",
+            "scamper": "skakutati",
+            "skitter": "kliziti se",
+            "scuttle": "štangavati"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "bezati",
+            "brinuti se",
+            "jurnuti",
+            "jurnuti se",
+            "kasniti",
+            "kliziti se",
+            "leteti",
+            "letiti",
+            "skakutati",
+            "strahovati se",
+            "trčiti",
+            "štangavati",
+            "šturovati"
+          ],
+          "rationale": {
+            "jurnuti": "Jurnuti implies a quick, urgent movement, often in pursuit or to escape, aligning with the core meaning of moving rapidly with urgency.",
+            "bezati": "Bezati means to flee, directly capturing the sense of moving quickly due to fear or urgency.",
+            "jurnuti se": "Jurnuti se implies moving quickly with a sense of urgency or fear, often in the context of fleeing or chasing, which aligns well with the core meaning.",
+            "trčiti": "Trčiti means to run and is used to describe quick movement with urgency or fear, fitting the concept precisely.",
+            "letiti": "Letiti can mean to fly, but in the context of moving quickly with urgency, it conveys swift movement.",
+            "strahovati se": "Strahovati se suggests moving out of fear, aligning with the concept of quick, urgent steps driven by anxiety.",
+            "brinuti se": "While primarily meaning 'to worry', in context, it can imply moving quickly due to anxiety or fear.",
+            "kasniti": "Kasniti refers to being late, thus rushing with urgency fits the concept of quick movement due to time constraints.",
+            "leteti": "Leteti means 'to fly', used figuratively here to denote swift, urgent movement."
+          },
+          "iterations_run": 5,
+          "synonym_provenance": {
+            "šturovati": 0,
+            "kliziti se": 0,
+            "skakutati": 0,
+            "štangavati": 0,
+            "jurnuti": 1,
+            "bezati": 1,
+            "jurnuti se": 2,
+            "trčiti": 2,
+            "letiti": 3,
+            "strahovati se": 3,
+            "brinuti se": 4,
+            "kasniti": 4,
+            "leteti": 4
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "bezati",
+            "jurnuti",
+            "jurnuti se",
+            "trčiti"
+          ],
+          "confidence_by_word": {
+            "bezati": "high",
+            "jurnuti": "high",
+            "jurnuti se": "high",
+            "trčiti": "high"
+          },
+          "removed": [
+            {
+              "word": "brinuti se",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "kasniti",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "kliziti se",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "leteti",
+              "reason": "too specific / mismatched sense"
+            },
+            {
+              "word": "letiti",
+              "reason": "too specific / mismatched sense"
+            },
+            {
+              "word": "skakutati",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "strahovati se",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "štangavati",
+              "reason": "too generic / mismatched sense"
+            },
+            {
+              "word": "šturovati",
+              "reason": "too generic / mismatched sense"
+            }
+          ],
+          "confidence": "high"
+        }
+      },
+      "examples": [
+        "Brzo se kreću jer kašnjavaju",
+        "Brzo se kreću da bi izbegli opasnost"
+      ],
+      "curator_summary": "Representative literal (sr): bezati\nDefinition translation: brzo se kretati\nLexname: verb.motion\nSynset literals (3 total):\n  • bezati\n  • jurnuti\n  • trčiti\nExample sentences: 2 (showing first)\n  “Brzo se kreću jer kašnjavaju”\nNotes: The term 'brzo se kretati' captures the essence of moving quickly with urgency, fitting the dictionary gloss requirements.\n\nPipeline stages completed:\n  1. Initial translations: 4 lemmas\n  2. Expanded candidates: 13 synonyms\n  3. Filtered results: 3 final literals\n  4. Definition quality: ok",
+      "raw_response": "```json\n{\n  \"status\": \"ok\",\n  \"issues\": [],\n  \"revised_definition\": \"brzo se kretati\",\n  \"notes\": \"The definition is clear and grammatically correct with no circularity or stylistic issues.\"\n}\n```",
+      "execution": {
+        "seconds": 4855.509685700003
+      },
+      "related_log_file": "E:\\Github\\wordnet_autotranslate\\notebooks\\output\\pipeline_logs_deepseek-r1-70b_20251023T135619Z.json"
+    }
+  ]
+}

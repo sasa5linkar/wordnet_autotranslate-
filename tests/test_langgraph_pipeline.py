@@ -9,6 +9,7 @@ pytest.importorskip("langchain_core.messages")
 from wordnet_autotranslate.pipelines.langgraph_translation_pipeline import (
     LangGraphTranslationPipeline,
 )
+from wordnet_autotranslate.utils.log_utils import sanitize_model_name
 
 
 class _DummyLLM:
@@ -122,6 +123,12 @@ def test_langgraph_pipeline_returns_structured_dict():
     assert "Representative literal" in result["curator_summary"]
     assert "Synset literals" in result["curator_summary"]
 
+    model_info = result["model"]
+    assert model_info["resolved"] == "gpt-oss:120b"
+    assert model_info["requested"] == "gpt-oss:120b"
+    assert model_info["fallback_used"] is False
+    assert model_info["resolved_safe"] == sanitize_model_name("gpt-oss:120b")
+
 
 def test_langgraph_pipeline_batch_processing():
     pipeline = LangGraphTranslationPipeline(
@@ -179,6 +186,39 @@ def test_langgraph_pipeline_african_synset_example():
     # Check new pipeline structure
     assert result["payload"]["filtering"]["filtered_synonyms"] == ["Àfíríkà"]
     assert "àfíríkà" in result["curator_summary"]
+
+
+def test_langgraph_pipeline_model_metadata_merging():
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        model="gpt-oss:120b",
+        llm=_DummyLLM(),
+        model_metadata={
+            "requested": "deepseek-v2:70b",
+            "resolved": "gpt-oss:120b",
+            "fallback_used": True,
+            "reason": "Preferred model unavailable on host",
+            "available_models": ["gpt-oss:120b", "mistral:7b"],
+        },
+    )
+
+    synset = {
+        "id": "ENG30-00001740-r",
+        "lemmas": ["entity"],
+        "definition": "that which is perceived or known to have its own distinct existence",
+        "examples": [],
+        "pos": "r",
+    }
+
+    result = pipeline.translate_synset(synset)
+    model_info = result["model"]
+
+    assert model_info["requested"] == "deepseek-v2:70b"
+    assert model_info["resolved"] == "gpt-oss:120b"
+    assert model_info["fallback_used"] is True
+    assert model_info["reason"] == "Preferred model unavailable on host"
+    assert model_info["resolved_safe"] == sanitize_model_name("gpt-oss:120b")
 
 
 def test_translate_stream_generator():
@@ -285,8 +325,30 @@ def test_translation_result_to_dict():
     assert result_dict["raw_response"] == "raw text"
     assert result_dict["payload"]["key"] == "value"
     assert result_dict["curator_summary"] == "summary text"
+    assert "model" not in result_dict
 
 
+def test_translation_result_to_dict_includes_model_metadata():
+    from wordnet_autotranslate.pipelines.langgraph_translation_pipeline import TranslationResult
+
+    result = TranslationResult(
+        translation="test",
+        definition_translation="definition",
+        translated_synonyms=["syn"],
+        target_lang="sr",
+        source_lang="en",
+        source={"id": "id"},
+        examples=[],
+        notes=None,
+        raw_response="raw",
+        payload={},
+        curator_summary="summary",
+        model_info={"resolved": "deepseek", "resolved_safe": "deepseek", "fallback_used": False},
+    )
+
+    result_dict = result.to_dict()
+    assert result_dict["model"]["resolved"] == "deepseek"
+    assert result_dict["model"]["fallback_used"] is False
 def test_synset_with_alternative_field_names():
     """Test handling of alternative synset field names (literals, gloss, ili_id)."""
     pipeline = LangGraphTranslationPipeline(

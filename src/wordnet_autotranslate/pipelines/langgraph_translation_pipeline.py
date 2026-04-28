@@ -59,6 +59,7 @@ from pydantic import BaseModel, Field, ValidationError
 from pydantic_core import PydanticUndefined
 
 from ..utils.language_utils import LanguageUtils
+from ..utils.log_utils import sanitize_model_name
 
 
 # ============================================================================
@@ -137,6 +138,7 @@ class TranslationResult:
     curator_summary: str
     lexname: Optional[str] = None
     topic_domains: Optional[List[str]] = None
+    model_info: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         """Return a serializable dictionary representation.
@@ -146,7 +148,7 @@ class TranslationResult:
         Returns:
             Dictionary with all fields, suitable for JSON serialization.
         """
-        return {
+        data = {
             "translation": self.translation,
             "definition_translation": self.definition_translation,
             "translated_synonyms": self.translated_synonyms,
@@ -161,6 +163,11 @@ class TranslationResult:
             "lexname": self.lexname,
             "topic_domains": self.topic_domains,
         }
+
+        if self.model_info is not None:
+            data["model"] = dict(self.model_info)
+
+        return data
 
 
 # ============================================================================
@@ -416,6 +423,7 @@ class LangGraphTranslationPipeline:
         prompt_template: Optional[str] = None,
         llm: Optional[Any] = None,
         max_expansion_iterations: int = 5,
+        model_metadata: Optional[Dict[str, Any]] = None,
     ) -> None:
         """Initialize the LangGraph translation pipeline.
         
@@ -430,6 +438,8 @@ class LangGraphTranslationPipeline:
             prompt_template: Legacy template (deprecated, not used in multi-stage pipeline)
             llm: Pre-configured LangChain LLM instance (optional, will create if None)
             max_expansion_iterations: Maximum synonym expansion iterations (default: 5)
+            model_metadata: Optional metadata describing how the model was selected
+                (e.g., requested vs resolved names, fallback reasons).
         
         Raises:
             ImportError: If required dependencies (langgraph, langchain_ollama) not installed
@@ -448,6 +458,38 @@ class LangGraphTranslationPipeline:
         self.system_prompt = system_prompt or self.DEFAULT_SYSTEM_PROMPT
         self.prompt_template = prompt_template or self.DEFAULT_PROMPT_TEMPLATE
         self.max_expansion_iterations = max_expansion_iterations
+
+        requested_model = model
+        fallback_reason = None
+
+        if model_metadata:
+            requested_model = model_metadata.get("requested") or requested_model
+            fallback_reason = model_metadata.get("reason")
+
+        resolved_model = model
+        requested_model = requested_model or resolved_model
+        fallback_used = resolved_model != requested_model
+
+        if model_metadata and "fallback_used" in model_metadata:
+            fallback_used = bool(model_metadata.get("fallback_used"))
+
+        metadata: Dict[str, Any] = {
+            "requested": requested_model,
+            "resolved": resolved_model,
+            "resolved_safe": sanitize_model_name(resolved_model),
+            "fallback_used": fallback_used,
+            "reason": fallback_reason,
+        }
+
+        if model_metadata:
+            metadata.update(model_metadata)
+            metadata["requested"] = requested_model
+            metadata["resolved"] = resolved_model
+            metadata["resolved_safe"] = sanitize_model_name(resolved_model)
+            metadata["fallback_used"] = bool(metadata.get("fallback_used", fallback_used))
+            metadata.setdefault("reason", fallback_reason)
+
+        self.model_metadata = dict(metadata)
 
         (
             self._StateGraph,
@@ -1634,6 +1676,7 @@ class LangGraphTranslationPipeline:
             curator_summary=curator_summary,
             lexname=lexname,
             topic_domains=topic_domains,
+            model_info=dict(self.model_metadata),
         )
 
         return {"result": result}

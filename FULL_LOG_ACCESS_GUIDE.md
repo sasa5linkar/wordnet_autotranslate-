@@ -67,6 +67,12 @@ log_path = save_full_logs(result)
 print(f"Saved to: {log_path}")
 ```
 
+> **Model metadata recorded automatically**  
+> Exported filenames now include a sanitised model identifier (e.g., `deepseek-v3-70b`) and
+> the JSON `metadata` block carries a `model_resolution` object capturing the requested
+> model, the resolved model used for the run, and any fallback reason. This makes it easy to
+> audit experiments where the preferred model was unavailable.
+
 ### Batch Processing
 
 ```python
