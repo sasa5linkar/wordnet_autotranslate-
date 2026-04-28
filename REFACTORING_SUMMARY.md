@@ -30,9 +30,9 @@ Successfully refactored the LangGraph translation pipeline to replace the single
 START → analyse_sense → translate_definition → translate_synonyms → assemble_result → END
 ```
 
-**New Flow (6 stages):**
+**New Flow (7 stages):**
 ```
-START → analyse_sense → translate_definition → translate_all_lemmas → expand_synonyms → filter_synonyms → assemble_result → END
+START → analyse_sense → translate_definition → translate_all_lemmas → expand_synonyms → filter_synonyms → review_definition_quality → assemble_result → END
 ```
 
 **Changes made:**
@@ -40,6 +40,7 @@ START → analyse_sense → translate_definition → translate_all_lemmas → ex
 - Added: `translate_all_lemmas` node (initial direct translations)
 - Added: `expand_synonyms` node (broaden candidate pool)
 - Added: `filter_synonyms` node (quality validation)
+- Added: `review_definition_quality` node (circularity and grammar check)
 - Updated: `_build_graph()` method with new node sequence
 
 ---

@@ -421,7 +421,7 @@ include synonyms covering different aspects, not just the most literal interpret
 
 **Uses only source (English) definition** - no target language input needed.
 
-### 3. ADAPTIVE FILTERING BASED ON EXPANSION SIZE � **MEDIUM PRIORITY**
+### 3. ADAPTIVE FILTERING BASED ON EXPANSION SIZE — **MEDIUM PRIORITY**
 
 **Observation:** When expansion generates few candidates (6-10), aggressive filtering produces too-small synsets.
 

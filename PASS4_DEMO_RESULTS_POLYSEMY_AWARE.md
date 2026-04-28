@@ -1,7 +1,7 @@
 # Pass 4 Demo Results - Polysemy-Aware Filtering
 
 **Execution Date**: October 19, 2025  
-**Branch**: improving-propmts  
+**Branch**: improving-prompts  
 **Notebook**: `02_langgraph_pipeline_demo.ipynb`  
 **Model**: gpt-oss:120b (Ollama, temperature=0.0, timeout=180s)
 

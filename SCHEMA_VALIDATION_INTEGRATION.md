@@ -98,7 +98,7 @@ Improved `_render_filtering_prompt()` to request structured rejections:
 
 Updated all test mocks (`_DummyLLM`, `_MultiSynonymLLM`, etc.) to return correct schema formats:
 
-- Added support for 7-stage pipeline (was 3-stage)
+- Added support for 7-stage pipeline (previous baseline: 3-stage pipeline prior to this change)
 - Updated assertions to check new payload structure
 - Fixed expected call counts (6 instead of 3)
 - Updated terminology ("literals" instead of "candidates")

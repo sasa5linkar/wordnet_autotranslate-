@@ -22,7 +22,7 @@ The helper uses lexical structure analysis to detect three types of redundancy:
    - Example: `["metati", "metati pod"]` → `["metati"]`
 
 3. **Modified forms**: If a multiword expression starts with common modifiers/comparatives
-   - Pattern: `^(naj|glavn|sekund|pomoć|manj|več)`
+   - Pattern: `^(naj|glavn|sekund|pomoć|manj|več)` *(Serbian-specific prefixes)*
    - Example: `["glavno sedište", "sedište"]` → `["sedište"]`
 
 ### Code
@@ -94,7 +94,7 @@ All test cases pass:
 ✅ **POS-agnostic**: Works for both noun and verb compounds  
 ✅ **Curator-friendly**: Logs flagged items for review  
 ✅ **Non-destructive**: Only removes when confident (base word exists)  
-✅ **Multilingual-ready**: Uses lexical structure, not language-specific rules  
+✅ **Serbian-tuned heuristic**: Uses lexical structure optimised for Serbian; language-specific plugins are required for other languages  
 
 ## Integration Status
 

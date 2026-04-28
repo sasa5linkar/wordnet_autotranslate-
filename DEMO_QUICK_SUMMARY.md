@@ -13,8 +13,8 @@
 ## What Was Tested
 
 We successfully translated 5 synsets using the complete pipeline:
-- **1 noun**: institution
-- **4 verbs**: condiment, scatter/sprinkle, pick/pluck, sweep
+- **2 nouns**: institution, condiment
+- **3 verbs**: scatter/sprinkle, pick/pluck, sweep
 
 ## Key Achievements
 

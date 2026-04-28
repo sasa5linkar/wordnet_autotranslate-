@@ -29,7 +29,7 @@
 | **POS** | noun |
 | **Definition** | a preparation (a sauce or relish or spice) to enhance flavor or enjoyment |
 | **Existing Serbian** | začin (1 synonym) |
-| **Serbian Definition** | (need to check data file) |
+| **Serbian Definition** | N/A — Serbian definition not yet retrieved from source data |
 
 ---
 
@@ -42,7 +42,7 @@
 | **POS** | verb |
 | **Definition** | distribute loosely |
 | **Existing Serbian** | posuti, rasejati, rasturiti, rasuti, raštrkati (5 synonyms) |
-| **Serbian Definition** | (need to check data file) |
+| **Serbian Definition** | N/A — Serbian definition not yet retrieved from source data |
 
 ---
 
@@ -55,7 +55,7 @@
 | **POS** | verb |
 | **Definition** | look for and gather |
 | **Existing Serbian** | brati, sakupljati (2 synonyms) |
-| **Serbian Definition** | (need to check data file) |
+| **Serbian Definition** | N/A — Serbian definition not yet retrieved from source data |
 
 ---
 
@@ -68,7 +68,7 @@
 | **POS** | verb |
 | **Definition** | clean by sweeping |
 | **Existing Serbian** | čistiti, mesti (2 synonyms) |
-| **Serbian Definition** | (need to check data file) |
+| **Serbian Definition** | N/A — Serbian definition not yet retrieved from source data |
 
 ---
 
