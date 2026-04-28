@@ -19,6 +19,7 @@ class LanguageUtils:
         'pt': 'Portuguese',
         'it': 'Italian',
         'ru': 'Russian',
+        'sr': 'Serbian',
         'zh': 'Chinese',
         'ja': 'Japanese',
         'ko': 'Korean'
@@ -65,6 +66,7 @@ class LanguageUtils:
         'n': 'n',
         'v': 'v',
         'a': 'a',
+        's': 'a',  # satellite adjective -> adjective for WordNet lookups
         # keep any other tag as-is by default
     }
 

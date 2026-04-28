@@ -1,4 +1,6 @@
 import json
+import sys
+import types
 from typing import List, Optional
 
 import pytest
@@ -10,6 +12,9 @@ from wordnet_autotranslate.pipelines.langgraph_translation_pipeline import (
     LangGraphTranslationPipeline,
 )
 from wordnet_autotranslate.utils.log_utils import sanitize_model_name
+from wordnet_autotranslate.pipelines.conceptual_langgraph_pipeline import (
+    ConceptualLangGraphTranslationPipeline,
+)
 
 
 class _DummyLLM:
@@ -32,7 +37,7 @@ class _DummyLLM:
         human_message = messages[-1]
         system_content = getattr(system_message, "content", str(system_message))
         human_content = getattr(human_message, "content", str(human_message))
-        
+
         # Verify we got a valid prompt (not all stages have "Synset ID")
         assert len(human_content) > 0, "Empty prompt received"
 
@@ -250,18 +255,22 @@ def test_translate_stream_generator():
 
 def test_decode_llm_payload_with_think_tags():
     """Test JSON extraction from responses with <think> reasoning tags."""
-    raw = '<think>Let me analyze this...</think>\n{"translation": "test", "examples": []}'
+    raw = (
+        '<think>Let me analyze this...</think>\n{"translation": "test", "examples": []}'
+    )
     result = LangGraphTranslationPipeline._decode_llm_payload(raw)
-    
+
     assert result["translation"] == "test"
     assert result["examples"] == []
 
 
 def test_decode_llm_payload_with_code_fence():
     """Test JSON extraction from fenced code blocks."""
-    raw = 'Here is the result:\n```json\n{"translation": "fenced", "notes": "test"}\n```'
+    raw = (
+        'Here is the result:\n```json\n{"translation": "fenced", "notes": "test"}\n```'
+    )
     result = LangGraphTranslationPipeline._decode_llm_payload(raw)
-    
+
     assert result["translation"] == "fenced"
     assert result["notes"] == "test"
 
@@ -270,7 +279,7 @@ def test_decode_llm_payload_with_extra_text():
     """Test JSON extraction when surrounded by prose."""
     raw = 'The translation is: {"translation": "embedded", "examples": ["test"]} as you can see.'
     result = LangGraphTranslationPipeline._decode_llm_payload(raw)
-    
+
     assert result["translation"] == "embedded"
     assert result["examples"] == ["test"]
 
@@ -278,7 +287,7 @@ def test_decode_llm_payload_with_extra_text():
 def test_decode_llm_payload_empty_string():
     """Test handling of empty LLM response."""
     result = LangGraphTranslationPipeline._decode_llm_payload("")
-    
+
     assert result["translation"] == ""
     assert result["examples"] == []
     assert result["notes"] is None
@@ -288,16 +297,172 @@ def test_decode_llm_payload_invalid_json_fallback():
     """Test fallback behavior for completely malformed JSON."""
     raw = "This is just plain text without any JSON structure"
     result = LangGraphTranslationPipeline._decode_llm_payload(raw)
-    
+
     # Should return the cleaned text as translation
     assert "translation" in result
     assert result["translation"] == raw
 
 
+def test_coerce_to_str_list_ignores_non_strings():
+    result = LangGraphTranslationPipeline._coerce_to_str_list(
+        [" valid ", None, 7, {"x": 1}, "", "ok"]
+    )
+    assert result == ["valid", "ok"]
+    assert LangGraphTranslationPipeline._coerce_to_str_list({"bad": "shape"}) == []
+
+
+def test_get_wordnet_domain_info_normalizes_serbian_adverb_pos(monkeypatch):
+    """Test ENG IDs using Serbian POS markers (b) are normalized to r."""
+
+    observed = {}
+
+    class _FakeTopicDomain:
+        def name(self):
+            return "topic.test.01"
+
+    class _FakeSynset:
+        def lexname(self):
+            return "adv.all"
+
+        def topic_domains(self):
+            return [_FakeTopicDomain()]
+
+    def _fake_lookup(pos_char, offset):
+        observed["pos_char"] = pos_char
+        observed["offset"] = offset
+        return _FakeSynset()
+
+    fake_wordnet = types.SimpleNamespace(synset_from_pos_and_offset=_fake_lookup)
+    fake_corpus = types.SimpleNamespace(wordnet=fake_wordnet)
+    fake_nltk = types.SimpleNamespace(corpus=fake_corpus)
+
+    monkeypatch.setitem(sys.modules, "nltk", fake_nltk)
+    monkeypatch.setitem(sys.modules, "nltk.corpus", fake_corpus)
+    monkeypatch.setitem(sys.modules, "nltk.corpus.wordnet", fake_wordnet)
+
+    result = LangGraphTranslationPipeline._get_wordnet_domain_info("ENG30-00001740-b")
+
+    assert observed["pos_char"] == "r"
+    assert observed["offset"] == 1740
+    assert result["lexname"] == "adv.all"
+    assert result["topic_domains"] == ["topic.test.01"]
+
+
+def test_call_llm_retries_on_invoke_exception():
+    class _FailOnceLLM:
+        def __init__(self):
+            self.calls = 0
+
+        def invoke(self, messages):
+            self.calls += 1
+            if self.calls == 1:
+                raise RuntimeError("temporary transport failure")
+
+            class _Response:
+                content = json.dumps(
+                    {
+                        "sense_summary": "desc",
+                        "contrastive_note": "note",
+                        "key_features": ["f1"],
+                        "domain_tags": [],
+                        "confidence": "high",
+                    }
+                )
+
+            return _Response()
+
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_FailOnceLLM(),
+    )
+    call = pipeline._call_llm("prompt", stage="sense_analysis", retries=1)
+    assert call["payload"]["sense_summary"] == "desc"
+
+
+def test_call_llm_fallback_payload_shape_after_repeated_invoke_exceptions():
+    class _AlwaysFailLLM:
+        def invoke(self, messages):
+            raise RuntimeError("transport down")
+
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_AlwaysFailLLM(),
+    )
+
+    call = pipeline._call_llm("prompt", stage="sense_analysis", retries=1)
+    payload = call["payload"]
+
+    # Ensure fallback payload respects stage schema shape.
+    assert set(payload.keys()) == {
+        "sense_summary",
+        "contrastive_note",
+        "key_features",
+        "domain_tags",
+        "confidence",
+    }
+    assert isinstance(payload["key_features"], list)
+    assert isinstance(payload["domain_tags"], list)
+    assert call["raw_response"] == "transport down"
+
+
+@pytest.mark.parametrize(
+    ("stage", "expected_keys"),
+    [
+        (
+            "sense_analysis",
+            {
+                "sense_summary",
+                "contrastive_note",
+                "key_features",
+                "domain_tags",
+                "confidence",
+            },
+        ),
+        (
+            "definition_translation",
+            {"definition_translation", "notes", "examples"},
+        ),
+        (
+            "initial_translation",
+            {"initial_translations", "alignment"},
+        ),
+        (
+            "synonym_expansion",
+            {"expanded_synonyms", "rationale"},
+        ),
+        (
+            "synonym_filtering",
+            {"filtered_synonyms", "removed", "confidence"},
+        ),
+    ],
+)
+def test_call_llm_fallback_payload_shape_matrix_after_repeated_invoke_exceptions(
+    stage, expected_keys
+):
+    class _AlwaysFailLLM:
+        def invoke(self, messages):
+            raise RuntimeError(f"{stage} transport down")
+
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_AlwaysFailLLM(),
+    )
+
+    call = pipeline._call_llm("prompt", stage=stage, retries=1)
+    payload = call["payload"]
+    assert set(payload.keys()) == expected_keys
+    assert call["raw_response"] == f"{stage} transport down"
+
+
 def test_translation_result_to_dict():
     """Test TranslationResult.to_dict() serialization."""
-    from wordnet_autotranslate.pipelines.langgraph_translation_pipeline import TranslationResult
-    
+    from wordnet_autotranslate.pipelines.langgraph_translation_pipeline import (
+        TranslationResult,
+    )
+
     result = TranslationResult(
         translation="test_word",
         definition_translation="test definition",
@@ -311,9 +476,9 @@ def test_translation_result_to_dict():
         payload={"key": "value"},
         curator_summary="summary text",
     )
-    
+
     result_dict = result.to_dict()
-    
+
     assert result_dict["translation"] == "test_word"
     assert result_dict["definition_translation"] == "test definition"
     assert result_dict["translated_synonyms"] == ["syn1", "syn2"]
@@ -396,7 +561,7 @@ def test_synset_with_empty_fields():
 def test_custom_system_prompt():
     """Test pipeline with custom system prompt."""
     custom_prompt = "You are a specialized translator for technical terms."
-    
+
     pipeline = LangGraphTranslationPipeline(
         source_lang="en",
         target_lang="sr",
@@ -409,12 +574,12 @@ def test_custom_system_prompt():
 
 def test_multiple_synonyms_with_varying_confidence():
     """Test handling of multiple synonyms with different confidence levels."""
-    
+
     class _MultiSynonymLLM(_DummyLLM):
         def invoke(self, messages):
             self.calls += 1
             system_content = getattr(messages[0], "content", str(messages[0]))
-            
+
             if "sense_analysis" in system_content:
                 payload = {
                     "sense_summary": "The most important one",
@@ -430,7 +595,11 @@ def test_multiple_synonyms_with_varying_confidence():
             elif "initial_translation" in system_content:
                 payload = {
                     "initial_translations": ["glavni", "primarni", "главни"],
-                    "alignment": {"main": "glavni", "primary": "primarni", "chief": "главни"},
+                    "alignment": {
+                        "main": "glavni",
+                        "primary": "primarni",
+                        "chief": "главни",
+                    },
                 }
             elif "synonym_expansion" in system_content:
                 payload = {
@@ -457,12 +626,12 @@ def test_multiple_synonyms_with_varying_confidence():
                 }
             else:
                 payload = {"error": "unexpected stage"}
-            
+
             class _Response:
                 content = json.dumps(payload)
-            
+
             return _Response()
-    
+
     pipeline = LangGraphTranslationPipeline(
         source_lang="en",
         target_lang="sr",
@@ -489,12 +658,12 @@ def test_multiple_synonyms_with_varying_confidence():
 
 def test_curator_summary_with_many_synonyms():
     """Test curator summary truncates long synonym lists."""
-    
+
     class _ManySynonymsLLM(_DummyLLM):
         def invoke(self, messages):
             self.calls += 1
             system_content = getattr(messages[0], "content", str(messages[0]))
-            
+
             if "sense_analysis" in system_content:
                 payload = {
                     "sense_summary": "Test sense",
@@ -541,12 +710,12 @@ def test_curator_summary_with_many_synonyms():
                 }
             else:
                 payload = {"error": "unexpected stage"}
-            
+
             class _Response:
                 content = json.dumps(payload)
-            
+
             return _Response()
-    
+
     pipeline = LangGraphTranslationPipeline(
         source_lang="en",
         target_lang="sr",
@@ -566,17 +735,20 @@ def test_curator_summary_with_many_synonyms():
     # Check that curator summary mentions truncation
     assert len(result["translated_synonyms"]) == 10
     # Updated to match new terminology: "literals" instead of "candidates"
-    assert "(+5 more literals)" in result["curator_summary"] or "more literals" in result["curator_summary"]
+    assert (
+        "(+5 more literals)" in result["curator_summary"]
+        or "more literals" in result["curator_summary"]
+    )
 
 
 def test_example_deduplication():
     """Test that duplicate examples are removed while preserving order."""
-    
+
     class _DuplicateExamplesLLM(_DummyLLM):
         def invoke(self, messages):
             self.calls += 1
             system_content = getattr(messages[0], "content", str(messages[0]))
-            
+
             if "sense_analysis" in system_content:
                 payload = {
                     "sense_summary": "Test",
@@ -587,7 +759,11 @@ def test_example_deduplication():
                 payload = {
                     "definition_translation": "Test",
                     # Provide all three examples - will test deduplication
-                    "examples": ["Duplicate example", "Unique example", "Another unique"],
+                    "examples": [
+                        "Duplicate example",
+                        "Unique example",
+                        "Another unique",
+                    ],
                 }
             elif "initial_translation" in system_content:
                 payload = {
@@ -615,12 +791,12 @@ def test_example_deduplication():
                 }
             else:
                 payload = {"error": "unexpected stage"}
-            
+
             class _Response:
                 content = json.dumps(payload)
-            
+
             return _Response()
-    
+
     pipeline = LangGraphTranslationPipeline(
         source_lang="en",
         target_lang="sr",
@@ -642,3 +818,68 @@ def test_example_deduplication():
     assert "Duplicate example" in result["examples"]
     assert "Unique example" in result["examples"]
     assert "Another unique" in result["examples"]
+
+
+def test_conceptual_langgraph_pipeline_returns_structured_result():
+    pipeline = ConceptualLangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    synset = {
+        "id": "ENG30-00001740-n",
+        "lemmas": ["entity"],
+        "definition": "that which is perceived or known to have its own distinct existence",
+        "examples": ["The entity known as Bigfoot has not been captured."],
+        "pos": "n",
+        "hypernyms": [
+            {
+                "id": "ENG30-00001930-n",
+                "lemmas": ["thing"],
+                "gloss": "a separate and self-contained entity",
+            }
+        ],
+    }
+
+    result = pipeline.translate_synset(synset)
+
+    assert result["translation"] == "entitet"
+    assert result["selected_literals_sr"] == ["entitet"]
+    assert result["rejected_literals_sr"] == ["opisna fraza"]
+    assert result["final_gloss_sr"] == "ono što postoji kao zasebna celina"
+    assert result["concept_package"]["source_literals"] == ["entity"]
+    assert result["concept_package"]["hypernyms"][0]["synset_id"] == "ENG30-00001930-n"
+    assert result["expanded_en"]["expanded_definition_en"].startswith(
+        "A thing or being"
+    )
+    assert result["expanded_sr"]["expanded_definition_sr"].startswith("entitet je")
+    assert result["candidates"]["candidates"][0]["literal"] == "entitet"
+    assert result["selection"]["selected_literals_sr"] == ["entitet"]
+    assert result["validation"]["validation_passed"] is True
+    assert "Concept pipeline stages completed" in result["curator_summary"]
+
+
+def test_conceptual_pipeline_batch_processing_uses_same_llm():
+    dummy_llm = _DummyLLM(translation="pojam")
+    pipeline = ConceptualLangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=dummy_llm,
+    )
+
+    synsets = [
+        {
+            "id": "ENG30-00001740-n",
+            "lemmas": ["entity"],
+            "definition": "something that exists",
+            "examples": [],
+            "pos": "n",
+        }
+    ]
+
+    translated = pipeline.translate(synsets)
+
+    assert len(translated) == 1
+    assert translated[0]["translation"] == "pojam"
+    assert dummy_llm.calls == 6

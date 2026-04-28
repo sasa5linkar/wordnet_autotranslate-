@@ -11,6 +11,9 @@ data/
 *.xml
 wnsrp30.xml
 
+# Output files (generated analysis data)
+output/
+
 # Distribution / packaging
 .Python
 build/

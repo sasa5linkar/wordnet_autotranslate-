@@ -330,11 +330,6 @@ def validate_stage_payload(payload: dict, schema_cls: type[BaseModel], stage_nam
         return {**fallback, **payload}
 
 
-# ============================================================================
-# MAIN PIPELINE CLASS
-# ============================================================================
-
-
 class LangGraphTranslationPipeline:
     """Multi-stage translation pipeline using LangGraph and Ollama.
     
@@ -1207,6 +1202,8 @@ class LangGraphTranslationPipeline:
         Returns:
             Dict containing prompt, response, parsed payload, and metadata.
         """
+        system_content = ""
+        raw = ""
         for attempt in range(retries + 1):
             system_content = self.system_prompt + f"\nCurrent stage: {stage}. Return valid JSON as instructed."
             messages = [
@@ -1214,8 +1211,20 @@ class LangGraphTranslationPipeline:
                 self._HumanMessage(content=prompt),
             ]
 
-            response = self.llm.invoke(messages)
-            content: Any = getattr(response, "content", response)
+            try:
+                response = self.llm.invoke(messages)
+                content: Any = getattr(response, "content", response)
+            except Exception as exc:
+                raw = str(exc)
+                if attempt < retries:
+                    print(
+                        f"[Retry {attempt + 1}/{retries}] LLM invoke failed for stage '{stage}': {exc}"
+                    )
+                    continue
+                print(
+                    f"[ERROR] LLM invoke failed for stage '{stage}' after retries: {exc}"
+                )
+                break
 
             if isinstance(content, list):
                 combined = "".join(
@@ -1251,19 +1260,21 @@ class LangGraphTranslationPipeline:
         
         # Fallback return after max retries
         print(f"[ERROR] Max retries exceeded for stage '{stage}', returning error payload")
+        fallback_payload = self._validate_payload_for_stage(stage, {})
+        if not fallback_payload:
+            fallback_payload = {"error": "max retries exceeded"}
+
         return {
             "stage": stage,
             "prompt": prompt,
             "system_prompt": system_content,
             "raw_response": raw,
-            "payload": {"error": "max retries exceeded"},
+            "payload": fallback_payload,
             "messages": [
                 {"role": "system", "content": system_content},
                 {"role": "user", "content": prompt},
             ],
         }
-
-        return call_log
 
     @staticmethod
     def _summarise_call(call: Dict[str, Any]) -> Dict[str, Any]:
@@ -1445,7 +1456,7 @@ class LangGraphTranslationPipeline:
                 return {}
             
             offset_str = parts[1]
-            pos_char = parts[2]
+            pos_char = LanguageUtils.normalize_pos_for_english(parts[2])
             
             # Convert offset to integer
             offset = int(offset_str)
@@ -1468,13 +1479,16 @@ class LangGraphTranslationPipeline:
         except (ValueError, LookupError, AttributeError):
             # Could not parse or find synset
             return {}
-            
-            # Return the lexname (domain)
-            return synset.lexname()
-            
-        except (ValueError, LookupError, AttributeError):
-            # Could not parse or find synset
-            return None
+
+    @staticmethod
+    def _coerce_to_str_list(value: Any) -> List[str]:
+        """Normalise unknown payload values into a cleaned list of strings."""
+        if isinstance(value, (list, tuple)):
+            return [item.strip() for item in value if isinstance(item, str) and item.strip()]
+        if isinstance(value, str):
+            text = value.strip()
+            return [text] if text else []
+        return []
 
     def _assemble_result(self, state: TranslationGraphState) -> TranslationGraphState:
         """LangGraph node: Combine all stage outputs into final result.
@@ -1522,16 +1536,8 @@ class LangGraphTranslationPipeline:
 
         # Extract the final, validated synonyms from the filtering stage
         # This is the high-quality synset produced by the generate-and-filter pipeline
-        translated_synonyms: List[str] = []
         filtered_synonyms = filtering_payload.get("filtered_synonyms", [])
-        
-        if isinstance(filtered_synonyms, (list, tuple)):
-            for syn in filtered_synonyms:
-                if syn:
-                    translated_synonyms.append(str(syn).strip())
-        elif filtered_synonyms:
-            # Handle single string case
-            translated_synonyms.append(str(filtered_synonyms).strip())
+        translated_synonyms = self._coerce_to_str_list(filtered_synonyms)
         
         # Remove any empty strings and deduplicate while preserving order
         seen = set()
@@ -1552,12 +1558,8 @@ class LangGraphTranslationPipeline:
         translation = translated_synonyms[0] if translated_synonyms else ""
 
         # Gather examples from definition translation
-        examples: List[str] = []
         definition_examples = definition_payload.get("examples")
-        if isinstance(definition_examples, (list, tuple)):
-            examples.extend(str(ex).strip() for ex in definition_examples if ex)
-        elif isinstance(definition_examples, str) and definition_examples.strip():
-            examples.append(definition_examples.strip())
+        examples = self._coerce_to_str_list(definition_examples)
 
         # Deduplicate examples while preserving order
         seen_examples = set()
@@ -1617,8 +1619,14 @@ class LangGraphTranslationPipeline:
         
         # Add pipeline stage info
         summary_lines.append(f"\nPipeline stages completed:")
-        summary_lines.append(f"  1. Initial translations: {len(initial_payload.get('initial_translations', []))} lemmas")
-        summary_lines.append(f"  2. Expanded candidates: {len(expansion_payload.get('expanded_synonyms', []))} synonyms")
+        summary_lines.append(
+            "  1. Initial translations: "
+            f"{len(self._coerce_to_str_list(initial_payload.get('initial_translations')))} lemmas"
+        )
+        summary_lines.append(
+            "  2. Expanded candidates: "
+            f"{len(self._coerce_to_str_list(expansion_payload.get('expanded_synonyms')))} synonyms"
+        )
         summary_lines.append(f"  3. Filtered results: {len(translated_synonyms)} final literals")
         issues = definition_quality_payload.get("issues") or []
         issues_count = len(issues) if isinstance(issues, list) else 0

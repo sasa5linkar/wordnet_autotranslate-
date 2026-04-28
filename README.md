@@ -1,18 +1,18 @@
 # WordNet Auto-Translation
 
-A core tool for automatic expansion of WordNet in less-resourced languages, using precision words and examples from target languages. This project leverages DSPy Pipelines & Prompt Optimization to load synsets in both English and target languages, utilizing a trained translation pipeline.
+A tool for automatic expansion of WordNet in less-resourced languages, with workflows for Serbian synset drafting and side-by-side pipeline comparison.
 
 ## Overview
 
 This project aims to bridge the gap in WordNet coverage for less-resourced languages by:
 - Loading existing synsets from both English and target languages
-- Using DSPy pipelines for optimized prompt-based translation
+- Running three dissertation-aligned synset translation workflows
 - Leveraging precision words and contextual examples for accurate translations
 - Providing tools for automatic WordNet expansion
 
 ## Features
 
-- **DSPy Integration**: Uses DSPy pipelines and prompt optimization for robust translation
+- **Three-workflow framing**: baseline, multi-phase (LangGraph), and concept-oriented pipelines
 - **Multi-language Support**: Handles English as source and various target languages
 - **Example-based Learning**: Utilizes examples from target languages for better context
 - **Serbian WordNet GUI**: Interactive browser for Serbian synsets with English pairing functionality
@@ -58,6 +58,16 @@ jupyter notebook
 
 ## Usage
 
+### Dissertation workflow framing
+
+The repository currently exposes three synset-translation workflows:
+
+1. **Baseline workflow** (`baseline`): direct translation using only English gloss + English literals.
+2. **Multi-phase workflow** (`langgraph`): analyze sense → translate gloss → translate literals → expand candidates → filter → assemble.
+3. **Concept-oriented workflow** (`conceptual`): concept package → expanded EN/SR definitions → candidate generation/selection → final gloss → validation.
+
+Use `scripts/translate_synset_workflow.py --pipeline all` for side-by-side comparison output.
+
 ### Serbian WordNet Synset Browser (GUI)
 
 Launch the interactive GUI for browsing and pairing Serbian synsets.
@@ -80,23 +90,28 @@ The GUI provides:
 
 See [GUI_README.md](GUI_README.md) for detailed usage instructions.
 
-### Basic Translation Pipeline
+### Baseline Translation Workflow (direct gloss + literals)
 
 ```python
-from wordnet_autotranslate import TranslationPipeline
+from wordnet_autotranslate import BaselineTranslationPipeline
 
-# Initialize pipeline for target language
-pipeline = TranslationPipeline(
-    source_lang='en',
-    target_lang='your_target_language'
+pipeline = BaselineTranslationPipeline(source_lang="en", target_lang="sr")
+
+result = pipeline.translate_synset(
+    {
+        "id": "ENG30-00001740-n",
+        "lemmas": ["entity"],
+        "definition": "that which is perceived or known to have its own distinct existence",
+        "pos": "n",
+    }
 )
 
-# Load synsets
-english_synsets = pipeline.load_english_synsets()
-target_synsets = pipeline.load_target_synsets()
-
-# Run translation
-translated_synsets = pipeline.translate(english_synsets)
+# Result keys include:
+# - translation
+# - definition_translation
+# - translated_synonyms
+# - payload
+# - curator_summary
 ```
 
 ### LangGraph + Ollama Translation Pipeline
@@ -128,6 +143,91 @@ translations = pipeline.translate(synsets)
 # - examples: target-language usage examples generated for the sense
 # - curator_summary: quick human-readable recap combining the key outputs
 # - payload: full JSON logs (sense analysis, definition translation, synonym decisions)
+```
+
+### Agent workflow: translate by synset ID/name/lemma
+
+For agent-compatible, repeatable translation workflows (including selector
+resolution and single/multi-pipeline execution), use:
+
+```bash
+python scripts/translate_synset_workflow.py --english-id ENG30-00001740-n --pipeline all --model gpt-oss:120b
+```
+
+Use `--strict` to fail fast when any selected pipeline errors.
+
+Skill documentation for agents is available at:
+`skills/translate-synset-serbian/SKILL.md`.
+
+### Batch workflow: translate from a Google Sheet, CSV, or XLSX
+
+For sheet-driven batches that auto-detect selector columns, validate inputs,
+classify malformed or missing synsets, and write nested result folders, use:
+
+```bash
+python scripts/translate_synset_sheet.py "https://docs.google.com/spreadsheets/d/1H9ylWjSPmBCytT4D1y241Vq68Cy7sl8ji13FMeTueck/edit?usp=sharing" --pipeline all
+```
+
+The batch runner accepts either a public Google Sheet URL or a local CSV/XLSX
+download. For local `.xlsx` workbooks that are not already tabular, it scans
+the sheets for ENG-style synset IDs and flattens them into a normalized CSV
+snapshot before validation. It looks for selector columns such as `english_id`,
+`synset_name`, or `lemma` + `pos`, and it writes a timestamped run folder
+with:
+
+- `input/` snapshot of the processed sheet
+- `logs/` run log
+- `results/success/`, `results/invalid_format/`, `results/not_found/`, and `results/errors/`
+- `summary/run_summary.json`, `summary/rows.jsonl`, and `summary/rows.csv`
+
+If your header names differ from the defaults, pass explicit column names such
+as `--english-id-column`, `--synset-name-column`, `--lemma-column`, and
+`--pipeline-column`.
+
+If you want a grouped list that follows workbook column order and first-row
+headlines before running any pipelines, use:
+
+```bash
+python scripts/export_workbook_synset_lists.py path/to/workbook.xlsx
+```
+
+This writes flat and grouped exports under `data/workbook_imports/...`,
+including a text report organized by sheet and source header.
+
+### Concept-oriented LangGraph comparison pipeline
+
+To compare the existing generate-and-filter pipeline with a stricter
+multi-phase lexical workflow, use the additional concept-oriented pipeline. It
+reuses the same model configuration style as the standard LangGraph pipeline,
+but returns staged outputs for concept extraction, expanded definitions,
+literal selection, gloss drafting, and validation.
+
+```python
+from wordnet_autotranslate import ConceptualLangGraphTranslationPipeline
+
+pipeline = ConceptualLangGraphTranslationPipeline(
+    source_lang="en",
+    target_lang="sr",
+    model="gpt-oss:120b",
+    timeout=600,
+)
+
+result = pipeline.translate_synset(
+    {
+        "id": "ENG30-00001740-n",
+        "lemmas": ["entity"],
+        "definition": "that which is perceived or known to have its own distinct existence",
+        "examples": [],
+        "pos": "n",
+    }
+)
+
+# Result keys include:
+# - concept_package
+# - expanded_en / expanded_sr
+# - candidates / selection
+# - final_gloss / validation
+# - selected_literals_sr / final_gloss_sr
 ```
 
 ### Serbian WordNet Expansion
@@ -185,7 +285,7 @@ Explore the interactive notebooks in the `notebooks/` directory for:
 ```
 wordnet_autotranslate/
 ├── src/                    # Core source code
-│   ├── pipelines/         # DSPy translation pipelines
+│   ├── pipelines/         # Translation workflow implementations
 │   ├── models/            # Language models and synset handlers
 │   │   ├── synset_handler.py      # English WordNet interface
 │   │   └── xml_synset_parser.py   # Serbian synset XML parser
@@ -204,6 +304,7 @@ wordnet_autotranslate/
 ## Documentation
 
 ### Core Guides
+- **[WordNet Synset Analysis](WORDNET_SYNSET_ANALYSIS.md)** - Comprehensive analysis of NLTK WordNet synsets, their features, and relation types with suggestions for prompt engineering
 - **[Schema Validation Integration](SCHEMA_VALIDATION_INTEGRATION.md)** - Pydantic validation & retry logic
 - **[Full Log Access Guide](FULL_LOG_ACCESS_GUIDE.md)** - Complete guide to accessing untruncated LLM logs
 - **[Quick Reference: Logs](QUICK_REF_LOGS.md)** - One-page cheat sheet for log access
@@ -211,6 +312,9 @@ wordnet_autotranslate/
 ### Notebooks
 - **[01_introduction.ipynb](notebooks/01_introduction.ipynb)** - Getting started
 - **[02_langgraph_pipeline_demo.ipynb](notebooks/02_langgraph_pipeline_demo.ipynb)** - 7-stage pipeline demonstration (generate → filter → review)
+
+### Analysis Tools
+- `examine_wordnet_synsets.py` - Script to examine NLTK WordNet synsets and extract all features including relations
 
 ### Utilities
 - `src/wordnet_autotranslate/utils/log_utils.py` - Helper functions for saving and analyzing full logs
@@ -235,17 +339,17 @@ This project supports expansion to any language. Current examples include:
 ## Requirements
 
 - Python 3.8+
-- DSPy framework
+- Optional LangGraph stack for multi-phase workflows
 - Jupyter (for interactive development)
 - NLTK (for WordNet access)
 - Transformers (for language models)
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under CC0 1.0 Universal (CC0-1.0) - see the LICENSE file for details.
 
 ## Acknowledgments
 
 - WordNet project for the foundational lexical database
-- DSPy team for the optimization framework
+- LangGraph and Ollama communities for orchestration/runtime tooling
 - Contributors to less-resourced language resources

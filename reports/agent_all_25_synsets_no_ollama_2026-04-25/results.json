@@ -1,0 +1,1329 @@
+{
+  "summary": {
+    "run_id": "agent_all_25_synsets_no_ollama_2026-04-25",
+    "date_local": "2026-04-25",
+    "timezone": "Europe/Budapest",
+    "selection": "First 25 NLTK WordNet synsets sorted by synset.name()",
+    "processed_synsets": 25,
+    "workflow_mode": "agent-all",
+    "workflows": [
+      "agent-baseline",
+      "agent-multiphase",
+      "agent-conceptual"
+    ],
+    "ollama_used": false,
+    "repo_llm_backend_used": false,
+    "status": "ok"
+  },
+  "rows": [
+    {
+      "index": 1,
+      "selector_id": "ENG30-08641944-n",
+      "source_synset": {
+        "id": "ENG30-08641944-n",
+        "english_id": "ENG30-08641944-n",
+        "name": "'hood.n.01",
+        "pos": "n",
+        "lemmas": [
+          "'hood"
+        ],
+        "definition": "(slang) a neighborhood",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "kraj",
+          "translated_synonyms": [
+            "kraj"
+          ],
+          "definition_translation": "slengovski: susedstvo ili komsiluk",
+          "confidence": "medium",
+          "notes": [
+            "Direct Serbian equivalent preserves the informal neighborhood sense."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "kvart",
+          "translated_synonyms": [
+            "kvart",
+            "kraj",
+            "komsiluk"
+          ],
+          "definition_translation": "slengovski naziv za susedstvo ili gradski kraj",
+          "confidence": "medium",
+          "notes": [
+            "Kept only informal neighborhood candidates; rejected broader 'naselje' as less slang-like."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "kraj",
+          "translated_synonyms": [
+            "kraj",
+            "kvart"
+          ],
+          "definition_translation": "neformalno: deo grada ili susedstvo u kome neko zivi",
+          "confidence": "medium",
+          "notes": [
+            "Ready for curation; 'komsiluk' may fit some contexts but can mean neighbors rather than the place."
+          ]
+        }
+      }
+    },
+    {
+      "index": 2,
+      "selector_id": "ENG30-03146310-a",
+      "source_synset": {
+        "id": "ENG30-03146310-a",
+        "english_id": "ENG30-03146310-a",
+        "name": ".22_caliber.a.01",
+        "pos": "a",
+        "lemmas": [
+          ".22 caliber",
+          ".22-caliber",
+          ".22 calibre",
+          ".22-calibre"
+        ],
+        "definition": "of or relating to the bore of a gun (or its ammunition) that measures twenty-two hundredths of an inch in diameter",
+        "examples": [
+          "a .22 caliber pistol"
+        ]
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "kalibra .22",
+          "translated_synonyms": [
+            "kalibra .22",
+            ".22-kalibarski"
+          ],
+          "definition_translation": "koji se odnosi na cev vatrenog oruzja ili municiju precnika 0,22 inca",
+          "confidence": "high",
+          "notes": [
+            "Serbian normally uses a postposed caliber phrase rather than a single adjective."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "kalibra .22",
+          "translated_synonyms": [
+            "kalibra .22",
+            "kalibra 0,22 inca"
+          ],
+          "definition_translation": "za cev oruzja ili municiju ciji je precnik 0,22 inca",
+          "confidence": "high",
+          "notes": [
+            "Filtered out literal 'dvadesetdve stote inca' as less natural than numeric notation."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "kalibra .22",
+          "translated_synonyms": [
+            "kalibra .22"
+          ],
+          "definition_translation": "koji pripada vatrenom oruzju ili municiji sa kalibrom od 0,22 inca",
+          "confidence": "high",
+          "notes": [
+            "Adjectival POS is represented by a Serbian adjectival phrase."
+          ]
+        }
+      }
+    },
+    {
+      "index": 3,
+      "selector_id": "ENG30-03146602-a",
+      "source_synset": {
+        "id": "ENG30-03146602-a",
+        "english_id": "ENG30-03146602-a",
+        "name": ".38_caliber.a.01",
+        "pos": "a",
+        "lemmas": [
+          ".38 caliber",
+          ".38-caliber",
+          ".38 calibre",
+          ".38-calibre"
+        ],
+        "definition": "of or relating to the bore of a gun (or its ammunition) that measures thirty-eight hundredths of an inch in diameter",
+        "examples": [
+          "a .38 caliber shell"
+        ]
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "kalibra .38",
+          "translated_synonyms": [
+            "kalibra .38",
+            ".38-kalibarski"
+          ],
+          "definition_translation": "koji se odnosi na cev vatrenog oruzja ili municiju precnika 0,38 inca",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "kalibra .38",
+          "translated_synonyms": [
+            "kalibra .38",
+            "kalibra 0,38 inca"
+          ],
+          "definition_translation": "za cev oruzja ili municiju ciji je precnik 0,38 inca",
+          "confidence": "high",
+          "notes": [
+            "Kept numeric caliber forms; rejected generic 'revolverski' because it changes the sense."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "kalibra .38",
+          "translated_synonyms": [
+            "kalibra .38"
+          ],
+          "definition_translation": "koji pripada vatrenom oruzju ili municiji sa kalibrom od 0,38 inca",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 4,
+      "selector_id": "ENG30-03146895-a",
+      "source_synset": {
+        "id": "ENG30-03146895-a",
+        "english_id": "ENG30-03146895-a",
+        "name": ".45_caliber.a.01",
+        "pos": "a",
+        "lemmas": [
+          ".45 caliber",
+          ".45-caliber",
+          ".45 calibre",
+          ".45-calibre"
+        ],
+        "definition": "of or relating to the bore of a gun (or its ammunition) that measures forty-five hundredths of an inch in diameter",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "kalibra .45",
+          "translated_synonyms": [
+            "kalibra .45",
+            ".45-kalibarski"
+          ],
+          "definition_translation": "koji se odnosi na cev vatrenog oruzja ili municiju precnika 0,45 inca",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "kalibra .45",
+          "translated_synonyms": [
+            "kalibra .45",
+            "kalibra 0,45 inca"
+          ],
+          "definition_translation": "za cev oruzja ili municiju ciji je precnik 0,45 inca",
+          "confidence": "high",
+          "notes": [
+            "Candidate set constrained to caliber phrases, not weapon types."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "kalibra .45",
+          "translated_synonyms": [
+            "kalibra .45"
+          ],
+          "definition_translation": "koji pripada vatrenom oruzju ili municiji sa kalibrom od 0,45 inca",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 5,
+      "selector_id": "ENG30-15148787-n",
+      "source_synset": {
+        "id": "ENG30-15148787-n",
+        "english_id": "ENG30-15148787-n",
+        "name": "1530s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1530s"
+        ],
+        "definition": "the decade from 1530 to 1539",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1530-e",
+          "translated_synonyms": [
+            "1530-e"
+          ],
+          "definition_translation": "decenija od 1530. do 1539. godine",
+          "confidence": "medium",
+          "notes": [
+            "Numeric decade form is compact but less idiomatic than the century phrase."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "tridesete godine 16. veka",
+          "translated_synonyms": [
+            "tridesete godine 16. veka",
+            "1530-e"
+          ],
+          "definition_translation": "decenija od 1530. do 1539. godine",
+          "confidence": "high",
+          "notes": [
+            "Expanded to the natural Serbian decade expression."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "tridesete godine 16. veka",
+          "translated_synonyms": [
+            "tridesete godine 16. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1530-1539",
+          "confidence": "high",
+          "notes": [
+            "Validated as a temporal noun phrase."
+          ]
+        }
+      }
+    },
+    {
+      "index": 6,
+      "selector_id": "ENG30-08039312-n",
+      "source_synset": {
+        "id": "ENG30-08039312-n",
+        "english_id": "ENG30-08039312-n",
+        "name": "15_may_organization.n.01",
+        "pos": "n",
+        "lemmas": [
+          "15 May Organization"
+        ],
+        "definition": "a terrorist organization formed in 1979 by a faction of the Popular Front for the Liberation of Palestine but disbanded in the 1980s when key members left to join a faction of al-Fatah",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "Organizacija 15. maj",
+          "translated_synonyms": [
+            "Organizacija 15. maj"
+          ],
+          "definition_translation": "teroristicka organizacija koju je 1979. osnovala frakcija Narodnog fronta za oslobodjenje Palestine, a koja je rasformirana 1980-ih kada su kljucni clanovi presli u frakciju al-Fataha",
+          "confidence": "medium",
+          "notes": [
+            "Proper-name rendering follows literal Serbian order."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "Organizacija 15. maj",
+          "translated_synonyms": [
+            "Organizacija 15. maj",
+            "15. maj"
+          ],
+          "definition_translation": "teroristicka organizacija osnovana 1979. od strane frakcije Narodnog fronta za oslobodjenje Palestine; rasformirana je 1980-ih kada su vazni clanovi presli u frakciju al-Fataha",
+          "confidence": "medium",
+          "notes": [
+            "Kept the proper name; abbreviated form needs curator confirmation."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "Organizacija 15. maj",
+          "translated_synonyms": [
+            "Organizacija 15. maj"
+          ],
+          "definition_translation": "palestinska militantna organizacija osnovana 1979. kao frakcija Narodnog fronta za oslobodjenje Palestine i rasformirana tokom 1980-ih",
+          "confidence": "medium",
+          "notes": [
+            "Curator should verify conventional Serbian name and whether to retain 'teroristicka' from the source gloss."
+          ]
+        }
+      }
+    },
+    {
+      "index": 7,
+      "selector_id": "ENG30-15149933-n",
+      "source_synset": {
+        "id": "ENG30-15149933-n",
+        "english_id": "ENG30-15149933-n",
+        "name": "1750s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1750s"
+        ],
+        "definition": "the decade from 1750 to 1759",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1750-e",
+          "translated_synonyms": [
+            "1750-e"
+          ],
+          "definition_translation": "decenija od 1750. do 1759. godine",
+          "confidence": "medium",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "pedesete godine 18. veka",
+          "translated_synonyms": [
+            "pedesete godine 18. veka",
+            "1750-e"
+          ],
+          "definition_translation": "decenija od 1750. do 1759. godine",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "pedesete godine 18. veka",
+          "translated_synonyms": [
+            "pedesete godine 18. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1750-1759",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 8,
+      "selector_id": "ENG30-15150304-n",
+      "source_synset": {
+        "id": "ENG30-15150304-n",
+        "english_id": "ENG30-15150304-n",
+        "name": "1760s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1760s"
+        ],
+        "definition": "the decade from 1760 to 1769",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1760-e",
+          "translated_synonyms": [
+            "1760-e"
+          ],
+          "definition_translation": "decenija od 1760. do 1769. godine",
+          "confidence": "medium",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "sezdesete godine 18. veka",
+          "translated_synonyms": [
+            "sezdesete godine 18. veka",
+            "1760-e"
+          ],
+          "definition_translation": "decenija od 1760. do 1769. godine",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "sezdesete godine 18. veka",
+          "translated_synonyms": [
+            "sezdesete godine 18. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1760-1769",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 9,
+      "selector_id": "ENG30-15150790-n",
+      "source_synset": {
+        "id": "ENG30-15150790-n",
+        "english_id": "ENG30-15150790-n",
+        "name": "1770s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1770s"
+        ],
+        "definition": "the decade from 1770 to 1779",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1770-e",
+          "translated_synonyms": [
+            "1770-e"
+          ],
+          "definition_translation": "decenija od 1770. do 1779. godine",
+          "confidence": "medium",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "sedamdesete godine 18. veka",
+          "translated_synonyms": [
+            "sedamdesete godine 18. veka",
+            "1770-e"
+          ],
+          "definition_translation": "decenija od 1770. do 1779. godine",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "sedamdesete godine 18. veka",
+          "translated_synonyms": [
+            "sedamdesete godine 18. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1770-1779",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 10,
+      "selector_id": "ENG30-15151175-n",
+      "source_synset": {
+        "id": "ENG30-15151175-n",
+        "english_id": "ENG30-15151175-n",
+        "name": "1780s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1780s"
+        ],
+        "definition": "the decade from 1780 to 1789",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1780-e",
+          "translated_synonyms": [
+            "1780-e"
+          ],
+          "definition_translation": "decenija od 1780. do 1789. godine",
+          "confidence": "medium",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "osamdesete godine 18. veka",
+          "translated_synonyms": [
+            "osamdesete godine 18. veka",
+            "1780-e"
+          ],
+          "definition_translation": "decenija od 1780. do 1789. godine",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "osamdesete godine 18. veka",
+          "translated_synonyms": [
+            "osamdesete godine 18. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1780-1789",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 11,
+      "selector_id": "ENG30-15151561-n",
+      "source_synset": {
+        "id": "ENG30-15151561-n",
+        "english_id": "ENG30-15151561-n",
+        "name": "1790s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1790s"
+        ],
+        "definition": "the decade from 1790 to 1799",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1790-e",
+          "translated_synonyms": [
+            "1790-e"
+          ],
+          "definition_translation": "decenija od 1790. do 1799. godine",
+          "confidence": "medium",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "devedesete godine 18. veka",
+          "translated_synonyms": [
+            "devedesete godine 18. veka",
+            "1790-e"
+          ],
+          "definition_translation": "decenija od 1790. do 1799. godine",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "devedesete godine 18. veka",
+          "translated_synonyms": [
+            "devedesete godine 18. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1790-1799",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 12,
+      "selector_id": "ENG30-14639269-n",
+      "source_synset": {
+        "id": "ENG30-14639269-n",
+        "english_id": "ENG30-14639269-n",
+        "name": "18-karat_gold.n.01",
+        "pos": "n",
+        "lemmas": [
+          "18-karat gold"
+        ],
+        "definition": "an alloy that contains 75 per cent gold",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "18-karatno zlato",
+          "translated_synonyms": [
+            "18-karatno zlato"
+          ],
+          "definition_translation": "legura koja sadrzi 75 procenata zlata",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "osamnaestokaratno zlato",
+          "translated_synonyms": [
+            "osamnaestokaratno zlato",
+            "18-karatno zlato"
+          ],
+          "definition_translation": "legura sa 75 procenata zlata",
+          "confidence": "high",
+          "notes": [
+            "Both spelled-out and numeric variants are acceptable Serbian lexical forms."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "osamnaestokaratno zlato",
+          "translated_synonyms": [
+            "osamnaestokaratno zlato",
+            "18-karatno zlato"
+          ],
+          "definition_translation": "zlato legirano tako da sadrzi 75 procenata zlata",
+          "confidence": "high",
+          "notes": [
+            "Synset is a material noun; literal candidates keep noun phrase form."
+          ]
+        }
+      }
+    },
+    {
+      "index": 13,
+      "selector_id": "ENG30-15148958-n",
+      "source_synset": {
+        "id": "ENG30-15148958-n",
+        "english_id": "ENG30-15148958-n",
+        "name": "1820s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1820s"
+        ],
+        "definition": "the decade from 1820 to 1829",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1820-e",
+          "translated_synonyms": [
+            "1820-e"
+          ],
+          "definition_translation": "decenija od 1820. do 1829. godine",
+          "confidence": "medium",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "dvadesete godine 19. veka",
+          "translated_synonyms": [
+            "dvadesete godine 19. veka",
+            "1820-e"
+          ],
+          "definition_translation": "decenija od 1820. do 1829. godine",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "dvadesete godine 19. veka",
+          "translated_synonyms": [
+            "dvadesete godine 19. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1820-1829",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 14,
+      "selector_id": "ENG30-15149271-n",
+      "source_synset": {
+        "id": "ENG30-15149271-n",
+        "english_id": "ENG30-15149271-n",
+        "name": "1830s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1830s"
+        ],
+        "definition": "the decade from 1830 to 1839",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1830-e",
+          "translated_synonyms": [
+            "1830-e"
+          ],
+          "definition_translation": "decenija od 1830. do 1839. godine",
+          "confidence": "medium",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "tridesete godine 19. veka",
+          "translated_synonyms": [
+            "tridesete godine 19. veka",
+            "1830-e"
+          ],
+          "definition_translation": "decenija od 1830. do 1839. godine",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "tridesete godine 19. veka",
+          "translated_synonyms": [
+            "tridesete godine 19. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1830-1839",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 15,
+      "selector_id": "ENG30-15149562-n",
+      "source_synset": {
+        "id": "ENG30-15149562-n",
+        "english_id": "ENG30-15149562-n",
+        "name": "1840s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1840s"
+        ],
+        "definition": "the decade from 1840 to 1849",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1840-e",
+          "translated_synonyms": [
+            "1840-e"
+          ],
+          "definition_translation": "decenija od 1840. do 1849. godine",
+          "confidence": "medium",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "cetrdesete godine 19. veka",
+          "translated_synonyms": [
+            "cetrdesete godine 19. veka",
+            "1840-e"
+          ],
+          "definition_translation": "decenija od 1840. do 1849. godine",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "cetrdesete godine 19. veka",
+          "translated_synonyms": [
+            "cetrdesete godine 19. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1840-1849",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 16,
+      "selector_id": "ENG30-15149853-n",
+      "source_synset": {
+        "id": "ENG30-15149853-n",
+        "english_id": "ENG30-15149853-n",
+        "name": "1850s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1850s"
+        ],
+        "definition": "the decade from 1850 to 1859",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1850-e",
+          "translated_synonyms": [
+            "1850-e"
+          ],
+          "definition_translation": "decenija od 1850. do 1859. godine",
+          "confidence": "medium",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "pedesete godine 19. veka",
+          "translated_synonyms": [
+            "pedesete godine 19. veka",
+            "1850-e"
+          ],
+          "definition_translation": "decenija od 1850. do 1859. godine",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "pedesete godine 19. veka",
+          "translated_synonyms": [
+            "pedesete godine 19. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1850-1859",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 17,
+      "selector_id": "ENG30-15150224-n",
+      "source_synset": {
+        "id": "ENG30-15150224-n",
+        "english_id": "ENG30-15150224-n",
+        "name": "1860s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1860s"
+        ],
+        "definition": "the decade from 1860 to 1869",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1860-e",
+          "translated_synonyms": [
+            "1860-e"
+          ],
+          "definition_translation": "decenija od 1860. do 1869. godine",
+          "confidence": "medium",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "sezdesete godine 19. veka",
+          "translated_synonyms": [
+            "sezdesete godine 19. veka",
+            "1860-e"
+          ],
+          "definition_translation": "decenija od 1860. do 1869. godine",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "sezdesete godine 19. veka",
+          "translated_synonyms": [
+            "sezdesete godine 19. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1860-1869",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 18,
+      "selector_id": "ENG30-15150710-n",
+      "source_synset": {
+        "id": "ENG30-15150710-n",
+        "english_id": "ENG30-15150710-n",
+        "name": "1870s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1870s"
+        ],
+        "definition": "the decade from 1870 to 1879",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1870-e",
+          "translated_synonyms": [
+            "1870-e"
+          ],
+          "definition_translation": "decenija od 1870. do 1879. godine",
+          "confidence": "medium",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "sedamdesete godine 19. veka",
+          "translated_synonyms": [
+            "sedamdesete godine 19. veka",
+            "1870-e"
+          ],
+          "definition_translation": "decenija od 1870. do 1879. godine",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "sedamdesete godine 19. veka",
+          "translated_synonyms": [
+            "sedamdesete godine 19. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1870-1879",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 19,
+      "selector_id": "ENG30-15148707-n",
+      "source_synset": {
+        "id": "ENG30-15148707-n",
+        "english_id": "ENG30-15148707-n",
+        "name": "1900s.n.01",
+        "pos": "n",
+        "lemmas": [
+          "1900s"
+        ],
+        "definition": "the decade from 1900 to 1909",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "1900-e",
+          "translated_synonyms": [
+            "1900-e"
+          ],
+          "definition_translation": "decenija od 1900. do 1909. godine",
+          "confidence": "medium",
+          "notes": [
+            "Bare numeric form can be ambiguous in Serbian."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "prva decenija 20. veka",
+          "translated_synonyms": [
+            "prva decenija 20. veka",
+            "godine 1900-1909"
+          ],
+          "definition_translation": "decenija od 1900. do 1909. godine",
+          "confidence": "high",
+          "notes": [
+            "Preferred explicit phrase to avoid confusion with the whole twentieth century."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "prva decenija 20. veka",
+          "translated_synonyms": [
+            "prva decenija 20. veka"
+          ],
+          "definition_translation": "period od deset godina koji obuhvata godine 1900-1909",
+          "confidence": "high",
+          "notes": [
+            "Validated as narrower than 'dvadeseti vek'."
+          ]
+        }
+      }
+    },
+    {
+      "index": 20,
+      "selector_id": "ENG30-14639368-n",
+      "source_synset": {
+        "id": "ENG30-14639368-n",
+        "english_id": "ENG30-14639368-n",
+        "name": "22-karat_gold.n.01",
+        "pos": "n",
+        "lemmas": [
+          "22-karat gold"
+        ],
+        "definition": "an alloy that contains 87 per cent gold",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "22-karatno zlato",
+          "translated_synonyms": [
+            "22-karatno zlato"
+          ],
+          "definition_translation": "legura koja sadrzi 87 procenata zlata",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "dvadesetdvokaratno zlato",
+          "translated_synonyms": [
+            "dvadesetdvokaratno zlato",
+            "22-karatno zlato"
+          ],
+          "definition_translation": "legura sa 87 procenata zlata",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "dvadesetdvokaratno zlato",
+          "translated_synonyms": [
+            "dvadesetdvokaratno zlato",
+            "22-karatno zlato"
+          ],
+          "definition_translation": "zlato legirano tako da sadrzi 87 procenata zlata",
+          "confidence": "high",
+          "notes": []
+        }
+      }
+    },
+    {
+      "index": 21,
+      "selector_id": "ENG30-14639467-n",
+      "source_synset": {
+        "id": "ENG30-14639467-n",
+        "english_id": "ENG30-14639467-n",
+        "name": "24-karat_gold.n.01",
+        "pos": "n",
+        "lemmas": [
+          "24-karat gold",
+          "pure gold"
+        ],
+        "definition": "100 per cent gold",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "24-karatno zlato",
+          "translated_synonyms": [
+            "24-karatno zlato",
+            "cisto zlato"
+          ],
+          "definition_translation": "100 procenata zlata",
+          "confidence": "high",
+          "notes": []
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "dvadesetcetvorokaratno zlato",
+          "translated_synonyms": [
+            "dvadesetcetvorokaratno zlato",
+            "24-karatno zlato",
+            "cisto zlato"
+          ],
+          "definition_translation": "zlato koje je u potpunosti zlato",
+          "confidence": "high",
+          "notes": [
+            "Kept 'cisto zlato' because it is a direct source synonym."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "cisto zlato",
+          "translated_synonyms": [
+            "cisto zlato",
+            "dvadesetcetvorokaratno zlato",
+            "24-karatno zlato"
+          ],
+          "definition_translation": "zlato najvise cistoce, bez drugih metala prema datom opisu",
+          "confidence": "high",
+          "notes": [
+            "Conceptual representative literal favors the common lexical phrase."
+          ]
+        }
+      }
+    },
+    {
+      "index": 22,
+      "selector_id": "ENG30-15118011-n",
+      "source_synset": {
+        "id": "ENG30-15118011-n",
+        "english_id": "ENG30-15118011-n",
+        "name": "24/7.n.01",
+        "pos": "n",
+        "lemmas": [
+          "24/7"
+        ],
+        "definition": "uptime is 24 hours a day 7 days a week",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "24/7",
+          "translated_synonyms": [
+            "24/7"
+          ],
+          "definition_translation": "dostupnost 24 sata dnevno, 7 dana u nedelji",
+          "confidence": "high",
+          "notes": [
+            "The borrowed numeric expression is common in Serbian."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "neprekidan rad",
+          "translated_synonyms": [
+            "neprekidan rad",
+            "24/7",
+            "stalna dostupnost"
+          ],
+          "definition_translation": "rad ili dostupnost tokom 24 sata dnevno, sedam dana u nedelji",
+          "confidence": "high",
+          "notes": [
+            "Expanded from literal expression to the uptime concept."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "stalna dostupnost",
+          "translated_synonyms": [
+            "stalna dostupnost",
+            "neprekidan rad",
+            "24/7"
+          ],
+          "definition_translation": "stanje u kome je sistem dostupan neprekidno, svakog dana i u svako doba",
+          "confidence": "high",
+          "notes": [
+            "Conceptual output targets uptime, not the adverbial expression 'non-stop'."
+          ]
+        }
+      }
+    },
+    {
+      "index": 23,
+      "selector_id": "ENG30-05911560-n",
+      "source_synset": {
+        "id": "ENG30-05911560-n",
+        "english_id": "ENG30-05911560-n",
+        "name": "401-k_plan.n.01",
+        "pos": "n",
+        "lemmas": [
+          "401-k plan",
+          "401-k"
+        ],
+        "definition": "a retirement savings plan that is funded by employee contributions and (often) matching contributions from the employer; contributions are made from your salary before taxes and the funds grow tax-free until they are withdrawn, at which point they can be converted into an IRA; funds can be transferred if you change employers and you can (to some extent) manage the investments yourself",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "401(k) plan",
+          "translated_synonyms": [
+            "401(k) plan",
+            "401(k)"
+          ],
+          "definition_translation": "plan penzione stednje koji se finansira uplatama zaposlenog i cesto odgovarajucim uplatama poslodavca; uplate se izdvajaju iz plate pre oporezivanja i sredstva rastu bez poreza dok se ne povuku",
+          "confidence": "medium",
+          "notes": [
+            "Kept US-specific plan name rather than forcing a domestic Serbian equivalent."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "401(k) penzioni plan",
+          "translated_synonyms": [
+            "401(k) penzioni plan",
+            "401(k) plan stednje za penziju",
+            "401(k)"
+          ],
+          "definition_translation": "americki plan stednje za penziju koji se finansira uplatama zaposlenog, cesto i uplatama poslodavca, pri cemu se doprinosi izdvajaju pre poreza i sredstva rastu do povlacenja bez tekuceg oporezivanja",
+          "confidence": "medium",
+          "notes": [
+            "Filtered out generic 'penzioni fond' because it loses the US tax-plan sense."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "401(k) plan stednje za penziju",
+          "translated_synonyms": [
+            "401(k) plan stednje za penziju",
+            "401(k) penzioni plan"
+          ],
+          "definition_translation": "americki poreski povlascen plan penzione stednje koji se puni doprinosima zaposlenog i cesto poslodavca",
+          "confidence": "medium",
+          "notes": [
+            "Culture-specific financial term; curator may prefer preserving the original name as the main literal."
+          ]
+        }
+      }
+    },
+    {
+      "index": 24,
+      "selector_id": "ENG30-15300051-n",
+      "source_synset": {
+        "id": "ENG30-15300051-n",
+        "english_id": "ENG30-15300051-n",
+        "name": "9/11.n.01",
+        "pos": "n",
+        "lemmas": [
+          "9/11",
+          "9-11",
+          "September 11",
+          "Sept. 11",
+          "Sep 11"
+        ],
+        "definition": "the day in 2001 when Arab suicide bombers hijacked United States airliners and used them as bombs",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "11. septembar",
+          "translated_synonyms": [
+            "11. septembar",
+            "9/11",
+            "9-11"
+          ],
+          "definition_translation": "dan 2001. kada su arapski bombasi samoubice oteli americke putnicke avione i upotrebili ih kao bombe",
+          "confidence": "high",
+          "notes": [
+            "Date is localized to Serbian day-month order."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "11. septembar",
+          "translated_synonyms": [
+            "11. septembar",
+            "9/11",
+            "napadi 11. septembra"
+          ],
+          "definition_translation": "dan 2001. godine kada su arapski bombasi samoubice oteli americke putnicke avione i iskoristili ih kao bombe",
+          "confidence": "high",
+          "notes": [
+            "Added event-name candidate; source synset is the day, so date remains representative."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "11. septembar",
+          "translated_synonyms": [
+            "11. septembar",
+            "napadi 11. septembra",
+            "9/11"
+          ],
+          "definition_translation": "dan teroristickih napada 2001. u kojima su oteti americki putnicki avioni upotrebljeni kao oruzje",
+          "confidence": "high",
+          "notes": [
+            "Conceptual gloss avoids overlong details while preserving the event identity."
+          ]
+        }
+      }
+    },
+    {
+      "index": 25,
+      "selector_id": "ENG30-08346286-n",
+      "source_synset": {
+        "id": "ENG30-08346286-n",
+        "english_id": "ENG30-08346286-n",
+        "name": "a'man.n.01",
+        "pos": "n",
+        "lemmas": [
+          "A'man"
+        ],
+        "definition": "the Israeli military intelligence which produces comprehensive national intelligence briefings for the prime minister and the cabinet",
+        "examples": []
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "Aman",
+          "translated_synonyms": [
+            "Aman",
+            "A'man"
+          ],
+          "definition_translation": "izraelska vojna obavestajna sluzba koja priprema sveobuhvatne nacionalne obavestajne brifinge za premijera i kabinet",
+          "confidence": "medium",
+          "notes": [
+            "Proper name normalized without apostrophe; original spelling retained as synonym."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "Aman",
+          "translated_synonyms": [
+            "Aman",
+            "A'man",
+            "izraelska vojna obavestajna sluzba"
+          ],
+          "definition_translation": "izraelska vojna obavestajna sluzba koja izradjuje sveobuhvatne nacionalne obavestajne brifinge za premijera i kabinet",
+          "confidence": "medium",
+          "notes": [
+            "Descriptive phrase is useful but too broad as a primary literal."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "Aman",
+          "translated_synonyms": [
+            "Aman"
+          ],
+          "definition_translation": "izraelska vojna obavestajna organizacija nadlezna za nacionalne obavestajne procene za vladu",
+          "confidence": "medium",
+          "notes": [
+            "Curator should confirm preferred Serbian transliteration of this organization name."
+          ]
+        }
+      }
+    }
+  ]
+}
