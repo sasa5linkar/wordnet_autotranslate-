@@ -176,9 +176,9 @@ class LangChainBasePipeline:
         return normalised
 
     def _render_prompt(self, synset: Dict[str, Any]) -> str:
-        lang_name = LanguageUtils.get_language_name(self.target_lang)
-        # Fall back to the raw code when the language is not in the lookup table
-        if lang_name.startswith("Unknown"):
+        if LanguageUtils.is_supported_language(self.target_lang):
+            lang_name = LanguageUtils.get_language_name(self.target_lang)
+        else:
             lang_name = self.target_lang
         lemmas = synset.get("lemmas", [])
         lemmas_display = ", ".join(lemmas) if lemmas else "(none)"
