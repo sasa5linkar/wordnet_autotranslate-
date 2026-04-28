@@ -91,6 +91,60 @@ def test_langchain_base_pipeline_plain_text_fallback(demo_synset: Dict[str, Any]
     assert result["definition_translation"] == ""
     assert result["examples"] == []
     assert "error" in result["payload"]["parsed"]
+    # model key must be absent when no model info is provided
+    assert "model" not in result
+
+
+def test_langchain_base_pipeline_normalise_none_fields(demo_synset: Dict[str, Any]) -> None:
+    """_normalise_synset should overwrite None/wrong-type fields unconditionally."""
+    llm = _MemoryLLM(
+        payload={
+            "translation": "entitet",
+            "synonyms": [],
+            "definition_translation": "",
+            "examples": [],
+            "notes": None,
+        }
+    )
+    pipeline = LangChainBasePipeline(source_lang="en", target_lang="sr", llm=llm)
+
+    synset_with_nones = {
+        "id": "test-id",
+        "lemmas": None,        # should be corrected to []
+        "definition": None,    # should be corrected to ""
+        "examples": None,      # should be corrected to []
+        "pos": None,           # should be corrected to ""
+    }
+
+    result = pipeline.translate_synset(synset_with_nones)
+
+    # Pipeline must not raise; the normalised source is returned in result["source"]
+    assert isinstance(result["source"]["lemmas"], list)
+    assert isinstance(result["source"]["definition"], str)
+    assert isinstance(result["source"]["examples"], list)
+    assert isinstance(result["source"]["pos"], str)
+
+
+def test_langchain_base_pipeline_unknown_lang_code(demo_synset: Dict[str, Any]) -> None:
+    """Prompts for unknown language codes should use the raw code, not 'Unknown (...)'."""
+    llm = _MemoryLLM(
+        payload={
+            "translation": "test",
+            "synonyms": [],
+            "definition_translation": "",
+            "examples": [],
+            "notes": None,
+        }
+    )
+    pipeline = LangChainBasePipeline(source_lang="en", target_lang="xx", llm=llm)
+    pipeline.translate_synset(demo_synset)
+
+    last_human = llm.messages[-1]
+    prompt_text = getattr(last_human, "content", str(last_human))
+    # Must not contain "Unknown" in the generated prompt
+    assert "Unknown" not in prompt_text
+    # Must contain the raw code instead
+    assert "xx" in prompt_text
 
 
 def test_langchain_base_pipeline_batch_and_stream(demo_synset: Dict[str, Any]) -> None:

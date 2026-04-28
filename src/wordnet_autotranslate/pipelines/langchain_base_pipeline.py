@@ -143,7 +143,12 @@ class LangChainBasePipeline:
         )
 
     def _normalise_synset(self, synset: Dict[str, Any]) -> Dict[str, Any]:
-        """Ensure the synset dictionary exposes expected keys without mutation."""
+        """Ensure the synset dictionary exposes expected keys without mutation.
+
+        All normalised fields are assigned unconditionally so that existing keys
+        with ``None`` or wrong types (e.g. ``{"lemmas": None}``) are corrected
+        rather than left as-is.
+        """
 
         lemmas = synset.get("lemmas") or synset.get("literals") or []
         if isinstance(lemmas, (str, bytes)):
@@ -163,16 +168,18 @@ class LangChainBasePipeline:
         pos = synset.get("pos") or synset.get("part_of_speech") or ""
 
         normalised = dict(synset)
-        normalised.setdefault("lemmas", lemmas)
-        normalised.setdefault("definition", definition)
-        normalised.setdefault("examples", examples)
-        if pos and "pos" not in normalised:
-            normalised["pos"] = str(pos)
+        normalised["lemmas"] = lemmas
+        normalised["definition"] = definition
+        normalised["examples"] = examples
+        normalised["pos"] = str(pos)
 
         return normalised
 
     def _render_prompt(self, synset: Dict[str, Any]) -> str:
-        target_name = LanguageUtils.get_language_name(self.target_lang)
+        lang_name = LanguageUtils.get_language_name(self.target_lang)
+        # Fall back to the raw code when the language is not in the lookup table
+        if lang_name.startswith("Unknown"):
+            lang_name = self.target_lang
         lemmas = synset.get("lemmas", [])
         lemmas_display = ", ".join(lemmas) if lemmas else "(none)"
         definition = synset.get("definition") or "(no definition provided)"
@@ -196,7 +203,7 @@ class LangChainBasePipeline:
 
         return textwrap.dedent(
             f"""
-            Translate the following WordNet synset from {self.source_lang.upper()} to {target_name}.
+            Translate the following WordNet synset from {self.source_lang.upper()} to {lang_name}.
             Keep lexical meaning precise and stay within dictionary tone.
 
             Synset ID: {synset_id}
@@ -290,7 +297,7 @@ class LangChainBasePipeline:
         model_info = self._build_model_info()
         summary = self._render_summary(translation, synonyms, definition_translation)
 
-        return {
+        result: Dict[str, Any] = {
             "translation": translation,
             "definition_translation": definition_translation,
             "translated_synonyms": synonyms,
@@ -306,8 +313,10 @@ class LangChainBasePipeline:
                 "parsed": payload,
             },
             "curator_summary": summary,
-            "model": model_info,
         }
+        if model_info:
+            result["model"] = model_info
+        return result
 
     def _normalise_synonyms(
         self, value: Any, translation: str
