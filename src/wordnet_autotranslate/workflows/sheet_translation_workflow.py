@@ -20,6 +20,8 @@ from ..utils.language_utils import LanguageUtils
 from .synset_translation_workflow import (
     WorkflowConfig,
     parse_eng30_id,
+    parse_ili_id,
+    resolve_ili_to_payload,
     resolve_wordnet_synset,
     run_translation_workflow,
 )
@@ -34,6 +36,13 @@ _XLSX_NS = {
 }
 
 _COLUMN_ALIASES: Dict[str, Tuple[str, ...]] = {
+    "ili": (
+        "ili",
+        "ili_id",
+        "ili id",
+        "interlingual_index",
+        "interlingual index",
+    ),
     "english_id": (
         "english_id",
         "english id",
@@ -101,6 +110,7 @@ _COLUMN_ALIASES: Dict[str, Tuple[str, ...]] = {
 class SheetColumnOverrides:
     """Explicit source-column names for row selectors and pipeline selection."""
 
+    ili: Optional[str] = None
     english_id: Optional[str] = None
     synset_name: Optional[str] = None
     lemma: Optional[str] = None
@@ -113,6 +123,7 @@ class SheetColumnOverrides:
 class SheetColumnMapping:
     """Resolved input-column mapping against a concrete header row."""
 
+    ili: Optional[str] = None
     english_id: Optional[str] = None
     synset_name: Optional[str] = None
     lemma: Optional[str] = None
@@ -215,6 +226,7 @@ def detect_column_mapping(
         return None
 
     return SheetColumnMapping(
+        ili=_resolve("ili"),
         english_id=_resolve("english_id"),
         synset_name=_resolve("synset_name"),
         lemma=_resolve("lemma"),
@@ -511,9 +523,13 @@ def _create_run_dir(base_output_dir: Path, source: str) -> Path:
         "logs",
         "summary",
         "results/success",
+        "results/error",
         "results/invalid_format",
         "results/not_found",
-        "results/errors",
+        "work_items/pending",
+        "work_items/in_progress",
+        "work_items/completed",
+        "work_items/failed",
     ]:
         (run_dir / relative).mkdir(parents=True, exist_ok=True)
     return run_dir
@@ -552,6 +568,8 @@ def _filled_selector_columns(row: Mapping[str, str], mapping: SheetColumnMapping
     selectors: List[str] = []
     if _value_from_row(row, mapping.english_id):
         selectors.append("english_id")
+    if _value_from_row(row, mapping.ili):
+        selectors.append("ili")
     if _value_from_row(row, mapping.synset_name):
         selectors.append("synset_name")
     if _value_from_row(row, mapping.lemma) or _value_from_row(row, mapping.pos):
@@ -565,6 +583,7 @@ def validate_sheet_row(
     mapping: SheetColumnMapping,
     *,
     default_pipeline: str = "all",
+    include_relations: bool = False,
 ) -> Dict[str, Any]:
     """Validate one sheet row and resolve it into a canonical synset payload."""
     try:
@@ -584,9 +603,10 @@ def validate_sheet_row(
     if len(filled_selectors) > 1:
         note = (
             "Multiple selector columns were filled. "
-            "The workflow used precedence english_id > synset_name > lemma+pos."
+            "The workflow used precedence english_id > ili > synset_name > lemma+pos."
         )
 
+    ili = _value_from_row(row, mapping.ili)
     english_id = _value_from_row(row, mapping.english_id)
     synset_name = _value_from_row(row, mapping.synset_name)
     lemma = _value_from_row(row, mapping.lemma)
@@ -598,7 +618,10 @@ def validate_sheet_row(
         selector_value = english_id
         try:
             parse_eng30_id(english_id)
-            synset_payload = resolve_wordnet_synset(english_id=english_id)
+            synset_payload = resolve_wordnet_synset(
+                english_id=english_id,
+                include_relations=include_relations,
+            )
         except ValueError as exc:
             return {
                 "row_number": row_number,
@@ -629,6 +652,55 @@ def validate_sheet_row(
             "note": note,
         }
 
+    if ili:
+        selector_kind = "ili"
+        selector_value = ili
+        try:
+            parse_ili_id(ili)
+            synset_payload = resolve_wordnet_synset(
+                ili=ili,
+                include_relations=include_relations,
+            )
+        except ValueError as exc:
+            return {
+                "row_number": row_number,
+                "status": "invalid_format",
+                "selector_kind": selector_kind,
+                "selector_value": selector_value,
+                "pipeline": pipeline,
+                "message": str(exc),
+                "note": note,
+            }
+        except LookupError as exc:
+            return {
+                "row_number": row_number,
+                "status": "not_found",
+                "selector_kind": selector_kind,
+                "selector_value": selector_value,
+                "pipeline": pipeline,
+                "message": str(exc),
+                "note": note,
+            }
+        except Exception as exc:
+            return {
+                "row_number": row_number,
+                "status": "error",
+                "selector_kind": selector_kind,
+                "selector_value": selector_value,
+                "pipeline": pipeline,
+                "message": str(exc),
+                "note": note,
+            }
+        return {
+            "row_number": row_number,
+            "status": "valid",
+            "selector_kind": selector_kind,
+            "selector_value": selector_value,
+            "pipeline": pipeline,
+            "synset_payload": synset_payload,
+            "note": note,
+        }
+
     if synset_name:
         selector_kind = "synset_name"
         selector_value = synset_name
@@ -645,7 +717,10 @@ def validate_sheet_row(
                 "note": note,
             }
         try:
-            synset_payload = resolve_wordnet_synset(synset_name=synset_name)
+            synset_payload = resolve_wordnet_synset(
+                synset_name=synset_name,
+                include_relations=include_relations,
+            )
         except Exception as exc:
             return {
                 "row_number": row_number,
@@ -698,6 +773,7 @@ def validate_sheet_row(
                 lemma=lemma,
                 pos=pos,
                 sense_index=sense_index,
+                include_relations=include_relations,
             )
         except ValueError as exc:
             message = str(exc)
@@ -748,7 +824,7 @@ def validate_sheet_row(
         "selector_value": "",
         "pipeline": pipeline,
         "message": (
-            "Row does not contain a usable selector. Fill english_id, synset_name, "
+            "Row does not contain a usable selector. Fill english_id, ili, synset_name, "
             "or lemma+pos."
         ),
         "note": note,
@@ -1053,4 +1129,183 @@ def run_sheet_translation_batch(config: SheetBatchConfig) -> Dict[str, Any]:
     }
     _write_summary_files(run_dir, summary_records, summary)
     logger.info("Finished sheet batch. Summary counts: %s", counts)
+    return summary
+
+
+def _build_native_work_item_path(run_dir: Path, record: Mapping[str, Any]) -> Path:
+    selector_kind = safe_path_component(str(record.get("selector_kind")))
+    row_name = f"row_{int(record['row_number']):05d}.json"
+    synset_payload = record.get("synset_payload", {})
+    pipeline = safe_path_component(str(record.get("pipeline", "")))
+    pos = safe_path_component(str(synset_payload.get("pos", "unknown")))
+    selector_id = safe_path_component(
+        str(
+            synset_payload.get("english_id")
+            or synset_payload.get("ili_id")
+            or record.get("selector_value")
+        )
+    )
+    return (
+        run_dir
+        / "work_items"
+        / "pending"
+        / pipeline
+        / selector_kind
+        / pos
+        / selector_id
+        / row_name
+    )
+
+
+def prepare_native_sheet_translation_batch(config: SheetBatchConfig) -> Dict[str, Any]:
+    """Prepare a batch run for native-agent translation without invoking Ollama/LangChain."""
+    default_pipeline = config.default_pipeline.strip().lower()
+    if default_pipeline not in _SUPPORTED_PIPELINES:
+        raise ValueError(
+            f"Unsupported default pipeline {config.default_pipeline!r}. "
+            "Use one of: baseline, langgraph, conceptual, all, dspy."
+        )
+
+    ensure_wordnet_available()
+
+    run_dir = _create_run_dir(config.output_dir, config.source)
+    logger = _setup_logger(run_dir / "logs" / "batch.log")
+    logger.info("Starting native-agent sheet batch from source=%s", config.source)
+
+    snapshot = _materialize_sheet_input(
+        config.source,
+        output_dir=run_dir,
+        gid=config.gid,
+        timeout=config.download_timeout,
+    )
+    logger.info(
+        "Prepared input snapshot at %s with %s data rows",
+        snapshot.local_path,
+        snapshot.row_count,
+    )
+
+    headers, rows = _read_csv_rows(snapshot.local_path)
+    mapping = detect_column_mapping(headers, config.columns)
+    if not (
+        mapping.english_id
+        or mapping.ili
+        or mapping.synset_name
+        or (mapping.lemma and mapping.pos)
+    ):
+        raise ValueError(
+            "Could not find usable selector columns. Provide an english_id column, "
+            "an ili column, a synset_name column, or both lemma and pos columns."
+        )
+
+    logger.info("Resolved column mapping for native batch: %s", asdict(mapping))
+
+    summary_records: List[Dict[str, Any]] = []
+    counts = {"pending": 0, "invalid_format": 0, "not_found": 0, "error": 0}
+
+    for offset, row in enumerate(rows, start=2):
+        try:
+            validation = validate_sheet_row(
+                offset,
+                row,
+                mapping,
+                default_pipeline=default_pipeline,
+                include_relations=True,
+            )
+        except Exception as exc:
+            validation = {
+                "row_number": offset,
+                "status": "error",
+                "selector_kind": "unknown",
+                "selector_value": "",
+                "pipeline": "",
+                "message": str(exc),
+                "note": None,
+            }
+
+        status = str(validation["status"])
+        if status == "valid":
+            work_item_path = _build_native_work_item_path(run_dir, validation)
+            work_item = {
+                "row_number": validation["row_number"],
+                "status": "pending",
+                "selector_kind": validation.get("selector_kind"),
+                "selector_value": validation.get("selector_value"),
+                "pipeline": validation.get("pipeline"),
+                "note": validation.get("note"),
+                "synset_payload": validation.get("synset_payload"),
+                "source_row": dict(row),
+                "translation_mode": "native_agent",
+                "retranslate_existing_allowed": True,
+            }
+            _write_json(work_item_path, work_item)
+            counts["pending"] += 1
+            logger.info(
+                "Queued row %s for native-agent translation via %s",
+                offset,
+                validation.get("pipeline"),
+            )
+            output_path = work_item_path
+            summary_status = "pending"
+            message = "Queued for native-agent translation."
+        else:
+            counts[status] += 1
+            logger.warning(
+                "Row %s classified as %s during native batch prep: %s",
+                offset,
+                status,
+                validation.get("message", ""),
+            )
+            output_path = _build_result_path(run_dir, status, validation)
+            _write_json(
+                output_path,
+                {
+                    "row_number": validation["row_number"],
+                    "status": status,
+                    "selector_kind": validation.get("selector_kind"),
+                    "selector_value": validation.get("selector_value"),
+                    "pipeline": validation.get("pipeline"),
+                    "note": validation.get("note"),
+                    "message": validation.get("message"),
+                    "source_row": dict(row),
+                },
+            )
+            summary_status = status
+            message = validation.get("message", "")
+
+        summary_records.append(
+            {
+                "row_number": validation["row_number"],
+                "status": summary_status,
+                "selector_kind": validation.get("selector_kind"),
+                "selector_value": validation.get("selector_value"),
+                "resolved_english_id": (
+                    validation.get("synset_payload", {}).get("english_id")
+                    if validation.get("synset_payload")
+                    else ""
+                ),
+                "pipeline": validation.get("pipeline"),
+                "message": message,
+                "note": validation.get("note", ""),
+                "output_path": str(output_path),
+            }
+        )
+
+    summary = {
+        "source": snapshot.source,
+        "source_kind": snapshot.source_kind,
+        "downloaded_from": snapshot.downloaded_from,
+        "input_snapshot": str(snapshot.local_path),
+        "run_dir": str(run_dir),
+        "default_pipeline": default_pipeline,
+        "translation_mode": "native_agent",
+        "retranslate_existing_allowed": True,
+        "column_mapping": asdict(mapping),
+        "row_count": len(rows),
+        "counts": counts,
+    }
+    _write_summary_files(run_dir, summary_records, summary)
+    from .native_translation_queue import summarize_native_batch_run
+
+    summarize_native_batch_run(run_dir)
+    logger.info("Finished native-agent batch prep. Summary counts: %s", counts)
     return summary
