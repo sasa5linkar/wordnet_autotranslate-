@@ -11,6 +11,7 @@ pytest.importorskip("langchain_core.messages")
 from wordnet_autotranslate.pipelines.langgraph_translation_pipeline import (
     LangGraphTranslationPipeline,
 )
+from wordnet_autotranslate.utils.log_utils import sanitize_model_name
 from wordnet_autotranslate.pipelines.conceptual_langgraph_pipeline import (
     ConceptualLangGraphTranslationPipeline,
 )
@@ -40,6 +41,8 @@ class _DummyLLM:
         # Verify we got a valid prompt (not all stages have "Synset ID")
         assert len(human_content) > 0, "Empty prompt received"
 
+        definition_text = f"{self.translation} je entitet sa sopstvenim postojanjem."
+
         if "sense_analysis" in system_content:
             payload = {
                 "sense_summary": "A general concept or individual thing that exists.",
@@ -50,7 +53,7 @@ class _DummyLLM:
             }
         elif "definition_translation" in system_content:
             payload = {
-                "definition_translation": f"{self.translation} je entitet sa sopstvenim postojanjem.",
+                "definition_translation": definition_text,
                 "notes": self.notes,
                 "examples": self.examples,
             }
@@ -70,60 +73,16 @@ class _DummyLLM:
             # Filter and validate synonyms
             payload = {
                 "filtered_synonyms": [self.translation],
+                "confidence_by_word": {self.translation: "high"},
                 "removed": [],
                 "confidence": "high",
             }
-        elif "expanded_definition_en" in system_content:
+        elif "definition_quality" in system_content:
             payload = {
-                "expanded_definition_en": "A thing or being understood as existing independently.",
-                "blocked_terms_en": ["entity"],
-                "notes_en": ["Expanded from the source gloss without adding facts."],
-            }
-        elif "expanded_definition_sr" in system_content:
-            payload = {
-                "expanded_definition_sr": f"{self.translation} je nešto što postoji kao zasebna celina.",
-                "blocked_terms_sr": [],
-                "notes_sr": ["Zadržano je značenje iz engleske proširene definicije."],
-            }
-        elif "literal_candidates_sr" in system_content:
-            payload = {
-                "candidates": [
-                    {
-                        "literal": self.translation,
-                        "candidate_type": "primary",
-                        "precision_score": 0.96,
-                        "naturalness_score": 0.89,
-                        "rationale": "Najbliži standardni ekvivalent za dati pojam.",
-                        "fit_assessment": "good equivalent",
-                        "register_note": "standardni registar",
-                    },
-                    {
-                        "literal": "opisna fraza",
-                        "candidate_type": "descriptive",
-                        "precision_score": 0.42,
-                        "naturalness_score": 0.25,
-                        "rationale": "Opisno rešenje ako nema bolje leksikalizacije.",
-                        "fit_assessment": "descriptive phrase",
-                        "register_note": "opisno",
-                    },
-                ]
-            }
-        elif "literal_selection_sr" in system_content:
-            payload = {
-                "selected_literals_sr": [self.translation],
-                "rejected_literals_sr": ["opisna fraza"],
-                "rationale_sr": "Zadržan je najprecizniji i najprirodniji literal.",
-            }
-        elif "final_gloss_sr" in system_content:
-            payload = {
-                "final_gloss_sr": "ono što postoji kao zasebna celina",
-                "style_notes_sr": ["Kratka, necirkularna leksikografska formulacija."],
-            }
-        elif "synset_validation_sr" in system_content:
-            payload = {
-                "validation_passed": True,
+                "status": "ok",
                 "issues": [],
-                "final_synset_ready": True,
+                "revised_definition": definition_text,
+                "notes": "Definition passes grammatical and stylistic checks.",
             }
         else:  # fallback for unexpected prompts
             payload = {
@@ -161,16 +120,19 @@ def test_langgraph_pipeline_returns_structured_dict():
     assert result["target_lang"] == "sr"
     assert result["source"]["id"] == synset["id"]
     assert result["examples"] == ["Ovo je entitet."]
-    # Check new 6-stage pipeline structure
-    assert result["payload"]["definition"]["definition_translation"].startswith(
-        "entitet je"
-    )
-    assert result["payload"]["initial_translation"]["initial_translations"] == [
-        "entitet"
-    ]
+    # Check new 7-stage pipeline structure
+    assert result["payload"]["definition"]["definition_translation"].startswith("entitet je")
+    assert result["payload"]["initial_translation"]["initial_translations"] == ["entitet"]
     assert result["payload"]["filtering"]["filtered_synonyms"] == ["entitet"]
+    assert result["payload"]["definition_quality"]["status"] == "ok"
     assert "Representative literal" in result["curator_summary"]
     assert "Synset literals" in result["curator_summary"]
+
+    model_info = result["model"]
+    assert model_info["resolved"] == "gpt-oss:120b"
+    assert model_info["requested"] == "gpt-oss:120b"
+    assert model_info["fallback_used"] is False
+    assert model_info["resolved_safe"] == sanitize_model_name("gpt-oss:120b")
 
 
 def test_langgraph_pipeline_batch_processing():
@@ -194,8 +156,8 @@ def test_langgraph_pipeline_batch_processing():
 
     assert len(translated) == 1
     assert translated[0]["translation"] == "entitet-2"
-    # 6-stage pipeline: sense_analysis, definition_translation, initial_translation, expansion, filtering = 5 calls
-    assert pipeline.llm.calls == 5
+    # 7-stage pipeline: sense_analysis, definition_translation, initial_translation, expansion, filtering, definition_quality
+    assert pipeline.llm.calls == 6
 
 
 def test_langgraph_pipeline_african_synset_example():
@@ -219,15 +181,49 @@ def test_langgraph_pipeline_african_synset_example():
 
     result = pipeline.translate_synset(synset)
 
-    assert result["translation"] == "Àfíríkà"
+    # Note: deduplication normalizes to lowercase for consistency
+    assert result["translation"] == "àfíríkà"
     assert result["target_lang"] == "yo"
     assert result["examples"] == ["Àfíríkà ní ọ̀pọ̀ àṣà àti akọ́le ilẹ̀."]
     assert result["notes"] == "Transliteration with tonal marks."
     assert result["definition_translation"].startswith("Àfíríkà")
-    assert result["translated_synonyms"] == ["Àfíríkà"]
+    assert result["translated_synonyms"] == ["àfíríkà"]
     # Check new pipeline structure
     assert result["payload"]["filtering"]["filtered_synonyms"] == ["Àfíríkà"]
-    assert "Àfíríkà" in result["curator_summary"]
+    assert "àfíríkà" in result["curator_summary"]
+
+
+def test_langgraph_pipeline_model_metadata_merging():
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        model="gpt-oss:120b",
+        llm=_DummyLLM(),
+        model_metadata={
+            "requested": "deepseek-v2:70b",
+            "resolved": "gpt-oss:120b",
+            "fallback_used": True,
+            "reason": "Preferred model unavailable on host",
+            "available_models": ["gpt-oss:120b", "mistral:7b"],
+        },
+    )
+
+    synset = {
+        "id": "ENG30-00001740-r",
+        "lemmas": ["entity"],
+        "definition": "that which is perceived or known to have its own distinct existence",
+        "examples": [],
+        "pos": "r",
+    }
+
+    result = pipeline.translate_synset(synset)
+    model_info = result["model"]
+
+    assert model_info["requested"] == "deepseek-v2:70b"
+    assert model_info["resolved"] == "gpt-oss:120b"
+    assert model_info["fallback_used"] is True
+    assert model_info["reason"] == "Preferred model unavailable on host"
+    assert model_info["resolved_safe"] == sanitize_model_name("gpt-oss:120b")
 
 
 def test_translate_stream_generator():
@@ -494,8 +490,30 @@ def test_translation_result_to_dict():
     assert result_dict["raw_response"] == "raw text"
     assert result_dict["payload"]["key"] == "value"
     assert result_dict["curator_summary"] == "summary text"
+    assert "model" not in result_dict
 
 
+def test_translation_result_to_dict_includes_model_metadata():
+    from wordnet_autotranslate.pipelines.langgraph_translation_pipeline import TranslationResult
+
+    result = TranslationResult(
+        translation="test",
+        definition_translation="definition",
+        translated_synonyms=["syn"],
+        target_lang="sr",
+        source_lang="en",
+        source={"id": "id"},
+        examples=[],
+        notes=None,
+        raw_response="raw",
+        payload={},
+        curator_summary="summary",
+        model_info={"resolved": "deepseek", "resolved_safe": "deepseek", "fallback_used": False},
+    )
+
+    result_dict = result.to_dict()
+    assert result_dict["model"]["resolved"] == "deepseek"
+    assert result_dict["model"]["fallback_used"] is False
 def test_synset_with_alternative_field_names():
     """Test handling of alternative synset field names (literals, gloss, ili_id)."""
     pipeline = LangGraphTranslationPipeline(
@@ -595,8 +613,16 @@ def test_multiple_synonyms_with_varying_confidence():
             elif "synonym_filtering" in system_content:
                 payload = {
                     "filtered_synonyms": ["glavni", "primarni", "главни"],
+                    "confidence_by_word": {"glavni": "high", "primarni": "medium", "главни": "high"},
                     "removed": [],
                     "confidence": "high",
+                }
+            elif "definition_quality" in system_content:
+                payload = {
+                    "status": "ok",
+                    "issues": [],
+                    "revised_definition": "Glavni ili najvažniji",
+                    "notes": "Definition is stylistically balanced.",
                 }
             else:
                 payload = {"error": "unexpected stage"}
@@ -668,10 +694,19 @@ def test_curator_summary_with_many_synonyms():
             elif "synonym_filtering" in system_content:
                 # Keep all 10 synonyms
                 filtered_synonyms = [f"reč{i}" for i in range(10)]
+                confidence_by_word = {f"reč{i}": "high" for i in range(10)}
                 payload = {
                     "filtered_synonyms": filtered_synonyms,
+                    "confidence_by_word": confidence_by_word,
                     "removed": [],
                     "confidence": "high",
+                }
+            elif "definition_quality" in system_content:
+                payload = {
+                    "status": "ok",
+                    "issues": [],
+                    "revised_definition": "Test definition",
+                    "notes": "Definition quality verified.",
                 }
             else:
                 payload = {"error": "unexpected stage"}
@@ -743,8 +778,16 @@ def test_example_deduplication():
             elif "synonym_filtering" in system_content:
                 payload = {
                     "filtered_synonyms": ["test"],
+                    "confidence_by_word": {"test": "high"},
                     "removed": [],
                     "confidence": "high",
+                }
+            elif "definition_quality" in system_content:
+                payload = {
+                    "status": "ok",
+                    "issues": [],
+                    "revised_definition": "Test",
+                    "notes": "Definition quality confirmed.",
                 }
             else:
                 payload = {"error": "unexpected stage"}

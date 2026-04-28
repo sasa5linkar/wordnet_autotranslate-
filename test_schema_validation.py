@@ -61,6 +61,7 @@ def test_all_schemas():
     print("\nTesting FilteringSchema...")
     filtering_payload = {
         "filtered_synonyms": ["sinonim1", "sinonim2"],
+        "confidence_by_word": {"sinonim1": "high", "sinonim2": "medium"},
         "removed": [
             {"word": "sinonim3", "reason": "regional variant"}
         ],
@@ -68,6 +69,7 @@ def test_all_schemas():
     }
     validated = validate_stage_payload(filtering_payload, FilteringSchema, "synonym_filtering")
     assert "filtered_synonyms" in validated
+    assert "confidence_by_word" in validated
     assert "removed" in validated
     assert "confidence" in validated
     print("✓ FilteringSchema validation passed")

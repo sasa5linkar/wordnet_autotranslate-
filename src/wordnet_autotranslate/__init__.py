@@ -9,6 +9,7 @@ __version__ = "0.1.0"
 __author__ = "WordNet Auto-Translation Contributors"
 
 from .pipelines.translation_pipeline import BaselineTranslationPipeline, TranslationPipeline
+from .pipelines.langchain_base_pipeline import LangChainBasePipeline
 from .pipelines.langgraph_translation_pipeline import LangGraphTranslationPipeline
 from .pipelines.conceptual_langgraph_pipeline import (
     ConceptualLangGraphTranslationPipeline,
@@ -38,6 +39,7 @@ from .workflows.sheet_translation_workflow import (
 __all__ = [
     "BaselineTranslationPipeline",
     "TranslationPipeline",
+    "LangChainBasePipeline",
     "LangGraphTranslationPipeline",
     "ConceptualLangGraphTranslationPipeline",
     "SerbianWordnetPipeline",
