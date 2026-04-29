@@ -79,6 +79,7 @@ class OpenAIChatModel:
         timeout: Optional[int] = 600,
         base_url: Optional[str] = None,
         num_predict: Optional[int] = None,
+        reasoning: Optional[Union[bool, str]] = None,
         response_format: Optional[str] = None,
     ) -> None:
         load_project_env()
@@ -107,6 +108,7 @@ class OpenAIChatModel:
         self.model = model
         self.temperature = temperature
         self.num_predict = num_predict
+        self.reasoning = reasoning
         self.response_format = response_format
 
     def invoke(self, messages: Any) -> SimpleNamespace:
@@ -115,6 +117,7 @@ class OpenAIChatModel:
         token_parameter = self._token_parameter_for_model(self.model)
         include_temperature = True
         include_response_format = True
+        include_reasoning = True
 
         while True:
             request = self._build_request(
@@ -122,6 +125,7 @@ class OpenAIChatModel:
                 token_parameter=token_parameter,
                 include_temperature=include_temperature,
                 include_response_format=include_response_format,
+                include_reasoning=include_reasoning,
             )
             try:
                 response = self.client.chat.completions.create(**request)
@@ -140,6 +144,9 @@ class OpenAIChatModel:
                 if "response_format" in message and include_response_format:
                     include_response_format = False
                     continue
+                if "reasoning" in message and include_reasoning:
+                    include_reasoning = False
+                    continue
                 raise
 
         choice = response.choices[0]
@@ -151,6 +158,7 @@ class OpenAIChatModel:
                 "provider": "openai",
                 "finish_reason": getattr(choice, "finish_reason", None),
                 "id": getattr(response, "id", None),
+                "reasoning": self.reasoning,
             },
         )
 
@@ -161,6 +169,7 @@ class OpenAIChatModel:
         token_parameter: str,
         include_temperature: bool,
         include_response_format: bool,
+        include_reasoning: bool,
     ) -> Dict[str, Any]:
         request: Dict[str, Any] = {
             "model": self.model,
@@ -170,9 +179,22 @@ class OpenAIChatModel:
             request["temperature"] = self.temperature
         if self.num_predict is not None:
             request[token_parameter] = self.num_predict
+        reasoning_effort = self._openai_reasoning_effort(self.reasoning)
+        if include_reasoning and reasoning_effort is not None:
+            request["reasoning_effort"] = reasoning_effort
         if include_response_format and self.response_format == "json":
             request["response_format"] = {"type": "json_object"}
         return request
+
+    @staticmethod
+    def _openai_reasoning_effort(reasoning: Optional[Union[bool, str]]) -> Optional[str]:
+        """Convert shared reasoning setting to OpenAI chat-completions effort."""
+        if not isinstance(reasoning, str):
+            return None
+        normalized = reasoning.strip().lower()
+        if normalized in {"low", "medium", "high"}:
+            return normalized
+        return None
 
     @staticmethod
     def _token_parameter_for_model(model: str) -> str:
@@ -236,6 +258,7 @@ def build_chat_model(
             timeout=timeout,
             base_url=resolved_base_url,
             num_predict=num_predict,
+            reasoning=reasoning,
             response_format=response_format,
         )
 

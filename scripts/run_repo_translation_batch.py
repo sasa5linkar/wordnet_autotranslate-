@@ -82,7 +82,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--reasoning",
         choices=["low", "medium", "high"],
-        help="Set Ollama thinking/reasoning effort when supported (use 'low' for gpt-oss smoke tests)",
+        help="Set model reasoning effort when supported (for example: low, medium, high)",
     )
     parser.add_argument(
         "--json-format",
@@ -143,6 +143,13 @@ def main() -> int:
         reasoning=_resolve_reasoning_arg(args),
         response_format="json" if args.json_format else None,
     )
+    run_metadata = {
+        "provider": provider,
+        "model": model,
+        "reasoning": config.reasoning,
+        "temperature": config.temperature,
+        "timeout": config.timeout,
+    }
 
     processed = 0
     failed_count = 0
@@ -183,6 +190,7 @@ def main() -> int:
                     pipeline=pipeline,
                     config=config,
                 )
+                translation_result["run_metadata"] = dict(run_metadata)
                 completed = complete_native_work_item(
                     run_dir,
                     work_item_path,

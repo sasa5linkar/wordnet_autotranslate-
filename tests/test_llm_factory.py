@@ -53,3 +53,24 @@ def test_openai_token_parameter_for_newer_models():
     assert OpenAIChatModel._token_parameter_for_model("gpt-5.4-nano") == "max_completion_tokens"
     assert OpenAIChatModel._token_parameter_for_model("o4-mini") == "max_completion_tokens"
     assert OpenAIChatModel._token_parameter_for_model("gpt-4o-mini") == "max_tokens"
+
+
+def test_openai_request_includes_reasoning_effort_for_string_setting():
+    model = object.__new__(OpenAIChatModel)
+    model.model = "gpt-5.5"
+    model.temperature = 0.2
+    model.num_predict = 123
+    model.reasoning = "low"
+    model.response_format = "json"
+
+    request = model._build_request(
+        [{"role": "user", "content": "Translate."}],
+        token_parameter="max_completion_tokens",
+        include_temperature=True,
+        include_response_format=True,
+        include_reasoning=True,
+    )
+
+    assert request["reasoning_effort"] == "low"
+    assert request["max_completion_tokens"] == 123
+    assert request["response_format"] == {"type": "json_object"}

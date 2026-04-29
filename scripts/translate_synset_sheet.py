@@ -89,7 +89,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--reasoning",
         choices=["low", "medium", "high"],
-        help="Set Ollama thinking/reasoning effort when supported (use 'low' for gpt-oss smoke tests)",
+        help="Set model reasoning effort when supported (for example: low, medium, high)",
     )
     parser.add_argument(
         "--json-format",

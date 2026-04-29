@@ -31,6 +31,30 @@ CLEAN_COLUMNS = [
     "conceptual_literals_sr",
 ]
 
+RUN_METADATA_COLUMNS = [
+    "run_provider",
+    "run_model",
+    "run_reasoning",
+]
+
+COLUMN_WIDTHS = {
+    "run_provider": 14,
+    "run_model": 18,
+    "run_reasoning": 14,
+    "source_row": 12,
+    "source_cell": 12,
+    "english_id": 18,
+    "synset_name": 24,
+    "english_definition": 48,
+    "english_literals": 36,
+    "baseline_definition_sr": 48,
+    "baseline_literals_sr": 36,
+    "langgraph_definition_sr": 48,
+    "langgraph_literals_sr": 36,
+    "conceptual_definition_sr": 48,
+    "conceptual_literals_sr": 36,
+}
+
 
 def _load_json(path: Path) -> Dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -83,7 +107,17 @@ def _pipeline_payload(record: Mapping[str, Any], name: str) -> Dict[str, Any]:
     return payload if isinstance(payload, dict) else {}
 
 
-def _clean_row(record: Mapping[str, Any]) -> Dict[str, str]:
+def _run_metadata(record: Mapping[str, Any]) -> Dict[str, Any]:
+    translation_result = record.get("translation_result") or {}
+    if isinstance(translation_result, dict):
+        metadata = translation_result.get("run_metadata") or {}
+        if isinstance(metadata, dict):
+            return metadata
+    metadata = record.get("run_metadata") or {}
+    return metadata if isinstance(metadata, dict) else {}
+
+
+def _clean_row(record: Mapping[str, Any], *, include_run_metadata: bool = False) -> Dict[str, str]:
     source = _source_payload(record)
     source_row = record.get("source_row") or {}
     if not isinstance(source_row, dict):
@@ -93,7 +127,7 @@ def _clean_row(record: Mapping[str, Any]) -> Dict[str, str]:
     langgraph = _pipeline_payload(record, "langgraph")
     conceptual = _pipeline_payload(record, "conceptual")
 
-    return {
+    row = {
         "source_row": str(source_row.get("source_row") or record.get("row_number") or ""),
         "source_cell": str(source_row.get("source_cell") or ""),
         "english_id": str(
@@ -112,6 +146,16 @@ def _clean_row(record: Mapping[str, Any]) -> Dict[str, str]:
         "conceptual_definition_sr": str(conceptual.get("final_gloss_sr") or ""),
         "conceptual_literals_sr": _join(conceptual.get("selected_literals_sr")),
     }
+    if include_run_metadata:
+        metadata = _run_metadata(record)
+        row.update(
+            {
+                "run_provider": str(metadata.get("provider") or ""),
+                "run_model": str(metadata.get("model") or ""),
+                "run_reasoning": str(metadata.get("reasoning") or ""),
+            }
+        )
+    return row
 
 
 def _row_sort_key(row: Mapping[str, str]) -> tuple[int, str]:
@@ -121,7 +165,7 @@ def _row_sort_key(row: Mapping[str, str]) -> tuple[int, str]:
         return 10**9, row.get("english_id", "")
 
 
-def load_clean_rows(run_dir: Path) -> List[Dict[str, str]]:
+def load_clean_rows(run_dir: Path, *, include_run_metadata: bool = False) -> List[Dict[str, str]]:
     """Load clean rows from a native/repo batch run directory."""
     result_root = run_dir / "results" / "success"
     if not result_root.exists():
@@ -130,17 +174,17 @@ def load_clean_rows(run_dir: Path) -> List[Dict[str, str]]:
     rows: List[Dict[str, str]] = []
     for result_path in sorted(result_root.rglob("row_*.json")):
         record = _load_json(result_path)
-        rows.append(_clean_row(record))
+        rows.append(_clean_row(record, include_run_metadata=include_run_metadata))
     return sorted(rows, key=_row_sort_key)
 
 
-def write_csv(path: Path, rows: Sequence[Mapping[str, str]]) -> None:
+def write_csv(path: Path, rows: Sequence[Mapping[str, str]], columns: Sequence[str] = CLEAN_COLUMNS) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=CLEAN_COLUMNS)
+        writer = csv.DictWriter(handle, fieldnames=columns)
         writer.writeheader()
         for row in rows:
-            writer.writerow({column: row.get(column, "") for column in CLEAN_COLUMNS})
+            writer.writerow({column: row.get(column, "") for column in columns})
 
 
 def _column_letter(index: int) -> str:
@@ -159,11 +203,11 @@ def _xlsx_cell(row_idx: int, col_idx: int, value: Any) -> str:
     return f'<c r="{ref}" t="inlineStr"{style}><is><t xml:space="preserve">{escaped}</t></is></c>'
 
 
-def write_xlsx(path: Path, rows: Sequence[Mapping[str, str]]) -> None:
+def write_xlsx(path: Path, rows: Sequence[Mapping[str, str]], columns: Sequence[str] = CLEAN_COLUMNS) -> None:
     """Write a simple one-sheet XLSX using only the Python standard library."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    all_rows: List[List[str]] = [CLEAN_COLUMNS]
-    all_rows.extend([[str(row.get(column, "")) for column in CLEAN_COLUMNS] for row in rows])
+    all_rows: List[List[str]] = [list(columns)]
+    all_rows.extend([[str(row.get(column, "")) for column in columns] for row in rows])
 
     sheet_rows = []
     for row_idx, row_values in enumerate(all_rows, start=1):
@@ -173,10 +217,11 @@ def write_xlsx(path: Path, rows: Sequence[Mapping[str, str]]) -> None:
         )
         sheet_rows.append(f'<row r="{row_idx}">{cells}</row>')
 
-    dimension = f"A1:{_column_letter(len(CLEAN_COLUMNS))}{len(all_rows)}"
+    last_column = _column_letter(len(columns))
+    dimension = f"A1:{last_column}{len(all_rows)}"
     cols = "".join(
         f'<col min="{idx}" max="{idx}" width="{width}" customWidth="1"/>'
-        for idx, width in enumerate([12, 12, 18, 24, 48, 36, 48, 36, 48, 36, 48, 36], start=1)
+        for idx, width in enumerate([COLUMN_WIDTHS.get(column, 18) for column in columns], start=1)
     )
     sheet_xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
@@ -187,7 +232,7 @@ def write_xlsx(path: Path, rows: Sequence[Mapping[str, str]]) -> None:
         '<sheetFormatPr defaultRowHeight="15"/>'
         f'<cols>{cols}</cols>'
         f'<sheetData>{"".join(sheet_rows)}</sheetData>'
-        '<autoFilter ref="A1:L1"/>'
+        f'<autoFilter ref="A1:{last_column}1"/>'
         '</worksheet>'
     )
 
@@ -248,6 +293,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("run_dir", help="Batch run directory containing results/success")
     parser.add_argument("--output", help="Output XLSX path")
     parser.add_argument("--csv-output", help="Optional CSV output path")
+    parser.add_argument(
+        "--include-run-metadata",
+        action="store_true",
+        help="Prefix output with provider/model/reasoning columns from each result.",
+    )
     return parser
 
 
@@ -258,10 +308,17 @@ def main() -> int:
     output = Path(args.output) if args.output else run_dir / "exports" / "clean_translation_review.xlsx"
     csv_output = Path(args.csv_output) if args.csv_output else run_dir / "exports" / "clean_translation_review.csv"
 
-    rows = load_clean_rows(run_dir)
-    write_xlsx(output, rows)
-    write_csv(csv_output, rows)
-    print(json.dumps({"row_count": len(rows), "xlsx": str(output), "csv": str(csv_output)}, ensure_ascii=False, indent=2))
+    columns = RUN_METADATA_COLUMNS + CLEAN_COLUMNS if args.include_run_metadata else CLEAN_COLUMNS
+    rows = load_clean_rows(run_dir, include_run_metadata=args.include_run_metadata)
+    write_xlsx(output, rows, columns=columns)
+    write_csv(csv_output, rows, columns=columns)
+    print(
+        json.dumps(
+            {"row_count": len(rows), "column_count": len(columns), "xlsx": str(output), "csv": str(csv_output)},
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
     return 0
 
 
