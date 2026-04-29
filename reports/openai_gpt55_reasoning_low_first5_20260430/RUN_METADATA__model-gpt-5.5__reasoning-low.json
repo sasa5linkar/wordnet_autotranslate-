@@ -1,0 +1,33 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.5",
+  "reasoning": "low",
+  "pipeline": "all",
+  "input": "reports/openai_gpt55_reasoning_low_first5_20260430/input/gpt-5.5_reasoning-low_first5.csv",
+  "run_dir": "native_batch_runs\\openai_gpt55_reasoning_low_first5_20260430\\gpt-5.5_reasoning-low_first5_20260430_002203",
+  "xlsx": "reports\\openai_gpt55_reasoning_low_first5_20260430\\clean_translation_review__model-gpt-5.5__reasoning-low.xlsx",
+  "csv": "reports\\openai_gpt55_reasoning_low_first5_20260430\\clean_translation_review__model-gpt-5.5__reasoning-low.csv",
+  "progress": {
+    "run_dir": "native_batch_runs\\openai_gpt55_reasoning_low_first5_20260430\\gpt-5.5_reasoning-low_first5_20260430_002203",
+    "updated_at": "2026-04-29T22:32:29Z",
+    "translation_mode": "native_agent",
+    "row_count": 5,
+    "source": "reports/openai_gpt55_reasoning_low_first5_20260430/input/gpt-5.5_reasoning-low_first5.csv",
+    "source_kind": "local_file",
+    "default_pipeline": "all",
+    "retranslate_existing_allowed": true,
+    "work_item_counts": {
+      "pending": 0,
+      "in_progress": 0,
+      "completed": 5,
+      "failed": 0
+    },
+    "result_counts": {
+      "success": 5,
+      "error": 0,
+      "invalid_format": 0,
+      "not_found": 0
+    },
+    "all_finished": true
+  }
+}
