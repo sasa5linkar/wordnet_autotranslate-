@@ -1,0 +1,4641 @@
+{
+  "summary": {
+    "run_id": "agent_all_synsets_026_100_no_ollama_2026-04-25",
+    "date_local": "2026-04-25",
+    "timezone": "Europe/Budapest",
+    "selection": "Continuation batch: NLTK WordNet synsets sorted by synset.name(), global rows 26-100",
+    "total_wordnet_synsets": 117659,
+    "previously_processed_rows": "1-25",
+    "processed_rows": "26-100",
+    "processed_synsets": 75,
+    "remaining_after_this_batch": 117559,
+    "workflow_mode": "agent-all",
+    "workflows": [
+      "agent-baseline",
+      "agent-multiphase",
+      "agent-conceptual"
+    ],
+    "ollama_used": false,
+    "repo_llm_backend_used": false,
+    "status": "ok",
+    "scope_note": "The full remainder after the first 25 is 117,634 synsets; this controlled continuation completes a 100-synset no-Ollama sample."
+  },
+  "rows": [
+    {
+      "index": 26,
+      "selector_id": "ENG30-08658469-n",
+      "source_synset": {
+        "id": "ENG30-08658469-n",
+        "english_id": "ENG30-08658469-n",
+        "name": "a-horizon.n.01",
+        "lemmas": [
+          "A-horizon",
+          "A horizon"
+        ],
+        "definition": "the top layer of a soil profile; usually contains humus",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "A-horizont",
+          "translated_synonyms": [
+            "A-horizont"
+          ],
+          "definition_translation": "gornji sloj profila tla, obicno sadrzi humus",
+          "confidence": "high",
+          "notes": [
+            "Soil-science term; preserve A-horizon label plus Serbian descriptive alternatives.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "A-horizont",
+          "translated_synonyms": [
+            "A-horizont",
+            "povrsinski horizont tla",
+            "humusni horizont"
+          ],
+          "definition_translation": "najvisi sloj profila tla, najcesce bogat humusom",
+          "confidence": "high",
+          "notes": [
+            "Soil-science term; preserve A-horizon label plus Serbian descriptive alternatives.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "A-horizont",
+          "translated_synonyms": [
+            "A-horizont",
+            "gornji horizont tla"
+          ],
+          "definition_translation": "povrsinski horizont zemljista koji obicno sadrzi humus",
+          "confidence": "high",
+          "notes": [
+            "Soil-science term; preserve A-horizon label plus Serbian descriptive alternatives.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 27,
+      "selector_id": "ENG30-02697221-n",
+      "source_synset": {
+        "id": "ENG30-02697221-n",
+        "english_id": "ENG30-02697221-n",
+        "name": "a-line.n.01",
+        "lemmas": [
+          "A-line"
+        ],
+        "definition": "women's clothing that has a fitted top and a flared skirt that is widest at the hemline",
+        "examples": [
+          "it is called the A-line because the effect resembles the capital letter A"
+        ],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "A-linija",
+          "translated_synonyms": [
+            "A-linija"
+          ],
+          "definition_translation": "zenska odeca pripijena u gornjem delu i rasirena prema porubu",
+          "confidence": "high",
+          "notes": [
+            "Natural Serbian fashion term is A-kroj rather than a literal A-line.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "A-kroj",
+          "translated_synonyms": [
+            "A-kroj",
+            "odeca A-kroja",
+            "haljina A-kroja"
+          ],
+          "definition_translation": "zenska odeca sa uskim gornjim delom i suknjom koja se siri do poruba",
+          "confidence": "high",
+          "notes": [
+            "Natural Serbian fashion term is A-kroj rather than a literal A-line.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "odeca A-kroja",
+          "translated_synonyms": [
+            "odeca A-kroja",
+            "A-kroj"
+          ],
+          "definition_translation": "zenski odevni kroj cija silueta podseca na veliko slovo A",
+          "confidence": "high",
+          "notes": [
+            "Natural Serbian fashion term is A-kroj rather than a literal A-line.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 28,
+      "selector_id": "ENG30-06485431-n",
+      "source_synset": {
+        "id": "ENG30-06485431-n",
+        "english_id": "ENG30-06485431-n",
+        "name": "a-list.n.01",
+        "lemmas": [
+          "A-list"
+        ],
+        "definition": "a list of names of specially favored people",
+        "examples": [
+          "the boss gave me his A-list of people we should try to recruit"
+        ],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "A-lista",
+          "translated_synonyms": [
+            "A-lista"
+          ],
+          "definition_translation": "lista imena posebno favorizovanih ljudi",
+          "confidence": "high",
+          "notes": [
+            "Borrowed label is common; descriptive alternatives help evaluation.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "A-lista",
+          "translated_synonyms": [
+            "A-lista",
+            "lista povlascenih osoba",
+            "lista prioritetnih osoba"
+          ],
+          "definition_translation": "spisak ljudi kojima se daje posebna prednost ili paznja",
+          "confidence": "high",
+          "notes": [
+            "Borrowed label is common; descriptive alternatives help evaluation.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "A-lista",
+          "translated_synonyms": [
+            "A-lista",
+            "lista posebno favorizovanih osoba"
+          ],
+          "definition_translation": "lista osoba koje imaju poseban prioritet ili povlascen status",
+          "confidence": "high",
+          "notes": [
+            "Borrowed label is common; descriptive alternatives help evaluation.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 29,
+      "selector_id": "ENG30-01122907-s",
+      "source_synset": {
+        "id": "ENG30-01122907-s",
+        "english_id": "ENG30-01122907-s",
+        "name": "a-ok.s.01",
+        "lemmas": [
+          "a-ok",
+          "a-okay"
+        ],
+        "definition": "in perfect condition or order",
+        "examples": [],
+        "pos": "s"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "u redu",
+          "translated_synonyms": [
+            "u redu",
+            "ispravan"
+          ],
+          "definition_translation": "u savrsenom stanju ili redu",
+          "confidence": "high",
+          "notes": [
+            "Adjectival satellite sense; Serbian often uses a phrase.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "sve u redu",
+          "translated_synonyms": [
+            "sve u redu",
+            "besprekorno",
+            "u savrsenom stanju"
+          ],
+          "definition_translation": "potpuno ispravan, uredan ili bez problema",
+          "confidence": "high",
+          "notes": [
+            "Adjectival satellite sense; Serbian often uses a phrase.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "u savrsenom redu",
+          "translated_synonyms": [
+            "u savrsenom redu",
+            "besprekoran"
+          ],
+          "definition_translation": "koji je u potpunom redu i bez nedostataka",
+          "confidence": "high",
+          "notes": [
+            "Adjectival satellite sense; Serbian often uses a phrase.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 30,
+      "selector_id": "ENG30-00902108-n",
+      "source_synset": {
+        "id": "ENG30-00902108-n",
+        "english_id": "ENG30-00902108-n",
+        "name": "a-scan_ultrasonography.n.01",
+        "lemmas": [
+          "A-scan ultrasonography"
+        ],
+        "definition": "the use of ultrasonography to measure the length of the eyeball",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "A-sken ultrasonografija",
+          "translated_synonyms": [
+            "A-sken ultrasonografija"
+          ],
+          "definition_translation": "upotreba ultrasonografije za merenje duzine ocne jabucice",
+          "confidence": "medium",
+          "notes": [
+            "Technical medical term; curator should confirm preferred Serbian specialist form.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "A-sken ultrasonografija",
+          "translated_synonyms": [
+            "A-sken ultrasonografija",
+            "A-sken ultrazvucni pregled",
+            "ultrazvucno merenje duzine ocne jabucice"
+          ],
+          "definition_translation": "ultrazvucni postupak kojim se meri duzina ocne jabucice",
+          "confidence": "medium",
+          "notes": [
+            "Technical medical term; curator should confirm preferred Serbian specialist form.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "A-sken ultrasonografija",
+          "translated_synonyms": [
+            "A-sken ultrasonografija",
+            "ultrazvucno merenje oka"
+          ],
+          "definition_translation": "oftalmoloska ultrazvucna metoda za merenje aksijalne duzine oka",
+          "confidence": "medium",
+          "notes": [
+            "Technical medical term; curator should confirm preferred Serbian specialist form.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 31,
+      "selector_id": "ENG30-08077035-n",
+      "source_synset": {
+        "id": "ENG30-08077035-n",
+        "english_id": "ENG30-08077035-n",
+        "name": "a-team.n.01",
+        "lemmas": [
+          "A-team"
+        ],
+        "definition": "a group of elite soldiers or a leadership group of advisors or workers in an organization",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "A-tim",
+          "translated_synonyms": [
+            "A-tim"
+          ],
+          "definition_translation": "grupa elitnih vojnika ili vodeca grupa savetnika ili radnika u organizaciji",
+          "confidence": "high",
+          "notes": [
+            "Multiphase exposes both military and organizational readings.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "A-tim",
+          "translated_synonyms": [
+            "A-tim",
+            "elitni tim",
+            "grupa elitnih vojnika",
+            "vodeci savetnicki tim"
+          ],
+          "definition_translation": "elitna grupa vojnika, savetnika ili radnika u nekoj organizaciji",
+          "confidence": "high",
+          "notes": [
+            "Multiphase exposes both military and organizational readings.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "elitni tim",
+          "translated_synonyms": [
+            "elitni tim",
+            "A-tim"
+          ],
+          "definition_translation": "najbolji ili najpouzdaniji tim u vojnom ili organizacionom kontekstu",
+          "confidence": "high",
+          "notes": [
+            "Multiphase exposes both military and organizational readings.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 32,
+      "selector_id": "ENG30-06831177-n",
+      "source_synset": {
+        "id": "ENG30-06831177-n",
+        "english_id": "ENG30-06831177-n",
+        "name": "a.n.06",
+        "lemmas": [
+          "A",
+          "a"
+        ],
+        "definition": "the 1st letter of the Roman alphabet",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "A",
+          "translated_synonyms": [
+            "A",
+            "slovo A"
+          ],
+          "definition_translation": "prvo slovo rimske abecede",
+          "confidence": "high",
+          "notes": [
+            "Literal should include the letter and descriptive form.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "slovo A",
+          "translated_synonyms": [
+            "slovo A",
+            "A",
+            "prvo slovo latinice"
+          ],
+          "definition_translation": "prvo slovo rimskog, odnosno latinskog alfabeta",
+          "confidence": "high",
+          "notes": [
+            "Literal should include the letter and descriptive form.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "slovo A",
+          "translated_synonyms": [
+            "slovo A",
+            "prvo slovo rimske abecede"
+          ],
+          "definition_translation": "prvo slovo rimske abecede",
+          "confidence": "high",
+          "notes": [
+            "Literal should include the letter and descriptive form.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 33,
+      "selector_id": "ENG30-05400860-n",
+      "source_synset": {
+        "id": "ENG30-05400860-n",
+        "english_id": "ENG30-05400860-n",
+        "name": "a.n.07",
+        "lemmas": [
+          "A",
+          "type A",
+          "group A"
+        ],
+        "definition": "the blood group whose red cells carry the A antigen",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "krvna grupa A",
+          "translated_synonyms": [
+            "krvna grupa A",
+            "tip A"
+          ],
+          "definition_translation": "krvna grupa cija crvena krvna zrnca nose antigen A",
+          "confidence": "high",
+          "notes": [
+            "Medical label is straightforward.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "krvna grupa A",
+          "translated_synonyms": [
+            "krvna grupa A",
+            "tip A",
+            "grupa A"
+          ],
+          "definition_translation": "krvna grupa u kojoj eritrociti imaju antigen A",
+          "confidence": "high",
+          "notes": [
+            "Medical label is straightforward.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "krvna grupa A",
+          "translated_synonyms": [
+            "krvna grupa A",
+            "grupa A"
+          ],
+          "definition_translation": "krvna grupa odredjena prisustvom antigena A na crvenim krvnim zrncima",
+          "confidence": "high",
+          "notes": [
+            "Medical label is straightforward.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 34,
+      "selector_id": "ENG30-02666624-n",
+      "source_synset": {
+        "id": "ENG30-02666624-n",
+        "english_id": "ENG30-02666624-n",
+        "name": "a_battery.n.01",
+        "lemmas": [
+          "A battery"
+        ],
+        "definition": "the battery used to heat the filaments of a vacuum tube",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "A-baterija",
+          "translated_synonyms": [
+            "A-baterija"
+          ],
+          "definition_translation": "baterija koja se koristi za grejanje vlakana vakuumske cevi",
+          "confidence": "medium",
+          "notes": [
+            "Obsolete electronics term; keep technical label.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "A-baterija",
+          "translated_synonyms": [
+            "A-baterija",
+            "baterija za grejanje vlakana vakuumske cevi"
+          ],
+          "definition_translation": "baterija namenjena zagrevanju niti vakuumske cevi",
+          "confidence": "medium",
+          "notes": [
+            "Obsolete electronics term; keep technical label.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "A-baterija",
+          "translated_synonyms": [
+            "A-baterija"
+          ],
+          "definition_translation": "baterija za napajanje grejne niti u vakuumskoj cevi",
+          "confidence": "medium",
+          "notes": [
+            "Obsolete electronics term; keep technical label.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 35,
+      "selector_id": "ENG30-00033663-r",
+      "source_synset": {
+        "id": "ENG30-00033663-r",
+        "english_id": "ENG30-00033663-r",
+        "name": "a_bit.r.01",
+        "lemmas": [
+          "a bit",
+          "a little",
+          "a trifle"
+        ],
+        "definition": "to a small degree; somewhat",
+        "examples": [
+          "it's a bit warm",
+          "felt a little better",
+          "a trifle smaller"
+        ],
+        "pos": "r"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "malo",
+          "translated_synonyms": [
+            "malo",
+            "pomalo"
+          ],
+          "definition_translation": "u maloj meri; donekle",
+          "confidence": "high",
+          "notes": [
+            "Common adverbial sense.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "malo",
+          "translated_synonyms": [
+            "malo",
+            "pomalo",
+            "donekle",
+            "neznatno"
+          ],
+          "definition_translation": "u malom stepenu ili donekle",
+          "confidence": "high",
+          "notes": [
+            "Common adverbial sense.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "malo",
+          "translated_synonyms": [
+            "malo",
+            "u maloj meri"
+          ],
+          "definition_translation": "u nevelikoj meri",
+          "confidence": "high",
+          "notes": [
+            "Common adverbial sense.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 36,
+      "selector_id": "ENG30-00001740-r",
+      "source_synset": {
+        "id": "ENG30-00001740-r",
+        "english_id": "ENG30-00001740-r",
+        "name": "a_cappella.r.01",
+        "lemmas": [
+          "a cappella"
+        ],
+        "definition": "without musical accompaniment",
+        "examples": [
+          "they performed a cappella"
+        ],
+        "pos": "r"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a kapela",
+          "translated_synonyms": [
+            "a kapela",
+            "bez pratnje"
+          ],
+          "definition_translation": "bez muzicke pratnje",
+          "confidence": "high",
+          "notes": [
+            "Adverbial performance use.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a kapela",
+          "translated_synonyms": [
+            "a kapela",
+            "bez instrumentalne pratnje",
+            "bez muzicke pratnje"
+          ],
+          "definition_translation": "izvedeno bez instrumentalne pratnje",
+          "confidence": "high",
+          "notes": [
+            "Adverbial performance use.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "a kapela",
+          "translated_synonyms": [
+            "a kapela",
+            "bez instrumentalne pratnje"
+          ],
+          "definition_translation": "na nacin pevanja bez instrumenata",
+          "confidence": "high",
+          "notes": [
+            "Adverbial performance use.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 37,
+      "selector_id": "ENG30-02252352-s",
+      "source_synset": {
+        "id": "ENG30-02252352-s",
+        "english_id": "ENG30-02252352-s",
+        "name": "a_cappella.s.01",
+        "lemmas": [
+          "a cappella"
+        ],
+        "definition": "sung without instrumental accompaniment",
+        "examples": [
+          "they sang an a cappella Mass"
+        ],
+        "pos": "s"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a kapela",
+          "translated_synonyms": [
+            "a kapela"
+          ],
+          "definition_translation": "pevan bez instrumentalne pratnje",
+          "confidence": "high",
+          "notes": [
+            "Adjectival use overlaps with adverbial label.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a kapela",
+          "translated_synonyms": [
+            "a kapela",
+            "pevan bez instrumentalne pratnje",
+            "bez instrumentalne pratnje"
+          ],
+          "definition_translation": "koji se peva bez pratnje instrumenata",
+          "confidence": "high",
+          "notes": [
+            "Adjectival use overlaps with adverbial label.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "a kapela",
+          "translated_synonyms": [
+            "a kapela",
+            "bez instrumentalne pratnje"
+          ],
+          "definition_translation": "koji je namenjen ili izveden bez instrumentalne pratnje",
+          "confidence": "high",
+          "notes": [
+            "Adjectival use overlaps with adverbial label.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 38,
+      "selector_id": "ENG30-00546070-n",
+      "source_synset": {
+        "id": "ENG30-00546070-n",
+        "english_id": "ENG30-00546070-n",
+        "name": "a_cappella_singing.n.01",
+        "lemmas": [
+          "a cappella singing",
+          "a capella singing"
+        ],
+        "definition": "singing without instrumental accompaniment",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a kapela pevanje",
+          "translated_synonyms": [
+            "a kapela pevanje"
+          ],
+          "definition_translation": "pevanje bez instrumentalne pratnje",
+          "confidence": "high",
+          "notes": [
+            "Conceptual representative is clearer than borrowed form alone.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a kapela pevanje",
+          "translated_synonyms": [
+            "a kapela pevanje",
+            "pevanje bez instrumentalne pratnje",
+            "pevanje bez pratnje"
+          ],
+          "definition_translation": "vokalno izvodjenje bez pratnje instrumenata",
+          "confidence": "high",
+          "notes": [
+            "Conceptual representative is clearer than borrowed form alone.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "pevanje bez instrumentalne pratnje",
+          "translated_synonyms": [
+            "pevanje bez instrumentalne pratnje",
+            "a kapela pevanje"
+          ],
+          "definition_translation": "pevanje koje se izvodi bez instrumentalne pratnje",
+          "confidence": "high",
+          "notes": [
+            "Conceptual representative is clearer than borrowed form alone.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 39,
+      "selector_id": "ENG30-01553340-s",
+      "source_synset": {
+        "id": "ENG30-01553340-s",
+        "english_id": "ENG30-01553340-s",
+        "name": "a_few.s.01",
+        "lemmas": [
+          "a few",
+          "a couple of"
+        ],
+        "definition": "more than one but indefinitely small in number",
+        "examples": [
+          "a few roses",
+          "a couple of roses"
+        ],
+        "pos": "s"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "nekoliko",
+          "translated_synonyms": [
+            "nekoliko",
+            "par"
+          ],
+          "definition_translation": "vise od jednog, ali neodredjeno malo po broju",
+          "confidence": "high",
+          "notes": [
+            "Phrase has adjective/determiner behavior in Serbian.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "nekoliko",
+          "translated_synonyms": [
+            "nekoliko",
+            "par",
+            "mali broj"
+          ],
+          "definition_translation": "vise od jednog, ali u malom i neodredjenom broju",
+          "confidence": "high",
+          "notes": [
+            "Phrase has adjective/determiner behavior in Serbian.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "nekoliko",
+          "translated_synonyms": [
+            "nekoliko",
+            "vise od jednog"
+          ],
+          "definition_translation": "mali neodredjeni broj veci od jedan",
+          "confidence": "high",
+          "notes": [
+            "Phrase has adjective/determiner behavior in Serbian.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 40,
+      "selector_id": "ENG30-00063483-r",
+      "source_synset": {
+        "id": "ENG30-00063483-r",
+        "english_id": "ENG30-00063483-r",
+        "name": "a_fortiori.r.01",
+        "lemmas": [
+          "a fortiori"
+        ],
+        "definition": "with greater reason; for a still stronger, more certain reason",
+        "examples": [
+          "if you are wrong then, a fortiori, so am I"
+        ],
+        "pos": "r"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a fortiori",
+          "translated_synonyms": [
+            "a fortiori",
+            "tim pre"
+          ],
+          "definition_translation": "sa vecim razlogom; iz jos snaznijeg i sigurnijeg razloga",
+          "confidence": "high",
+          "notes": [
+            "Latin term and Serbian phrase should both be retained.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "tim pre",
+          "translated_synonyms": [
+            "tim pre",
+            "utoliko pre",
+            "sa jos jacim razlogom",
+            "a fortiori"
+          ],
+          "definition_translation": "utoliko pre, iz jos jaceg razloga",
+          "confidence": "high",
+          "notes": [
+            "Latin term and Serbian phrase should both be retained.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "tim pre",
+          "translated_synonyms": [
+            "tim pre",
+            "sa jos jacim razlogom"
+          ],
+          "definition_translation": "sa jacim razlogom nego u prethodnom slucaju",
+          "confidence": "high",
+          "notes": [
+            "Latin term and Serbian phrase should both be retained.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 41,
+      "selector_id": "ENG30-10810818-n",
+      "source_synset": {
+        "id": "ENG30-10810818-n",
+        "english_id": "ENG30-10810818-n",
+        "name": "a_kempis.n.01",
+        "lemmas": [
+          "a Kempis",
+          "Thomas a Kempis"
+        ],
+        "definition": "German ecclesiastic (1380-1471)",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "Tomas a Kempis",
+          "translated_synonyms": [
+            "Tomas a Kempis",
+            "a Kempis"
+          ],
+          "definition_translation": "nemacki crkveni pisac i duhovnik (1380-1471)",
+          "confidence": "medium",
+          "notes": [
+            "Proper-name convention should be checked; Serbian often uses Toma Kempijski.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "Toma Kempijski",
+          "translated_synonyms": [
+            "Toma Kempijski",
+            "Tomas a Kempis",
+            "Thomas a Kempis"
+          ],
+          "definition_translation": "nemacki crkveni covek i duhovni pisac iz perioda 1380-1471",
+          "confidence": "medium",
+          "notes": [
+            "Proper-name convention should be checked; Serbian often uses Toma Kempijski.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "Toma Kempijski",
+          "translated_synonyms": [
+            "Toma Kempijski",
+            "Thomas a Kempis"
+          ],
+          "definition_translation": "nemacki crkveni autor poznat kao Toma Kempijski",
+          "confidence": "medium",
+          "notes": [
+            "Proper-name convention should be checked; Serbian often uses Toma Kempijski.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 42,
+      "selector_id": "ENG30-02453183-a",
+      "source_synset": {
+        "id": "ENG30-02453183-a",
+        "english_id": "ENG30-02453183-a",
+        "name": "a_la_carte.a.01",
+        "lemmas": [
+          "a la carte"
+        ],
+        "definition": "(of a restaurant meal) having unlimited choices with a separate price for each item",
+        "examples": [],
+        "pos": "a"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a la carte",
+          "translated_synonyms": [
+            "a la carte"
+          ],
+          "definition_translation": "za restoranski obrok sa neogranicenim izborom i posebnom cenom za svaku stavku",
+          "confidence": "high",
+          "notes": [
+            "Restaurant phrase is normally borrowed.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a la carte",
+          "translated_synonyms": [
+            "a la carte",
+            "po jelovniku",
+            "sa odvojenom cenom za svako jelo"
+          ],
+          "definition_translation": "koji nudi pojedinacna jela sa zasebnim cenama",
+          "confidence": "high",
+          "notes": [
+            "Restaurant phrase is normally borrowed.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "a la carte",
+          "translated_synonyms": [
+            "a la carte",
+            "po jelovniku"
+          ],
+          "definition_translation": "koji se narucuje kao pojedinacna stavka sa jelovnika",
+          "confidence": "high",
+          "notes": [
+            "Restaurant phrase is normally borrowed.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 43,
+      "selector_id": "ENG30-06497117-n",
+      "source_synset": {
+        "id": "ENG30-06497117-n",
+        "english_id": "ENG30-06497117-n",
+        "name": "a_la_carte.n.01",
+        "lemmas": [
+          "a la carte"
+        ],
+        "definition": "a menu having individual dishes listed with separate prices",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a la carte meni",
+          "translated_synonyms": [
+            "a la carte meni"
+          ],
+          "definition_translation": "meni na kome su pojedinacna jela navedena sa zasebnim cenama",
+          "confidence": "high",
+          "notes": [
+            "Noun sense is the menu itself.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a la carte meni",
+          "translated_synonyms": [
+            "a la carte meni",
+            "jelovnik sa pojedinacnim cenama",
+            "meni po jelovniku"
+          ],
+          "definition_translation": "jelovnik koji navodi pojedinacna jela sa posebnim cenama",
+          "confidence": "high",
+          "notes": [
+            "Noun sense is the menu itself.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "a la carte meni",
+          "translated_synonyms": [
+            "a la carte meni",
+            "jelovnik sa odvojenim cenama"
+          ],
+          "definition_translation": "meni sa posebno cenjenim pojedinacnim jelima",
+          "confidence": "high",
+          "notes": [
+            "Noun sense is the menu itself.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 44,
+      "selector_id": "ENG30-00257981-r",
+      "source_synset": {
+        "id": "ENG30-00257981-r",
+        "english_id": "ENG30-00257981-r",
+        "name": "a_la_carte.r.01",
+        "lemmas": [
+          "a la carte"
+        ],
+        "definition": "by ordering items listed individually on a menu",
+        "examples": [
+          "we ate a la carte"
+        ],
+        "pos": "r"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a la carte",
+          "translated_synonyms": [
+            "a la carte",
+            "po jelovniku"
+          ],
+          "definition_translation": "narucivanjem pojedinacno navedenih stavki sa menija",
+          "confidence": "high",
+          "notes": [
+            "Adverbial restaurant use.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a la carte",
+          "translated_synonyms": [
+            "a la carte",
+            "po jelovniku",
+            "narucivanjem pojedinacnih jela"
+          ],
+          "definition_translation": "tako sto se pojedinacna jela narucuju sa jelovnika",
+          "confidence": "high",
+          "notes": [
+            "Adverbial restaurant use.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "po jelovniku",
+          "translated_synonyms": [
+            "po jelovniku",
+            "a la carte"
+          ],
+          "definition_translation": "na nacin narucivanja zasebnih jela sa menija",
+          "confidence": "high",
+          "notes": [
+            "Adverbial restaurant use.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 45,
+      "selector_id": "ENG30-00498182-r",
+      "source_synset": {
+        "id": "ENG30-00498182-r",
+        "english_id": "ENG30-00498182-r",
+        "name": "a_la_mode.r.01",
+        "lemmas": [
+          "a la mode"
+        ],
+        "definition": "with ice cream on top or on the side",
+        "examples": [
+          "we served the apple pie a la mode"
+        ],
+        "pos": "r"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a la mode",
+          "translated_synonyms": [
+            "a la mode",
+            "sa sladoledom"
+          ],
+          "definition_translation": "sa sladoledom odozgo ili sa strane",
+          "confidence": "high",
+          "notes": [
+            "English loan is less useful than direct Serbian food description.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "sa sladoledom",
+          "translated_synonyms": [
+            "sa sladoledom",
+            "uz sladoled",
+            "a la mode"
+          ],
+          "definition_translation": "posluzeno sa sladoledom na vrhu ili pored jela",
+          "confidence": "high",
+          "notes": [
+            "English loan is less useful than direct Serbian food description.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "sa sladoledom",
+          "translated_synonyms": [
+            "sa sladoledom",
+            "uz sladoled"
+          ],
+          "definition_translation": "na nacin posluzivanja deserta sa sladoledom",
+          "confidence": "high",
+          "notes": [
+            "English loan is less useful than direct Serbian food description.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 46,
+      "selector_id": "ENG30-14431015-n",
+      "source_synset": {
+        "id": "ENG30-14431015-n",
+        "english_id": "ENG30-14431015-n",
+        "name": "a_level.n.01",
+        "lemmas": [
+          "A level"
+        ],
+        "definition": "the advanced level of a subject taken in school (usually two years after O level)",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "A-level",
+          "translated_synonyms": [
+            "A-level",
+            "A-nivo"
+          ],
+          "definition_translation": "napredni nivo skolskog predmeta, obicno dve godine posle O-levela",
+          "confidence": "medium",
+          "notes": [
+            "Education-system term should preserve original label.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "A-level",
+          "translated_synonyms": [
+            "A-level",
+            "A-nivo",
+            "napredni nivo skolskog predmeta"
+          ],
+          "definition_translation": "britanski napredni skolski nivo predmeta, obicno posle O-levela",
+          "confidence": "medium",
+          "notes": [
+            "Education-system term should preserve original label.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "A-level",
+          "translated_synonyms": [
+            "A-level",
+            "ispit A-nivoa"
+          ],
+          "definition_translation": "napredni skolski kvalifikacioni nivo u britanskom obrazovnom sistemu",
+          "confidence": "medium",
+          "notes": [
+            "Education-system term should preserve original label.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 47,
+      "selector_id": "ENG30-00059171-r",
+      "source_synset": {
+        "id": "ENG30-00059171-r",
+        "english_id": "ENG30-00059171-r",
+        "name": "a_lot.r.01",
+        "lemmas": [
+          "a lot",
+          "lots",
+          "a good deal",
+          "a great deal",
+          "much",
+          "very much"
+        ],
+        "definition": "to a very great degree or extent",
+        "examples": [
+          "I feel a lot better",
+          "we enjoyed ourselves very much",
+          "she was very much interested",
+          "this would help a great deal"
+        ],
+        "pos": "r"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "mnogo",
+          "translated_synonyms": [
+            "mnogo",
+            "veoma"
+          ],
+          "definition_translation": "u veoma velikoj meri ili obimu",
+          "confidence": "high",
+          "notes": [
+            "Common degree adverb.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "mnogo",
+          "translated_synonyms": [
+            "mnogo",
+            "veoma",
+            "u velikoj meri",
+            "znatno"
+          ],
+          "definition_translation": "u velikom stepenu ili obimu",
+          "confidence": "high",
+          "notes": [
+            "Common degree adverb.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "mnogo",
+          "translated_synonyms": [
+            "mnogo",
+            "u veoma velikoj meri"
+          ],
+          "definition_translation": "u vrlo velikoj meri",
+          "confidence": "high",
+          "notes": [
+            "Common degree adverb.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 48,
+      "selector_id": "ENG30-00139126-a",
+      "source_synset": {
+        "id": "ENG30-00139126-a",
+        "english_id": "ENG30-00139126-a",
+        "name": "a_posteriori.a.01",
+        "lemmas": [
+          "a posteriori"
+        ],
+        "definition": "involving reasoning from facts or particulars to general principles or from effects to causes",
+        "examples": [
+          "a posteriori demonstration"
+        ],
+        "pos": "a"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "translated_synonyms": [
+            "a posteriori",
+            "empirijski"
+          ],
+          "definition_translation": "koji ukljucuje zakljucivanje od cinjenica ili pojedinacnosti ka opstim nacelima, ili od posledica ka uzrocima",
+          "confidence": "high",
+          "notes": [
+            "Philosophical term; keep Latin label.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "translated_synonyms": [
+            "a posteriori",
+            "empirijski",
+            "zasnovan na iskustvu",
+            "induktivan"
+          ],
+          "definition_translation": "koji polazi od opazenih cinjenica ili posebnih slucajeva ka opstim principima",
+          "confidence": "high",
+          "notes": [
+            "Philosophical term; keep Latin label.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "translated_synonyms": [
+            "a posteriori",
+            "zasnovan na cinjenicama"
+          ],
+          "definition_translation": "koji se izvodi iz iskustvenih cinjenica, a ne unapred iz cistog principa",
+          "confidence": "high",
+          "notes": [
+            "Philosophical term; keep Latin label.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 49,
+      "selector_id": "ENG30-00251525-r",
+      "source_synset": {
+        "id": "ENG30-00251525-r",
+        "english_id": "ENG30-00251525-r",
+        "name": "a_posteriori.r.01",
+        "lemmas": [
+          "a posteriori"
+        ],
+        "definition": "derived from observed facts",
+        "examples": [],
+        "pos": "r"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "translated_synonyms": [
+            "a posteriori",
+            "iz iskustva"
+          ],
+          "definition_translation": "izvedeno iz opazenih cinjenica",
+          "confidence": "high",
+          "notes": [
+            "Adverbial form.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "translated_synonyms": [
+            "a posteriori",
+            "na osnovu opazenih cinjenica",
+            "iz iskustva"
+          ],
+          "definition_translation": "na osnovu posmatranih ili iskustvenih cinjenica",
+          "confidence": "high",
+          "notes": [
+            "Adverbial form.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "translated_synonyms": [
+            "a posteriori",
+            "empirijski"
+          ],
+          "definition_translation": "na empirijskoj osnovi",
+          "confidence": "high",
+          "notes": [
+            "Adverbial form.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 50,
+      "selector_id": "ENG30-00859350-s",
+      "source_synset": {
+        "id": "ENG30-00859350-s",
+        "english_id": "ENG30-00859350-s",
+        "name": "a_posteriori.s.01",
+        "lemmas": [
+          "a posteriori"
+        ],
+        "definition": "requiring evidence for validation or support",
+        "examples": [],
+        "pos": "s"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "translated_synonyms": [
+            "a posteriori",
+            "empirijski"
+          ],
+          "definition_translation": "koji zahteva dokaz za potvrdjivanje ili podrsku",
+          "confidence": "high",
+          "notes": [
+            "Satellite adjective focused on validation by evidence.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "translated_synonyms": [
+            "a posteriori",
+            "koji zahteva dokaz",
+            "empirijski proverljiv"
+          ],
+          "definition_translation": "koji trazi iskustveni dokaz ili potporu za valjanost",
+          "confidence": "high",
+          "notes": [
+            "Satellite adjective focused on validation by evidence.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "a posteriori",
+          "translated_synonyms": [
+            "a posteriori",
+            "zasnovan na dokazima"
+          ],
+          "definition_translation": "koji se potvrdjuje dokazima, a ne sam po sebi",
+          "confidence": "high",
+          "notes": [
+            "Satellite adjective focused on validation by evidence.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 51,
+      "selector_id": "ENG30-00138912-a",
+      "source_synset": {
+        "id": "ENG30-00138912-a",
+        "english_id": "ENG30-00138912-a",
+        "name": "a_priori.a.01",
+        "lemmas": [
+          "a priori"
+        ],
+        "definition": "involving deductive reasoning from a general principle to a necessary effect; not supported by fact",
+        "examples": [
+          "an a priori judgment"
+        ],
+        "pos": "a"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a priori",
+          "translated_synonyms": [
+            "a priori",
+            "apriorni"
+          ],
+          "definition_translation": "koji ukljucuje deduktivno zakljucivanje od opsteg nacela ka nuznoj posledici; nije potkrepljen cinjenicama",
+          "confidence": "high",
+          "notes": [
+            "Philosophical term; both borrowed and adapted forms are useful.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a priori",
+          "translated_synonyms": [
+            "a priori",
+            "apriorni",
+            "deduktivan"
+          ],
+          "definition_translation": "koji polazi od opsteg principa i deduktivno izvodi nuznu posledicu",
+          "confidence": "high",
+          "notes": [
+            "Philosophical term; both borrowed and adapted forms are useful.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "apriorni",
+          "translated_synonyms": [
+            "apriorni",
+            "a priori"
+          ],
+          "definition_translation": "koji se izvodi unapred iz opsteg principa, bez oslonca na cinjenice",
+          "confidence": "high",
+          "notes": [
+            "Philosophical term; both borrowed and adapted forms are useful.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 52,
+      "selector_id": "ENG30-00251611-r",
+      "source_synset": {
+        "id": "ENG30-00251611-r",
+        "english_id": "ENG30-00251611-r",
+        "name": "a_priori.r.01",
+        "lemmas": [
+          "a priori"
+        ],
+        "definition": "derived by logic, without observed facts",
+        "examples": [],
+        "pos": "r"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a priori",
+          "translated_synonyms": [
+            "a priori",
+            "apriorno"
+          ],
+          "definition_translation": "izvedeno logikom, bez opazenih cinjenica",
+          "confidence": "high",
+          "notes": [
+            "Adverbial form.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a priori",
+          "translated_synonyms": [
+            "a priori",
+            "apriorno",
+            "deduktivno",
+            "bez opazenih cinjenica"
+          ],
+          "definition_translation": "logicki izvedeno bez oslanjanja na posmatrane cinjenice",
+          "confidence": "high",
+          "notes": [
+            "Adverbial form.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "apriorno",
+          "translated_synonyms": [
+            "apriorno",
+            "a priori"
+          ],
+          "definition_translation": "na osnovu logike, a ne iskustvenog posmatranja",
+          "confidence": "high",
+          "notes": [
+            "Adverbial form.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 53,
+      "selector_id": "ENG30-00861109-s",
+      "source_synset": {
+        "id": "ENG30-00861109-s",
+        "english_id": "ENG30-00861109-s",
+        "name": "a_priori.s.01",
+        "lemmas": [
+          "a priori"
+        ],
+        "definition": "based on hypothesis or theory rather than experiment",
+        "examples": [],
+        "pos": "s"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "a priori",
+          "translated_synonyms": [
+            "a priori",
+            "apriorni"
+          ],
+          "definition_translation": "zasnovan na hipotezi ili teoriji, a ne na eksperimentu",
+          "confidence": "high",
+          "notes": [
+            "Conceptual representative can be Serbian rather than Latin.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "a priori",
+          "translated_synonyms": [
+            "a priori",
+            "apriorni",
+            "teorijski",
+            "hipoteticki"
+          ],
+          "definition_translation": "zasnovan na teoriji ili pretpostavci umesto na eksperimentalnim dokazima",
+          "confidence": "high",
+          "notes": [
+            "Conceptual representative can be Serbian rather than Latin.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "teorijski",
+          "translated_synonyms": [
+            "teorijski",
+            "apriorni"
+          ],
+          "definition_translation": "koji pociva na teoriji pre nego na eksperimentu",
+          "confidence": "high",
+          "notes": [
+            "Conceptual representative can be Serbian rather than Latin.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 54,
+      "selector_id": "ENG30-14931472-n",
+      "source_synset": {
+        "id": "ENG30-14931472-n",
+        "english_id": "ENG30-14931472-n",
+        "name": "aa.n.01",
+        "lemmas": [
+          "aa"
+        ],
+        "definition": "a dry form of lava resembling clinkers",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "aa lava",
+          "translated_synonyms": [
+            "aa lava",
+            "aa"
+          ],
+          "definition_translation": "suv oblik lave koji podseca na sljaku",
+          "confidence": "medium",
+          "notes": [
+            "Geological Hawaiian term; curator should confirm Serbian technical usage.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "aa lava",
+          "translated_synonyms": [
+            "aa lava",
+            "hrapava lava",
+            "skoriasta lava"
+          ],
+          "definition_translation": "hrapava, suva vrsta lave nalik zguri ili klinkeru",
+          "confidence": "medium",
+          "notes": [
+            "Geological Hawaiian term; curator should confirm Serbian technical usage.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "aa lava",
+          "translated_synonyms": [
+            "aa lava",
+            "hrapava lava"
+          ],
+          "definition_translation": "oblik ocvrsle lave sa grubom, sljakastom povrsinom",
+          "confidence": "medium",
+          "notes": [
+            "Geological Hawaiian term; curator should confirm Serbian technical usage.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 55,
+      "selector_id": "ENG30-08769439-n",
+      "source_synset": {
+        "id": "ENG30-08769439-n",
+        "english_id": "ENG30-08769439-n",
+        "name": "aachen.n.01",
+        "lemmas": [
+          "Aachen",
+          "Aken",
+          "Aix-la-Chapelle"
+        ],
+        "definition": "a city in western Germany near the Dutch and Belgian borders; formerly it was Charlemagne's northern capital",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "Ahen",
+          "translated_synonyms": [
+            "Ahen",
+            "Aachen"
+          ],
+          "definition_translation": "grad u zapadnoj Nemackoj blizu holandske i belgijske granice; nekada severna prestonica Karla Velikog",
+          "confidence": "high",
+          "notes": [
+            "Ahen is the Serbian exonym; original names retained.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "Ahen",
+          "translated_synonyms": [
+            "Ahen",
+            "Aachen",
+            "Aix-la-Chapelle"
+          ],
+          "definition_translation": "zapadnonemacki grad blizu granica sa Holandijom i Belgijom, istorijski vezan za Karla Velikog",
+          "confidence": "high",
+          "notes": [
+            "Ahen is the Serbian exonym; original names retained.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "Ahen",
+          "translated_synonyms": [
+            "Ahen",
+            "Aachen"
+          ],
+          "definition_translation": "grad u zapadnoj Nemackoj blizu Belgije i Holandije",
+          "confidence": "high",
+          "notes": [
+            "Ahen is the Serbian exonym; original names retained.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 56,
+      "selector_id": "ENG30-08762243-n",
+      "source_synset": {
+        "id": "ENG30-08762243-n",
+        "english_id": "ENG30-08762243-n",
+        "name": "aalborg.n.01",
+        "lemmas": [
+          "Aalborg",
+          "Alborg"
+        ],
+        "definition": "a city and port in northern Jutland",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "Olborg",
+          "translated_synonyms": [
+            "Olborg",
+            "Aalborg"
+          ],
+          "definition_translation": "grad i luka u severnom Jilandu",
+          "confidence": "medium",
+          "notes": [
+            "Check local Serbian exonym preference: Olborg/Aalborg.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "Olborg",
+          "translated_synonyms": [
+            "Olborg",
+            "Aalborg",
+            "Alborg"
+          ],
+          "definition_translation": "grad i luka u severnom delu Jilanda",
+          "confidence": "medium",
+          "notes": [
+            "Check local Serbian exonym preference: Olborg/Aalborg.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "Olborg",
+          "translated_synonyms": [
+            "Olborg",
+            "Aalborg"
+          ],
+          "definition_translation": "luka i grad u severnom Jutlandu u Danskoj",
+          "confidence": "medium",
+          "notes": [
+            "Check local Serbian exonym preference: Olborg/Aalborg.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 57,
+      "selector_id": "ENG30-12740967-n",
+      "source_synset": {
+        "id": "ENG30-12740967-n",
+        "english_id": "ENG30-12740967-n",
+        "name": "aalii.n.01",
+        "lemmas": [
+          "aalii"
+        ],
+        "definition": "a small Hawaiian tree with hard dark wood",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "aalii",
+          "translated_synonyms": [
+            "aalii"
+          ],
+          "definition_translation": "malo havajsko drvo sa tvrdim tamnim drvetom",
+          "confidence": "medium",
+          "notes": [
+            "Botanical common name likely remains borrowed.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "aalii",
+          "translated_synonyms": [
+            "aalii",
+            "havajsko drvo aalii",
+            "Dodonaea"
+          ],
+          "definition_translation": "malo drvo sa Havaja koje ima tvrdo tamno drvo",
+          "confidence": "medium",
+          "notes": [
+            "Botanical common name likely remains borrowed.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "aalii",
+          "translated_synonyms": [
+            "aalii",
+            "malo havajsko drvo"
+          ],
+          "definition_translation": "havajska biljka, malo drvo tvrdog tamnog drveta",
+          "confidence": "medium",
+          "notes": [
+            "Botanical common name likely remains borrowed.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 58,
+      "selector_id": "ENG30-08850663-n",
+      "source_synset": {
+        "id": "ENG30-08850663-n",
+        "english_id": "ENG30-08850663-n",
+        "name": "aalst.n.01",
+        "lemmas": [
+          "Aalst"
+        ],
+        "definition": "a town in central Belgium",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "Alst",
+          "translated_synonyms": [
+            "Alst",
+            "Aalst"
+          ],
+          "definition_translation": "grad u centralnoj Belgiji",
+          "confidence": "medium",
+          "notes": [
+            "Proper-name transliteration should be verified.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "Alst",
+          "translated_synonyms": [
+            "Alst",
+            "Aalst",
+            "grad Alst"
+          ],
+          "definition_translation": "belgijski grad u centralnom delu zemlje",
+          "confidence": "medium",
+          "notes": [
+            "Proper-name transliteration should be verified.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "Alst",
+          "translated_synonyms": [
+            "Alst",
+            "Aalst"
+          ],
+          "definition_translation": "grad u srednjoj Belgiji",
+          "confidence": "medium",
+          "notes": [
+            "Proper-name transliteration should be verified.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 59,
+      "selector_id": "ENG30-10806693-n",
+      "source_synset": {
+        "id": "ENG30-10806693-n",
+        "english_id": "ENG30-10806693-n",
+        "name": "aalto.n.01",
+        "lemmas": [
+          "Aalto",
+          "Alvar Aalto",
+          "Hugo Alvar Henrik Aalto"
+        ],
+        "definition": "Finnish architect and designer of furniture (1898-1976)",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "Aalto",
+          "translated_synonyms": [
+            "Aalto",
+            "Alvar Aalto"
+          ],
+          "definition_translation": "finski arhitekta i dizajner namestaja (1898-1976)",
+          "confidence": "high",
+          "notes": [
+            "Proper name preserved.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "Alvar Aalto",
+          "translated_synonyms": [
+            "Alvar Aalto",
+            "Aalto",
+            "Hugo Alvar Henrik Aalto"
+          ],
+          "definition_translation": "finski arhitekta i dizajner namestaja, rodjen 1898. i umro 1976.",
+          "confidence": "high",
+          "notes": [
+            "Proper name preserved.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "Alvar Aalto",
+          "translated_synonyms": [
+            "Alvar Aalto",
+            "Aalto"
+          ],
+          "definition_translation": "finski arhitekta i dizajner namestaja poznat kao Alvar Aalto",
+          "confidence": "high",
+          "notes": [
+            "Proper name preserved.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 60,
+      "selector_id": "ENG30-02082791-n",
+      "source_synset": {
+        "id": "ENG30-02082791-n",
+        "english_id": "ENG30-02082791-n",
+        "name": "aardvark.n.01",
+        "lemmas": [
+          "aardvark",
+          "ant bear",
+          "anteater",
+          "Orycteropus afer"
+        ],
+        "definition": "nocturnal burrowing mammal of the grasslands of Africa that feeds on termites; sole extant representative of the order Tubulidentata",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "africki mravojed",
+          "translated_synonyms": [
+            "africki mravojed",
+            "aardvark"
+          ],
+          "definition_translation": "nocni sisar africkih travnjaka koji kopa jazbine i hrani se termitima; jedini zivi predstavnik reda Tubulidentata",
+          "confidence": "medium",
+          "notes": [
+            "Common Serbian term may vary; include Latin name for precision.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "africki mravojed",
+          "translated_synonyms": [
+            "africki mravojed",
+            "aardvark",
+            "mravlji medved",
+            "Orycteropus afer"
+          ],
+          "definition_translation": "nocni africki sisar kopac koji jede termite i predstavlja jedinog zivog clana reda Tubulidentata",
+          "confidence": "medium",
+          "notes": [
+            "Common Serbian term may vary; include Latin name for precision.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "africki mravojed",
+          "translated_synonyms": [
+            "africki mravojed",
+            "Orycteropus afer"
+          ],
+          "definition_translation": "africki sisar koji kopa jazbine i hrani se termitima",
+          "confidence": "medium",
+          "notes": [
+            "Common Serbian term may vary; include Latin name for precision.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 61,
+      "selector_id": "ENG30-02118176-n",
+      "source_synset": {
+        "id": "ENG30-02118176-n",
+        "english_id": "ENG30-02118176-n",
+        "name": "aardwolf.n.01",
+        "lemmas": [
+          "aardwolf",
+          "Proteles cristata"
+        ],
+        "definition": "striped hyena of southeast Africa that feeds chiefly on insects",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "zemljani vuk",
+          "translated_synonyms": [
+            "zemljani vuk",
+            "aardwolf"
+          ],
+          "definition_translation": "prugasta hijena jugoistocne Afrike koja se uglavnom hrani insektima",
+          "confidence": "medium",
+          "notes": [
+            "Serbian common name should be curated; 'prugasta hijena' may be too broad.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "zemljani vuk",
+          "translated_synonyms": [
+            "zemljani vuk",
+            "aardwolf",
+            "Proteles cristata",
+            "prugasta hijena"
+          ],
+          "definition_translation": "jugoistocnoafricki srodnik hijena koji je prugast i pretezno jede insekte",
+          "confidence": "medium",
+          "notes": [
+            "Serbian common name should be curated; 'prugasta hijena' may be too broad.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "zemljani vuk",
+          "translated_synonyms": [
+            "zemljani vuk",
+            "Proteles cristata"
+          ],
+          "definition_translation": "insektivorni africki sisar iz porodice hijena",
+          "confidence": "medium",
+          "notes": [
+            "Serbian common name should be curated; 'prugasta hijena' may be too broad.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 62,
+      "selector_id": "ENG30-09186064-n",
+      "source_synset": {
+        "id": "ENG30-09186064-n",
+        "english_id": "ENG30-09186064-n",
+        "name": "aare.n.01",
+        "lemmas": [
+          "Aare",
+          "Aar",
+          "Aare River"
+        ],
+        "definition": "a river in north central Switzerland that runs northeast into the Rhine",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "Aare",
+          "translated_synonyms": [
+            "Aare",
+            "reka Aare"
+          ],
+          "definition_translation": "reka u severnoj centralnoj Svajcarskoj koja tece severoistocno u Rajnu",
+          "confidence": "high",
+          "notes": [
+            "Hydronym preserved with descriptive 'reka'.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "Aare",
+          "translated_synonyms": [
+            "Aare",
+            "Aar",
+            "reka Aare"
+          ],
+          "definition_translation": "svajcarska reka koja iz severne centralne Svajcarske tece ka Rajni",
+          "confidence": "high",
+          "notes": [
+            "Hydronym preserved with descriptive 'reka'.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "reka Aare",
+          "translated_synonyms": [
+            "reka Aare",
+            "Aare"
+          ],
+          "definition_translation": "reka u Svajcarskoj koja se uliva u Rajnu",
+          "confidence": "high",
+          "notes": [
+            "Hydronym preserved with descriptive 'reka'.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 63,
+      "selector_id": "ENG30-10807016-n",
+      "source_synset": {
+        "id": "ENG30-10807016-n",
+        "english_id": "ENG30-10807016-n",
+        "name": "aaron.n.01",
+        "lemmas": [
+          "Aaron",
+          "Henry Louis Aaron",
+          "Hank Aaron"
+        ],
+        "definition": "United States professional baseball player who hit more home runs than Babe Ruth (born in 1934)",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "Hank Aaron",
+          "translated_synonyms": [
+            "Hank Aaron",
+            "Henry Louis Aaron"
+          ],
+          "definition_translation": "americki profesionalni bejzbol igrac koji je postigao vise houm-ranova od Bejba Ruta (rodjen 1934)",
+          "confidence": "medium",
+          "notes": [
+            "Sports proper names may remain in English spelling; transliteration optional.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "Hank Aaron",
+          "translated_synonyms": [
+            "Hank Aaron",
+            "Henry Louis Aaron",
+            "Henri Luis Aron"
+          ],
+          "definition_translation": "americki profesionalni bejzbol igrac poznat po vecem broju houm-ranova od Bejba Ruta",
+          "confidence": "medium",
+          "notes": [
+            "Sports proper names may remain in English spelling; transliteration optional.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "Hank Aaron",
+          "translated_synonyms": [
+            "Hank Aaron",
+            "Henri Luis Aron"
+          ],
+          "definition_translation": "americki bejzbol igrac Hank Aaron, rekorder u houm-ranovima u odnosu na Bejba Ruta",
+          "confidence": "medium",
+          "notes": [
+            "Sports proper names may remain in English spelling; transliteration optional.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 64,
+      "selector_id": "ENG30-10806841-n",
+      "source_synset": {
+        "id": "ENG30-10806841-n",
+        "english_id": "ENG30-10806841-n",
+        "name": "aaron.n.02",
+        "lemmas": [
+          "Aaron"
+        ],
+        "definition": "(Old Testament) elder brother of Moses and first high priest of the Israelites; created the golden calf",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "Aron",
+          "translated_synonyms": [
+            "Aron"
+          ],
+          "definition_translation": "u Starom zavetu, stariji brat Mojsija i prvi prvosvestenik Izraelaca; napravio je zlatno tele",
+          "confidence": "high",
+          "notes": [
+            "Biblical name has established Serbian form.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "Aron",
+          "translated_synonyms": [
+            "Aron",
+            "biblijski Aron",
+            "Mojsijev stariji brat"
+          ],
+          "definition_translation": "starozavetni Mojsijev stariji brat i prvi izraelski prvosvestenik",
+          "confidence": "high",
+          "notes": [
+            "Biblical name has established Serbian form.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "Aron",
+          "translated_synonyms": [
+            "Aron"
+          ],
+          "definition_translation": "biblijski Aron, Mojsijev stariji brat i prvi prvosvestenik Izraelaca",
+          "confidence": "high",
+          "notes": [
+            "Biblical name has established Serbian form.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 65,
+      "selector_id": "ENG30-15216563-n",
+      "source_synset": {
+        "id": "ENG30-15216563-n",
+        "english_id": "ENG30-15216563-n",
+        "name": "ab.n.02",
+        "lemmas": [
+          "Ab",
+          "Av"
+        ],
+        "definition": "the eleventh month of the civil year; the fifth month of the ecclesiastical year in the Jewish calendar (in July and August)",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "av",
+          "translated_synonyms": [
+            "av",
+            "ab"
+          ],
+          "definition_translation": "jedanaesti mesec gradjanske godine i peti mesec crkvene godine u jevrejskom kalendaru, u julu i avgustu",
+          "confidence": "medium",
+          "notes": [
+            "Hebrew month name may appear as Av or Ab.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "av",
+          "translated_synonyms": [
+            "av",
+            "ab",
+            "mesec av"
+          ],
+          "definition_translation": "jevrejski kalendarski mesec koji pada u jul i avgust",
+          "confidence": "medium",
+          "notes": [
+            "Hebrew month name may appear as Av or Ab.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "mesec av",
+          "translated_synonyms": [
+            "mesec av",
+            "av"
+          ],
+          "definition_translation": "mesec jevrejskog kalendara, peti u verskoj godini i jedanaesti u gradjanskoj",
+          "confidence": "medium",
+          "notes": [
+            "Hebrew month name may appear as Av or Ab.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 66,
+      "selector_id": "ENG30-05401096-n",
+      "source_synset": {
+        "id": "ENG30-05401096-n",
+        "english_id": "ENG30-05401096-n",
+        "name": "ab.n.04",
+        "lemmas": [
+          "AB",
+          "type AB",
+          "group AB"
+        ],
+        "definition": "the blood group whose red cells carry both the A and B antigens",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "krvna grupa AB",
+          "translated_synonyms": [
+            "krvna grupa AB",
+            "tip AB"
+          ],
+          "definition_translation": "krvna grupa cija crvena krvna zrnca nose i A i B antigen",
+          "confidence": "high",
+          "notes": [
+            "Medical label is straightforward.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "krvna grupa AB",
+          "translated_synonyms": [
+            "krvna grupa AB",
+            "tip AB",
+            "grupa AB"
+          ],
+          "definition_translation": "krvna grupa u kojoj eritrociti imaju antigene A i B",
+          "confidence": "high",
+          "notes": [
+            "Medical label is straightforward.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "krvna grupa AB",
+          "translated_synonyms": [
+            "krvna grupa AB",
+            "grupa AB"
+          ],
+          "definition_translation": "krvna grupa odredjena prisustvom oba antigena, A i B",
+          "confidence": "high",
+          "notes": [
+            "Medical label is straightforward.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 67,
+      "selector_id": "ENG30-02666079-n",
+      "source_synset": {
+        "id": "ENG30-02666079-n",
+        "english_id": "ENG30-02666079-n",
+        "name": "aba.n.01",
+        "lemmas": [
+          "aba"
+        ],
+        "definition": "a loose sleeveless outer garment made from aba cloth; worn by Arabs",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "aba",
+          "translated_synonyms": [
+            "aba"
+          ],
+          "definition_translation": "labava spoljasnja odeca bez rukava od aba tkanine, koju nose Arapi",
+          "confidence": "medium",
+          "notes": [
+            "Cultural garment name likely remains borrowed.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "aba",
+          "translated_synonyms": [
+            "aba",
+            "arapski ogrtac bez rukava",
+            "labavi spoljasnji ogrtac"
+          ],
+          "definition_translation": "sirok spoljasnji ogrtac bez rukava od aba tkanine",
+          "confidence": "medium",
+          "notes": [
+            "Cultural garment name likely remains borrowed.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "aba",
+          "translated_synonyms": [
+            "aba",
+            "arapski ogrtac"
+          ],
+          "definition_translation": "arapski ogrtac bez rukava napravljen od aba tkanine",
+          "confidence": "medium",
+          "notes": [
+            "Cultural garment name likely remains borrowed.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 68,
+      "selector_id": "ENG30-02665985-n",
+      "source_synset": {
+        "id": "ENG30-02665985-n",
+        "english_id": "ENG30-02665985-n",
+        "name": "aba.n.02",
+        "lemmas": [
+          "aba"
+        ],
+        "definition": "a fabric woven from goat hair and camel hair",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "aba",
+          "translated_synonyms": [
+            "aba"
+          ],
+          "definition_translation": "tkanina tkana od kozje i kamilje dlake",
+          "confidence": "medium",
+          "notes": [
+            "Distinguish garment sense from fabric sense.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "aba",
+          "translated_synonyms": [
+            "aba",
+            "tkanina aba",
+            "tkanina od kozje i kamilje dlake"
+          ],
+          "definition_translation": "tekstil od kozje i kamilje dlake",
+          "confidence": "medium",
+          "notes": [
+            "Distinguish garment sense from fabric sense.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "aba",
+          "translated_synonyms": [
+            "aba",
+            "aba tkanina"
+          ],
+          "definition_translation": "gruba tkanina od kozje i kamilje dlake",
+          "confidence": "medium",
+          "notes": [
+            "Distinguish garment sense from fabric sense.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 69,
+      "selector_id": "ENG30-12353431-n",
+      "source_synset": {
+        "id": "ENG30-12353431-n",
+        "english_id": "ENG30-12353431-n",
+        "name": "abaca.n.02",
+        "lemmas": [
+          "abaca",
+          "Manila hemp",
+          "Musa textilis"
+        ],
+        "definition": "Philippine banana tree having leafstalks that yield Manila hemp used for rope and paper etc",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "abaka",
+          "translated_synonyms": [
+            "abaka",
+            "manilska konoplja"
+          ],
+          "definition_translation": "filipinska banana cije lisne drske daju manilsku konoplju za konopac, papir i drugo",
+          "confidence": "high",
+          "notes": [
+            "Botanical and material names both useful.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "abaka",
+          "translated_synonyms": [
+            "abaka",
+            "manilska konoplja",
+            "Musa textilis"
+          ],
+          "definition_translation": "filipinska biljka banana koja daje vlakno poznato kao manilska konoplja",
+          "confidence": "high",
+          "notes": [
+            "Botanical and material names both useful.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "abaka",
+          "translated_synonyms": [
+            "abaka",
+            "manilska konoplja"
+          ],
+          "definition_translation": "filipinska biljka cija vlakna sluze za konopac i papir",
+          "confidence": "high",
+          "notes": [
+            "Botanical and material names both useful.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 70,
+      "selector_id": "ENG30-02168378-v",
+      "source_synset": {
+        "id": "ENG30-02168378-v",
+        "english_id": "ENG30-02168378-v",
+        "name": "abacinate.v.01",
+        "lemmas": [
+          "abacinate"
+        ],
+        "definition": "blind by holding a red-hot metal plate before someone's eyes",
+        "examples": [
+          "The prisoners were abacinated by their captors"
+        ],
+        "pos": "v"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "abacinirati",
+          "translated_synonyms": [
+            "abacinirati"
+          ],
+          "definition_translation": "oslepiti drzanjem usijane metalne ploce pred necijim ocima",
+          "confidence": "medium",
+          "notes": [
+            "Rare torture verb; descriptive Serbian is safer than obscure loan alone.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "abacinirati",
+          "translated_synonyms": [
+            "abacinirati",
+            "oslepiti usijanim metalom",
+            "oslepiti usijanom plocom"
+          ],
+          "definition_translation": "naneti slepilo izlaganjem ociju usijanoj metalnoj ploci",
+          "confidence": "medium",
+          "notes": [
+            "Rare torture verb; descriptive Serbian is safer than obscure loan alone.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "oslepiti usijanom plocom",
+          "translated_synonyms": [
+            "oslepiti usijanom plocom",
+            "abacinirati"
+          ],
+          "definition_translation": "oslepiti osobu pomocu usijane metalne ploce pred ocima",
+          "confidence": "medium",
+          "notes": [
+            "Rare torture verb; descriptive Serbian is safer than obscure loan alone.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 71,
+      "selector_id": "ENG30-00075739-r",
+      "source_synset": {
+        "id": "ENG30-00075739-r",
+        "english_id": "ENG30-00075739-r",
+        "name": "aback.r.01",
+        "lemmas": [
+          "aback"
+        ],
+        "definition": "having the wind against the forward side of the sails",
+        "examples": [
+          "the ship came up into the wind with all yards aback"
+        ],
+        "pos": "r"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "sa jedrima okrenutim protiv vetra",
+          "translated_synonyms": [
+            "sa jedrima okrenutim protiv vetra"
+          ],
+          "definition_translation": "sa vetrom protiv prednje strane jedara",
+          "confidence": "medium",
+          "notes": [
+            "Nautical adverb is hard to lexicalize; descriptive phrase preferred.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "protiv vetra na jedrima",
+          "translated_synonyms": [
+            "protiv vetra na jedrima",
+            "sa vetrom na prednjoj strani jedara",
+            "unazad pod vetrom"
+          ],
+          "definition_translation": "u polozaju u kome vetar udara u prednju stranu jedara",
+          "confidence": "medium",
+          "notes": [
+            "Nautical adverb is hard to lexicalize; descriptive phrase preferred.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "sa jedrima pritisnutim s prednje strane",
+          "translated_synonyms": [
+            "sa jedrima pritisnutim s prednje strane"
+          ],
+          "definition_translation": "pomorski: tako da vetar pritiska prednju stranu jedara",
+          "confidence": "medium",
+          "notes": [
+            "Nautical adverb is hard to lexicalize; descriptive phrase preferred.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 72,
+      "selector_id": "ENG30-00075656-r",
+      "source_synset": {
+        "id": "ENG30-00075656-r",
+        "english_id": "ENG30-00075656-r",
+        "name": "aback.r.02",
+        "lemmas": [
+          "aback"
+        ],
+        "definition": "by surprise",
+        "examples": [
+          "taken aback by the caustic remarks"
+        ],
+        "pos": "r"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "zateceno",
+          "translated_synonyms": [
+            "zateceno",
+            "iznenadjeno"
+          ],
+          "definition_translation": "iznenadjenjem; na zatecen nacin",
+          "confidence": "high",
+          "notes": [
+            "Often appears in phrase 'taken aback' = 'zatecen'.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "zateceno",
+          "translated_synonyms": [
+            "zateceno",
+            "iznenadjeno",
+            "nespremno"
+          ],
+          "definition_translation": "na nacin koji nekoga iznenadi ili zatekne",
+          "confidence": "high",
+          "notes": [
+            "Often appears in phrase 'taken aback' = 'zatecen'.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "zateceno",
+          "translated_synonyms": [
+            "zateceno",
+            "iznenadjeno"
+          ],
+          "definition_translation": "u stanju iznenadjenosti ili nespremnosti",
+          "confidence": "high",
+          "notes": [
+            "Often appears in phrase 'taken aback' = 'zatecen'.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 73,
+      "selector_id": "ENG30-01665972-a",
+      "source_synset": {
+        "id": "ENG30-01665972-a",
+        "english_id": "ENG30-01665972-a",
+        "name": "abactinal.a.01",
+        "lemmas": [
+          "abactinal"
+        ],
+        "definition": "(of radiate animals) located on the surface or end opposite to that on which the mouth is situated",
+        "examples": [],
+        "pos": "a"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "abaktinalan",
+          "translated_synonyms": [
+            "abaktinalan"
+          ],
+          "definition_translation": "kod zrakastih zivotinja, smesten na povrsini ili kraju suprotnom od onog na kome su usta",
+          "confidence": "medium",
+          "notes": [
+            "Specialist zoological adjective; keep technical loan.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "abaktinalan",
+          "translated_synonyms": [
+            "abaktinalan",
+            "suprotan ustima",
+            "na povrsini nasuprot ustima"
+          ],
+          "definition_translation": "zooloski: smesten na strani tela suprotnoj od usta",
+          "confidence": "medium",
+          "notes": [
+            "Specialist zoological adjective; keep technical loan.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "abaktinalan",
+          "translated_synonyms": [
+            "abaktinalan",
+            "nasuprot oralnoj strani"
+          ],
+          "definition_translation": "koji se nalazi na strani radijalne zivotinje nasuprot ustima",
+          "confidence": "medium",
+          "notes": [
+            "Specialist zoological adjective; keep technical loan.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 74,
+      "selector_id": "ENG30-02666347-n",
+      "source_synset": {
+        "id": "ENG30-02666347-n",
+        "english_id": "ENG30-02666347-n",
+        "name": "abacus.n.01",
+        "lemmas": [
+          "abacus"
+        ],
+        "definition": "a tablet placed horizontally on top of the capital of a column as an aid in supporting the architrave",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "abakus",
+          "translated_synonyms": [
+            "abakus"
+          ],
+          "definition_translation": "ploca postavljena vodoravno na vrh kapitela stuba kao oslonac za arhitrav",
+          "confidence": "high",
+          "notes": [
+            "Architecture sense must be separated from calculator sense.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "abakus",
+          "translated_synonyms": [
+            "abakus",
+            "kapitelna ploca",
+            "ploca na vrhu kapitela"
+          ],
+          "definition_translation": "arhitektonska ploca na vrhu kapitela koja pomaze da nosi arhitrav",
+          "confidence": "high",
+          "notes": [
+            "Architecture sense must be separated from calculator sense.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "abakus",
+          "translated_synonyms": [
+            "abakus",
+            "ploca kapitela"
+          ],
+          "definition_translation": "vodoravna ploca iznad kapitela stuba",
+          "confidence": "high",
+          "notes": [
+            "Architecture sense must be separated from calculator sense.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 75,
+      "selector_id": "ENG30-02666196-n",
+      "source_synset": {
+        "id": "ENG30-02666196-n",
+        "english_id": "ENG30-02666196-n",
+        "name": "abacus.n.02",
+        "lemmas": [
+          "abacus"
+        ],
+        "definition": "a calculator that performs arithmetic functions by manually sliding counters on rods or in grooves",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "abakus",
+          "translated_synonyms": [
+            "abakus",
+            "racunaljka"
+          ],
+          "definition_translation": "racunalo koje obavlja aritmeticke radnje rucnim pomeranjem kuglica ili plocica po sipkama ili zlebovima",
+          "confidence": "high",
+          "notes": [
+            "Common object sense.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "abakus",
+          "translated_synonyms": [
+            "abakus",
+            "racunaljka",
+            "racunska tabla"
+          ],
+          "definition_translation": "rucna sprava za racunanje sa pomerljivim kuglicama ili zetonima",
+          "confidence": "high",
+          "notes": [
+            "Common object sense.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "abakus",
+          "translated_synonyms": [
+            "abakus",
+            "racunaljka"
+          ],
+          "definition_translation": "rucno racunalo sa kliznim brojacima na sipkama ili u zlebovima",
+          "confidence": "high",
+          "notes": [
+            "Common object sense.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 76,
+      "selector_id": "ENG30-08911602-n",
+      "source_synset": {
+        "id": "ENG30-08911602-n",
+        "english_id": "ENG30-08911602-n",
+        "name": "abadan.n.01",
+        "lemmas": [
+          "Abadan"
+        ],
+        "definition": "a port city in southwestern Iran",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "Abadan",
+          "translated_synonyms": [
+            "Abadan"
+          ],
+          "definition_translation": "luka u jugozapadnom Iranu",
+          "confidence": "high",
+          "notes": [
+            "Proper place name.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "Abadan",
+          "translated_synonyms": [
+            "Abadan",
+            "grad Abadan",
+            "luka Abadan"
+          ],
+          "definition_translation": "iranski lucki grad na jugozapadu zemlje",
+          "confidence": "high",
+          "notes": [
+            "Proper place name.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "Abadan",
+          "translated_synonyms": [
+            "Abadan"
+          ],
+          "definition_translation": "lucki grad u jugozapadnom Iranu",
+          "confidence": "high",
+          "notes": [
+            "Proper place name.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 77,
+      "selector_id": "ENG30-01942869-n",
+      "source_synset": {
+        "id": "ENG30-01942869-n",
+        "english_id": "ENG30-01942869-n",
+        "name": "abalone.n.01",
+        "lemmas": [
+          "abalone",
+          "ear-shell"
+        ],
+        "definition": "any of various large edible marine gastropods of the genus Haliotis having an ear-shaped shell with pearly interior",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "abalon",
+          "translated_synonyms": [
+            "abalon",
+            "morsko uvo"
+          ],
+          "definition_translation": "bilo koji veliki jestivi morski gastropod roda Haliotis sa uskolikom skoljkom i sedefastom unutrasnjoscu",
+          "confidence": "medium",
+          "notes": [
+            "Common Serbian form varies; Latin genus helps precision.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "abalon",
+          "translated_synonyms": [
+            "abalon",
+            "morsko uvo",
+            "Haliotis"
+          ],
+          "definition_translation": "veliki jestivi morski puz roda Haliotis sa skoljkom nalik uhu i sedefastom unutrasnjoscu",
+          "confidence": "medium",
+          "notes": [
+            "Common Serbian form varies; Latin genus helps precision.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "abalon",
+          "translated_synonyms": [
+            "abalon",
+            "morsko uvo"
+          ],
+          "definition_translation": "jestivi morski puz sa skoljkom u obliku uha i sedefastom unutrasnjoscu",
+          "confidence": "medium",
+          "notes": [
+            "Common Serbian form varies; Latin genus helps precision.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 78,
+      "selector_id": "ENG30-13637722-n",
+      "source_synset": {
+        "id": "ENG30-13637722-n",
+        "english_id": "ENG30-13637722-n",
+        "name": "abampere.n.01",
+        "lemmas": [
+          "abampere",
+          "abamp"
+        ],
+        "definition": "a unit of current equal to 10 amperes",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "abamper",
+          "translated_synonyms": [
+            "abamper",
+            "abamp"
+          ],
+          "definition_translation": "jedinica elektricne struje jednaka 10 ampera",
+          "confidence": "high",
+          "notes": [
+            "Technical unit name.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "abamper",
+          "translated_synonyms": [
+            "abamper",
+            "abamp",
+            "jedinica struje od 10 ampera"
+          ],
+          "definition_translation": "elektromagnetna jedinica struje koja iznosi deset ampera",
+          "confidence": "high",
+          "notes": [
+            "Technical unit name.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "abamper",
+          "translated_synonyms": [
+            "abamper"
+          ],
+          "definition_translation": "merna jedinica za struju, jednaka 10 A",
+          "confidence": "high",
+          "notes": [
+            "Technical unit name.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 79,
+      "selector_id": "ENG30-04885398-n",
+      "source_synset": {
+        "id": "ENG30-04885398-n",
+        "english_id": "ENG30-04885398-n",
+        "name": "abandon.n.01",
+        "lemmas": [
+          "abandon",
+          "wantonness",
+          "unconstraint"
+        ],
+        "definition": "the trait of lacking restraint or control; reckless freedom from inhibition or worry",
+        "examples": [
+          "she danced with abandon"
+        ],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "nesputanost",
+          "translated_synonyms": [
+            "nesputanost",
+            "neobuzdanost"
+          ],
+          "definition_translation": "osobina nedostatka uzdrzanosti ili kontrole; nepromisljena sloboda od inhibicije ili brige",
+          "confidence": "high",
+          "notes": [
+            "Noun trait sense, not the verb 'napustiti'.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "nesputanost",
+          "translated_synonyms": [
+            "nesputanost",
+            "neobuzdanost",
+            "razuzdanost",
+            "sloboda bez kocnica"
+          ],
+          "definition_translation": "stanje ili osobina delovanja bez uzdrzanosti, kontrole ili brige",
+          "confidence": "high",
+          "notes": [
+            "Noun trait sense, not the verb 'napustiti'.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "nesputanost",
+          "translated_synonyms": [
+            "nesputanost",
+            "neobuzdanost"
+          ],
+          "definition_translation": "sloboda od sputanosti i kontrole, cesto nepromisljena",
+          "confidence": "high",
+          "notes": [
+            "Noun trait sense, not the verb 'napustiti'.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 80,
+      "selector_id": "ENG30-02228031-v",
+      "source_synset": {
+        "id": "ENG30-02228031-v",
+        "english_id": "ENG30-02228031-v",
+        "name": "abandon.v.01",
+        "lemmas": [
+          "abandon"
+        ],
+        "definition": "forsake, leave behind",
+        "examples": [
+          "We abandoned the old car in the empty parking lot"
+        ],
+        "pos": "v"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "napustiti",
+          "translated_synonyms": [
+            "napustiti",
+            "ostaviti"
+          ],
+          "definition_translation": "ostaviti ili napustiti, ostaviti za sobom",
+          "confidence": "high",
+          "notes": [
+            "Physical leaving sense.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "napustiti",
+          "translated_synonyms": [
+            "napustiti",
+            "ostaviti",
+            "ostaviti za sobom"
+          ],
+          "definition_translation": "otici od necega i ostaviti ga iza sebe",
+          "confidence": "high",
+          "notes": [
+            "Physical leaving sense.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "napustiti",
+          "translated_synonyms": [
+            "napustiti",
+            "ostaviti"
+          ],
+          "definition_translation": "prestati biti uz nesto i ostaviti ga za sobom",
+          "confidence": "high",
+          "notes": [
+            "Physical leaving sense.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 81,
+      "selector_id": "ENG30-02227741-v",
+      "source_synset": {
+        "id": "ENG30-02227741-v",
+        "english_id": "ENG30-02227741-v",
+        "name": "abandon.v.02",
+        "lemmas": [
+          "abandon",
+          "give up"
+        ],
+        "definition": "give up with the intent of never claiming again",
+        "examples": [
+          "Abandon your life to God",
+          "She gave up her children to her ex-husband when she moved to Tahiti",
+          "We gave the drowning victim up for dead"
+        ],
+        "pos": "v"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "odreci se",
+          "translated_synonyms": [
+            "odreci se",
+            "napustiti"
+          ],
+          "definition_translation": "odustati sa namerom da se vise nikada ne polaze pravo",
+          "confidence": "medium",
+          "notes": [
+            "Includes legal/religious surrender contexts; avoid only physical 'napustiti'.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "odreci se",
+          "translated_synonyms": [
+            "odreci se",
+            "prepustiti",
+            "napustiti zahtev",
+            "dati se"
+          ],
+          "definition_translation": "odreci se necega tako da se vise ne namerava traziti ili zadrzati",
+          "confidence": "medium",
+          "notes": [
+            "Includes legal/religious surrender contexts; avoid only physical 'napustiti'.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "odreci se",
+          "translated_synonyms": [
+            "odreci se",
+            "prepustiti"
+          ],
+          "definition_translation": "trajno se odreci prava, zahteva ili osobe u datom kontekstu",
+          "confidence": "medium",
+          "notes": [
+            "Includes legal/religious surrender contexts; avoid only physical 'napustiti'.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 82,
+      "selector_id": "ENG30-00613393-v",
+      "source_synset": {
+        "id": "ENG30-00613393-v",
+        "english_id": "ENG30-00613393-v",
+        "name": "abandon.v.04",
+        "lemmas": [
+          "abandon",
+          "give up"
+        ],
+        "definition": "stop maintaining or insisting on; of ideas or claims",
+        "examples": [
+          "He abandoned the thought of asking for her hand in marriage",
+          "Both sides have to give up some claims in these negotiations"
+        ],
+        "pos": "v"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "odustati",
+          "translated_synonyms": [
+            "odustati",
+            "napustiti"
+          ],
+          "definition_translation": "prestati odrzavati ili insistirati na idejama ili zahtevima",
+          "confidence": "high",
+          "notes": [
+            "Abstract claim/idea sense.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "odustati",
+          "translated_synonyms": [
+            "odustati",
+            "napustiti",
+            "odreci se",
+            "prestati insistirati"
+          ],
+          "definition_translation": "prestati zastupati, odrzavati ili traziti neku ideju ili zahtev",
+          "confidence": "high",
+          "notes": [
+            "Abstract claim/idea sense.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "odustati od",
+          "translated_synonyms": [
+            "odustati od",
+            "napustiti tvrdnju"
+          ],
+          "definition_translation": "odustati od ideje, zahteva ili stava",
+          "confidence": "high",
+          "notes": [
+            "Abstract claim/idea sense.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 83,
+      "selector_id": "ENG30-00614057-v",
+      "source_synset": {
+        "id": "ENG30-00614057-v",
+        "english_id": "ENG30-00614057-v",
+        "name": "abandon.v.05",
+        "lemmas": [
+          "abandon",
+          "forsake",
+          "desolate",
+          "desert"
+        ],
+        "definition": "leave someone who needs or counts on you; leave in the lurch",
+        "examples": [
+          "The mother deserted her children"
+        ],
+        "pos": "v"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "napustiti",
+          "translated_synonyms": [
+            "napustiti",
+            "ostaviti"
+          ],
+          "definition_translation": "ostaviti nekoga kome si potreban ili ko se oslanja na tebe; ostaviti na cedilu",
+          "confidence": "high",
+          "notes": [
+            "Human-dependence sense; 'ostaviti na cedilu' is strongest.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "napustiti",
+          "translated_synonyms": [
+            "napustiti",
+            "ostaviti na cedilu",
+            "izneveriti",
+            "dezertirati"
+          ],
+          "definition_translation": "napustiti osobu koja zavisi od tebe ili racuna na tebe",
+          "confidence": "high",
+          "notes": [
+            "Human-dependence sense; 'ostaviti na cedilu' is strongest.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "ostaviti na cedilu",
+          "translated_synonyms": [
+            "ostaviti na cedilu",
+            "napustiti"
+          ],
+          "definition_translation": "izneveriti osobu ostavljajuci je bez potrebne podrske",
+          "confidence": "high",
+          "notes": [
+            "Human-dependence sense; 'ostaviti na cedilu' is strongest.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 84,
+      "selector_id": "ENG30-01313004-s",
+      "source_synset": {
+        "id": "ENG30-01313004-s",
+        "english_id": "ENG30-01313004-s",
+        "name": "abandoned.s.01",
+        "lemmas": [
+          "abandoned",
+          "derelict",
+          "deserted"
+        ],
+        "definition": "forsaken by owner or inhabitants",
+        "examples": [
+          "weed-grown yard of an abandoned farmhouse"
+        ],
+        "pos": "s"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "napusten",
+          "translated_synonyms": [
+            "napusten",
+            "pust"
+          ],
+          "definition_translation": "ostavljen od vlasnika ili stanovnika",
+          "confidence": "high",
+          "notes": [
+            "Property/location adjective.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "napusten",
+          "translated_synonyms": [
+            "napusten",
+            "ostavljen",
+            "pust",
+            "zapusten"
+          ],
+          "definition_translation": "koji su napustili vlasnici ili stanovnici",
+          "confidence": "high",
+          "notes": [
+            "Property/location adjective.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "napusten",
+          "translated_synonyms": [
+            "napusten",
+            "pust"
+          ],
+          "definition_translation": "bez vlasnika ili stanovnika, ostavljen prazan",
+          "confidence": "high",
+          "notes": [
+            "Property/location adjective.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 85,
+      "selector_id": "ENG30-01317231-s",
+      "source_synset": {
+        "id": "ENG30-01317231-s",
+        "english_id": "ENG30-01317231-s",
+        "name": "abandoned.s.02",
+        "lemmas": [
+          "abandoned"
+        ],
+        "definition": "free from constraint; - Liam O'Flaherty",
+        "examples": [
+          "an abandoned sadness born of grief"
+        ],
+        "pos": "s"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "nesputan",
+          "translated_synonyms": [
+            "nesputan",
+            "neobuzdan"
+          ],
+          "definition_translation": "slobodan od ogranicenja",
+          "confidence": "medium",
+          "notes": [
+            "Rare literary adjective; separate from deserted sense.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "nesputan",
+          "translated_synonyms": [
+            "nesputan",
+            "neobuzdan",
+            "razuzdan"
+          ],
+          "definition_translation": "bez unutrasnjih ili spoljasnjih stega",
+          "confidence": "medium",
+          "notes": [
+            "Rare literary adjective; separate from deserted sense.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "nesputan",
+          "translated_synonyms": [
+            "nesputan",
+            "slobodan od stega"
+          ],
+          "definition_translation": "oslobodjen sputanosti ili uzdrzanosti",
+          "confidence": "medium",
+          "notes": [
+            "Rare literary adjective; separate from deserted sense.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 86,
+      "selector_id": "ENG30-09753930-n",
+      "source_synset": {
+        "id": "ENG30-09753930-n",
+        "english_id": "ENG30-09753930-n",
+        "name": "abandoned_person.n.01",
+        "lemmas": [
+          "abandoned person"
+        ],
+        "definition": "someone for whom hope has been abandoned",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "napustena osoba",
+          "translated_synonyms": [
+            "napustena osoba"
+          ],
+          "definition_translation": "neko za koga je nada napustena",
+          "confidence": "medium",
+          "notes": [
+            "English gloss is unusual; curator should check whether 'abandoned person' means hopeless case.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "napustena osoba",
+          "translated_synonyms": [
+            "napustena osoba",
+            "otpisana osoba",
+            "osoba za koju je napustena nada"
+          ],
+          "definition_translation": "osoba za koju se vise ne gaji nada",
+          "confidence": "medium",
+          "notes": [
+            "English gloss is unusual; curator should check whether 'abandoned person' means hopeless case.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "osoba bez nade",
+          "translated_synonyms": [
+            "osoba bez nade",
+            "napustena osoba"
+          ],
+          "definition_translation": "osoba koja se smatra beznadeznom ili otpisanom",
+          "confidence": "medium",
+          "notes": [
+            "English gloss is unusual; curator should check whether 'abandoned person' means hopeless case.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 87,
+      "selector_id": "ENG30-02666501-n",
+      "source_synset": {
+        "id": "ENG30-02666501-n",
+        "english_id": "ENG30-02666501-n",
+        "name": "abandoned_ship.n.01",
+        "lemmas": [
+          "abandoned ship",
+          "derelict"
+        ],
+        "definition": "a ship abandoned on the high seas",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "napusteni brod",
+          "translated_synonyms": [
+            "napusteni brod"
+          ],
+          "definition_translation": "brod napusten na otvorenom moru",
+          "confidence": "high",
+          "notes": [
+            "Maritime noun; 'derelikt' is optional technical/legal term.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "napusteni brod",
+          "translated_synonyms": [
+            "napusteni brod",
+            "brod bez posade",
+            "derelikt"
+          ],
+          "definition_translation": "brod ostavljen bez posade na pucini",
+          "confidence": "high",
+          "notes": [
+            "Maritime noun; 'derelikt' is optional technical/legal term.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "napusteni brod",
+          "translated_synonyms": [
+            "napusteni brod",
+            "brod napusten na pucini"
+          ],
+          "definition_translation": "brod koji je napusten na otvorenom moru",
+          "confidence": "high",
+          "notes": [
+            "Maritime noun; 'derelikt' is optional technical/legal term.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 88,
+      "selector_id": "ENG30-00204439-n",
+      "source_synset": {
+        "id": "ENG30-00204439-n",
+        "english_id": "ENG30-00204439-n",
+        "name": "abandonment.n.01",
+        "lemmas": [
+          "abandonment",
+          "forsaking",
+          "desertion"
+        ],
+        "definition": "the act of giving something up",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "napustanje",
+          "translated_synonyms": [
+            "napustanje",
+            "odricanje"
+          ],
+          "definition_translation": "cin odricanja od necega ili napustanja necega",
+          "confidence": "high",
+          "notes": [
+            "General act sense.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "napustanje",
+          "translated_synonyms": [
+            "napustanje",
+            "odustajanje",
+            "odricanje",
+            "desertiranje"
+          ],
+          "definition_translation": "postupak napustanja, odustajanja ili odricanja",
+          "confidence": "high",
+          "notes": [
+            "General act sense.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "odustajanje",
+          "translated_synonyms": [
+            "odustajanje",
+            "napustanje"
+          ],
+          "definition_translation": "cin kojim se nesto ostavlja ili se od njega odustaje",
+          "confidence": "high",
+          "notes": [
+            "General act sense.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 89,
+      "selector_id": "ENG30-00091013-n",
+      "source_synset": {
+        "id": "ENG30-00091013-n",
+        "english_id": "ENG30-00091013-n",
+        "name": "abandonment.n.03",
+        "lemmas": [
+          "abandonment"
+        ],
+        "definition": "the voluntary surrender of property (or a right to property) without attempting to reclaim it or give it away",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "odricanje",
+          "translated_synonyms": [
+            "odricanje",
+            "napustanje prava"
+          ],
+          "definition_translation": "dobrovoljno odricanje od imovine ili prava na imovinu bez pokusaja da se ponovo potrazi ili pokloni",
+          "confidence": "medium",
+          "notes": [
+            "Legal property sense; keep precise descriptive literals.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "dobrovoljno odricanje",
+          "translated_synonyms": [
+            "dobrovoljno odricanje",
+            "napustanje prava",
+            "odricanje od imovine"
+          ],
+          "definition_translation": "pravno dobrovoljno napustanje imovine ili imovinskog prava bez namere povracaja ili prenosa",
+          "confidence": "medium",
+          "notes": [
+            "Legal property sense; keep precise descriptive literals.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "dobrovoljno odricanje od imovine",
+          "translated_synonyms": [
+            "dobrovoljno odricanje od imovine",
+            "napustanje prava"
+          ],
+          "definition_translation": "dobrovoljno odricanje od imovinskog prava bez trazenja naknade ili povracaja",
+          "confidence": "medium",
+          "notes": [
+            "Legal property sense; keep precise descriptive literals.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 90,
+      "selector_id": "ENG30-14294271-n",
+      "source_synset": {
+        "id": "ENG30-14294271-n",
+        "english_id": "ENG30-14294271-n",
+        "name": "abarticulation.n.01",
+        "lemmas": [
+          "abarticulation"
+        ],
+        "definition": "dislocation of a joint",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "iscasenje zgloba",
+          "translated_synonyms": [
+            "iscasenje zgloba",
+            "abartikulacija"
+          ],
+          "definition_translation": "iscasenje zgloba",
+          "confidence": "high",
+          "notes": [
+            "Medical synonym 'luksacija' is useful.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "iscasenje zgloba",
+          "translated_synonyms": [
+            "iscasenje zgloba",
+            "luksacija",
+            "abartikulacija"
+          ],
+          "definition_translation": "pomeranje kostiju iz normalnog polozaja u zglobu",
+          "confidence": "high",
+          "notes": [
+            "Medical synonym 'luksacija' is useful.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "iscasenje zgloba",
+          "translated_synonyms": [
+            "iscasenje zgloba",
+            "luksacija"
+          ],
+          "definition_translation": "medicinski: dislokacija ili iscasenje zgloba",
+          "confidence": "high",
+          "notes": [
+            "Medical synonym 'luksacija' is useful.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 91,
+      "selector_id": "ENG30-14440623-n",
+      "source_synset": {
+        "id": "ENG30-14440623-n",
+        "english_id": "ENG30-14440623-n",
+        "name": "abasement.n.01",
+        "lemmas": [
+          "abasement",
+          "degradation",
+          "abjection"
+        ],
+        "definition": "a low or downcast state; - H.L.Menchken",
+        "examples": [
+          "each confession brought her into an attitude of abasement"
+        ],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "ponizenje",
+          "translated_synonyms": [
+            "ponizenje",
+            "unizenje"
+          ],
+          "definition_translation": "nisko ili oboreno stanje",
+          "confidence": "high",
+          "notes": [
+            "Noun state; avoid action-only reading.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "ponizenje",
+          "translated_synonyms": [
+            "ponizenje",
+            "unizenje",
+            "degradacija",
+            "ponizeno stanje"
+          ],
+          "definition_translation": "stanje ponizenosti, degradacije ili moralnog pada",
+          "confidence": "high",
+          "notes": [
+            "Noun state; avoid action-only reading.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "ponizenost",
+          "translated_synonyms": [
+            "ponizenost",
+            "ponizenje"
+          ],
+          "definition_translation": "stanje unizenosti ili ponizenosti",
+          "confidence": "high",
+          "notes": [
+            "Noun state; avoid action-only reading.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 92,
+      "selector_id": "ENG30-00531628-s",
+      "source_synset": {
+        "id": "ENG30-00531628-s",
+        "english_id": "ENG30-00531628-s",
+        "name": "abashed.s.01",
+        "lemmas": [
+          "abashed",
+          "chagrined",
+          "embarrassed"
+        ],
+        "definition": "feeling or caused to feel uneasy and self-conscious",
+        "examples": [
+          "felt abashed at the extravagant praise",
+          "chagrined at the poor sales of his book",
+          "was embarrassed by her child's tantrums"
+        ],
+        "pos": "s"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "postidjen",
+          "translated_synonyms": [
+            "postidjen",
+            "posramljen"
+          ],
+          "definition_translation": "koji se oseca ili je naveden da se oseca nelagodno i samosvesno",
+          "confidence": "high",
+          "notes": [
+            "Emotional adjective.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "postidjen",
+          "translated_synonyms": [
+            "postidjen",
+            "posramljen",
+            "zbunjen",
+            "nelagodno samosvestan"
+          ],
+          "definition_translation": "osecajuci stid, nelagodnost ili samosvesnost",
+          "confidence": "high",
+          "notes": [
+            "Emotional adjective.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "posramljen",
+          "translated_synonyms": [
+            "posramljen",
+            "postidjen"
+          ],
+          "definition_translation": "koji se oseca posramljeno i nelagodno pred drugima",
+          "confidence": "high",
+          "notes": [
+            "Emotional adjective.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 93,
+      "selector_id": "ENG30-07508092-n",
+      "source_synset": {
+        "id": "ENG30-07508092-n",
+        "english_id": "ENG30-07508092-n",
+        "name": "abashment.n.01",
+        "lemmas": [
+          "abashment",
+          "bashfulness"
+        ],
+        "definition": "feeling embarrassed due to modesty",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "posramljenost",
+          "translated_synonyms": [
+            "posramljenost",
+            "stidljivost"
+          ],
+          "definition_translation": "osecanje posramljenosti usled skromnosti",
+          "confidence": "high",
+          "notes": [
+            "Different from public humiliation.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "posramljenost",
+          "translated_synonyms": [
+            "posramljenost",
+            "stid",
+            "stidljivost"
+          ],
+          "definition_translation": "stid ili posramljenost povezana sa skromnoscu",
+          "confidence": "high",
+          "notes": [
+            "Different from public humiliation.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "stidljivost",
+          "translated_synonyms": [
+            "stidljivost",
+            "posramljenost"
+          ],
+          "definition_translation": "osecanje stida koje potice iz skromnosti",
+          "confidence": "high",
+          "notes": [
+            "Different from public humiliation.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 94,
+      "selector_id": "ENG30-14549070-n",
+      "source_synset": {
+        "id": "ENG30-14549070-n",
+        "english_id": "ENG30-14549070-n",
+        "name": "abasia.n.01",
+        "lemmas": [
+          "abasia"
+        ],
+        "definition": "inability to walk",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "abazija",
+          "translated_synonyms": [
+            "abazija",
+            "nemogucnost hodanja"
+          ],
+          "definition_translation": "nemogucnost hodanja",
+          "confidence": "high",
+          "notes": [
+            "Medical term plus description.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "abazija",
+          "translated_synonyms": [
+            "abazija",
+            "nemogucnost hodanja",
+            "nesposobnost hoda"
+          ],
+          "definition_translation": "patoloska nesposobnost da se hoda",
+          "confidence": "high",
+          "notes": [
+            "Medical term plus description.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "abazija",
+          "translated_synonyms": [
+            "abazija",
+            "nemogucnost hodanja"
+          ],
+          "definition_translation": "medicinsko stanje nemogucnosti hodanja",
+          "confidence": "high",
+          "notes": [
+            "Medical term plus description.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 95,
+      "selector_id": "ENG30-14549284-n",
+      "source_synset": {
+        "id": "ENG30-14549284-n",
+        "english_id": "ENG30-14549284-n",
+        "name": "abasia_trepidans.n.01",
+        "lemmas": [
+          "abasia trepidans"
+        ],
+        "definition": "abasia due to trembling of the legs",
+        "examples": [],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "tremorna abazija",
+          "translated_synonyms": [
+            "tremorna abazija"
+          ],
+          "definition_translation": "abazija usled drhtanja nogu",
+          "confidence": "medium",
+          "notes": [
+            "Specialist medical Latin label should be retained for curation.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "tremorna abazija",
+          "translated_synonyms": [
+            "tremorna abazija",
+            "abazija usled drhtanja nogu",
+            "abasia trepidans"
+          ],
+          "definition_translation": "nemogucnost hodanja izazvana ili pracena drhtanjem nogu",
+          "confidence": "medium",
+          "notes": [
+            "Specialist medical Latin label should be retained for curation.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "tremorna abazija",
+          "translated_synonyms": [
+            "tremorna abazija",
+            "abazija sa drhtanjem nogu"
+          ],
+          "definition_translation": "oblik abazije povezan sa tremorom nogu",
+          "confidence": "medium",
+          "notes": [
+            "Specialist medical Latin label should be retained for curation.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 96,
+      "selector_id": "ENG30-02598608-a",
+      "source_synset": {
+        "id": "ENG30-02598608-a",
+        "english_id": "ENG30-02598608-a",
+        "name": "abasic.a.01",
+        "lemmas": [
+          "abasic",
+          "abatic"
+        ],
+        "definition": "of or relating to abasia (inability to walk)",
+        "examples": [],
+        "pos": "a"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "abazijski",
+          "translated_synonyms": [
+            "abazijski",
+            "abazican"
+          ],
+          "definition_translation": "koji se odnosi na abaziju, odnosno nemogucnost hodanja",
+          "confidence": "medium",
+          "notes": [
+            "Serbian specialist adjective may need standardization.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "abazijski",
+          "translated_synonyms": [
+            "abazijski",
+            "abazican",
+            "koji se odnosi na abaziju"
+          ],
+          "definition_translation": "povezan sa abazijom ili nesposobnoscu hodanja",
+          "confidence": "medium",
+          "notes": [
+            "Serbian specialist adjective may need standardization.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "abazijski",
+          "translated_synonyms": [
+            "abazijski",
+            "vezan za abaziju"
+          ],
+          "definition_translation": "medicinski: koji pripada ili se odnosi na abaziju",
+          "confidence": "medium",
+          "notes": [
+            "Serbian specialist adjective may need standardization.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 97,
+      "selector_id": "ENG30-02288022-s",
+      "source_synset": {
+        "id": "ENG30-02288022-s",
+        "english_id": "ENG30-02288022-s",
+        "name": "abatable.s.01",
+        "lemmas": [
+          "abatable"
+        ],
+        "definition": "capable of being abated",
+        "examples": [],
+        "pos": "s"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "umanjiv",
+          "translated_synonyms": [
+            "umanjiv",
+            "otklonjiv"
+          ],
+          "definition_translation": "koji se moze umanjiti ili ublaziti",
+          "confidence": "medium",
+          "notes": [
+            "Exact Serbian depends on domain: legal nuisance vs general abatement.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "umanjiv",
+          "translated_synonyms": [
+            "umanjiv",
+            "otklonjiv",
+            "koji se moze ublaziti",
+            "koji se moze suzbiti"
+          ],
+          "definition_translation": "sposoban da bude smanjen, ublazen ili otklonjen",
+          "confidence": "medium",
+          "notes": [
+            "Exact Serbian depends on domain: legal nuisance vs general abatement.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "otklonjiv",
+          "translated_synonyms": [
+            "otklonjiv",
+            "koji se moze umanjiti"
+          ],
+          "definition_translation": "koji se moze smanjiti ili uciniti manje stetnim",
+          "confidence": "medium",
+          "notes": [
+            "Exact Serbian depends on domain: legal nuisance vs general abatement.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 98,
+      "selector_id": "ENG30-05830832-n",
+      "source_synset": {
+        "id": "ENG30-05830832-n",
+        "english_id": "ENG30-05830832-n",
+        "name": "abatable_nuisance.n.01",
+        "lemmas": [
+          "abatable nuisance"
+        ],
+        "definition": "a nuisance that can remedied (suppressed or extinguished or rendered harmless)",
+        "examples": [
+          "the continued existence of an abatable nuisance is not authorized under the law"
+        ],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "otklonjiva smetnja",
+          "translated_synonyms": [
+            "otklonjiva smetnja"
+          ],
+          "definition_translation": "smetnja koja se moze otkloniti, suzbiti, ugasiti ili uciniti bezopasnom",
+          "confidence": "medium",
+          "notes": [
+            "Legal 'nuisance' has no perfect one-word Serbian equivalent here.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "otklonjiva smetnja",
+          "translated_synonyms": [
+            "otklonjiva smetnja",
+            "otklonjiva neprijatnost",
+            "smetnja koja se moze suzbiti"
+          ],
+          "definition_translation": "pravna smetnja ili nuisance koja se moze ukloniti ili uciniti neskodljivom",
+          "confidence": "medium",
+          "notes": [
+            "Legal 'nuisance' has no perfect one-word Serbian equivalent here.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "otklonjiva smetnja",
+          "translated_synonyms": [
+            "otklonjiva smetnja",
+            "smetnja koja se moze otkloniti"
+          ],
+          "definition_translation": "pravna smetnja cije se stetno dejstvo moze otkloniti",
+          "confidence": "medium",
+          "notes": [
+            "Legal 'nuisance' has no perfect one-word Serbian equivalent here.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 99,
+      "selector_id": "ENG30-00245059-v",
+      "source_synset": {
+        "id": "ENG30-00245059-v",
+        "english_id": "ENG30-00245059-v",
+        "name": "abate.v.02",
+        "lemmas": [
+          "abate",
+          "let up",
+          "slack off",
+          "slack",
+          "die away"
+        ],
+        "definition": "become less in amount or intensity",
+        "examples": [
+          "The storm abated",
+          "The rain let up after a few hours"
+        ],
+        "pos": "v"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "jenjavati",
+          "translated_synonyms": [
+            "jenjavati",
+            "smanjiti se"
+          ],
+          "definition_translation": "postati manji po kolicini ili jacini",
+          "confidence": "high",
+          "notes": [
+            "Intransitive decrease sense.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "jenjavati",
+          "translated_synonyms": [
+            "jenjavati",
+            "popustiti",
+            "smanjiti se",
+            "utihnuti",
+            "slabiti"
+          ],
+          "definition_translation": "postepeno slabiti, opadati ili smanjivati se po intenzitetu",
+          "confidence": "high",
+          "notes": [
+            "Intransitive decrease sense.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "jenjavati",
+          "translated_synonyms": [
+            "jenjavati",
+            "popustiti",
+            "smanjivati se"
+          ],
+          "definition_translation": "postati manje intenzivan ili obiman",
+          "confidence": "high",
+          "notes": [
+            "Intransitive decrease sense.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    },
+    {
+      "index": 100,
+      "selector_id": "ENG30-00361333-n",
+      "source_synset": {
+        "id": "ENG30-00361333-n",
+        "english_id": "ENG30-00361333-n",
+        "name": "abatement.n.02",
+        "lemmas": [
+          "abatement"
+        ],
+        "definition": "the act of abating",
+        "examples": [
+          "laws enforcing noise abatement"
+        ],
+        "pos": "n"
+      },
+      "pipelines": {
+        "agent-baseline": {
+          "status": "ok",
+          "translation": "smanjenje",
+          "translated_synonyms": [
+            "smanjenje",
+            "ublazavanje"
+          ],
+          "definition_translation": "cin smanjivanja ili ublazavanja",
+          "confidence": "high",
+          "notes": [
+            "Noun action/result of abating.",
+            "Baseline keeps direct literals and minimal expansion."
+          ]
+        },
+        "agent-multiphase": {
+          "status": "ok",
+          "translation": "smanjenje",
+          "translated_synonyms": [
+            "smanjenje",
+            "ublazavanje",
+            "suzbijanje",
+            "umanjenje"
+          ],
+          "definition_translation": "postupak kojim se nesto smanjuje, ublazava ili suzbija",
+          "confidence": "high",
+          "notes": [
+            "Noun action/result of abating.",
+            "Multiphase adds candidate variants for curator comparison."
+          ]
+        },
+        "agent-conceptual": {
+          "status": "ok",
+          "translation": "smanjenje",
+          "translated_synonyms": [
+            "smanjenje",
+            "ublazavanje"
+          ],
+          "definition_translation": "cin smanjenja intenziteta, kolicine ili stetnosti necega",
+          "confidence": "high",
+          "notes": [
+            "Noun action/result of abating.",
+            "Conceptual output prioritizes sense fidelity and a clean final entry."
+          ]
+        }
+      }
+    }
+  ]
+}
