@@ -335,6 +335,59 @@ def test_run_sheet_translation_batch_accepts_local_xlsx(monkeypatch):
         shutil.rmtree(scratch_dir, ignore_errors=True)
 
 
+def test_run_sheet_translation_batch_accepts_ili_only_input(monkeypatch):
+    artifacts_root = Path.cwd() / ".test_artifacts"
+    artifacts_root.mkdir(exist_ok=True)
+    scratch_dir = Path(tempfile.mkdtemp(prefix="sheet_batch_ili_", dir=str(artifacts_root)))
+
+    try:
+        source_csv = scratch_dir / "input.csv"
+        source_csv.write_text(
+            "ili,pipeline\n"
+            "i35545,baseline\n",
+            encoding="utf-8",
+        )
+
+        monkeypatch.setattr(sheet_mod, "ensure_wordnet_available", lambda: None)
+        monkeypatch.setattr(
+            sheet_mod,
+            "resolve_wordnet_synset",
+            lambda **kwargs: {
+                "ili_id": kwargs["ili"],
+                "english_id": "ENG30-00001740-n",
+                "id": "ENG30-00001740-n",
+                "pos": "n",
+                "lemmas": ["entity"],
+                "definition": "something that exists",
+                "examples": [],
+            },
+        )
+        monkeypatch.setattr(
+            sheet_mod,
+            "run_translation_workflow",
+            lambda *args, **kwargs: {"selector_id": "ENG30-00001740-n", "pipelines": {"baseline": {"translation": "entitet"}}},
+        )
+
+        summary = run_sheet_translation_batch(
+            SheetBatchConfig(
+                source=str(source_csv),
+                output_dir=scratch_dir / "runs",
+                workflow=WorkflowConfig(strict=False),
+                default_pipeline="all",
+            )
+        )
+
+        assert summary["counts"] == {
+            "success": 1,
+            "invalid_format": 0,
+            "not_found": 0,
+            "error": 0,
+        }
+        assert summary["column_mapping"]["ili"] == "ili"
+    finally:
+        shutil.rmtree(scratch_dir, ignore_errors=True)
+
+
 def test_prepare_native_sheet_translation_batch_writes_pending_items(monkeypatch):
     artifacts_root = Path.cwd() / ".test_artifacts"
     artifacts_root.mkdir(exist_ok=True)

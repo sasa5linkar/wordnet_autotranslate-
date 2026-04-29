@@ -16,6 +16,12 @@ def test_cli_pipeline_default_is_all():
     assert pipeline_action.default == "all"
 
 
+def test_cli_provider_choices_include_openai():
+    parser = cli.build_parser()
+    provider_action = next(action for action in parser._actions if action.dest == "provider")
+    assert "openai" in provider_action.choices
+
+
 def test_cli_keyboard_interrupt_returns_130(monkeypatch):
     monkeypatch.setattr("sys.argv", ["prog", "input.csv"])
 

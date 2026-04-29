@@ -9,6 +9,7 @@ from wordnet_autotranslate.workflows.native_translation_queue import (
     claim_next_native_work_item,
     complete_native_work_item,
     fail_native_work_item,
+    requeue_in_progress_native_work_items,
     summarize_native_batch_run,
 )
 from wordnet_autotranslate.workflows.sheet_translation_workflow import (
@@ -86,10 +87,17 @@ def test_native_queue_claim_and_complete_lifecycle(monkeypatch):
                 }
             },
         }
-        completed = complete_native_work_item(run_dir, work_item_path, translation_result)
+        completed = complete_native_work_item(
+            run_dir,
+            work_item_path,
+            translation_result,
+            translation_mode="repo_ollama",
+        )
 
         result_path = Path(completed["result_path"])
         assert result_path.exists()
+        result_payload = json.loads(result_path.read_text(encoding="utf-8"))
+        assert result_payload["translation_mode"] == "repo_ollama"
         assert "results" in str(result_path)
         progress = completed["progress"]
         assert progress["work_item_counts"]["pending"] == 0
@@ -126,6 +134,24 @@ def test_native_queue_claim_and_fail_lifecycle(monkeypatch):
         assert failed["progress"]["work_item_counts"]["failed"] == 1
         assert failed["progress"]["result_counts"]["error"] == 1
         assert failed["progress"]["all_finished"] is True
+    finally:
+        shutil.rmtree(scratch_dir, ignore_errors=True)
+
+
+def test_native_queue_requeues_in_progress_items(monkeypatch):
+    artifacts_root = Path.cwd() / ".test_artifacts"
+    artifacts_root.mkdir(exist_ok=True)
+    scratch_dir = Path(tempfile.mkdtemp(prefix="native_queue_requeue_", dir=str(artifacts_root)))
+
+    try:
+        run_dir = _prepare_native_run(monkeypatch, scratch_dir)
+        claimed = claim_next_native_work_item(run_dir)
+        assert claimed is not None
+
+        requeued = requeue_in_progress_native_work_items(run_dir)
+        assert requeued["count"] == 1
+        assert requeued["progress"]["work_item_counts"]["pending"] == 1
+        assert requeued["progress"]["work_item_counts"]["in_progress"] == 0
     finally:
         shutil.rmtree(scratch_dir, ignore_errors=True)
 

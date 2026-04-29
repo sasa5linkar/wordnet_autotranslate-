@@ -11,9 +11,10 @@ from __future__ import annotations
 import json
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple, Union
 
 from ..utils.language_utils import LanguageUtils
+from ..utils.llm_factory import build_chat_model
 
 
 @lru_cache(maxsize=128)
@@ -37,20 +38,30 @@ class BaselineTranslationPipeline:
         self,
         source_lang: str = "en",
         target_lang: str = "sr",
+        provider: str = "ollama",
         model: str = "gpt-oss:120b",
         temperature: float = 0.2,
         base_url: str = "http://localhost:11434",
         timeout: int = 600,
         llm: Optional[Any] = None,
         system_prompt: Optional[str] = None,
+        num_ctx: Optional[int] = None,
+        num_predict: Optional[int] = None,
+        reasoning: Optional[Union[bool, str]] = None,
+        response_format: Optional[str] = None,
     ) -> None:
         self.source_lang = source_lang
         self.target_lang = target_lang
+        self.provider = provider
         self.model = model
         self.temperature = temperature
         self.base_url = base_url
         self.timeout = timeout
         self.system_prompt = system_prompt or self.DEFAULT_SYSTEM_PROMPT
+        self.num_ctx = num_ctx
+        self.num_predict = num_predict
+        self.reasoning = reasoning
+        self.response_format = response_format
         self.examples_path = Path(__file__).parent.parent.parent.parent / "examples"
 
         if llm is not None:
@@ -97,10 +108,26 @@ class BaselineTranslationPipeline:
 
         if not translated_synonyms:
             translated_synonyms = [item for item in lemmas if item]
-        translation = translated_synonyms[0] if translated_synonyms else ""
 
         if not definition_translation:
             definition_translation = definition
+
+        if self.target_lang.lower() in {"sr", "srp", "serbian"}:
+            definition_translation = LanguageUtils.normalize_serbian_latin_text(
+                definition_translation
+            )
+            translated_synonyms = LanguageUtils.normalize_serbian_latin_items(
+                translated_synonyms
+            )
+            payload = dict(payload)
+            payload["definition_translation"] = definition_translation
+            payload["translated_synonyms"] = translated_synonyms
+            if "notes" in payload:
+                payload["notes"] = LanguageUtils.normalize_serbian_latin_text(
+                    str(payload["notes"])
+                )
+
+        translation = translated_synonyms[0] if translated_synonyms else ""
 
         summary = (
             f"Baseline workflow ({self.source_lang}->{self.target_lang}) produced "
@@ -142,15 +169,18 @@ class BaselineTranslationPipeline:
             yield self.translate_synset(synset)
 
     def _build_llm(self) -> Optional[Any]:
-        """Build a ChatOllama LLM instance if langchain_ollama is available."""
+        """Build a configured chat-model instance if dependencies are available."""
         try:
-            from langchain_ollama import ChatOllama  # type: ignore[import]
-
-            return ChatOllama(
+            return build_chat_model(
+                provider=self.provider,
                 model=self.model,
                 temperature=self.temperature,
                 timeout=self.timeout,
                 base_url=self.base_url,
+                num_ctx=self.num_ctx,
+                num_predict=self.num_predict,
+                reasoning=self.reasoning,
+                response_format=self.response_format,
             )
         except ImportError:
             return None
@@ -202,17 +232,35 @@ class BaselineTranslationPipeline:
     def _render_prompt(self, *, lemmas: List[str], definition: str) -> str:
         source_name = LanguageUtils.get_language_name(self.source_lang)
         target_name = LanguageUtils.get_language_name(self.target_lang)
+        target_guidelines = self._target_language_guidelines()
+        target_guidelines_block = (
+            f"\nTarget-language rules:\n{target_guidelines}\n"
+            if target_guidelines
+            else ""
+        )
         return (
             "Baseline WordNet synset translation. Use only the provided gloss and literals.\n"
             f"Source language: {self.source_lang} ({source_name})\n"
             f"Target language: {self.target_lang} ({target_name})\n"
             f"{source_name} literals: {lemmas}\n"
             f"{source_name} gloss: {definition or '(missing)'}\n\n"
+            f"{target_guidelines_block}\n"
             "Return JSON with keys:\n"
             "- definition_translation: translated gloss\n"
             "- translated_synonyms: list of translated literals\n"
             "- notes: optional short note\n"
         )
+
+    def _target_language_guidelines(self) -> str:
+        """Return concise target-language guardrails for prompt rendering."""
+        if self.target_lang.lower() in {"sr", "srp", "serbian"}:
+            return (
+                "- Use standard Serbian Latin script and standard Serbian orthography.\n"
+                "- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n"
+                "- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n"
+                "- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati."
+            )
+        return ""
 
     @staticmethod
     def _decode_llm_payload(raw: str) -> Dict[str, Any]:

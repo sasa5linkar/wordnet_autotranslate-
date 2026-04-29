@@ -13,6 +13,12 @@ wnsrp30.xml
 
 # Output files (generated analysis data)
 output/
+batch_runs/
+native_batch_runs/
+repo_batch_runs/
+reports/*_smoke_*/
+reports/openai_gpt*/
+reports/literali_pocinju_question_batch_*/
 
 # Distribution / packaging
 .Python

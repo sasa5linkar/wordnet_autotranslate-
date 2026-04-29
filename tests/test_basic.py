@@ -57,6 +57,14 @@ def test_language_utils():
     words = LanguageUtils.extract_words("Hello world!")
     assert words == ['hello', 'world']
 
+    # Test conservative Serbian Latin prefix assimilation cleanup
+    normalized = LanguageUtils.normalize_serbian_latin_text("izpljunuti i izkašljati")
+    assert normalized == "ispljunuti i iskašljati"
+    assert LanguageUtils.normalize_serbian_latin_text("iskasljati") == "iskašljati"
+    assert LanguageUtils.normalize_serbian_latin_text("iskasljavati") == "iskašljavati"
+    assert LanguageUtils.normalize_serbian_latin_text("izbačivati sluz") == "izbacivati sluz"
+    assert LanguageUtils.normalize_serbian_latin_text("izbaciti") == "izbaciti"
+
 
 def test_examples_loading():
     """Test loading examples from files."""

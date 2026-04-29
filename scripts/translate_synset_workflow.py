@@ -5,6 +5,15 @@ from __future__ import annotations
 
 import argparse
 import sys
+from pathlib import Path
+from typing import Optional, Union
+
+from wordnet_autotranslate.utils.llm_factory import (
+    load_project_env,
+    normalize_provider,
+    resolve_base_url_for_provider,
+    resolve_model_for_provider,
+)
 
 from wordnet_autotranslate.workflows.synset_translation_workflow import (
     WorkflowConfig,
@@ -12,6 +21,21 @@ from wordnet_autotranslate.workflows.synset_translation_workflow import (
     results_to_json,
     run_translation_workflow,
 )
+
+
+def _resolve_reasoning_arg(args: argparse.Namespace) -> Optional[Union[bool, str]]:
+    if args.disable_reasoning and args.reasoning is not None:
+        raise ValueError("Use either --disable-reasoning or --reasoning, not both.")
+    if args.disable_reasoning:
+        return False
+    return args.reasoning
+
+
+def _resolve_provider_model_base_url(args: argparse.Namespace) -> tuple[str, str, str | None]:
+    provider = normalize_provider(args.provider)
+    model = resolve_model_for_provider(provider, args.model)
+    base_url = resolve_base_url_for_provider(provider, args.base_url)
+    return provider, model, base_url
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -29,16 +53,46 @@ def build_parser() -> argparse.ArgumentParser:
         choices=["baseline", "langgraph", "conceptual", "all", "dspy"],
         help="Pipeline(s) to run (dspy is a legacy alias for baseline)",
     )
-    parser.add_argument("--model", default="gpt-oss:120b", help="Ollama model name")
-    parser.add_argument("--base-url", default="http://localhost:11434", help="Ollama base URL")
+    parser.add_argument(
+        "--provider",
+        default=None,
+        choices=["ollama", "openai"],
+        help="Chat model provider. Defaults to LLM_PROVIDER from .env, or ollama.",
+    )
+    parser.add_argument(
+        "--model",
+        help="Model name. Defaults to OLLAMA_MODEL or OPENAI_MODEL from .env for the provider.",
+    )
+    parser.add_argument("--base-url", help="Provider base URL override")
     parser.add_argument("--source-lang", default="en")
     parser.add_argument("--target-lang", default="sr")
     parser.add_argument("--timeout", type=int, default=600)
     parser.add_argument("--temperature", type=float, default=0.2)
+    parser.add_argument("--num-ctx", type=int, help="Ollama context window override")
+    parser.add_argument("--num-predict", type=int, help="Ollama max generated tokens per request")
+    parser.add_argument(
+        "--disable-reasoning",
+        action="store_true",
+        help="Disable model thinking/reasoning mode when supported by Ollama",
+    )
+    parser.add_argument(
+        "--reasoning",
+        choices=["low", "medium", "high"],
+        help="Set Ollama thinking/reasoning effort when supported (use 'low' for gpt-oss smoke tests)",
+    )
+    parser.add_argument(
+        "--json-format",
+        action="store_true",
+        help="Request Ollama JSON response format when supported",
+    )
     parser.add_argument(
         "--strict",
         action="store_true",
         help="Fail immediately if any selected pipeline errors.",
+    )
+    parser.add_argument(
+        "--output",
+        help="Write the UTF-8 JSON result to this file instead of printing it to stdout.",
     )
     return parser
 
@@ -51,6 +105,8 @@ def main() -> int:
         parser.error("--lemma requires --pos")
 
     try:
+        load_project_env()
+        provider, model, base_url = _resolve_provider_model_base_url(args)
         synset_payload = resolve_wordnet_synset(
             ili=args.ili,
             english_id=args.english_id,
@@ -62,18 +118,30 @@ def main() -> int:
         config = WorkflowConfig(
             source_lang=args.source_lang,
             target_lang=args.target_lang,
-            model=args.model,
+            provider=provider,
+            model=model,
             timeout=args.timeout,
-            base_url=args.base_url,
+            base_url=base_url or "",
             temperature=args.temperature,
             strict=args.strict,
+            num_ctx=args.num_ctx,
+            num_predict=args.num_predict,
+            reasoning=_resolve_reasoning_arg(args),
+            response_format="json" if args.json_format else None,
         )
         result = run_translation_workflow(
             synset_payload,
             pipeline=args.pipeline,
             config=config,
         )
-        print(results_to_json(result))
+        output = results_to_json(result)
+        if args.output:
+            output_path = Path(args.output)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(output, encoding="utf-8")
+            print(f"Wrote {output_path}")
+        else:
+            print(output)
         return 0
     except KeyboardInterrupt:
         return 130

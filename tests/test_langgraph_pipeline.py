@@ -84,6 +84,58 @@ class _DummyLLM:
                 "revised_definition": definition_text,
                 "notes": "Definition passes grammatical and stylistic checks.",
             }
+        elif "expanded_definition_en" in system_content:
+            payload = {
+                "expanded_definition_en": "A thing or being with its own distinct existence.",
+                "blocked_terms_en": ["entity"],
+                "notes_en": ["Expanded for conceptual testing."],
+            }
+        elif "expanded_definition_sr" in system_content:
+            payload = {
+                "expanded_definition_sr": f"{self.translation} je ono što postoji kao zasebna celina.",
+                "blocked_terms_sr": [self.translation],
+                "notes_sr": ["Srpska konceptualna definicija za test."],
+            }
+        elif "literal_candidates_sr" in system_content:
+            payload = {
+                "candidates": [
+                    {
+                        "literal": self.translation,
+                        "candidate_type": "primary",
+                        "precision_score": 0.95,
+                        "naturalness_score": 0.95,
+                        "rationale": "Direct conceptual equivalent.",
+                        "fit_assessment": "good equivalent",
+                        "register_note": "standard",
+                    },
+                    {
+                        "literal": "opisna fraza",
+                        "candidate_type": "descriptive",
+                        "precision_score": 0.5,
+                        "naturalness_score": 0.6,
+                        "rationale": "Descriptive fallback, not a synset literal.",
+                        "fit_assessment": "too descriptive",
+                        "register_note": "paraphrase",
+                    },
+                ]
+            }
+        elif "literal_selection_sr" in system_content:
+            payload = {
+                "selected_literals_sr": [self.translation],
+                "rejected_literals_sr": ["opisna fraza"],
+                "rationale_sr": "Izabran je najbolji leksički ekvivalent.",
+            }
+        elif "final_gloss_sr" in system_content:
+            payload = {
+                "final_gloss_sr": "ono što postoji kao zasebna celina",
+                "style_notes_sr": ["Kratka WordNet definicija."],
+            }
+        elif "synset_validation_sr" in system_content:
+            payload = {
+                "validation_passed": True,
+                "issues": [],
+                "final_synset_ready": True,
+            }
         else:  # fallback for unexpected prompts
             payload = {
                 "translation": self.translation,
@@ -430,11 +482,17 @@ def test_call_llm_fallback_payload_shape_after_repeated_invoke_exceptions():
         ),
         (
             "synonym_expansion",
-            {"expanded_synonyms", "rationale"},
+            {
+                "expanded_synonyms",
+                "rationale",
+                "iterations_run",
+                "synonym_provenance",
+                "converged",
+            },
         ),
         (
             "synonym_filtering",
-            {"filtered_synonyms", "removed", "confidence"},
+            {"filtered_synonyms", "confidence_by_word", "removed", "confidence"},
         ),
     ],
 )
@@ -733,7 +791,7 @@ def test_curator_summary_with_many_synonyms():
     result = pipeline.translate_synset(synset)
 
     # Check that curator summary mentions truncation
-    assert len(result["translated_synonyms"]) == 10
+    assert len(result["translated_synonyms"]) == 8
     # Updated to match new terminology: "literals" instead of "candidates"
     assert (
         "(+5 more literals)" in result["curator_summary"]
@@ -860,6 +918,47 @@ def test_conceptual_langgraph_pipeline_returns_structured_result():
     assert "Concept pipeline stages completed" in result["curator_summary"]
 
 
+def test_conceptual_expanded_definition_prompt_uses_relations():
+    pipeline = ConceptualLangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    prompt = pipeline._render_expanded_definition_en_prompt(
+        {
+            "synset_id": "ENG30-01998019-n",
+            "pos": "n",
+            "source_literals": ["Cirripedia"],
+            "source_gloss": "barnacles",
+            "hypernyms": [{"synset_id": "class.n.07", "literals": ["class"], "gloss": "taxonomic group"}],
+            "hyponyms": [],
+            "meronyms": [{"synset_id": "barnacle.n.01", "literals": ["barnacle"], "gloss": "marine crustacean"}],
+            "holonyms": [{"synset_id": "crustacea.n.01", "literals": ["crustacea"], "gloss": "class of arthropods"}],
+            "sister_synsets": [],
+        }
+    )
+
+    assert "Use hypernyms as genus constraints" in prompt
+    assert "Use hyponyms to understand the lower boundary" in prompt
+    assert "Use meronyms and holonyms" in prompt
+    assert "use its gloss/definition more than its lemma alone" in prompt
+
+
+def test_conceptual_related_synsets_fill_missing_definitions():
+    related = ConceptualLangGraphTranslationPipeline._normalise_related_synsets(
+        [
+            {"synset_id": "entity.n.01"},
+            "physical_entity.n.01",
+        ]
+    )
+
+    assert related[0]["literals"] == ["entity"]
+    assert "distinct existence" in related[0]["gloss"]
+    assert related[1]["literals"] == ["physical entity"]
+    assert "physical existence" in related[1]["gloss"]
+
+
 def test_conceptual_pipeline_batch_processing_uses_same_llm():
     dummy_llm = _DummyLLM(translation="pojam")
     pipeline = ConceptualLangGraphTranslationPipeline(
@@ -883,3 +982,249 @@ def test_conceptual_pipeline_batch_processing_uses_same_llm():
     assert len(translated) == 1
     assert translated[0]["translation"] == "pojam"
     assert dummy_llm.calls == 6
+
+
+def test_auto_quality_report_blocks_literal_in_gloss():
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    report = pipeline._build_auto_quality_report(
+        {"id": "ENG30-00006238-v", "pos": "v", "lemmas": ["expectorate"]},
+        ["iskašljati"],
+        "iskašljati sluz iz pluća kroz usta",
+        raw_literals=["iskašljati"],
+        model_ready=True,
+    )
+
+    assert report["auto_status"] == "blocked"
+    assert "literal_in_gloss" in report["quality_flags"]
+    assert report["needs_human_review"] is True
+
+
+def test_taxonomy_dual_literals_keep_serbian_and_latin():
+    pipeline = ConceptualLangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    concept_package = {
+        "pos": "n",
+        "source_literals": ["Metatheria", "subclass Metatheria"],
+        "source_gloss": "pouched animals",
+        "domains": ["noun.animal"],
+    }
+
+    assert pipeline._ensure_taxonomy_dual_literals(
+        ["tobolčari"],
+        concept_package,
+    ) == ["tobolčari", "Metatheria"]
+
+
+def test_adverb_particle_demotes_context_bound_variants_when_cak_exists():
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    assert pipeline._post_filter_literals_by_pos(
+        ["čak", "takođe", "još", "ni", "čak i"],
+        {"pos": "r"},
+    ) == ["čak"]
+
+
+def test_langgraph_pos_cleanup_does_not_use_serbian_suffix_regex():
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    assert pipeline._post_filter_literals_by_pos(
+        ["iskašljavanje", "kašalj", "iskašljati"],
+        {"pos": "v"},
+    ) == ["iskašljavanje", "kašalj", "iskašljati"]
+
+
+def test_pos_constraint_prompt_carries_source_pos_and_avoids_suffix_guessing():
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    prompt_block = pipeline._source_pos_constraint_block(
+        {"pos": "n", "lemmas": ["physical entity"]}
+    )
+
+    assert "Source WordNet POS is noun (n)" in prompt_block
+    assert "physical entity" in prompt_block
+    assert "Do not infer Serbian POS from suffixes alone" in prompt_block
+
+
+def test_langgraph_filtering_prompt_prefers_recall_for_curation():
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    prompt = pipeline._render_filtering_prompt(
+        {"expanded_synonyms": ["stvar", "fizički entitet"]},
+        {"sense_summary": "physical entity"},
+        {"definition_translation": "nešto što fizički postoji"},
+        {"pos": "n", "lemmas": ["physical entity"]},
+    )
+
+    assert "Prefer recall for human curation" in prompt
+    assert "Too narrow is worse than slightly broad" in prompt
+
+
+def test_langgraph_minimum_literal_fallback_uses_initial_translation():
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    assert pipeline._ensure_minimum_literals(
+        [],
+        {"pos": "n", "lemmas": ["physical entity"]},
+        {"initial_translations": ["fizički entitet"]},
+        {"filtered_synonyms": []},
+    ) == ["fizički entitet"]
+
+
+def test_conceptual_minimum_literal_fallback_uses_best_candidate():
+    pipeline = ConceptualLangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    selected = pipeline._select_minimum_conceptual_literals(
+        ["stvar"],
+        {
+            "candidates": [
+                {
+                    "literal": "stvar",
+                    "precision_score": 0.55,
+                    "naturalness_score": 0.9,
+                    "fit_assessment": "too broad",
+                    "candidate_type": "primary",
+                },
+                {
+                    "literal": "fizički objekt",
+                    "precision_score": 0.68,
+                    "naturalness_score": 0.82,
+                    "fit_assessment": "too narrow",
+                    "candidate_type": "primary",
+                },
+            ]
+        },
+        {"pos": "n", "source_literals": ["physical entity"]},
+    )
+
+    assert len(selected) == 1
+    assert selected[0] == "stvar"
+
+
+def test_conceptual_selection_prompt_prefers_recall_for_curation():
+    pipeline = ConceptualLangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    prompt = pipeline._render_literal_selection_prompt(
+        {"pos": "n", "source_literals": ["physical entity"]},
+        {"expanded_definition_sr": "nešto što fizički postoji"},
+        {"candidates": [{"literal": "stvar", "fit_assessment": "too broad"}]},
+    )
+
+    assert "Prefer recall for human curation" in prompt
+    assert "Reject clearly too-narrow" in prompt
+    assert "normally 1-5 literals" in prompt
+
+
+def test_conceptual_model_validator_errors_become_review_for_valid_infinitive():
+    pipeline = ConceptualLangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    validation = pipeline._apply_deterministic_validation_gates(
+        {
+            "validation_passed": False,
+            "final_synset_ready": False,
+            "issues": [
+                {
+                    "code": "pos_mismatch",
+                    "message": "Model incorrectly claimed the Serbian infinitive is not an infinitive.",
+                    "severity": "error",
+                },
+                {
+                    "code": "blocked_literal",
+                    "message": "Model incorrectly treated an anti-circularity term as a forbidden literal.",
+                    "severity": "error",
+                },
+            ],
+        },
+        {
+            "pos": "v",
+            "source_literals": ["expectorate"],
+            "source_gloss": "discharge phlegm from the lungs and out of the mouth",
+        },
+        ["iskašljati"],
+        "izbaciti sluz ili ispljuvak iz pluća kroz usta",
+    )
+
+    assert validation["auto_status"] == "review"
+    assert "model_validation_error_unconfirmed" in validation["quality_flags"]
+    assert not any(
+        issue.get("severity") == "error" for issue in validation["issues"]
+    )
+
+
+def test_conceptual_pos_cleanup_does_not_use_serbian_suffix_regex():
+    pipeline = ConceptualLangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    selected, rejected = pipeline._filter_selected_literals_by_pos(
+        ["iskašljavanje", "kašalj", "iskašljati"],
+        [],
+        {"pos": "v"},
+    )
+
+    assert selected == ["iskašljavanje", "kašalj", "iskašljati"]
+    assert rejected == []
+
+
+def test_conceptual_deterministic_literal_in_gloss_still_blocks():
+    pipeline = ConceptualLangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    validation = pipeline._apply_deterministic_validation_gates(
+        {"validation_passed": True, "final_synset_ready": True, "issues": []},
+        {
+            "pos": "v",
+            "source_literals": ["expectorate"],
+            "source_gloss": "discharge phlegm from the lungs and out of the mouth",
+        },
+        ["iskašljati"],
+        "iskašljati sluz iz pluća kroz usta",
+    )
+
+    assert validation["auto_status"] == "blocked"
+    assert "literal_in_gloss" in validation["quality_flags"]

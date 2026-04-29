@@ -13,6 +13,7 @@ from wordnet_autotranslate.workflows.native_translation_queue import (
     claim_next_native_work_item,
     complete_native_work_item,
     fail_native_work_item,
+    requeue_in_progress_native_work_items,
     summarize_native_batch_run,
 )
 
@@ -53,6 +54,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     status = subparsers.add_parser("status", help="Show current queue progress.")
     status.add_argument("run_dir", help="Native batch run directory")
+
+    requeue = subparsers.add_parser(
+        "requeue-in-progress",
+        help="Move all in-progress work items back to pending after interruption.",
+    )
+    requeue.add_argument("run_dir", help="Native batch run directory")
     return parser
 
 
@@ -106,6 +113,11 @@ def main() -> int:
 
         if args.command == "status":
             payload = summarize_native_batch_run(run_dir)
+            print(json.dumps(payload, ensure_ascii=False, indent=2))
+            return 0
+
+        if args.command == "requeue-in-progress":
+            payload = requeue_in_progress_native_work_items(run_dir)
             print(json.dumps(payload, ensure_ascii=False, indent=2))
             return 0
 

@@ -114,14 +114,21 @@ result = pipeline.translate_synset(
 # - curator_summary
 ```
 
-### LangGraph + Ollama Translation Pipeline
+### LangGraph + local/Ollama or OpenAI Translation Pipeline
 
-For a LangGraph-driven workflow that calls a local Ollama runtime, install the
-optional dependencies and use the dedicated pipeline:
+For a LangGraph-driven workflow that calls a local Ollama runtime or OpenAI,
+install the optional dependencies and use the dedicated pipeline:
 
 ```bash
 pip install -e ".[langgraph]"
+# Optional for hosted OpenAI runs in a fresh environment:
+pip install -e ".[openai]"
 ```
+
+For OpenAI, copy `.env.example` to `.env` and set `OPENAI_API_KEY`. The CLI
+loads `.env` automatically and reads `LLM_PROVIDER`, `OPENAI_MODEL`,
+`OPENAI_BASE_URL`, `OLLAMA_MODEL`, and `OLLAMA_BASE_URL` when explicit flags are
+not supplied.
 
 ```python
 from wordnet_autotranslate import LangGraphTranslationPipeline
@@ -129,6 +136,7 @@ from wordnet_autotranslate import LangGraphTranslationPipeline
 pipeline = LangGraphTranslationPipeline(
     source_lang="en",
     target_lang="sr",
+    provider="ollama",
     model="gpt-oss:120b",  # Default assumes a capable local reasoning model
     timeout=600,
 )
@@ -152,6 +160,9 @@ resolution and single/multi-pipeline execution), use:
 
 ```bash
 python scripts/translate_synset_workflow.py --english-id ENG30-00001740-n --pipeline all --model gpt-oss:120b
+
+# OpenAI-backed run, using OPENAI_API_KEY and OPENAI_MODEL from .env unless --model is supplied
+python scripts/translate_synset_workflow.py --english-id ENG30-00001740-n --pipeline conceptual --provider openai --json-format --output reports/openai_smoke.json
 ```
 
 Use `--strict` to fail fast when any selected pipeline errors.

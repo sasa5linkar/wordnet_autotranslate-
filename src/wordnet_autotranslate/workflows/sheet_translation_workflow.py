@@ -1008,10 +1008,15 @@ def run_sheet_translation_batch(config: SheetBatchConfig) -> Dict[str, Any]:
 
     headers, rows = _read_csv_rows(snapshot.local_path)
     mapping = detect_column_mapping(headers, config.columns)
-    if not (mapping.english_id or mapping.synset_name or (mapping.lemma and mapping.pos)):
+    if not (
+        mapping.english_id
+        or mapping.ili
+        or mapping.synset_name
+        or (mapping.lemma and mapping.pos)
+    ):
         raise ValueError(
             "Could not find usable selector columns. Provide an english_id column, "
-            "a synset_name column, or both lemma and pos columns."
+            "an ili column, a synset_name column, or both lemma and pos columns."
         )
 
     logger.info("Resolved column mapping: %s", asdict(mapping))
@@ -1117,11 +1122,16 @@ def run_sheet_translation_batch(config: SheetBatchConfig) -> Dict[str, Any]:
         "workflow_config": {
             "source_lang": config.workflow.source_lang,
             "target_lang": config.workflow.target_lang,
+            "provider": config.workflow.provider,
             "model": config.workflow.model,
             "timeout": config.workflow.timeout,
             "base_url": config.workflow.base_url,
             "temperature": config.workflow.temperature,
             "strict": config.workflow.strict,
+            "num_ctx": config.workflow.num_ctx,
+            "num_predict": config.workflow.num_predict,
+            "reasoning": config.workflow.reasoning,
+            "response_format": config.workflow.response_format,
         },
         "column_mapping": asdict(mapping),
         "row_count": len(rows),

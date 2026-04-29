@@ -14,7 +14,7 @@ import json
 import re
 from dataclasses import dataclass
 from functools import lru_cache
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 from ..models.synset_handler import SynsetHandler
 from ..pipelines.translation_pipeline import BaselineTranslationPipeline
@@ -31,11 +31,16 @@ _EWN_PROJECT = "ewn:2020"
 class WorkflowConfig:
     source_lang: str = "en"
     target_lang: str = "sr"
+    provider: str = "ollama"
     model: str = "gpt-oss:120b"
     timeout: int = 600
     base_url: str = "http://localhost:11434"
     temperature: float = 0.2
     strict: bool = False
+    num_ctx: Optional[int] = None
+    num_predict: Optional[int] = None
+    reasoning: Optional[Union[bool, str]] = None
+    response_format: Optional[str] = None
 
 
 def parse_eng30_id(english_id: str) -> Tuple[int, str]:
@@ -317,6 +322,16 @@ def run_translation_workflow(
     - dspy: legacy alias for baseline
     """
     selected = pipeline.lower().strip()
+    if selected in {"langgraph", "conceptual", "all"} and not any(
+        synset_payload.get(key)
+        for key in ("relations", "hypernyms", "hyponyms", "meronyms", "holonyms")
+    ):
+        try:
+            synset_payload = enrich_synset_payload(synset_payload)
+        except Exception:
+            # Relation enrichment is helpful for concept grounding, but workflow
+            # execution should still work with the basic synset payload.
+            pass
 
     results: Dict[str, Any] = {
         "selector_id": synset_payload.get("id") or synset_payload.get("english_id"),
@@ -340,10 +355,15 @@ def run_translation_workflow(
         baseline = BaselineTranslationPipeline(
             source_lang=config.source_lang,
             target_lang=config.target_lang,
+            provider=config.provider,
             model=config.model,
             base_url=config.base_url,
             temperature=config.temperature,
             timeout=config.timeout,
+            num_ctx=config.num_ctx,
+            num_predict=config.num_predict,
+            reasoning=config.reasoning,
+            response_format=config.response_format,
         )
         _run_with_capture("baseline", lambda: baseline.translate_synset(synset_payload))
         # Backwards compatibility: callers using "dspy" may read results["pipelines"]["dspy"].
@@ -355,10 +375,15 @@ def run_translation_workflow(
         lg = LangGraphTranslationPipeline(
             source_lang=config.source_lang,
             target_lang=config.target_lang,
+            provider=config.provider,
             model=config.model,
             timeout=config.timeout,
             base_url=config.base_url,
             temperature=config.temperature,
+            num_ctx=config.num_ctx,
+            num_predict=config.num_predict,
+            reasoning=config.reasoning,
+            response_format=config.response_format,
         )
         _run_with_capture("langgraph", lambda: lg.translate_synset(synset_payload))
 
@@ -366,10 +391,15 @@ def run_translation_workflow(
         cg = ConceptualLangGraphTranslationPipeline(
             source_lang=config.source_lang,
             target_lang=config.target_lang,
+            provider=config.provider,
             model=config.model,
             timeout=config.timeout,
             base_url=config.base_url,
             temperature=config.temperature,
+            num_ctx=config.num_ctx,
+            num_predict=config.num_predict,
+            reasoning=config.reasoning,
+            response_format=config.response_format,
         )
         _run_with_capture("conceptual", lambda: cg.translate_synset(synset_payload))
 

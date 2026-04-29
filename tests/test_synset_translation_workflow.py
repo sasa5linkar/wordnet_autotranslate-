@@ -241,7 +241,21 @@ def test_resolve_wordnet_synset_include_relations_enriches_ili_payload(monkeypat
     assert payload["hypernyms"] == [{"name": "thing.n.01"}]
 
 
-def test_run_translation_workflow_baseline_runs_for_legacy_dspy_alias():
+def test_run_translation_workflow_baseline_runs_for_legacy_dspy_alias(monkeypatch):
+    class _FakeBaseline:
+        def __init__(self, **kwargs):
+            self.source_lang = kwargs["source_lang"]
+            self.target_lang = kwargs["target_lang"]
+
+        def translate_synset(self, synset):
+            return {
+                "translation": "baseline-alias",
+                "source_lang": self.source_lang,
+                "target_lang": self.target_lang,
+            }
+
+    monkeypatch.setattr(workflow_mod, "BaselineTranslationPipeline", _FakeBaseline)
+
     result = run_translation_workflow(
         {
             "id": "ENG30-00001740-n",
@@ -312,6 +326,43 @@ def test_run_translation_workflow_all_includes_baseline(monkeypatch):
 
     result = run_translation_workflow({"id": "ENG30-00001740-n"}, pipeline="all")
     assert set(result["pipelines"]) == {"baseline", "langgraph", "conceptual"}
+
+
+def test_run_translation_workflow_enriches_non_baseline_payload(monkeypatch):
+    def _fake_enrich(payload):
+        enriched = dict(payload)
+        enriched["hypernyms"] = [
+            {"id": "ENG30-00001930-n", "lemmas": ["physical entity"]}
+        ]
+        enriched["meronyms"] = [
+            {"id": "ENG30-00002684-n", "lemmas": ["part"]}
+        ]
+        return enriched
+
+    class _FakeConceptual:
+        def __init__(self, **kwargs):
+            pass
+
+        def translate_synset(self, synset):
+            return {
+                "has_hypernyms": bool(synset.get("hypernyms")),
+                "has_meronyms": bool(synset.get("meronyms")),
+            }
+
+    monkeypatch.setattr(workflow_mod, "enrich_synset_payload", _fake_enrich)
+    monkeypatch.setattr(
+        workflow_mod, "ConceptualLangGraphTranslationPipeline", _FakeConceptual
+    )
+
+    result = run_translation_workflow(
+        {"id": "ENG30-00001740-n"}, pipeline="conceptual"
+    )
+
+    assert result["source_synset"]["hypernyms"]
+    assert result["pipelines"]["conceptual"] == {
+        "has_hypernyms": True,
+        "has_meronyms": True,
+    }
 
 
 def test_run_translation_workflow_capture_errors_when_non_strict(monkeypatch):

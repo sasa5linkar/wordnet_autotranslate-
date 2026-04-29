@@ -38,3 +38,9 @@ def test_cli_accepts_ili_selector():
     parser = cli.build_parser()
     ili_action = next(action for action in parser._actions if action.dest == "ili")
     assert ili_action is not None
+
+
+def test_cli_provider_choices_include_openai():
+    parser = cli.build_parser()
+    provider_action = next(action for action in parser._actions if action.dest == "provider")
+    assert "openai" in provider_action.choices

@@ -118,11 +118,21 @@ def claim_next_native_work_item(run_dir: Path) -> Optional[Dict[str, Any]]:
         summarize_native_batch_run(run_dir)
         return None
 
-    pending_path = pending_items[0]
-    relative_path = pending_path.relative_to(_work_item_state_dir(run_dir, "pending"))
-    in_progress_path = _work_item_state_dir(run_dir, "in_progress") / relative_path
-    in_progress_path.parent.mkdir(parents=True, exist_ok=True)
-    pending_path.rename(in_progress_path)
+    pending_root = _work_item_state_dir(run_dir, "pending")
+    in_progress_root = _work_item_state_dir(run_dir, "in_progress")
+    for pending_path in pending_items:
+        relative_path = pending_path.relative_to(pending_root)
+        in_progress_path = in_progress_root / relative_path
+        in_progress_path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            pending_path.rename(in_progress_path)
+        except FileNotFoundError:
+            # Another worker claimed this item first. Try the next pending item.
+            continue
+        break
+    else:
+        summarize_native_batch_run(run_dir)
+        return None
 
     work_item = _load_json(in_progress_path)
     work_item["status"] = "in_progress"
@@ -141,6 +151,8 @@ def complete_native_work_item(
     run_dir: Path,
     work_item_path: Path,
     translation_result: Mapping[str, Any],
+    *,
+    translation_mode: str = "native_agent",
 ) -> Dict[str, Any]:
     """Mark an in-progress work item as completed and write its success artifact."""
     run_dir = Path(run_dir)
@@ -164,7 +176,7 @@ def complete_native_work_item(
         "synset_payload": work_item.get("synset_payload"),
         "source_row": work_item.get("source_row"),
         "translation_result": dict(translation_result),
-        "translation_mode": "native_agent",
+        "translation_mode": translation_mode,
         "completed_at": _utc_now_iso(),
     }
     result_path = _build_result_path(run_dir, "success", work_item)
@@ -175,6 +187,7 @@ def complete_native_work_item(
     work_item["status"] = "completed"
     work_item["completed_at"] = success_payload["completed_at"]
     work_item["translation_result"] = dict(translation_result)
+    work_item["translation_mode"] = translation_mode
     work_item["result_path"] = str(result_path)
     _write_json(completed_path, work_item)
     work_item_path.unlink()
@@ -193,6 +206,8 @@ def fail_native_work_item(
     work_item_path: Path,
     message: str,
     details: Optional[Mapping[str, Any]] = None,
+    *,
+    translation_mode: str = "native_agent",
 ) -> Dict[str, Any]:
     """Mark an in-progress work item as failed and write its error artifact."""
     run_dir = Path(run_dir)
@@ -215,7 +230,7 @@ def fail_native_work_item(
         "message": str(message),
         "synset_payload": work_item.get("synset_payload"),
         "source_row": work_item.get("source_row"),
-        "translation_mode": "native_agent",
+        "translation_mode": translation_mode,
         "failed_at": _utc_now_iso(),
     }
     if details is not None:
@@ -229,6 +244,7 @@ def fail_native_work_item(
     work_item["status"] = "failed"
     work_item["failed_at"] = error_payload["failed_at"]
     work_item["message"] = str(message)
+    work_item["translation_mode"] = translation_mode
     work_item["result_path"] = str(result_path)
     if details is not None:
         work_item["error_details"] = dict(details)
@@ -240,5 +256,35 @@ def fail_native_work_item(
         "status": "failed",
         "work_item_path": str(failed_path),
         "result_path": str(result_path),
+        "progress": progress,
+    }
+
+
+def requeue_in_progress_native_work_items(run_dir: Path) -> Dict[str, Any]:
+    """Move all in-progress work items back to pending after an interrupted worker."""
+    run_dir = Path(run_dir)
+    _ensure_queue_dirs(run_dir)
+
+    moved: List[str] = []
+    in_progress_dir = _work_item_state_dir(run_dir, "in_progress")
+    pending_dir = _work_item_state_dir(run_dir, "pending")
+    for work_item_path in list_native_work_items(run_dir, "in_progress"):
+        relative_path = work_item_path.relative_to(in_progress_dir)
+        pending_path = pending_dir / relative_path
+        pending_path.parent.mkdir(parents=True, exist_ok=True)
+
+        work_item = _load_json(work_item_path)
+        work_item["status"] = "pending"
+        work_item["requeued_at"] = _utc_now_iso()
+        work_item.pop("claimed_at", None)
+        _write_json(pending_path, work_item)
+        work_item_path.unlink()
+        moved.append(str(pending_path))
+
+    progress = summarize_native_batch_run(run_dir)
+    return {
+        "status": "requeued",
+        "count": len(moved),
+        "work_item_paths": moved,
         "progress": progress,
     }

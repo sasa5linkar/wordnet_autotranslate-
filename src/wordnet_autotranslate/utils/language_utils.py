@@ -48,6 +48,56 @@ class LanguageUtils:
         text = re.sub(r'[^\w\s\.\,\!\?\-\']', '', text)
         
         return text
+
+    @staticmethod
+    def normalize_serbian_latin_text(text: str) -> str:
+        """Apply conservative Serbian Latin orthography cleanup.
+
+        This is intentionally narrow: it fixes a common model error where the
+        prefix ``iz-`` is left unassimilated before voiceless consonants
+        (for example ``izpljunuti`` -> ``ispljunuti`` and
+        ``izkašljati`` -> ``iskašljati``). It does not attempt full Serbian
+        morphological normalization.
+        """
+        if not text:
+            return text
+
+        def _replace_prefix(match: re.Match[str]) -> str:
+            prefix = match.group(0)
+            if prefix.isupper():
+                return "IS"
+            if prefix[:1].isupper():
+                return "Is"
+            return "is"
+
+        normalized = re.sub(
+            r"\biz(?=[ptkfhsšcčć])",
+            _replace_prefix,
+            text,
+            flags=re.IGNORECASE,
+        )
+        replacements = {
+            "iskasljati": "iskašljati",
+            "Iskasljati": "Iskašljati",
+            "ISKASLJATI": "ISKAŠLJATI",
+            "iskasljavati": "iskašljavati",
+            "Iskasljavati": "Iskašljavati",
+            "ISKASLJAVATI": "ISKAŠLJAVATI",
+            "izbačivati": "izbacivati",
+            "Izbačivati": "Izbacivati",
+            "IZBAČIVATI": "IZBACIVATI",
+            "izbačati": "izbaciti",
+            "Izbačati": "Izbaciti",
+            "IZBAČATI": "IZBACITI",
+        }
+        for old, new in replacements.items():
+            normalized = normalized.replace(old, new)
+        return normalized
+
+    @staticmethod
+    def normalize_serbian_latin_items(values: List[str]) -> List[str]:
+        """Normalize a list of Serbian Latin strings with order preserved."""
+        return [LanguageUtils.normalize_serbian_latin_text(value) for value in values]
     
     @staticmethod
     def extract_words(text: str) -> List[str]:

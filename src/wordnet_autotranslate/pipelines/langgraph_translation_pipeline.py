@@ -50,16 +50,28 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from collections import defaultdict
 from dataclasses import dataclass
 import textwrap
-from typing import Any, Dict, Generator, Iterable, List, Literal, Optional, Sequence, TypedDict
+from typing import Any, Dict, Generator, Iterable, List, Literal, Optional, Sequence, TypedDict, Union
 
 from pydantic import BaseModel, Field, ValidationError
 from pydantic_core import PydanticUndefined
 
 from ..utils.language_utils import LanguageUtils
+from ..utils.llm_factory import build_chat_model
 from ..utils.log_utils import sanitize_model_name
+
+
+def _safe_print(message: str) -> None:
+    """Print diagnostic messages without failing on Windows console encodings."""
+    encoding = getattr(sys.stdout, "encoding", None) or "utf-8"
+    safe_message = str(message).encode(encoding, errors="replace").decode(
+        encoding,
+        errors="replace",
+    )
+    print(safe_message)
 
 
 # ============================================================================
@@ -139,6 +151,11 @@ class TranslationResult:
     lexname: Optional[str] = None
     topic_domains: Optional[List[str]] = None
     model_info: Optional[Dict[str, Any]] = None
+    auto_status: str = "review"
+    quality_flags: Optional[List[str]] = None
+    quality_issues: Optional[List[Dict[str, str]]] = None
+    needs_human_review: bool = True
+    needs_domain_check: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         """Return a serializable dictionary representation.
@@ -162,6 +179,11 @@ class TranslationResult:
             "curator_summary": self.curator_summary,
             "lexname": self.lexname,
             "topic_domains": self.topic_domains,
+            "auto_status": self.auto_status,
+            "quality_flags": self.quality_flags or [],
+            "quality_issues": self.quality_issues or [],
+            "needs_human_review": self.needs_human_review,
+            "needs_domain_check": self.needs_domain_check,
         }
 
         if self.model_info is not None:
@@ -270,7 +292,7 @@ class FilteringSchema(BaseModel):
 class DefinitionQualityIssue(BaseModel):
     """Schema for individual issues flagged during definition quality review."""
 
-    type: Literal["circular", "grammar", "style"]
+    type: Literal["circular", "meaning", "clarity"]
     message: str
 
 
@@ -410,6 +432,7 @@ class LangGraphTranslationPipeline:
         self,
         source_lang: str = "en",
         target_lang: str = "sr",
+        provider: str = "ollama",
         model: str = "gpt-oss:120b",
         temperature: float = 0.2,
         base_url: str = "http://localhost:11434",
@@ -418,13 +441,19 @@ class LangGraphTranslationPipeline:
         prompt_template: Optional[str] = None,
         llm: Optional[Any] = None,
         max_expansion_iterations: int = 5,
+        max_expanded_synonyms: int = 8,
         model_metadata: Optional[Dict[str, Any]] = None,
+        num_ctx: Optional[int] = None,
+        num_predict: Optional[int] = None,
+        reasoning: Optional[Union[bool, str]] = None,
+        response_format: Optional[str] = None,
     ) -> None:
         """Initialize the LangGraph translation pipeline.
         
         Args:
             source_lang: Source language code (default: 'en')
             target_lang: Target language code (default: 'sr')
+            provider: Chat model provider, either 'ollama' or 'openai'.
             model: Ollama model name (default: 'gpt-oss:120b')
             temperature: LLM temperature 0.0-1.0 (default: 0.2 for determinism)
             base_url: Ollama API endpoint (default: 'http://localhost:11434')
@@ -433,8 +462,13 @@ class LangGraphTranslationPipeline:
             prompt_template: Legacy template (deprecated, not used in multi-stage pipeline)
             llm: Pre-configured LangChain LLM instance (optional, will create if None)
             max_expansion_iterations: Maximum synonym expansion iterations (default: 5)
+            max_expanded_synonyms: Maximum candidate literals retained after expansion.
             model_metadata: Optional metadata describing how the model was selected
                 (e.g., requested vs resolved names, fallback reasons).
+            num_ctx: Optional Ollama context window override.
+            num_predict: Optional maximum tokens to generate per LLM call.
+            reasoning: Optional Ollama reasoning/thinking mode flag or effort level.
+            response_format: Optional Ollama response format, e.g. "json".
         
         Raises:
             ImportError: If required dependencies (langgraph, langchain_ollama) not installed
@@ -446,6 +480,7 @@ class LangGraphTranslationPipeline:
         """
         self.source_lang = source_lang
         self.target_lang = target_lang
+        self.provider = provider
         self.model = model
         self.temperature = temperature
         self.base_url = base_url
@@ -453,6 +488,11 @@ class LangGraphTranslationPipeline:
         self.system_prompt = system_prompt or self.DEFAULT_SYSTEM_PROMPT
         self.prompt_template = prompt_template or self.DEFAULT_PROMPT_TEMPLATE
         self.max_expansion_iterations = max_expansion_iterations
+        self.max_expanded_synonyms = max(1, int(max_expanded_synonyms))
+        self.num_ctx = num_ctx
+        self.num_predict = num_predict
+        self.reasoning = reasoning
+        self.response_format = response_format
 
         requested_model = model
         fallback_reason = None
@@ -492,18 +532,117 @@ class LangGraphTranslationPipeline:
             self._END,
             self._SystemMessage,
             self._HumanMessage,
-            chat_factory,
         ) = self._load_dependencies(llm)
 
-        self.llm = llm if llm is not None else chat_factory(
-            model=self.model,
-            temperature=self.temperature,
-            timeout=self.timeout,
-            base_url=self.base_url,
-        )
+        if llm is not None:
+            self.llm = llm
+        else:
+            self.llm = build_chat_model(
+                provider=self.provider,
+                model=self.model,
+                temperature=self.temperature,
+                timeout=self.timeout,
+                base_url=self.base_url,
+                num_ctx=self.num_ctx,
+                num_predict=self.num_predict,
+                reasoning=self.reasoning,
+                response_format=self.response_format,
+            )
 
         # Build and compile the LangGraph state machine
         self._graph = self._build_graph()
+
+    def _target_language_guidelines(self) -> str:
+        """Return concise target-language guardrails for prompt rendering."""
+        if self.target_lang.lower() in {"sr", "srp", "serbian"}:
+            return (
+                "- Use standard Serbian Latin script and standard Serbian orthography.\n"
+                "- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n"
+                "- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n"
+                "- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati."
+            )
+        return ""
+
+    def _target_language_guidelines_block(self) -> str:
+        """Return a formatted target-language rules block, or an empty string."""
+        guidelines = self._target_language_guidelines()
+        if not guidelines:
+            return ""
+        return f"\n\nTarget-language rules:\n{guidelines}"
+
+    def _source_pos_constraint_block(self, synset: Dict[str, Any]) -> str:
+        """Return strict literal constraints for the source WordNet POS."""
+        raw_pos = str(synset.get("pos") or synset.get("part_of_speech") or "").strip()
+        pos = LanguageUtils.normalize_pos_for_english(raw_pos) if raw_pos else ""
+        if not pos:
+            return ""
+
+        pos_label = {
+            "n": "noun",
+            "v": "verb",
+            "r": "adverb/particle",
+            "a": "adjective",
+            "s": "adjective satellite",
+        }.get(pos, pos)
+        lemmas = synset.get("lemmas") or synset.get("literals") or []
+        if not isinstance(lemmas, (list, tuple)):
+            lemmas = [lemmas]
+        source_lemmas = ", ".join(str(item) for item in lemmas if str(item).strip()) or "(not provided)"
+
+        common = (
+            f"- Source WordNet POS is {pos_label} ({pos}); source lemma(s): {source_lemmas}.\n"
+            "- Final literals must keep the same lexical entry type as the source synset.\n"
+            "- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n"
+            "- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals."
+        )
+        if pos == "v":
+            specific = (
+                "- Source POS is verb: choose Serbian verb lemmas for the same action/process; "
+                "do not select noun/event-name literals for the final verb synset."
+            )
+        elif pos == "n":
+            specific = (
+                "- Source POS is noun: keep nouns or established noun phrases naming the concept; "
+                "do not select Serbian verb lemmas as final noun literals."
+            )
+        elif pos == "r":
+            specific = (
+                "- Source POS is adverb/particle: keep stable adverbial literals; put context-bound "
+                "constructions with added particles or clauses in notes/examples, not final literals."
+            )
+        elif pos in {"a", "s"}:
+            specific = (
+                "- Source POS is adjective: keep adjective lemmas; reject noun paraphrases and full clauses."
+            )
+        else:
+            specific = ""
+        return f"\n\nPart-of-speech constraints:\n{common}\n{specific}"
+
+    def _source_taxonomy_constraint_block(self, synset: Dict[str, Any]) -> str:
+        """Return taxonomy-specific literal guidance for biological entries."""
+        english_id = synset.get("id") or synset.get("english_id") or synset.get("ili_id") or ""
+        domain_info = self._get_wordnet_domain_info(str(english_id)) if english_id else {}
+        lexname = domain_info.get("lexname")
+        topic_domains = domain_info.get("topic_domains", [])
+        if not self._looks_taxonomic_entry(
+            synset,
+            lexname=lexname,
+            topic_domains=topic_domains,
+        ):
+            return ""
+        latin_taxa = self._latin_taxon_literals_from_payload(synset)
+        latin_text = ", ".join(latin_taxa) if latin_taxa else "the source Latin taxon"
+        return textwrap.dedent(
+            f"""
+
+            Taxonomy constraints:
+            - This appears to be a biological/taxonomic entry; do not invent Serbian common names.
+            - Try to find an established Serbian term when the provided data supports one.
+            - If a Serbian term is kept, keep both forms in final literals: Serbian term first, Latin taxon second ({latin_text}).
+            - If no reliable Serbian term is evident, retain the Latin taxon rather than an invented Serbian name.
+            - Taxonomy outputs still need domain review before import.
+            """
+        ).strip()
 
     # ========================================================================
     # GRAPH CONSTRUCTION
@@ -521,8 +660,7 @@ class LangGraphTranslationPipeline:
                          also import ChatOllama for creating a new LLM.
         
         Returns:
-            Tuple of (StateGraph, START, END, SystemMessage, HumanMessage, chat_factory)
-            where chat_factory is None if provided_llm was given, or ChatOllama otherwise.
+            Tuple of (StateGraph, START, END, SystemMessage, HumanMessage).
         
         Raises:
             ImportError: If required dependencies are not installed.
@@ -538,19 +676,7 @@ class LangGraphTranslationPipeline:
                 "pip install wordnet-autotranslate[langgraph]."
             ) from exc
 
-        chat_factory = None
-        if provided_llm is None:
-            try:
-                from langchain_ollama import ChatOllama
-            except ImportError as exc:  # pragma: no cover - exercised in runtime
-                raise ImportError(
-                    "LangGraphTranslationPipeline needs 'langchain-ollama' when an "
-                    "LLM instance isn't provided. Install extras with "
-                    "pip install wordnet-autotranslate[langgraph]."
-                ) from exc
-            chat_factory = ChatOllama
-
-        return StateGraph, START, END, SystemMessage, HumanMessage, chat_factory
+        return StateGraph, START, END, SystemMessage, HumanMessage
 
     def _build_graph(self) -> Any:
         """Build and compile the LangGraph state machine for the translation pipeline.
@@ -743,83 +869,91 @@ class LangGraphTranslationPipeline:
         return {"initial_translation_call": call_result}
 
     def _expand_synonyms(self, state: TranslationGraphState) -> TranslationGraphState:
-        """LangGraph node: Expand the candidate pool with additional synonyms.
-        
-        This runs expansion iteratively (up to max_expansion_iterations times)
-        until no new synonyms appear, accumulating unique synonyms across runs.
-        
-        Args:
-            state: Current graph state with initial translations.
-            
-        Returns:
-            Updated state with expansion_call results including iteration metadata.
-        """
+        """LangGraph node: Expand the candidate pool with a small, ordered set."""
         initial_payload = state.get("initial_translation_call", {}).get("payload", {})
         sense_payload = state.get("sense_analysis", {}).get("payload", {})
         definition_payload = state.get("definition_translation", {}).get("payload", {})
-        
-        # Start with initial translations
-        initial_translations = initial_payload.get("initial_translations", [])
-        all_synonyms = set(t for t in initial_translations if t is not None)
-        
-        # Track which iteration found which synonym
-        synonym_provenance = {syn: 0 for syn in all_synonyms}  # 0 = initial
-        all_rationales = {}
-        iteration_calls = []
-        new_count = 0  # Initialize before loop
-        
+
+        all_synonyms: List[str] = []
+        seen_synonyms: set[str] = set()
+        synonym_provenance: Dict[str, int] = {}
+
+        def _add_synonym(candidate: Any, provenance: int) -> bool:
+            text = str(candidate or "").strip()
+            if not text:
+                return False
+            key = text.casefold()
+            if key in seen_synonyms or len(all_synonyms) >= self.max_expanded_synonyms:
+                return False
+            seen_synonyms.add(key)
+            all_synonyms.append(text)
+            synonym_provenance[text] = provenance
+            return True
+
+        initial_translations = self._coerce_to_str_list(
+            initial_payload.get("initial_translations", [])
+        )
+        for translation in initial_translations:
+            _add_synonym(translation, 0)
+
+        all_rationales: Dict[str, str] = {}
+        iteration_calls: List[Dict[str, Any]] = []
+        new_count = 0
+
         for iteration in range(self.max_expansion_iterations):
-            # Generate prompt with current synonym set
-            prompt = self._render_expansion_prompt(initial_payload, sense_payload, definition_payload)
-            
-            # Call LLM
-            call_result = self._call_llm(prompt, stage=f"expansion_iter_{iteration+1}")
+            if len(all_synonyms) >= self.max_expanded_synonyms:
+                break
+
+            current_payload = dict(initial_payload)
+            current_payload["initial_translations"] = list(all_synonyms)
+            current_payload["remaining_candidate_slots"] = max(
+                0,
+                self.max_expanded_synonyms - len(all_synonyms),
+            )
+            prompt = self._render_expansion_prompt(
+                current_payload,
+                sense_payload,
+                definition_payload,
+                state.get("synset", {}),
+            )
+            call_result = self._call_llm(prompt, stage=f"expansion_iter_{iteration + 1}")
             iteration_calls.append(call_result)
-            
-            # Extract new synonyms
+
             payload = call_result.get("payload", {})
             if "error" in payload:
-                # Stop on error
                 break
-                
-            new_expanded = payload.get("expanded_synonyms", [])
-            new_rationale = payload.get("rationale", {})
-            
-            # Check for convergence
+
             before_count = len(all_synonyms)
-            
-            for syn in new_expanded:
-                if syn and syn not in all_synonyms:
-                    all_synonyms.add(syn)
-                    synonym_provenance[syn] = iteration + 1
-                    if syn in new_rationale:
-                        all_rationales[syn] = new_rationale[syn]
-            
+            new_rationale = payload.get("rationale", {}) or {}
+            for syn in payload.get("expanded_synonyms", []) or []:
+                if _add_synonym(syn, iteration + 1) and syn in new_rationale:
+                    all_rationales[str(syn)] = str(new_rationale[syn])
+                if len(all_synonyms) >= self.max_expanded_synonyms:
+                    break
+
             new_count = len(all_synonyms) - before_count
-            
-            # Early stopping if no new synonyms
             if new_count == 0:
-                print(f"[Expansion] Converged after {iteration + 1} iteration(s) - no new synonyms found")
+                _safe_print(f"[Expansion] Converged after {iteration + 1} iteration(s) - no new synonyms found")
                 break
-            else:
-                print(f"[Expansion] Iteration {iteration + 1}: Added {new_count} new synonym(s), total: {len(all_synonyms)}")
-        
-        # Construct final result
+            _safe_print(
+                f"[Expansion] Iteration {iteration + 1}: Added {new_count} new synonym(s), total: {len(all_synonyms)}"
+            )
+
         final_payload = {
-            "expanded_synonyms": sorted(all_synonyms),
+            "expanded_synonyms": all_synonyms,
             "rationale": all_rationales,
-            "iterations_run": iteration + 1,
+            "iterations_run": len(iteration_calls),
             "synonym_provenance": synonym_provenance,
-            "converged": new_count == 0
+            "converged": new_count == 0,
         }
-        
+
         final_call_result = {
             "payload": final_payload,
             "stage": "synonym_expansion",
-            "calls": iteration_calls,  # All LLM calls made
-            "response": f"Iterative expansion completed in {iteration + 1} iteration(s)"
+            "calls": iteration_calls,
+            "response": f"Iterative expansion completed in {len(iteration_calls)} iteration(s)",
         }
-        
+
         return {"expansion_call": final_call_result}
 
     def _filter_synonyms(self, state: TranslationGraphState) -> TranslationGraphState:
@@ -837,7 +971,12 @@ class LangGraphTranslationPipeline:
         expansion_payload = state.get("expansion_call", {}).get("payload", {})
         sense_payload = state.get("sense_analysis", {}).get("payload", {})
         definition_payload = state.get("definition_translation", {}).get("payload", {})
-        prompt = self._render_filtering_prompt(expansion_payload, sense_payload, definition_payload)
+        prompt = self._render_filtering_prompt(
+            expansion_payload,
+            sense_payload,
+            definition_payload,
+            state.get("synset", {}),
+        )
         call_result = self._call_llm(prompt, stage="synonym_filtering")
         return {"filtering_call": call_result}
 
@@ -934,6 +1073,7 @@ class LangGraphTranslationPipeline:
             Formatted prompt for LLM.
         """
         target_name = LanguageUtils.get_language_name(self.target_lang)
+        target_rules = self._target_language_guidelines_block()
         definition = synset.get("definition") or synset.get("gloss") or ""
 
         sense_summary = sense_payload.get("sense_summary", "")
@@ -953,6 +1093,7 @@ class LangGraphTranslationPipeline:
             - Output must sound like a *dictionary gloss* in {target_name}: short, neutral, non-sentence form.
             - Keep factual and stylistic fidelity.
             - If uncertain, give literal translation plus clarifying note.
+            {target_rules}
 
             Return JSON:
             {{
@@ -980,6 +1121,9 @@ class LangGraphTranslationPipeline:
             Formatted prompt for LLM.
         """
         target_name = LanguageUtils.get_language_name(self.target_lang)
+        target_rules = self._target_language_guidelines_block()
+        pos_rules = self._source_pos_constraint_block(synset)
+        taxonomy_rules = self._source_taxonomy_constraint_block(synset)
         lemmas = synset.get("lemmas") or synset.get("literals") or []
         # Keep lemmas as list for proper JSON formatting
         lemmas_list = lemmas if isinstance(lemmas, (list, tuple)) else [lemmas]
@@ -996,6 +1140,9 @@ class LangGraphTranslationPipeline:
             Rules:
             - Each translation must match *this sense*, not general meaning.
             - Keep array order aligned to lemmas; use null if no exact equivalent.
+            {target_rules}
+            {pos_rules}
+            {taxonomy_rules}
 
             Return JSON:
             {{
@@ -1012,6 +1159,7 @@ class LangGraphTranslationPipeline:
         initial_payload: Dict[str, Any],
         sense_payload: Dict[str, Any],
         definition_payload: Dict[str, Any],
+        synset: Optional[Dict[str, Any]] = None,
     ) -> str:
         """Generate prompt for synonym expansion stage (revised: prevents semantic drift).
         
@@ -1028,10 +1176,14 @@ class LangGraphTranslationPipeline:
             Formatted prompt for LLM that prevents semantic drift across senses.
         """
         target_name = LanguageUtils.get_language_name(self.target_lang)
+        target_rules = self._target_language_guidelines_block()
+        pos_rules = self._source_pos_constraint_block(synset or {})
+        taxonomy_rules = self._source_taxonomy_constraint_block(synset or {})
         initial_translations = initial_payload.get("initial_translations", [])
         # Filter out null values from initial translations
         initial_translations = [t for t in initial_translations if t is not None]
         base_synonyms = ", ".join(str(t) for t in initial_translations) if initial_translations else "(none)"
+        remaining_slots = int(initial_payload.get("remaining_candidate_slots") or self.max_expanded_synonyms)
         
         sense_summary = sense_payload.get("sense_summary", "")
         definition_translation = definition_payload.get("definition_translation", "")
@@ -1050,11 +1202,17 @@ class LangGraphTranslationPipeline:
             {base_synonyms}
 
             Guidelines:
+            - Generate at most {remaining_slots} additional candidate literal(s); fewer is better.
             - Generate new synonyms that express **exactly this concept**, not other senses of the same word.
             - Stay faithful to the described meaning and avoid extensions that fit different senses.
             - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.
             - Do not rely on surface similarity to the existing words; reason from the concept itself.
             - Keep to canonical lemma forms and natural, modern vocabulary.
+            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.
+            - If no additional exact literal exists, return an empty expanded_synonyms list.
+            {target_rules}
+            {pos_rules}
+            {taxonomy_rules}
 
             Return JSON:
             {{
@@ -1074,12 +1232,13 @@ class LangGraphTranslationPipeline:
         expansion_payload: Dict[str, Any],
         sense_payload: Dict[str, Any],
         definition_payload: Dict[str, Any],
+        synset: Optional[Dict[str, Any]] = None,
     ) -> str:
-        """Definition-anchored filtering prompt with balanced scope and hypernym control.
+        """Definition-anchored filtering prompt with curation-friendly recall.
 
         This version emphasizes strict alignment with the translated definition,
-        robust handling of morphological and polysemous variants, and removal
-        of overly generic or compositional forms.
+        robust handling of morphological and polysemous variants, and a bias
+        toward keeping plausible broader candidates for later human curation.
         
         Args:
             expansion_payload: Output from expansion stage.
@@ -1090,6 +1249,9 @@ class LangGraphTranslationPipeline:
             Formatted prompt for LLM with definition-anchored validation and polysemy awareness.
         """
         target_name = LanguageUtils.get_language_name(self.target_lang)
+        target_rules = self._target_language_guidelines_block()
+        pos_rules = self._source_pos_constraint_block(synset or {})
+        taxonomy_rules = self._source_taxonomy_constraint_block(synset or {})
         expanded_synonyms = expansion_payload.get("expanded_synonyms", [])
         expanded = ", ".join(str(t) for t in expanded_synonyms) if expanded_synonyms else "(none)"
         
@@ -1108,17 +1270,18 @@ class LangGraphTranslationPipeline:
             Guidelines:
             - Evaluate each candidate strictly against the definition, not surface similarity.
             - Keep words that express the same central meaning or a culturally natural equivalent.
-            - Prefer base lemmas, but also keep aspectual or derivational variants if they express
-              the same action, state, or entity type.
-            - When a candidate's meaning naturally spans multiple related interpretations
-              (e.g., an entity and its location, or an organization and its premises),
-              treat this as normal lexical polysemy. Keep the word if at least one of its
-              established interpretations clearly fits the definition, even if others do not.
-            - Remove candidates that merely restate the generic hypernym from the definition
-              (for instance, a term meaning only "object" or "building" when the sense is a specific kind).
+                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.
+                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.
+                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.
+                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.
+                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.
             - Remove expressions with added modifiers, particles, or typical objects that narrow or
               shift the intended scope.
             - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.
+                        - Return no more than {self.max_expanded_synonyms} filtered literals, ranked from best to worst.
+                        {target_rules}
+                        {pos_rules}
+                        {taxonomy_rules}
 
             Return structured JSON:
             {{
@@ -1146,6 +1309,7 @@ class LangGraphTranslationPipeline:
 
         expanded = ", ".join(filtered_synonyms) if filtered_synonyms else "(none)"
         target_name = LanguageUtils.get_language_name(target_lang)
+        target_rules = self._target_language_guidelines_block()
 
         prompt = textwrap.dedent(
             f"""
@@ -1162,22 +1326,22 @@ class LangGraphTranslationPipeline:
                appears directly in the definition, which would create a circular definition.
                If this occurs, suggest a neutral rephrasing that avoids repetition.
 
-            2. **Grammar and agreement** — Verify correctness of inflection, case,
-               number, and gender, as appropriate for {target_name}. Identify ungrammatical
-               or mechanically translated phrasing.
+                2. **Major wording problems only** — Do not perform a full grammar audit.
+                    Flag only obvious mistranslation, broken machine text, or wording that
+                    changes the WordNet meaning.
 
-            3. **Style and fluency** — Ensure the definition is concise, clear, and
-               natural in the lexicographic register of {target_name}. Prefer balanced
-               clause structure and neutral tone over heavy nominalization or literal phrasing.
+                3. **Lexicographic clarity** — Ensure the definition is concise, clear,
+                    and compatible with the selected literal set.
 
             4. If any issues are detected, produce a corrected version that maintains
-               the original meaning while improving grammar and style.
+                    the original meaning without attempting broad grammatical rewriting.
+                {target_rules}
 
             Return structured JSON:
             {{
               "status": "ok" | "needs_revision",
               "issues": [
-                {{"type": "circular" | "grammar" | "style", "message": "brief explanation"}},
+                {{"type": "circular" | "meaning" | "clarity", "message": "brief explanation"}},
               ],
               "revised_definition": "rewritten definition if revision is required, otherwise original",
               "notes": "short summary of evaluation outcome"
@@ -1239,8 +1403,9 @@ class LangGraphTranslationPipeline:
             # Validate payload against schema for this stage
             payload = self._validate_payload_for_stage(stage, payload)
 
-            # Basic success check - ensure we have valid data
-            if payload and any(payload.values()):
+            # Basic success check - ensure we have valid data. Some valid stages
+            # intentionally return empty lists or false readiness flags.
+            if self._is_valid_stage_payload(stage, payload):
                 call_log = {
                     "stage": stage,
                     "prompt": prompt,
@@ -1256,10 +1421,10 @@ class LangGraphTranslationPipeline:
             
             # Log retry attempt
             if attempt < retries:
-                print(f"[Retry {attempt + 1}/{retries}] Invalid or empty JSON for stage '{stage}'")
+                _safe_print(f"[Retry {attempt + 1}/{retries}] Invalid or empty JSON for stage '{stage}'")
         
         # Fallback return after max retries
-        print(f"[ERROR] Max retries exceeded for stage '{stage}', returning error payload")
+        _safe_print(f"[ERROR] Max retries exceeded for stage '{stage}', returning error payload")
         fallback_payload = self._validate_payload_for_stage(stage, {})
         if not fallback_payload:
             fallback_payload = {"error": "max retries exceeded"}
@@ -1275,6 +1440,32 @@ class LangGraphTranslationPipeline:
                 {"role": "user", "content": prompt},
             ],
         }
+
+    @staticmethod
+    def _is_valid_stage_payload(stage: str, payload: Dict[str, Any]) -> bool:
+        """Return whether a decoded stage payload has the expected shape."""
+        if not payload or "error" in payload:
+            return False
+        if stage.startswith("expansion_iter"):
+            return "expanded_synonyms" in payload
+        required_key_by_stage = {
+            "sense_analysis": "sense_summary",
+            "definition_translation": "definition_translation",
+            "initial_translation": "initial_translations",
+            "synonym_expansion": "expanded_synonyms",
+            "synonym_filtering": "filtered_synonyms",
+            "definition_quality": "status",
+            "expanded_definition_en": "expanded_definition_en",
+            "expanded_definition_sr": "expanded_definition_sr",
+            "literal_candidates_sr": "candidates",
+            "literal_selection_sr": "selected_literals_sr",
+            "final_gloss_sr": "final_gloss_sr",
+            "synset_validation_sr": "final_synset_ready",
+        }
+        required_key = required_key_by_stage.get(stage)
+        if required_key:
+            return required_key in payload
+        return any(payload.values())
 
     @staticmethod
     def _summarise_call(call: Dict[str, Any]) -> Dict[str, Any]:
@@ -1325,6 +1516,9 @@ class LangGraphTranslationPipeline:
             "synonym_filtering": FilteringSchema,
             "definition_quality": DefinitionQualitySchema,
         }
+        if stage.startswith("expansion_iter"):
+            schema_cls = ExpansionSchema
+            return validate_stage_payload(payload, schema_cls, stage)
         schema_cls = schema_map.get(stage)
         if schema_cls:
             return validate_stage_payload(payload, schema_cls, stage)
@@ -1351,18 +1545,22 @@ class LangGraphTranslationPipeline:
         Returns:
             Cleaned list with redundant compounds removed
         """
-        words = [w.strip().lower() for w in words if w.strip()]
-        singles = {w for w in words if " " not in w}
+        if self.target_lang.lower() in {"sr", "srp", "serbian"}:
+            original_words = [w.strip() for w in words if w.strip()]
+        else:
+            original_words = [w.strip().lower() for w in words if w.strip()]
+        singles = {w.casefold() for w in original_words if " " not in w}
         cleaned, flagged = [], []
 
-        for w in words:
-            if " " in w and any(f" {s} " in f" {w} " for s in singles):
+        for w in original_words:
+            folded = w.casefold()
+            if " " in folded and any(f" {s} " in f" {folded} " for s in singles):
                 flagged.append(w)
             else:
                 cleaned.append(w)
 
         if flagged:
-            print(f"[Deduplicate] Flagged: {flagged}")
+            _safe_print(f"[Deduplicate] Flagged: {flagged}")
         return cleaned
 
     @staticmethod
@@ -1534,10 +1732,20 @@ class LangGraphTranslationPipeline:
         ):
             definition_translation = quality_revision_text
 
+        if self.target_lang.lower() in {"sr", "srp", "serbian"}:
+            definition_translation = LanguageUtils.normalize_serbian_latin_text(
+                definition_translation
+            )
+
         # Extract the final, validated synonyms from the filtering stage
         # This is the high-quality synset produced by the generate-and-filter pipeline
         filtered_synonyms = filtering_payload.get("filtered_synonyms", [])
         translated_synonyms = self._coerce_to_str_list(filtered_synonyms)
+        if self.target_lang.lower() in {"sr", "srp", "serbian"}:
+            translated_synonyms = LanguageUtils.normalize_serbian_latin_items(
+                translated_synonyms
+            )
+        raw_filtered_synonyms = list(translated_synonyms)
         
         # Remove any empty strings and deduplicate while preserving order
         seen = set()
@@ -1550,12 +1758,7 @@ class LangGraphTranslationPipeline:
 
         # Apply compound deduplication to remove redundant multiword expressions
         translated_synonyms = self._deduplicate_compounds(translated_synonyms)
-
-        # The "translation" field holds a representative literal for convenience
-        # (e.g., for logging or display). This is NOT a formal "headword" - 
-        # the final output is a synset (set of synonymous literals).
-        # We simply use the first item from the filtered list if available.
-        translation = translated_synonyms[0] if translated_synonyms else ""
+        translated_synonyms = self._post_filter_literals_by_pos(translated_synonyms, synset)
 
         # Gather examples from definition translation
         definition_examples = definition_payload.get("examples")
@@ -1582,6 +1785,52 @@ class LangGraphTranslationPipeline:
         domain_info = self._get_wordnet_domain_info(english_id)
         lexname = domain_info.get("lexname")
         topic_domains = domain_info.get("topic_domains", [])
+
+        fallback_literal_used = False
+        if not translated_synonyms and self._looks_taxonomic_entry(
+            synset,
+            lexname=lexname,
+            topic_domains=topic_domains,
+        ):
+            translated_synonyms = self._latin_taxon_literals_from_payload(synset)[:1]
+            fallback_literal_used = bool(translated_synonyms)
+        translated_synonyms = self._ensure_taxonomy_dual_literals(
+            translated_synonyms,
+            synset,
+            lexname=lexname,
+            topic_domains=topic_domains,
+        )
+        if not translated_synonyms:
+            translated_synonyms = self._ensure_minimum_literals(
+                translated_synonyms,
+                synset,
+                initial_payload,
+                expansion_payload,
+                filtering_payload,
+                definition_payload,
+            )
+            fallback_literal_used = bool(translated_synonyms)
+        translated_synonyms = self._rank_literals_for_output(
+            translated_synonyms,
+            synset,
+            filtering_payload.get("confidence_by_word") or {},
+        )
+
+        # The "translation" field holds a representative literal for convenience
+        # (e.g., for logging or display). This is NOT a formal "headword" -
+        # the final output is a synset (set of synonymous literals).
+        translation = translated_synonyms[0] if translated_synonyms else ""
+
+        quality_report = self._build_auto_quality_report(
+            synset,
+            translated_synonyms,
+            definition_translation,
+            raw_literals=raw_filtered_synonyms,
+            lexname=lexname,
+            topic_domains=topic_domains,
+            model_ready=quality_status != "needs_revision",
+            fallback_literal_used=fallback_literal_used,
+        )
 
         # Build curator-friendly summary text
         summary_lines: List[str] = []
@@ -1633,6 +1882,11 @@ class LangGraphTranslationPipeline:
         status_label = quality_status or "unknown"
         issue_suffix = f" ({issues_count} issue(s) flagged)" if issues_count else ""
         summary_lines.append(f"  4. Definition quality: {status_label}{issue_suffix}")
+        summary_lines.append(f"  5. Auto status: {quality_report['auto_status']}")
+        if quality_report["quality_flags"]:
+            summary_lines.append(
+                "  Quality flags: " + ", ".join(quality_report["quality_flags"])
+            )
 
         curator_summary = "\n".join(summary_lines)
 
@@ -1643,6 +1897,7 @@ class LangGraphTranslationPipeline:
             "expansion": expansion_payload,
             "filtering": filtering_payload,
             "definition_quality": definition_quality_payload,
+            "auto_quality": quality_report,
             "calls": {
                 "sense": sense_call,
                 "definition": definition_call,
@@ -1685,6 +1940,444 @@ class LangGraphTranslationPipeline:
             lexname=lexname,
             topic_domains=topic_domains,
             model_info=dict(self.model_metadata),
+            auto_status=str(quality_report["auto_status"]),
+            quality_flags=list(quality_report["quality_flags"]),
+            quality_issues=list(quality_report["quality_issues"]),
+            needs_human_review=bool(quality_report["needs_human_review"]),
+            needs_domain_check=bool(quality_report["needs_domain_check"]),
         )
 
         return {"result": result}
+
+
+    def _post_filter_literals_by_pos(
+        self,
+        literals: List[str],
+        synset: Dict[str, Any],
+    ) -> List[str]:
+        """Apply narrow post-filter cleanup after LLM filtering.
+
+        Serbian POS is not inferred with suffix regexes here. POS compatibility
+        is handled in prompts/model judgment; this cleanup only handles the
+        explicit adverb/particle construction policy requested for entries like
+        even.r.01.
+        """
+        raw_pos = str(synset.get("pos") or synset.get("part_of_speech") or "").strip()
+        pos = LanguageUtils.normalize_pos_for_english(raw_pos) if raw_pos else ""
+        if not pos:
+            return literals[: self.max_expanded_synonyms]
+
+        cleaned: List[str] = []
+        has_core_even_particle = pos == "r" and any(
+            str(item).strip().casefold() == "čak" for item in literals
+        )
+        for literal in literals:
+            text = str(literal or "").strip()
+            folded = text.casefold()
+            if not text:
+                continue
+            if pos == "r" and " " in folded:
+                continue
+            elif pos == "r" and has_core_even_particle and folded in {"još", "ni", "i", "takođe", "baš"}:
+                continue
+            cleaned.append(text)
+            if len(cleaned) >= self.max_expanded_synonyms:
+                break
+
+        return cleaned or literals[: self.max_expanded_synonyms]
+
+    def _rank_literals_for_output(
+        self,
+        literals: List[str],
+        synset: Dict[str, Any],
+        confidence_by_word: Optional[Dict[str, str]] = None,
+    ) -> List[str]:
+        """Rank final literals by model confidence and deterministic risk signals."""
+        if not literals:
+            return []
+
+        confidence_by_word = confidence_by_word or {}
+        raw_pos = str(synset.get("pos") or synset.get("part_of_speech") or "").strip()
+        pos = LanguageUtils.normalize_pos_for_english(raw_pos) if raw_pos else ""
+        latin_taxa = {
+            literal.casefold()
+            for literal in self._latin_taxon_literals_from_payload(synset)
+        }
+        has_core_even_particle = pos == "r" and any(
+            literal.strip().casefold() == "čak" for literal in literals
+        )
+        confidence_score = {"high": 30, "medium": 15, "low": 0}
+        broad_literals = {"stvar", "objekat", "objekt", "predmet", "postojanje", "biće"}
+
+        def score(index_literal: tuple[int, str]) -> tuple[int, int]:
+            index, literal = index_literal
+            folded = literal.casefold().strip()
+            value = confidence_score.get(
+                str(confidence_by_word.get(literal) or confidence_by_word.get(folded) or "").lower(),
+                10,
+            )
+            if folded in broad_literals:
+                value -= 5
+            if self._is_descriptive_literal(literal):
+                value -= 15
+            if pos == "r" and has_core_even_particle and folded in {"još", "ni", "i", "takođe", "baš"}:
+                value -= 40
+            if folded in latin_taxa and len(literals) > 1:
+                value -= 5
+            return (-value, index)
+
+        return [literal for _, literal in sorted(enumerate(literals), key=score)]
+
+    @staticmethod
+    def _contains_cyrillic(text: str) -> bool:
+        """Return True when text contains Cyrillic characters."""
+        return bool(re.search(r"[\u0400-\u04FF]", str(text or "")))
+
+    @staticmethod
+    def _is_latin_taxon_literal(text: str) -> bool:
+        """Return True for simple Latin taxon-looking names such as Cirripedia."""
+        stripped = str(text or "").strip()
+        if not stripped or "_" in stripped:
+            return False
+        stripped = re.sub(
+            r"^(subclass|class|order|family|genus|species|phylum|kingdom)\s+",
+            "",
+            stripped,
+            flags=re.IGNORECASE,
+        ).strip()
+        return bool(re.fullmatch(r"[A-Z][A-Za-z]+(?:\s+[a-z][a-z-]+)?", stripped))
+
+    @classmethod
+    def _latin_taxon_literals_from_payload(cls, payload: Dict[str, Any]) -> List[str]:
+        """Extract Latin taxon names from source literals/lemmas without rank prefixes."""
+        raw_literals = (
+            payload.get("source_literals")
+            or payload.get("lemmas")
+            or payload.get("literals")
+            or []
+        )
+        if not isinstance(raw_literals, (list, tuple, set)):
+            raw_literals = [raw_literals]
+
+        taxa: List[str] = []
+        seen: set[str] = set()
+        for literal in raw_literals:
+            text = str(literal or "").replace("_", " ").strip()
+            text = re.sub(
+                r"^(subclass|class|order|family|genus|species|phylum|kingdom)\s+",
+                "",
+                text,
+                flags=re.IGNORECASE,
+            ).strip()
+            if cls._is_latin_taxon_literal(text):
+                key = text.casefold()
+                if key not in seen:
+                    seen.add(key)
+                    taxa.append(text)
+        return taxa
+
+    def _looks_taxonomic_entry(
+        self,
+        payload: Dict[str, Any],
+        *,
+        lexname: Optional[str] = None,
+        topic_domains: Optional[List[str]] = None,
+    ) -> bool:
+        """Detect biological/taxonomic entries from domains and Latin source names."""
+        domain_values: List[str] = []
+        for key in ("domains", "domain_tags", "topic_domains"):
+            value = payload.get(key)
+            if isinstance(value, (list, tuple, set)):
+                domain_values.extend(str(item) for item in value)
+            elif value:
+                domain_values.append(str(value))
+        if lexname:
+            domain_values.append(str(lexname))
+        if topic_domains:
+            domain_values.extend(str(item) for item in topic_domains)
+        domain_folded = [item.casefold() for item in domain_values]
+        if any(
+            token == "noun.animal" or "taxonom" in token or "biology" in token
+            for token in domain_folded
+        ):
+            return True
+        raw_literals = (
+            payload.get("source_literals")
+            or payload.get("lemmas")
+            or payload.get("literals")
+            or []
+        )
+        if not isinstance(raw_literals, (list, tuple, set)):
+            raw_literals = [raw_literals]
+        return any(
+            re.match(
+                r"^(subclass|class|order|family|genus|species|phylum|kingdom)\s+",
+                str(literal or "").strip(),
+                flags=re.IGNORECASE,
+            )
+            for literal in raw_literals
+        )
+
+    def _ensure_taxonomy_dual_literals(
+        self,
+        literals: List[str],
+        payload: Dict[str, Any],
+        *,
+        lexname: Optional[str] = None,
+        topic_domains: Optional[List[str]] = None,
+    ) -> List[str]:
+        """For taxonomy, keep Serbian term plus Latin taxon when a Serbian term exists."""
+        if not literals or not self._looks_taxonomic_entry(
+            payload,
+            lexname=lexname,
+            topic_domains=topic_domains,
+        ):
+            return literals
+        latin_taxa = self._latin_taxon_literals_from_payload(payload)
+        if not latin_taxa:
+            return literals
+
+        latin_keys = {taxon.casefold() for taxon in latin_taxa}
+        literal_keys = {literal.casefold().strip() for literal in literals}
+        has_latin = bool(latin_keys & literal_keys)
+        has_serbian = any(
+            literal.casefold().strip() not in latin_keys
+            and not self._is_latin_taxon_literal(literal)
+            for literal in literals
+        )
+        if has_serbian and not has_latin:
+            literals = list(literals) + [latin_taxa[0]]
+
+        deduped: List[str] = []
+        seen: set[str] = set()
+        for literal in literals:
+            key = literal.casefold().strip()
+            if literal.strip() and key not in seen:
+                seen.add(key)
+                deduped.append(literal.strip())
+        return deduped[: self.max_expanded_synonyms]
+
+    def _ensure_minimum_literals(
+        self,
+        literals: List[str],
+        synset: Dict[str, Any],
+        *payloads: Any,
+    ) -> List[str]:
+        """Return at least one literal by falling back to the safest available candidate."""
+        if literals:
+            return literals
+
+        candidates: List[str] = []
+
+        def add_values(value: Any) -> None:
+            for item in self._coerce_to_str_list(value):
+                text = item.strip()
+                if text:
+                    candidates.append(text)
+
+        for payload in payloads:
+            if isinstance(payload, dict):
+                for key in (
+                    "filtered_synonyms",
+                    "initial_translations",
+                    "expanded_synonyms",
+                    "translated_synonyms",
+                    "selected_literals_sr",
+                    "rejected_literals_sr",
+                ):
+                    add_values(payload.get(key))
+                alignment = payload.get("alignment")
+                if isinstance(alignment, dict):
+                    add_values(list(alignment.values()))
+            else:
+                add_values(payload)
+
+        candidates.extend(self._latin_taxon_literals_from_payload(synset))
+        source_literals = synset.get("lemmas") or synset.get("literals") or []
+        add_values(source_literals)
+
+        if self.target_lang.lower() in {"sr", "srp", "serbian"}:
+            candidates = LanguageUtils.normalize_serbian_latin_items(candidates)
+
+        deduped: List[str] = []
+        seen: set[str] = set()
+        for candidate in candidates:
+            key = candidate.casefold().strip()
+            if not key or key in seen:
+                continue
+            seen.add(key)
+            deduped.append(candidate.strip())
+            break
+        return deduped
+
+    @staticmethod
+    def _is_descriptive_literal(text: str) -> bool:
+        """Detect phrase-like items that are risky as WordNet literals."""
+        folded = str(text or "").casefold().strip()
+        if not folded:
+            return False
+        if any(mark in folded for mark in [",", ";", "(", ")"]):
+            return True
+        if re.search(r"\b(koji|koja|koje|što|da bi|kada|ukazuje na)\b", folded):
+            return True
+        return len(folded.split()) > 4
+
+    @staticmethod
+    def _append_quality_issue(
+        issues: List[Dict[str, str]],
+        flags: List[str],
+        code: str,
+        message: str,
+        severity: str = "warning",
+    ) -> None:
+        """Append a deterministic quality issue without duplicating codes."""
+        if code not in flags:
+            flags.append(code)
+        if not any(issue.get("code") == code for issue in issues):
+            issues.append({"code": code, "message": message, "severity": severity})
+
+    @staticmethod
+    def _auto_status_from_issues(
+        issues: List[Dict[str, Any]],
+        *,
+        needs_domain_check: bool = False,
+        model_ready: Optional[bool] = None,
+    ) -> str:
+        """Map deterministic issues to a compact import-readiness status."""
+        severities = {str(issue.get("severity", "")).casefold() for issue in issues}
+        if "error" in severities:
+            return "blocked"
+        if needs_domain_check or "warning" in severities or model_ready is False:
+            return "review"
+        return "ready"
+
+    def _build_auto_quality_report(
+        self,
+        synset: Dict[str, Any],
+        literals: List[str],
+        gloss: str,
+        *,
+        raw_literals: Optional[List[str]] = None,
+        lexname: Optional[str] = None,
+        topic_domains: Optional[List[str]] = None,
+        model_ready: Optional[bool] = None,
+        fallback_literal_used: bool = False,
+    ) -> Dict[str, Any]:
+        """Build deterministic auto-status metadata for generated outputs."""
+        raw_literals = raw_literals if raw_literals is not None else literals
+        issues: List[Dict[str, str]] = []
+        flags: List[str] = []
+        needs_domain_check = False
+        raw_pos = str(synset.get("pos") or synset.get("part_of_speech") or "").strip()
+        pos = LanguageUtils.normalize_pos_for_english(raw_pos) if raw_pos else ""
+
+        raw_keys = [str(item).strip().casefold() for item in raw_literals if str(item).strip()]
+        if len(raw_keys) != len(set(raw_keys)):
+            self._append_quality_issue(
+                issues,
+                flags,
+                "duplicate_literal",
+                "Duplicate literal candidates were produced before final deduplication.",
+                "warning",
+            )
+
+        if not literals:
+            self._append_quality_issue(
+                issues,
+                flags,
+                "missing_literals",
+                "No final target-language literal was selected.",
+                "error",
+            )
+
+        if fallback_literal_used and literals:
+            self._append_quality_issue(
+                issues,
+                flags,
+                "fallback_literal_selected",
+                "A fallback literal was selected because strict filtering produced no final literal.",
+                "warning",
+            )
+
+        gloss_folded = str(gloss or "").casefold()
+        for literal in literals:
+            literal_folded = literal.casefold().strip()
+            if literal_folded and re.search(rf"(?<!\w){re.escape(literal_folded)}(?!\w)", gloss_folded):
+                self._append_quality_issue(
+                    issues,
+                    flags,
+                    "literal_in_gloss",
+                    f"Selected literal '{literal}' appears in the final gloss.",
+                    "error",
+                )
+
+        for literal in literals:
+            folded = literal.casefold().strip()
+            if pos == "r" and (" " in folded or folded in {"još", "ni", "i", "takođe", "baš"}):
+                self._append_quality_issue(
+                    issues,
+                    flags,
+                    "function_word_construction_risk",
+                    f"Adverb/particle synset has a context-bound or weak standalone literal: '{literal}'.",
+                    "warning",
+                )
+
+            if self._is_descriptive_literal(literal):
+                self._append_quality_issue(
+                    issues,
+                    flags,
+                    "descriptive_phrase_literal",
+                    f"Literal '{literal}' looks like a descriptive phrase rather than a lemma.",
+                    "warning",
+                )
+
+        broad_literals = {"stvar", "objekat", "objekt", "predmet", "postojanje", "biće"}
+        for literal in literals:
+            if literal.casefold().strip() in broad_literals:
+                self._append_quality_issue(
+                    issues,
+                    flags,
+                    "broad_literal_risk",
+                    f"Selected literal '{literal}' is broad and may be a hypernym.",
+                    "warning",
+                )
+
+        if self.target_lang.lower() in {"sr", "srp", "serbian"}:
+            script_text = " ".join(list(literals) + [str(gloss or "")])
+            if self._contains_cyrillic(script_text):
+                self._append_quality_issue(
+                    issues,
+                    flags,
+                    "non_latin_script",
+                    "Output contains Cyrillic characters while Serbian Latin output is expected.",
+                    "warning",
+                )
+
+        looks_taxonomic = self._looks_taxonomic_entry(
+            synset,
+            lexname=lexname,
+            topic_domains=topic_domains,
+        )
+        source_gloss = str(synset.get("source_gloss") or synset.get("definition") or synset.get("gloss") or "")
+        if looks_taxonomic and (len(source_gloss.split()) <= 3 or any(self._is_latin_taxon_literal(literal) for literal in literals)):
+            needs_domain_check = True
+            self._append_quality_issue(
+                issues,
+                flags,
+                "taxonomy_domain_check",
+                "Biological/taxonomic entry requires domain verification; keep Latin taxon with Serbian term when available.",
+                "warning",
+            )
+
+        auto_status = self._auto_status_from_issues(
+            issues,
+            needs_domain_check=needs_domain_check,
+            model_ready=model_ready,
+        )
+        return {
+            "auto_status": auto_status,
+            "quality_flags": flags,
+            "quality_issues": issues,
+            "needs_human_review": auto_status != "ready",
+            "needs_domain_check": needs_domain_check,
+        }
