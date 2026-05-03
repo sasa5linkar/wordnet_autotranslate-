@@ -122,41 +122,41 @@ def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
 
-    load_project_env()
-    provider, model, base_url = _resolve_provider_model_base_url(args)
-
-    config = SheetBatchConfig(
-        source=args.source,
-        output_dir=Path(args.output_dir),
-        workflow=WorkflowConfig(
-            source_lang=args.source_lang,
-            target_lang=args.target_lang,
-            provider=provider,
-            model=model,
-            timeout=args.timeout,
-            base_url=base_url or "",
-            temperature=args.temperature,
-            strict=args.strict,
-            num_ctx=args.num_ctx,
-            num_predict=args.num_predict,
-            reasoning=_resolve_reasoning_arg(args),
-            response_format="json" if args.json_format else None,
-        ),
-        default_pipeline=args.pipeline,
-        gid=args.gid,
-        columns=SheetColumnOverrides(
-            ili=args.ili_column,
-            english_id=args.english_id_column,
-            synset_name=args.synset_name_column,
-            lemma=args.lemma_column,
-            pos=args.pos_column,
-            sense_index=args.sense_index_column,
-            pipeline=args.pipeline_column,
-        ),
-        download_timeout=args.download_timeout,
-    )
-
     try:
+        load_project_env()
+        provider, model, base_url = _resolve_provider_model_base_url(args)
+
+        config = SheetBatchConfig(
+            source=args.source,
+            output_dir=Path(args.output_dir),
+            workflow=WorkflowConfig(
+                source_lang=args.source_lang,
+                target_lang=args.target_lang,
+                provider=provider,
+                model=model,
+                timeout=args.timeout,
+                base_url=base_url or "",
+                temperature=args.temperature,
+                strict=args.strict,
+                num_ctx=args.num_ctx,
+                num_predict=args.num_predict,
+                reasoning=_resolve_reasoning_arg(args),
+                response_format="json" if args.json_format else None,
+            ),
+            default_pipeline=args.pipeline,
+            gid=args.gid,
+            columns=SheetColumnOverrides(
+                ili=args.ili_column,
+                english_id=args.english_id_column,
+                synset_name=args.synset_name_column,
+                lemma=args.lemma_column,
+                pos=args.pos_column,
+                sense_index=args.sense_index_column,
+                pipeline=args.pipeline_column,
+            ),
+            download_timeout=args.download_timeout,
+        )
+
         summary = run_sheet_translation_batch(config)
         print(json.dumps(summary, ensure_ascii=False, indent=2))
         return 0

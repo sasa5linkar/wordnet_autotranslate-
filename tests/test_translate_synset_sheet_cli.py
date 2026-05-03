@@ -31,3 +31,13 @@ def test_cli_keyboard_interrupt_returns_130(monkeypatch):
     monkeypatch.setattr(cli, "run_sheet_translation_batch", _raise_interrupt)
 
     assert cli.main() == 130
+
+
+def test_cli_conflicting_reasoning_flags_return_1(monkeypatch, capsys):
+    monkeypatch.setattr(
+        "sys.argv",
+        ["prog", "input.csv", "--disable-reasoning", "--reasoning", "low"],
+    )
+
+    assert cli.main() == 1
+    assert "Use either --disable-reasoning or --reasoning, not both." in capsys.readouterr().err

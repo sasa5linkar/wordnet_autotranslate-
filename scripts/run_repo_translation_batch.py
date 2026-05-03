@@ -125,36 +125,37 @@ def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
     run_dir = Path(args.run_dir)
-    load_project_env()
-    provider, model, base_url = _resolve_provider_model_base_url(args)
-    translation_mode = f"repo_{provider}"
-
-    config = WorkflowConfig(
-        source_lang=args.source_lang,
-        target_lang=args.target_lang,
-        provider=provider,
-        model=model,
-        timeout=args.timeout,
-        base_url=base_url or "",
-        temperature=args.temperature,
-        strict=args.strict,
-        num_ctx=args.num_ctx,
-        num_predict=args.num_predict,
-        reasoning=_resolve_reasoning_arg(args),
-        response_format="json" if args.json_format else None,
-    )
-    run_metadata = {
-        "provider": provider,
-        "model": model,
-        "reasoning": config.reasoning,
-        "temperature": config.temperature,
-        "timeout": config.timeout,
-    }
-
-    processed = 0
-    failed_count = 0
 
     try:
+        load_project_env()
+        provider, model, base_url = _resolve_provider_model_base_url(args)
+        translation_mode = f"repo_{provider}"
+
+        config = WorkflowConfig(
+            source_lang=args.source_lang,
+            target_lang=args.target_lang,
+            provider=provider,
+            model=model,
+            timeout=args.timeout,
+            base_url=base_url or "",
+            temperature=args.temperature,
+            strict=args.strict,
+            num_ctx=args.num_ctx,
+            num_predict=args.num_predict,
+            reasoning=_resolve_reasoning_arg(args),
+            response_format="json" if args.json_format else None,
+        )
+        run_metadata = {
+            "provider": provider,
+            "model": model,
+            "reasoning": config.reasoning,
+            "temperature": config.temperature,
+            "timeout": config.timeout,
+        }
+
+        processed = 0
+        failed_count = 0
+
         if args.requeue_in_progress:
             requeued = requeue_in_progress_native_work_items(run_dir)
             _print_event({"event": "requeued", "count": requeued["count"]})
