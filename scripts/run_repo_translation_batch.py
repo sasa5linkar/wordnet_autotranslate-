@@ -125,6 +125,8 @@ def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
     run_dir = Path(args.run_dir)
+    processed = 0
+    failed_count = 0
 
     try:
         load_project_env()
@@ -152,9 +154,6 @@ def main() -> int:
             "temperature": config.temperature,
             "timeout": config.timeout,
         }
-
-        processed = 0
-        failed_count = 0
 
         if args.requeue_in_progress:
             requeued = requeue_in_progress_native_work_items(run_dir)
