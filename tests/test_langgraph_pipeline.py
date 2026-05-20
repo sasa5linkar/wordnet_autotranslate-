@@ -176,7 +176,8 @@ def test_langgraph_pipeline_returns_structured_dict():
     assert result["payload"]["definition"]["definition_translation"].startswith("entitet je")
     assert result["payload"]["initial_translation"]["initial_translations"] == ["entitet"]
     assert result["payload"]["filtering"]["filtered_synonyms"] == ["entitet"]
-    assert result["payload"]["definition_quality"]["status"] == "ok"
+    assert result["payload"]["definition_quality"]["status"] == "needs_revision"
+    assert result["payload"]["definition_quality"]["issues"][0]["type"] == "circular"
     assert "Representative literal" in result["curator_summary"]
     assert "Synset literals" in result["curator_summary"]
 
@@ -452,6 +453,8 @@ def test_call_llm_fallback_payload_shape_after_repeated_invoke_exceptions():
         "contrastive_note",
         "key_features",
         "domain_tags",
+        "expected_serbian_pos",
+        "expected_serbian_gloss_shape",
         "confidence",
     }
     assert isinstance(payload["key_features"], list)
@@ -469,6 +472,8 @@ def test_call_llm_fallback_payload_shape_after_repeated_invoke_exceptions():
                 "contrastive_note",
                 "key_features",
                 "domain_tags",
+                "expected_serbian_pos",
+                "expected_serbian_gloss_shape",
                 "confidence",
             },
         ),
@@ -572,6 +577,70 @@ def test_translation_result_to_dict_includes_model_metadata():
     result_dict = result.to_dict()
     assert result_dict["model"]["resolved"] == "deepseek"
     assert result_dict["model"]["fallback_used"] is False
+
+
+def test_auto_quality_flags_literal_close_form_in_gloss():
+    pipeline = LangGraphTranslationPipeline.__new__(LangGraphTranslationPipeline)
+    pipeline.target_lang = "sr"
+
+    report = pipeline._build_auto_quality_report(
+        {"pos": "a"},
+        ["prijatan"],
+        "koji je prijatno iskustvo",
+    )
+
+    assert report["auto_status"] == "blocked"
+    assert "literal_in_gloss" in report["quality_flags"]
+    assert "prijatno" in report["quality_issues"][0]["message"]
+
+
+def test_assemble_result_injects_definition_quality_circularity_issue():
+    pipeline = LangGraphTranslationPipeline.__new__(LangGraphTranslationPipeline)
+    pipeline.source_lang = "en"
+    pipeline.target_lang = "sr"
+    pipeline.model_metadata = {}
+    pipeline.max_expanded_synonyms = 8
+
+    state = {
+        "synset": {
+            "id": "ENG30-01800349-a",
+            "pos": "a",
+            "lemmas": ["pleasant"],
+            "definition": "affording pleasure",
+        },
+        "definition_translation": {
+            "payload": {
+                "definition_translation": "koji je prijatan za dozivljaj",
+                "examples": [],
+                "notes": None,
+            }
+        },
+        "filtering_call": {
+            "payload": {
+                "filtered_synonyms": ["prijatan"],
+                "confidence_by_word": {"prijatan": "high"},
+                "removed": [],
+                "confidence": "high",
+            }
+        },
+        "definition_quality_call": {
+            "payload": {
+                "status": "ok",
+                "issues": [],
+                "revised_definition": "koji je prijatan za dozivljaj",
+                "notes": "ok",
+            }
+        },
+    }
+
+    result_state = pipeline._assemble_result(state)
+    payload = result_state["result"].payload
+
+    assert payload["definition_quality"]["status"] == "needs_revision"
+    assert payload["definition_quality"]["issues"][0]["type"] == "circular"
+    assert payload["auto_quality"]["auto_status"] == "blocked"
+
+
 def test_synset_with_alternative_field_names():
     """Test handling of alternative synset field names (literals, gloss, ili_id)."""
     pipeline = LangGraphTranslationPipeline(
