@@ -452,6 +452,8 @@ def test_call_llm_fallback_payload_shape_after_repeated_invoke_exceptions():
         "contrastive_note",
         "key_features",
         "domain_tags",
+        "expected_serbian_pos",
+        "expected_serbian_gloss_shape",
         "confidence",
     }
     assert isinstance(payload["key_features"], list)
@@ -469,6 +471,8 @@ def test_call_llm_fallback_payload_shape_after_repeated_invoke_exceptions():
                 "contrastive_note",
                 "key_features",
                 "domain_tags",
+                "expected_serbian_pos",
+                "expected_serbian_gloss_shape",
                 "confidence",
             },
         ),

@@ -561,6 +561,9 @@ class LangGraphTranslationPipeline:
                 "- Use standard Serbian Latin script and standard Serbian orthography.\n"
                 "- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n"
                 "- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n"
+                "- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n"
+                "- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n"
+                "- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n"
                 "- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati."
             )
         return ""
@@ -652,7 +655,9 @@ class LangGraphTranslationPipeline:
             return {
                 "expected_serbian_pos": "adverb",
                 "expected_serbian_gloss_shape": (
-                    "an adverbial gloss defining manner, degree, time, or circumstance"
+                    "an adverbial gloss defining manner, degree, time, or circumstance; "
+                    "prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', "
+                    "or a concise adverbial phrase over noun-heavy translated clauses"
                 ),
             }
         return {
