@@ -75,6 +75,14 @@ Canonical payload:
 - For nouns, prefer nominative singular unless the concept requires another form.
 - For verbs, prefer infinitive.
 - For adjectives/adverbs, preserve POS and register.
+- Read expected POS from the resolved synset payload (`pos`). English WordNet/PWN POS normally maps to the same Serbian lexical category: `n` noun, `v` verb, `a`/`s` adjective, `r` adverb. Serbian XML adverb `b` should be treated as WordNet adverb `r`.
+- Apply only the POS-specific drafting rule relevant to the current synset; do not overload a single translation step with unrelated noun/verb/adjective/adverb templates.
+- Use POS-compatible Serbian gloss structure as a strong default:
+  - For nouns (`n`), use Serbian noun literals and usually define with a broader noun/class term plus distinguishing details.
+  - For verbs (`v`), use Serbian infinitive verb literals and define with a verbal/action phrase.
+  - For adjectives (`a`/`s`), use Serbian adjective literals and usually define with an adjectival relative clause such as `koji/koja/koje ...` or `koji se ...` when natural.
+  - For adverbs (`r`/`b`), use Serbian adverb literals and define manner, degree, time, or circumstance.
+- Treat POS gloss patterns as defaults, not rigid templates; if a different Serbian wording is more natural for the exact sense, keep it and explain the exception in notes.
 - Avoid circular definitions: do not define a literal with the same literal unless unavoidable.
 - Mark uncertain, region-specific, archaic, or calque-like candidates in notes instead of hiding uncertainty.
 
@@ -110,28 +118,29 @@ For `agent-all`, include these keys under `pipelines`:
 ## Agent-Baseline Steps
 
 1. Read source literals, POS, definition, and examples only.
-2. Translate each literal directly if it is a valid Serbian lexical item for the sense.
-3. Translate the gloss directly and compactly.
-4. Return `translation`, `translated_synonyms`, `definition_translation`, `confidence`, and `notes`.
+2. Derive the single relevant Serbian POS style expectation from the source POS.
+3. Translate each literal directly if it is a valid Serbian lexical item for the sense and matches the expected POS.
+4. Translate the gloss directly and compactly, using the POS-compatible gloss shape for this synset when natural.
+5. Return `translation`, `translated_synonyms`, `definition_translation`, `confidence`, and `notes`; mention any justified POS-style exception.
 
 ## Agent-Multiphase Steps
 
-1. `sense_analysis`: summarize the exact WordNet sense, domain, contrastive risks, and POS constraints.
-2. `definition_translation`: draft a Serbian gloss faithful to the definition.
-3. `initial_translation`: translate source literals directly.
-4. `expansion`: add Serbian synonyms or near-synonyms that fit the same synset.
-5. `filtering`: reject candidates that are too broad, too narrow, wrong POS, unnatural, circular, or register-mismatched.
-6. `assemble_result`: choose representative `translation`, final `translated_synonyms`, gloss, confidence, and notes.
+1. `sense_analysis`: summarize the exact WordNet sense, domain, contrastive risks, source POS, and the one relevant Serbian POS/gloss style expectation.
+2. `definition_translation`: draft a Serbian gloss faithful to the definition and shaped for the current POS when natural.
+3. `initial_translation`: translate source literals directly, preserving expected Serbian POS.
+4. `expansion`: add Serbian synonyms or near-synonyms that fit the same synset and expected POS.
+5. `filtering`: reject candidates that are too broad, too narrow, wrong POS, unnatural, circular, register-mismatched, or incompatible with the POS-shaped gloss.
+6. `assemble_result`: choose representative `translation`, final `translated_synonyms`, gloss, confidence, and notes; validate literal POS and gloss structure together.
 
 ## Agent-Conceptual Steps
 
-1. `concept_package`: describe the language-neutral concept, POS, domain, hypernym-like class, examples, and terms to avoid in a circular gloss.
+1. `concept_package`: describe the language-neutral concept, POS, expected Serbian literal category, expected Serbian gloss shape, domain, hypernym-like class, examples, and terms to avoid in a circular gloss.
 2. `expanded_definition_en`: restate the source sense in precise English.
-3. `expanded_definition_sr`: restate the concept in Serbian without committing to final literals.
-4. `literal_candidates`: propose Serbian lexical candidates with fit/naturalness notes.
-5. `selection`: choose final literals and list rejected candidates with reasons.
-6. `final_gloss`: write a short Serbian WordNet-style gloss.
-7. `validation`: check POS, sense fidelity, synonymy, naturalness, circularity, and whether the entry is ready for curation.
+3. `expanded_definition_sr`: restate the concept in Serbian without committing to final literals, while preserving the relevant POS framing.
+4. `literal_candidates`: propose Serbian lexical candidates with fit/naturalness notes and expected POS compatibility.
+5. `selection`: choose final literals and list rejected candidates with reasons, including wrong-POS or descriptive-paraphrase rejections.
+6. `final_gloss`: write a short Serbian WordNet-style gloss using the expected POS-compatible structure when natural.
+7. `validation`: check POS, sense fidelity, synonymy, naturalness, circularity, POS/gloss structure agreement, and whether the entry is ready for curation.
 8. `assemble_result`: return selected literals, final gloss, validation status, confidence, and curator notes.
 
 ## Repo-Backed Optional Runs
