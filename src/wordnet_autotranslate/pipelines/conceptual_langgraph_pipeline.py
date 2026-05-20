@@ -46,6 +46,8 @@ class ConceptPackageSchema(BaseModel):
 
     synset_id: str = ""
     pos: str = ""
+    expected_serbian_pos: str = ""
+    expected_serbian_gloss_shape: str = ""
     source_literals: List[str] = Field(default_factory=list)
     source_gloss: str = ""
     examples: List[str] = Field(default_factory=list)
@@ -78,6 +80,9 @@ class LiteralCandidateSchema(BaseModel):
     """Candidate Serbian literal for the target concept."""
 
     literal: str = ""
+    candidate_pos_sr: str = ""
+    pos_match: bool = False
+    pos_note: str = ""
     candidate_type: str = ""
     precision_score: float = Field(
         default=0.0,
@@ -320,10 +325,13 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
         domains.extend(
             str(item).strip() for item in domain_info.get("topic_domains", [])
         )
+        pos_style = self._source_pos_style_metadata(english_pos or raw_pos)
 
         concept_package = ConceptPackageSchema(
             synset_id=synset_id,
             pos=english_pos or raw_pos,
+            expected_serbian_pos=pos_style["expected_serbian_pos"],
+            expected_serbian_gloss_shape=pos_style["expected_serbian_gloss_shape"],
             source_literals=source_literals,
             source_gloss=str(
                 synset.get("definition") or synset.get("gloss") or ""
@@ -465,6 +473,7 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
         expanded_en_json = self._to_pretty_json(expanded_en)
         target_rules = self._target_language_guidelines_block()
         pos_rules = self._source_pos_constraint_block(concept_package)
+        pos_style = self._source_pos_gloss_style_block(concept_package)
         taxonomy_rules = self._taxonomy_guidelines_block(concept_package)
         return textwrap.dedent(f"""
             Translate and adapt the expanded English semantic definition into Serbian.
@@ -477,6 +486,7 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
             - Avoid circularity where possible.
             {target_rules}
             {pos_rules}
+            {pos_style}
             {taxonomy_rules}
 
             Return JSON:
@@ -504,6 +514,7 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
         expanded_sr_json = self._to_pretty_json(expanded_sr)
         target_rules = self._target_language_guidelines_block()
         pos_rules = self._source_pos_constraint_block(concept_package)
+        pos_style = self._source_pos_gloss_style_block(concept_package)
         taxonomy_rules = self._taxonomy_guidelines_block(concept_package)
         return textwrap.dedent(f"""
             Propose Serbian literal candidates for a Serbian WordNet synset.
@@ -518,6 +529,7 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
             - Too narrow is worse than slightly broad because narrow literals can distort the synset.
             {target_rules}
             {pos_rules}
+            {pos_style}
             {taxonomy_rules}
 
             Return JSON:
@@ -525,6 +537,9 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
               "candidates": [
                 {{
                   "literal": "candidate",
+                  "candidate_pos_sr": "noun|verb|adjective|adverb|phrase|unknown",
+                  "pos_match": true,
+                  "pos_note": "brief note on POS compatibility",
                   "candidate_type": "primary|secondary|variant|descriptive",
                   "precision_score": 0.85,
                   "naturalness_score": 0.92,
@@ -555,6 +570,7 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
         candidates_json = self._to_pretty_json(literal_candidates)
         target_rules = self._target_language_guidelines_block()
         pos_rules = self._source_pos_constraint_block(concept_package)
+        pos_style = self._source_pos_gloss_style_block(concept_package)
         taxonomy_rules = self._taxonomy_guidelines_block(concept_package)
         return textwrap.dedent(f"""
             Select the final Serbian literals for this WordNet synset.
@@ -568,6 +584,7 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
             - For adverb/particle synsets, keep stable literals and reject construction-bound variants.
             {target_rules}
             {pos_rules}
+            {pos_style}
             {taxonomy_rules}
 
             Return JSON:
@@ -600,6 +617,7 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
         selection_json = self._to_pretty_json(selection)
         target_rules = self._target_language_guidelines_block()
         pos_rules = self._source_pos_constraint_block(concept_package)
+        pos_style = self._source_pos_gloss_style_block(concept_package)
         return textwrap.dedent(f"""
             Write a final short Serbian WordNet gloss.
 
@@ -611,6 +629,7 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
             - Prefer genus + differentia wording when natural.
             {target_rules}
             {pos_rules}
+            {pos_style}
 
             Return JSON:
             {{
@@ -643,6 +662,7 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
         final_gloss_json = self._to_pretty_json(final_gloss)
         target_rules = self._target_language_guidelines_block()
         pos_rules = self._source_pos_constraint_block(concept_package)
+        pos_style = self._source_pos_gloss_style_block(concept_package)
         taxonomy_rules = self._taxonomy_guidelines_block(concept_package)
         return textwrap.dedent(f"""
             Validate a drafted Serbian WordNet synset.
@@ -656,10 +676,12 @@ class ConceptualLangGraphTranslationPipeline(LangGraphTranslationPipeline):
             - compatibility with the concept package
             - suitability for WordNet-style entry
             - same lexical entry type as the source WordNet POS
+            - POS/gloss structure agreement between the final Serbian gloss and the source WordNet POS
             - do not perform a full Serbian grammar audit; only flag obvious broken text
             - do not infer Serbian POS from suffixes alone; use lexical category and dictionary-like usage
             {target_rules}
             {pos_rules}
+            {pos_style}
             {taxonomy_rules}
 
             Return JSON:

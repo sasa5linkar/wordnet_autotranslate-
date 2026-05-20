@@ -217,6 +217,8 @@ class SenseAnalysisSchema(BaseModel):
     contrastive_note: Optional[str] = None
     key_features: List[str] = Field(default_factory=list)
     domain_tags: Optional[List[str]] = Field(default_factory=list)
+    expected_serbian_pos: Optional[str] = None
+    expected_serbian_gloss_shape: Optional[str] = None
     confidence: str
 
 
@@ -292,7 +294,7 @@ class FilteringSchema(BaseModel):
 class DefinitionQualityIssue(BaseModel):
     """Schema for individual issues flagged during definition quality review."""
 
-    type: Literal["circular", "meaning", "clarity"]
+    type: Literal["circular", "meaning", "clarity", "pos_structure"]
     message: str
 
 
@@ -584,7 +586,7 @@ class LangGraphTranslationPipeline:
             "a": "adjective",
             "s": "adjective satellite",
         }.get(pos, pos)
-        lemmas = synset.get("lemmas") or synset.get("literals") or []
+        lemmas = synset.get("lemmas") or synset.get("literals") or synset.get("source_literals") or []
         if not isinstance(lemmas, (list, tuple)):
             lemmas = [lemmas]
         source_lemmas = ", ".join(str(item) for item in lemmas if str(item).strip()) or "(not provided)"
@@ -617,6 +619,67 @@ class LangGraphTranslationPipeline:
         else:
             specific = ""
         return f"\n\nPart-of-speech constraints:\n{common}\n{specific}"
+
+    @staticmethod
+    def _source_pos_style_metadata(pos: str) -> Dict[str, str]:
+        """Return the Serbian literal category and gloss-shape default for one POS."""
+        normalized = LanguageUtils.normalize_pos_for_english(str(pos or "").strip())
+        if normalized == "n":
+            return {
+                "expected_serbian_pos": "noun",
+                "expected_serbian_gloss_shape": (
+                    "a noun-style gloss that usually starts with a broader noun "
+                    "or class term, followed by distinguishing details"
+                ),
+            }
+        if normalized == "v":
+            return {
+                "expected_serbian_pos": "verb",
+                "expected_serbian_gloss_shape": (
+                    "a verbal/action gloss, usually led by an infinitive or other "
+                    "natural verbal phrase"
+                ),
+            }
+        if normalized in {"a", "s"}:
+            return {
+                "expected_serbian_pos": "adjective",
+                "expected_serbian_gloss_shape": (
+                    "an adjective-style gloss, usually an adjectival relative "
+                    "clause such as koji/koja/koje or koji se when natural"
+                ),
+            }
+        if normalized == "r":
+            return {
+                "expected_serbian_pos": "adverb",
+                "expected_serbian_gloss_shape": (
+                    "an adverbial gloss defining manner, degree, time, or circumstance"
+                ),
+            }
+        return {
+            "expected_serbian_pos": "same lexical category as the source synset",
+            "expected_serbian_gloss_shape": (
+                "a dictionary gloss structurally compatible with the source POS"
+            ),
+        }
+
+    def _source_pos_gloss_style_block(self, synset: Dict[str, Any]) -> str:
+        """Return the one POS-specific Serbian gloss-style rule for this synset."""
+        raw_pos = str(synset.get("pos") or synset.get("part_of_speech") or "").strip()
+        if not raw_pos:
+            return ""
+        normalized = LanguageUtils.normalize_pos_for_english(raw_pos)
+        metadata = self._source_pos_style_metadata(normalized)
+        return textwrap.dedent(
+            f"""
+
+            Serbian POS/gloss style:
+            - Expected Serbian literal category: {metadata["expected_serbian_pos"]}.
+            - Expected Serbian gloss shape: {metadata["expected_serbian_gloss_shape"]}.
+            - Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.
+            - Treat this as a strong default, not a rigid template; explain justified exceptions in notes.
+            - Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.
+            """
+        ).rstrip()
 
     def _source_taxonomy_constraint_block(self, synset: Dict[str, Any]) -> str:
         """Return taxonomy-specific literal guidance for biological entries."""
@@ -993,6 +1056,7 @@ class LangGraphTranslationPipeline:
             filtered_synonyms,
             definition_translation,
             self.target_lang,
+            state.get("synset", {}),
         )
 
         call_result = self._call_llm(prompt, stage="definition_quality")
@@ -1050,9 +1114,12 @@ class LangGraphTranslationPipeline:
               "contrastive_note": "What distinguishes this sense from other senses of the lemma.",
               "key_features": ["short salient features"],
               "domain_tags": ["optional topical tags"],
+              "expected_serbian_pos": "noun|verb|adjective|adverb|other",
+              "expected_serbian_gloss_shape": "short POS-specific Serbian gloss-shape note",
               "confidence": "high|medium|low"
             }}
             Focus on *what makes this sense unique*, not just definitional paraphrasing.
+            {self._source_pos_gloss_style_block(synset)}
             """
         ).strip()
 
@@ -1074,6 +1141,7 @@ class LangGraphTranslationPipeline:
         """
         target_name = LanguageUtils.get_language_name(self.target_lang)
         target_rules = self._target_language_guidelines_block()
+        pos_style = self._source_pos_gloss_style_block(synset)
         definition = synset.get("definition") or synset.get("gloss") or ""
 
         sense_summary = sense_payload.get("sense_summary", "")
@@ -1094,6 +1162,7 @@ class LangGraphTranslationPipeline:
             - Keep factual and stylistic fidelity.
             - If uncertain, give literal translation plus clarifying note.
             {target_rules}
+            {pos_style}
 
             Return JSON:
             {{
@@ -1178,6 +1247,7 @@ class LangGraphTranslationPipeline:
         target_name = LanguageUtils.get_language_name(self.target_lang)
         target_rules = self._target_language_guidelines_block()
         pos_rules = self._source_pos_constraint_block(synset or {})
+        pos_style = self._source_pos_gloss_style_block(synset or {})
         taxonomy_rules = self._source_taxonomy_constraint_block(synset or {})
         initial_translations = initial_payload.get("initial_translations", [])
         # Filter out null values from initial translations
@@ -1212,6 +1282,7 @@ class LangGraphTranslationPipeline:
             - If no additional exact literal exists, return an empty expanded_synonyms list.
             {target_rules}
             {pos_rules}
+            {pos_style}
             {taxonomy_rules}
 
             Return JSON:
@@ -1251,6 +1322,7 @@ class LangGraphTranslationPipeline:
         target_name = LanguageUtils.get_language_name(self.target_lang)
         target_rules = self._target_language_guidelines_block()
         pos_rules = self._source_pos_constraint_block(synset or {})
+        pos_style = self._source_pos_gloss_style_block(synset or {})
         taxonomy_rules = self._source_taxonomy_constraint_block(synset or {})
         expanded_synonyms = expansion_payload.get("expanded_synonyms", [])
         expanded = ", ".join(str(t) for t in expanded_synonyms) if expanded_synonyms else "(none)"
@@ -1281,6 +1353,7 @@ class LangGraphTranslationPipeline:
                         - Return no more than {self.max_expanded_synonyms} filtered literals, ranked from best to worst.
                         {target_rules}
                         {pos_rules}
+                        {pos_style}
                         {taxonomy_rules}
 
             Return structured JSON:
@@ -1300,6 +1373,7 @@ class LangGraphTranslationPipeline:
         filtered_synonyms: List[str],
         definition_translation: str,
         target_lang: str,
+        synset: Optional[Dict[str, Any]] = None,
     ) -> str:
         """Post-filter definition quality check prompt.
 
@@ -1310,6 +1384,7 @@ class LangGraphTranslationPipeline:
         expanded = ", ".join(filtered_synonyms) if filtered_synonyms else "(none)"
         target_name = LanguageUtils.get_language_name(target_lang)
         target_rules = self._target_language_guidelines_block()
+        pos_style = self._source_pos_gloss_style_block(synset or {})
 
         prompt = textwrap.dedent(
             f"""
@@ -1333,15 +1408,21 @@ class LangGraphTranslationPipeline:
                 3. **Lexicographic clarity** — Ensure the definition is concise, clear,
                     and compatible with the selected literal set.
 
-            4. If any issues are detected, produce a corrected version that maintains
+                4. **POS/gloss structure** - Check whether the definition's grammatical
+                    shape matches the source synset POS and the selected Serbian literals.
+                    If it conflicts with the POS, revise it while preserving meaning and
+                    avoiding circularity.
+
+            5. If any issues are detected, produce a corrected version that maintains
                     the original meaning without attempting broad grammatical rewriting.
                 {target_rules}
+                {pos_style}
 
             Return structured JSON:
             {{
               "status": "ok" | "needs_revision",
               "issues": [
-                {{"type": "circular" | "meaning" | "clarity", "message": "brief explanation"}},
+                {{"type": "circular" | "meaning" | "clarity" | "pos_structure", "message": "brief explanation"}},
               ],
               "revised_definition": "rewritten definition if revision is required, otherwise original",
               "notes": "short summary of evaluation outcome"
