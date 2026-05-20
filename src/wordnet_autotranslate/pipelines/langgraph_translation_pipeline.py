@@ -54,7 +54,7 @@ import sys
 from collections import defaultdict
 from dataclasses import dataclass
 import textwrap
-from typing import Any, Dict, Generator, Iterable, List, Literal, Optional, Sequence, TypedDict, Union
+from typing import Any, Dict, Generator, Iterable, List, Literal, Optional, Sequence, Tuple, TypedDict, Union
 
 from pydantic import BaseModel, Field, ValidationError
 from pydantic_core import PydanticUndefined
@@ -1405,6 +1405,9 @@ class LangGraphTranslationPipeline:
             1. **Circularity** — Check if any lemma word or its close inflectional form
                appears directly in the definition, which would create a circular definition.
                If this occurs, suggest a neutral rephrasing that avoids repetition.
+               Treat every selected lemma above as a forbidden defining term: the
+               revised_definition must not contain any selected literal or transparent
+               Serbian inflection of it.
 
                 2. **Major wording problems only** — Do not perform a full grammar audit.
                     Flag only obvious mistranslation, broken machine text, or wording that
@@ -1436,6 +1439,77 @@ class LangGraphTranslationPipeline:
         ).strip()
 
         return prompt
+
+    @staticmethod
+    def _serbian_circularity_variants(literal: str) -> List[str]:
+        """Return conservative Serbian inflection variants for circularity checks."""
+        token = str(literal or "").strip().casefold()
+        if not token or " " in token:
+            return [token] if token else []
+
+        variants = {token}
+        if len(token) >= 6 and token.endswith("an"):
+            stem = token[:-2]
+            variants.update(
+                stem + suffix
+                for suffix in (
+                    "an",
+                    "na",
+                    "no",
+                    "ni",
+                    "ne",
+                    "nu",
+                    "nog",
+                    "nom",
+                    "nim",
+                    "nih",
+                    "noj",
+                    "nima",
+                )
+            )
+        if len(token) >= 6 and token.endswith("ski"):
+            stem = token[:-3]
+            variants.update(
+                stem + suffix
+                for suffix in (
+                    "ski",
+                    "ska",
+                    "sko",
+                    "skog",
+                    "skom",
+                    "skim",
+                    "skih",
+                    "ske",
+                    "sku",
+                    "skoj",
+                )
+            )
+        if len(token) >= 5 and token.endswith("ti"):
+            stem = token[:-2]
+            variants.update({token, stem + "nje"})
+        return sorted(variant for variant in variants if len(variant) >= 4)
+
+    @classmethod
+    def _find_literal_circularity(
+        cls,
+        gloss: str,
+        literals: Sequence[str],
+    ) -> Optional[Tuple[str, str]]:
+        """Find selected literal or close inflection used in a gloss."""
+        folded_gloss = str(gloss or "").casefold()
+        if not folded_gloss:
+            return None
+        for literal in literals:
+            literal_text = str(literal or "").strip()
+            if not literal_text:
+                continue
+            candidates = [literal_text.casefold()]
+            if " " not in literal_text:
+                candidates = cls._serbian_circularity_variants(literal_text)
+            for candidate in candidates:
+                if candidate and re.search(rf"(?<!\w){re.escape(candidate)}(?!\w)", folded_gloss):
+                    return literal_text, candidate
+        return None
 
     # ============================================================================
     # END OF PROMPT GENERATION METHODS
@@ -1901,6 +1975,26 @@ class LangGraphTranslationPipeline:
             synset,
             filtering_payload.get("confidence_by_word") or {},
         )
+
+        circularity_match = self._find_literal_circularity(
+            definition_translation,
+            translated_synonyms,
+        )
+        if circularity_match:
+            literal, matched_form = circularity_match
+            issue = {
+                "type": "circular",
+                "message": (
+                    f"Final gloss contains selected literal '{literal}'"
+                    if matched_form == literal.casefold()
+                    else f"Final gloss contains '{matched_form}', a close form of selected literal '{literal}'"
+                ),
+            }
+            quality_issues = definition_quality_payload.setdefault("issues", [])
+            if isinstance(quality_issues, list) and issue not in quality_issues:
+                quality_issues.append(issue)
+            definition_quality_payload["status"] = "needs_revision"
+            quality_status = "needs_revision"
 
         # The "translation" field holds a representative literal for convenience
         # (e.g., for logging or display). This is NOT a formal "headword" -
@@ -2385,17 +2479,21 @@ class LangGraphTranslationPipeline:
                 "warning",
             )
 
-        gloss_folded = str(gloss or "").casefold()
-        for literal in literals:
-            literal_folded = literal.casefold().strip()
-            if literal_folded and re.search(rf"(?<!\w){re.escape(literal_folded)}(?!\w)", gloss_folded):
-                self._append_quality_issue(
-                    issues,
-                    flags,
-                    "literal_in_gloss",
-                    f"Selected literal '{literal}' appears in the final gloss.",
-                    "error",
-                )
+        circularity_match = self._find_literal_circularity(gloss, literals)
+        if circularity_match:
+            literal, matched_form = circularity_match
+            message = (
+                f"Selected literal '{literal}' appears in the final gloss."
+                if matched_form == literal.casefold()
+                else f"Close form '{matched_form}' of selected literal '{literal}' appears in the final gloss."
+            )
+            self._append_quality_issue(
+                issues,
+                flags,
+                "literal_in_gloss",
+                message,
+                "error",
+            )
 
         for literal in literals:
             folded = literal.casefold().strip()
