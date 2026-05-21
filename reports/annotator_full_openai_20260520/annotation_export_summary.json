@@ -1,0 +1,11 @@
+{
+  "runDir": "E:\\Github\\wordnet_autotranslate\\native_batch_runs\\annotator_full_openai_20260520\\SrpWN-za_dopunu-Sa_a_20260520_214030",
+  "outputPath": "E:\\Github\\wordnet_autotranslate\\reports\\annotator_full_openai_20260520\\annotator_full_openai.xlsx",
+  "successRecords": 579,
+  "annotationRows": 1737,
+  "expectedRowsPerSuccessRecord": 3,
+  "failedRecords": 0,
+  "invalidFormatRecords": 1,
+  "notFoundRecords": 0,
+  "exportedAt": "2026-05-20T20:42:30.226Z"
+}

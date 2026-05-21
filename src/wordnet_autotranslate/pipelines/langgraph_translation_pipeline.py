@@ -655,7 +655,8 @@ class LangGraphTranslationPipeline:
             return {
                 "expected_serbian_pos": "adverb",
                 "expected_serbian_gloss_shape": (
-                    "an adverbial gloss defining manner, degree, time, or circumstance; "
+                    "an adverbial gloss defining manner, degree, time, place, "
+                    "direction, distance, or circumstance; "
                     "prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', "
                     "or a concise adverbial phrase over noun-heavy translated clauses"
                 ),
@@ -674,7 +675,7 @@ class LangGraphTranslationPipeline:
             return ""
         normalized = LanguageUtils.normalize_pos_for_english(raw_pos)
         metadata = self._source_pos_style_metadata(normalized)
-        return textwrap.dedent(
+        block = textwrap.dedent(
             f"""
 
             Serbian POS/gloss style:
@@ -685,6 +686,24 @@ class LangGraphTranslationPipeline:
             - Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.
             """
         ).rstrip()
+        if normalized == "r":
+            block = "\n".join(
+                [
+                    block,
+                    textwrap.dedent(
+                        """
+                        - Do not force every adverb gloss into the pattern 'na X nacin':
+                          manner adverbs may use it, but place/direction/distance adverbs should
+                          use natural concise adverbial glosses.
+                        - Serbian adverb examples for prompt calibration:
+                          formalno -> na formalan način
+                          žalosno -> na žalostan način
+                          bestraga -> neznano kud; veoma daleko
+                        """
+                    ).strip(),
+                ]
+            )
+        return block
 
     def _source_taxonomy_constraint_block(self, synset: Dict[str, Any]) -> str:
         """Return taxonomy-specific literal guidance for biological entries."""

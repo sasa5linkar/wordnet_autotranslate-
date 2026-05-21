@@ -187,6 +187,7 @@ class LangChainBasePipeline:
         formatted_examples = "\n".join(f"- {ex}" for ex in examples) if examples else "(none)"
         synset_id = synset.get("id") or synset.get("ili_id") or "(unknown id)"
         pos = synset.get("pos") or synset.get("part_of_speech") or "unknown"
+        pos_guidance = self._source_pos_prompt_guidance(str(pos))
 
         schema = textwrap.dedent(
             """
@@ -201,7 +202,7 @@ class LangChainBasePipeline:
             """
         ).strip()
 
-        return textwrap.dedent(
+        body = textwrap.dedent(
             f"""
             Translate the following WordNet synset from {self.source_lang.upper()} to {lang_name}.
             Keep lexical meaning precise and stay within dictionary tone.
@@ -212,10 +213,36 @@ class LangChainBasePipeline:
             Definition: {definition}
             Usage examples:
             {formatted_examples}
-
-            {schema}
             """
         ).strip()
+        sections = [body]
+        if pos_guidance:
+            sections.append(pos_guidance)
+        sections.append(schema)
+        return "\n\n".join(sections)
+
+    def _source_pos_prompt_guidance(self, pos: str) -> str:
+        """Return compact source-POS guidance for the single-prompt baseline."""
+        normalized_pos = LanguageUtils.normalize_pos_for_english(pos)
+        if (
+            self.target_lang.lower() in {"sr", "srp", "serbian"}
+            and normalized_pos == "r"
+        ):
+            return textwrap.dedent(
+                """
+                Serbian adverb guidance:
+                - Source POS is adverb/particle (r); Serbian WordNet XML uses b for adverbs.
+                - Keep stable adverbial literals and concise adverbial dictionary glosses.
+                - Do not force every adverb gloss into the pattern 'na X nacin':
+                  manner adverbs may use it, but place/direction/distance adverbs should
+                  use natural concise adverbial glosses.
+                - Serbian adverb examples for prompt calibration:
+                  formalno -> na formalan način
+                  žalosno -> na žalostan način
+                  bestraga -> neznano kud; veoma daleko
+                """
+            ).rstrip()
+        return ""
 
     def _build_messages(self, prompt: str) -> List[Any]:
         if LANGCHAIN_CORE_AVAILABLE:

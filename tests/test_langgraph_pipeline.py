@@ -1135,6 +1135,25 @@ def test_pos_constraint_prompt_carries_source_pos_and_avoids_suffix_guessing():
     assert "Do not infer Serbian POS from suffixes alone" in prompt_block
 
 
+def test_adverb_pos_gloss_prompt_includes_serbian_examples():
+    pipeline = LangGraphTranslationPipeline(
+        source_lang="en",
+        target_lang="sr",
+        llm=_DummyLLM(),
+    )
+
+    prompt_block = pipeline._source_pos_gloss_style_block({"pos": "r"})
+
+    assert "Do not force every adverb gloss into the pattern" in prompt_block
+    assert "formalno" in prompt_block
+    assert "na formalan način" in prompt_block
+    assert "žalosno" in prompt_block
+    assert "na žalostan način" in prompt_block
+    assert "bestraga" in prompt_block
+    assert "neznano kud" in prompt_block
+    assert "veoma daleko" in prompt_block
+
+
 def test_langgraph_filtering_prompt_prefers_recall_for_curation():
     pipeline = LangGraphTranslationPipeline(
         source_lang="en",

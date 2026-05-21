@@ -1,0 +1,8 @@
+﻿{
+    "run_dir":  "native_batch_runs\\annotator_full_openai_20260520\\SrpWN-za_dopunu-Sa_a_20260520_214030",
+    "report_dir":  "reports\\annotator_full_openai_20260520",
+    "started_at":  "2026-05-20T21:41:00",
+    "additional_workers_started_at":  "2026-05-20T21:42:30",
+    "workers_started":  12,
+    "second_additional_workers_started_at":  "2026-05-20T21:46:09"
+}
