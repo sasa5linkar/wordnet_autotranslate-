@@ -1,0 +1,619 @@
+{
+  "selector_id": "ENG30-00085811-r",
+  "source_synset": {
+    "id": "ENG30-00085811-r",
+    "english_id": "ENG30-00085811-r",
+    "name": "quickly.r.01",
+    "lemmas": [
+      "quickly",
+      "rapidly",
+      "speedily",
+      "chop-chop",
+      "apace"
+    ],
+    "definition": "with rapid movements",
+    "examples": [
+      "he works quickly"
+    ],
+    "pos": "r",
+    "lexname": "adv.all",
+    "relations": {
+      "hypernyms": [],
+      "hyponyms": [],
+      "instance_hypernyms": [],
+      "instance_hyponyms": [],
+      "part_meronyms": [],
+      "part_holonyms": [],
+      "member_meronyms": [],
+      "member_holonyms": [],
+      "substance_meronyms": [],
+      "substance_holonyms": [],
+      "similar_tos": [],
+      "also": [],
+      "lemma_relations": {
+        "quickly": {
+          "antonyms": [
+            {
+              "name": "slowly.r.01",
+              "definition": "without speed (`slow' is sometimes used informally for `slowly')",
+              "lemma": "slowly"
+            }
+          ],
+          "pertainyms": [
+            {
+              "name": "quick.s.01",
+              "definition": "accomplished rapidly and without delay",
+              "lemma": "quick"
+            }
+          ]
+        },
+        "rapidly": {
+          "pertainyms": [
+            {
+              "name": "rapid.s.01",
+              "definition": "done or occurring in a brief period of time",
+              "lemma": "rapid"
+            }
+          ]
+        },
+        "speedily": {
+          "pertainyms": [
+            {
+              "name": "quick.s.01",
+              "definition": "accomplished rapidly and without delay",
+              "lemma": "speedy"
+            }
+          ]
+        },
+        "chop-chop": {},
+        "apace": {}
+      }
+    },
+    "hypernyms": [],
+    "hyponyms": [],
+    "meronyms": [],
+    "holonyms": [],
+    "similar_synsets": []
+  },
+  "pipelines": {
+    "langgraph": {
+      "translation": "brzo",
+      "definition_translation": "na način koji podrazumeva brzu radnju",
+      "translated_synonyms": [
+        "brzo",
+        "žurno",
+        "hitro",
+        "naglo"
+      ],
+      "target_lang": "sr",
+      "source_lang": "en",
+      "source": {
+        "id": "ENG30-00085811-r",
+        "english_id": "ENG30-00085811-r",
+        "name": "quickly.r.01",
+        "lemmas": [
+          "quickly",
+          "rapidly",
+          "speedily",
+          "chop-chop",
+          "apace"
+        ],
+        "definition": "with rapid movements",
+        "examples": [
+          "he works quickly"
+        ],
+        "pos": "r",
+        "lexname": "adv.all",
+        "relations": {
+          "hypernyms": [],
+          "hyponyms": [],
+          "instance_hypernyms": [],
+          "instance_hyponyms": [],
+          "part_meronyms": [],
+          "part_holonyms": [],
+          "member_meronyms": [],
+          "member_holonyms": [],
+          "substance_meronyms": [],
+          "substance_holonyms": [],
+          "similar_tos": [],
+          "also": [],
+          "lemma_relations": {
+            "quickly": {
+              "antonyms": [
+                {
+                  "name": "slowly.r.01",
+                  "definition": "without speed (`slow' is sometimes used informally for `slowly')",
+                  "lemma": "slowly"
+                }
+              ],
+              "pertainyms": [
+                {
+                  "name": "quick.s.01",
+                  "definition": "accomplished rapidly and without delay",
+                  "lemma": "quick"
+                }
+              ]
+            },
+            "rapidly": {
+              "pertainyms": [
+                {
+                  "name": "rapid.s.01",
+                  "definition": "done or occurring in a brief period of time",
+                  "lemma": "rapid"
+                }
+              ]
+            },
+            "speedily": {
+              "pertainyms": [
+                {
+                  "name": "quick.s.01",
+                  "definition": "accomplished rapidly and without delay",
+                  "lemma": "speedy"
+                }
+              ]
+            },
+            "chop-chop": {},
+            "apace": {}
+          }
+        },
+        "hypernyms": [],
+        "hyponyms": [],
+        "meronyms": [],
+        "holonyms": [],
+        "similar_synsets": []
+      },
+      "examples": [
+        "trčati na brz način",
+        "izvršiti zadatak na brz način"
+      ],
+      "notes": "Ova fraza naglašava brzinu i efikasnost u izvršenju radnje.",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition contains the lemma 'brz' in the phrase 'na brz način', creating a circular definition.\"\n    },\n    {\n      \"type\": \"clarity\",\n      \"message\": \"The definition could be clearer by using a more concise phrase.\"\n    }\n  ],\n  \"revised_definition\": \"na način koji podrazumeva brzu radnju\",\n  \"notes\": \"The definition was revised to eliminate circularity and improve clarity while maintaining the original meaning.\"\n}\n```",
+      "payload": {
+        "sense": {
+          "sense_summary": "This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.",
+          "contrastive_note": "Unlike other senses that may focus on the general quality of being fast, this sense specifically highlights the manner of rapidity in actions.",
+          "key_features": [
+            "emphasizes speed",
+            "indicates efficiency",
+            "suggests urgency"
+          ],
+          "domain_tags": [],
+          "expected_serbian_pos": "adverb",
+          "expected_serbian_gloss_shape": "na nacin brz",
+          "confidence": "high"
+        },
+        "definition": {
+          "definition_translation": "na brz način",
+          "notes": "Ova fraza naglašava brzinu i efikasnost u izvršenju radnje.",
+          "examples": [
+            "trčati na brz način",
+            "izvršiti zadatak na brz način"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "brzo",
+            "brzo",
+            "brzo",
+            "žurno",
+            "žurno"
+          ],
+          "alignment": {
+            "quickly": "brzo",
+            "rapidly": "brzo",
+            "speedily": "brzo",
+            "chop-chop": "žurno",
+            "apace": "žurno"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "brzo",
+            "žurno",
+            "hitro",
+            "brzinski",
+            "brzopotezno",
+            "naglo",
+            "brzovito",
+            "brzopletno"
+          ],
+          "rationale": {
+            "hitro": "odnosi se na radnju koja se odvija brzo i efikasno",
+            "brzinski": "naglašava brzinu u izvršavanju radnje",
+            "brzopotezno": "označava brzu i odlučnu akciju",
+            "naglo": "ukazuje na iznenadnu i brzu promenu ili akciju",
+            "brzovito": "opisuje način rada koji je brz i efikasan",
+            "brzopletno": "Ovaj izraz označava radnju koja se obavlja brzo i efikasno, naglašavajući brzinu izvršenja."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "brzo": 0,
+            "žurno": 0,
+            "hitro": 1,
+            "brzinski": 1,
+            "brzopotezno": 1,
+            "naglo": 1,
+            "brzovito": 1,
+            "brzopletno": 2
+          },
+          "converged": false
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "brzo",
+            "žurno",
+            "hitro",
+            "naglo"
+          ],
+          "confidence_by_word": {
+            "brzo": "high",
+            "žurno": "high",
+            "hitro": "high",
+            "naglo": "medium"
+          },
+          "removed": [
+            {
+              "word": "brzinski",
+              "reason": "too narrow / specific context"
+            },
+            {
+              "word": "brzopotezno",
+              "reason": "too narrow / specific context"
+            },
+            {
+              "word": "brzovito",
+              "reason": "too narrow / specific context"
+            },
+            {
+              "word": "brzopletno",
+              "reason": "too narrow / specific context"
+            }
+          ],
+          "confidence": "high"
+        },
+        "definition_quality": {
+          "status": "needs_revision",
+          "issues": [
+            {
+              "type": "circular",
+              "message": "The definition contains the lemma 'brz' in the phrase 'na brz način', creating a circular definition."
+            },
+            {
+              "type": "clarity",
+              "message": "The definition could be clearer by using a more concise phrase."
+            }
+          ],
+          "revised_definition": "na način koji podrazumeva brzu radnju",
+          "notes": "The definition was revised to eliminate circularity and improve clarity while maintaining the original meaning."
+        },
+        "auto_quality": {
+          "auto_status": "review",
+          "quality_flags": [],
+          "quality_issues": [],
+          "needs_human_review": true,
+          "needs_domain_check": false
+        },
+        "calls": {
+          "sense": {
+            "stage": "sense_analysis",
+            "prompt": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-00085811-r\n            POS: r\n            Lexname: adv.all\n            Topic domains: (none)\n            English lemmas: quickly, rapidly, speedily, chop-chop, apace\n            Definition: with rapid movements\n            Usage examples:\n            - he works quickly\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed.",
+            "raw_response": "```json\n{\n  \"sense_summary\": \"This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\",\n  \"contrastive_note\": \"Unlike other senses that may focus on the general quality of being fast, this sense specifically highlights the manner of rapidity in actions.\",\n  \"key_features\": [\n    \"emphasizes speed\",\n    \"indicates efficiency\",\n    \"suggests urgency\"\n  ],\n  \"domain_tags\": [],\n  \"expected_serbian_pos\": \"adverb\",\n  \"expected_serbian_gloss_shape\": \"na nacin brz\",\n  \"confidence\": \"high\"\n}\n```",
+            "payload": {
+              "sense_summary": "This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.",
+              "contrastive_note": "Unlike other senses that may focus on the general quality of being fast, this sense specifically highlights the manner of rapidity in actions.",
+              "key_features": [
+                "emphasizes speed",
+                "indicates efficiency",
+                "suggests urgency"
+              ],
+              "domain_tags": [],
+              "expected_serbian_pos": "adverb",
+              "expected_serbian_gloss_shape": "na nacin brz",
+              "confidence": "high"
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-00085811-r\n            POS: r\n            Lexname: adv.all\n            Topic domains: (none)\n            English lemmas: quickly, rapidly, speedily, chop-chop, apace\n            Definition: with rapid movements\n            Usage examples:\n            - he works quickly\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection."
+              }
+            ]
+          },
+          "definition": {
+            "stage": "definition_translation",
+            "prompt": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"with rapid movements\"\n            Sense summary: This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n            Key features:\n            - emphasizes speed\n- indicates efficiency\n- suggests urgency\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"definition_translation\": \"na brz način\",\n  \"notes\": \"Ova fraza naglašava brzinu i efikasnost u izvršenju radnje.\",\n  \"examples\": [\"trčati na brz način\", \"izvršiti zadatak na brz način\"]\n}",
+            "payload": {
+              "definition_translation": "na brz način",
+              "notes": "Ova fraza naglašava brzinu i efikasnost u izvršenju radnje.",
+              "examples": [
+                "trčati na brz način",
+                "izvršiti zadatak na brz način"
+              ]
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"with rapid movements\"\n            Sense summary: This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n            Key features:\n            - emphasizes speed\n- indicates efficiency\n- suggests urgency\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }"
+              }
+            ]
+          },
+          "initial_translation": {
+            "stage": "initial_translation",
+            "prompt": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['quickly', 'rapidly', 'speedily', 'chop-chop', 'apace']\n            Sense summary: This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adverb/particle (r); source lemma(s): quickly, rapidly, speedily, chop-chop, apace.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adverb/particle: keep stable adverbial literals; put context-bound constructions with added particles or clauses in notes/examples, not final literals.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"initial_translations\": [\"brzo\", \"brzo\", \"brzo\", \"žurno\", \"žurno\"],\n  \"alignment\": {\n    \"quickly\": \"brzo\",\n    \"rapidly\": \"brzo\",\n    \"speedily\": \"brzo\",\n    \"chop-chop\": \"žurno\",\n    \"apace\": \"žurno\"\n  }\n}",
+            "payload": {
+              "initial_translations": [
+                "brzo",
+                "brzo",
+                "brzo",
+                "žurno",
+                "žurno"
+              ],
+              "alignment": {
+                "quickly": "brzo",
+                "rapidly": "brzo",
+                "speedily": "brzo",
+                "chop-chop": "žurno",
+                "apace": "žurno"
+              }
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['quickly', 'rapidly', 'speedily', 'chop-chop', 'apace']\n            Sense summary: This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adverb/particle (r); source lemma(s): quickly, rapidly, speedily, chop-chop, apace.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adverb/particle: keep stable adverbial literals; put context-bound constructions with added particles or clauses in notes/examples, not final literals.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }"
+              }
+            ]
+          },
+          "expansion": {
+            "payload": {
+              "expanded_synonyms": [
+                "brzo",
+                "žurno",
+                "hitro",
+                "brzinski",
+                "brzopotezno",
+                "naglo",
+                "brzovito",
+                "brzopletno"
+              ],
+              "rationale": {
+                "hitro": "odnosi se na radnju koja se odvija brzo i efikasno",
+                "brzinski": "naglašava brzinu u izvršavanju radnje",
+                "brzopotezno": "označava brzu i odlučnu akciju",
+                "naglo": "ukazuje na iznenadnu i brzu promenu ili akciju",
+                "brzovito": "opisuje način rada koji je brz i efikasan",
+                "brzopletno": "Ovaj izraz označava radnju koja se obavlja brzo i efikasno, naglašavajući brzinu izvršenja."
+              },
+              "iterations_run": 2,
+              "synonym_provenance": {
+                "brzo": 0,
+                "žurno": 0,
+                "hitro": 1,
+                "brzinski": 1,
+                "brzopotezno": 1,
+                "naglo": 1,
+                "brzovito": 1,
+                "brzopletno": 2
+              },
+              "converged": false
+            },
+            "stage": "synonym_expansion",
+            "calls": [
+              {
+                "stage": "expansion_iter_1",
+                "prompt": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n\n            Translated definition (for reference):\n            na brz način\n\n            Existing Serbian translations:\n            brzo, žurno\n\n            Guidelines:\n            - Generate at most 6 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adverb/particle (r); source lemma(s): quickly, rapidly, speedily, chop-chop, apace.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adverb/particle: keep stable adverbial literals; put context-bound constructions with added particles or clauses in notes/examples, not final literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }",
+                "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_1. Return valid JSON as instructed.",
+                "raw_response": "{\n  \"expanded_synonyms\": [\"hitro\", \"brzinski\", \"brzopotezno\", \"naglo\", \"brzovito\"],\n  \"rationale\": {\n    \"hitro\": \"odnosi se na radnju koja se odvija brzo i efikasno\",\n    \"brzinski\": \"naglašava brzinu u izvršavanju radnje\",\n    \"brzopotezno\": \"označava brzu i odlučnu akciju\",\n    \"naglo\": \"ukazuje na iznenadnu i brzu promenu ili akciju\",\n    \"brzovito\": \"opisuje način rada koji je brz i efikasan\"\n  }\n}",
+                "payload": {
+                  "expanded_synonyms": [
+                    "hitro",
+                    "brzinski",
+                    "brzopotezno",
+                    "naglo",
+                    "brzovito"
+                  ],
+                  "rationale": {
+                    "hitro": "odnosi se na radnju koja se odvija brzo i efikasno",
+                    "brzinski": "naglašava brzinu u izvršavanju radnje",
+                    "brzopotezno": "označava brzu i odlučnu akciju",
+                    "naglo": "ukazuje na iznenadnu i brzu promenu ili akciju",
+                    "brzovito": "opisuje način rada koji je brz i efikasan"
+                  },
+                  "iterations_run": 1,
+                  "synonym_provenance": {},
+                  "converged": false
+                },
+                "messages": [
+                  {
+                    "role": "system",
+                    "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_1. Return valid JSON as instructed."
+                  },
+                  {
+                    "role": "user",
+                    "content": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n\n            Translated definition (for reference):\n            na brz način\n\n            Existing Serbian translations:\n            brzo, žurno\n\n            Guidelines:\n            - Generate at most 6 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adverb/particle (r); source lemma(s): quickly, rapidly, speedily, chop-chop, apace.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adverb/particle: keep stable adverbial literals; put context-bound constructions with added particles or clauses in notes/examples, not final literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }"
+                  }
+                ]
+              },
+              {
+                "stage": "expansion_iter_2",
+                "prompt": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n\n            Translated definition (for reference):\n            na brz način\n\n            Existing Serbian translations:\n            brzo, žurno, hitro, brzinski, brzopotezno, naglo, brzovito\n\n            Guidelines:\n            - Generate at most 1 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adverb/particle (r); source lemma(s): quickly, rapidly, speedily, chop-chop, apace.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adverb/particle: keep stable adverbial literals; put context-bound constructions with added particles or clauses in notes/examples, not final literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }",
+                "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_2. Return valid JSON as instructed.",
+                "raw_response": "{\n  \"expanded_synonyms\": [\"brzopletno\"],\n  \"rationale\": {\n    \"brzopletno\": \"Ovaj izraz označava radnju koja se obavlja brzo i efikasno, naglašavajući brzinu izvršenja.\"\n  }\n}",
+                "payload": {
+                  "expanded_synonyms": [
+                    "brzopletno"
+                  ],
+                  "rationale": {
+                    "brzopletno": "Ovaj izraz označava radnju koja se obavlja brzo i efikasno, naglašavajući brzinu izvršenja."
+                  },
+                  "iterations_run": 1,
+                  "synonym_provenance": {},
+                  "converged": false
+                },
+                "messages": [
+                  {
+                    "role": "system",
+                    "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_2. Return valid JSON as instructed."
+                  },
+                  {
+                    "role": "user",
+                    "content": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n\n            Translated definition (for reference):\n            na brz način\n\n            Existing Serbian translations:\n            brzo, žurno, hitro, brzinski, brzopotezno, naglo, brzovito\n\n            Guidelines:\n            - Generate at most 1 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adverb/particle (r); source lemma(s): quickly, rapidly, speedily, chop-chop, apace.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adverb/particle: keep stable adverbial literals; put context-bound constructions with added particles or clauses in notes/examples, not final literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }"
+                  }
+                ]
+              }
+            ],
+            "response": "Iterative expansion completed in 2 iteration(s)"
+          },
+          "filtering": {
+            "stage": "synonym_filtering",
+            "prompt": "Final validation of Serbian synonym candidates.\n\n            Candidates: brzo, žurno, hitro, brzinski, brzopotezno, naglo, brzovito, brzopletno\n\n            Sense summary: This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n            Definition (translated): na brz način\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adverb/particle (r); source lemma(s): quickly, rapidly, speedily, chop-chop, apace.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adverb/particle: keep stable adverbial literals; put context-bound constructions with added particles or clauses in notes/examples, not final literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"filtered_synonyms\": [\"brzo\", \"žurno\", \"hitro\", \"naglo\"],\n  \"confidence_by_word\": {\n    \"brzo\": \"high\",\n    \"žurno\": \"high\",\n    \"hitro\": \"high\",\n    \"naglo\": \"medium\"\n  },\n  \"removed\": [\n    {\"word\": \"brzinski\", \"reason\": \"too narrow / specific context\"},\n    {\"word\": \"brzopotezno\", \"reason\": \"too narrow / specific context\"},\n    {\"word\": \"brzovito\", \"reason\": \"too narrow / specific context\"},\n    {\"word\": \"brzopletno\", \"reason\": \"too narrow / specific context\"}\n  ],\n  \"confidence\": \"high\"\n}",
+            "payload": {
+              "filtered_synonyms": [
+                "brzo",
+                "žurno",
+                "hitro",
+                "naglo"
+              ],
+              "confidence_by_word": {
+                "brzo": "high",
+                "žurno": "high",
+                "hitro": "high",
+                "naglo": "medium"
+              },
+              "removed": [
+                {
+                  "word": "brzinski",
+                  "reason": "too narrow / specific context"
+                },
+                {
+                  "word": "brzopotezno",
+                  "reason": "too narrow / specific context"
+                },
+                {
+                  "word": "brzovito",
+                  "reason": "too narrow / specific context"
+                },
+                {
+                  "word": "brzopletno",
+                  "reason": "too narrow / specific context"
+                }
+              ],
+              "confidence": "high"
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Final validation of Serbian synonym candidates.\n\n            Candidates: brzo, žurno, hitro, brzinski, brzopotezno, naglo, brzovito, brzopletno\n\n            Sense summary: This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n            Definition (translated): na brz način\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adverb/particle (r); source lemma(s): quickly, rapidly, speedily, chop-chop, apace.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adverb/particle: keep stable adverbial literals; put context-bound constructions with added particles or clauses in notes/examples, not final literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }"
+              }
+            ]
+          },
+          "definition_quality": {
+            "stage": "definition_quality",
+            "prompt": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"na brz način\"\n\n            Synonyms (lemmas):\n            brzo, žurno, hitro, naglo\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n               Treat every selected lemma above as a forbidden defining term: the\n               revised_definition must not contain any selected literal or transparent\n               Serbian inflection of it.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed.",
+            "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition contains the lemma 'brz' in the phrase 'na brz način', creating a circular definition.\"\n    },\n    {\n      \"type\": \"clarity\",\n      \"message\": \"The definition could be clearer by using a more concise phrase.\"\n    }\n  ],\n  \"revised_definition\": \"na način koji podrazumeva brzu radnju\",\n  \"notes\": \"The definition was revised to eliminate circularity and improve clarity while maintaining the original meaning.\"\n}\n```",
+            "payload": {
+              "status": "needs_revision",
+              "issues": [
+                {
+                  "type": "circular",
+                  "message": "The definition contains the lemma 'brz' in the phrase 'na brz način', creating a circular definition."
+                },
+                {
+                  "type": "clarity",
+                  "message": "The definition could be clearer by using a more concise phrase."
+                }
+              ],
+              "revised_definition": "na način koji podrazumeva brzu radnju",
+              "notes": "The definition was revised to eliminate circularity and improve clarity while maintaining the original meaning."
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"na brz način\"\n\n            Synonyms (lemmas):\n            brzo, žurno, hitro, naglo\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n               Treat every selected lemma above as a forbidden defining term: the\n               revised_definition must not contain any selected literal or transparent\n               Serbian inflection of it.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }"
+              }
+            ]
+          }
+        },
+        "logs": {
+          "sense": {
+            "stage": "sense_analysis",
+            "prompt": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-00085811-r\n            POS: r\n            Lexname: adv.all\n            Topic domains: (none)\n            English lemmas: quickly, rapidly, speedily, chop-chop, apace\n            Definition: with rapid movements\n            Usage examples:\n            - he works quickly\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed.",
+            "raw_response_preview": "```json\n{\n  \"sense_summary\": \"This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\",\n  \"contrastive_note\": \"Unlike other senses that may focus on the general quality of being fast, this sense specifically highlights the manner of rapidity in actions.\",\n  \"key_features\": [\n    \"emphasizes speed\",\n    \"indicates efficiency\",\n    \"suggests urgency\"\n  ],\n  \"domain_tags\": [],\n  \"expected_serbian_pos\": \"adverb\",\n  \"expected_serbian_gloss_shape\": \"na nacin brz\",\n  \"confidence\": \"high\"\n}\n```"
+          },
+          "definition": {
+            "stage": "definition_translation",
+            "prompt": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"with rapid movements\"\n            Sense summary: This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n            Key features:\n            - emphasizes speed\n- indicates efficiency\n- suggests urgency\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"definition_translation\": \"na brz način\",\n  \"notes\": \"Ova fraza naglašava brzinu i efikasnost u izvršenju radnje.\",\n  \"examples\": [\"trčati na brz način\", \"izvršiti zadatak na brz način\"]\n}"
+          },
+          "initial_translation": {
+            "stage": "initial_translation",
+            "prompt": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['quickly', 'rapidly', 'speedily', 'chop-chop', 'apace']\n            Sense summary: This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adverb/particle (r); source lemma(s): quickly, rapidly, speedily, chop-chop, apace.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adverb/particle: keep stable adverbial literals; put context-bound constructions with added particles or clauses in notes/examples, not final literals.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"initial_translations\": [\"brzo\", \"brzo\", \"brzo\", \"žurno\", \"žurno\"],\n  \"alignment\": {\n    \"quickly\": \"brzo\",\n    \"rapidly\": \"brzo\",\n    \"speedily\": \"brzo\",\n    \"chop-chop\": \"žurno\",\n    \"apace\": \"žurno\"\n  }\n}"
+          },
+          "expansion": {
+            "stage": "synonym_expansion",
+            "prompt": null,
+            "system_prompt": null,
+            "raw_response_preview": ""
+          },
+          "filtering": {
+            "stage": "synonym_filtering",
+            "prompt": "Final validation of Serbian synonym candidates.\n\n            Candidates: brzo, žurno, hitro, brzinski, brzopotezno, naglo, brzovito, brzopletno\n\n            Sense summary: This sense describes actions performed with high speed or efficiency, emphasizing the swiftness of movement or execution.\n            Definition (translated): na brz način\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adverb/particle (r); source lemma(s): quickly, rapidly, speedily, chop-chop, apace.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adverb/particle: keep stable adverbial literals; put context-bound constructions with added particles or clauses in notes/examples, not final literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"filtered_synonyms\": [\"brzo\", \"žurno\", \"hitro\", \"naglo\"],\n  \"confidence_by_word\": {\n    \"brzo\": \"high\",\n    \"žurno\": \"high\",\n    \"hitro\": \"high\",\n    \"naglo\": \"medium\"\n  },\n  \"removed\": [\n    {\"word\": \"brzinski\", \"reason\": \"too narrow / specific context\"},\n    {\"word\": \"brzopotezno\", \"reason\": \"too narrow / specific context\"},\n    {\"word\": \"brzovito\", \"reason\": \"too narrow / specific context\"},\n    {\"word\": \"brzopletno\", \"reason\": \"too narrow / specific context\"}\n  ],\n  \"confidence\": \"high\"\n}"
+          },
+          "definition_quality": {
+            "stage": "definition_quality",
+            "prompt": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"na brz način\"\n\n            Synonyms (lemmas):\n            brzo, žurno, hitro, naglo\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n               Treat every selected lemma above as a forbidden defining term: the\n               revised_definition must not contain any selected literal or transparent\n               Serbian inflection of it.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adverb.\n- Expected Serbian gloss shape: an adverbial gloss defining manner, degree, time, or circumstance; prefer native Serbian patterns such as 'na nacin ...', 'u meri ...', or a concise adverbial phrase over noun-heavy translated clauses.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed.",
+            "raw_response_preview": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition contains the lemma 'brz' in the phrase 'na brz način', creating a circular definition.\"\n    },\n    {\n      \"type\": \"clarity\",\n      \"message\": \"The definition could be clearer by using a more concise phrase.\"\n    }\n  ],\n  \"revised_definition\": \"na način koji podrazumeva brzu radnju\",\n  \"notes\": \"The definition was revised to eliminate circularity and improve clarity while maintaining the original meaning.\"\n}\n```"
+          }
+        }
+      },
+      "curator_summary": "Representative literal (sr): brzo\nDefinition translation: na način koji podrazumeva brzu radnju\nLexname: adv.all\nSynset literals (4 total):\n  • brzo\n  • žurno\n  • hitro\n  • naglo\nExample sentences: 2 (showing first)\n  “trčati na brz način”\nNotes: Ova fraza naglašava brzinu i efikasnost u izvršenju radnje.\n\nPipeline stages completed:\n  1. Initial translations: 5 lemmas\n  2. Expanded candidates: 8 synonyms\n  3. Filtered results: 4 final literals\n  4. Definition quality: needs_revision (2 issue(s) flagged)\n  5. Auto status: review",
+      "lexname": "adv.all",
+      "topic_domains": [],
+      "auto_status": "review",
+      "quality_flags": [],
+      "quality_issues": [],
+      "needs_human_review": true,
+      "needs_domain_check": false,
+      "model": {
+        "requested": "gpt-4o-mini",
+        "resolved": "gpt-4o-mini",
+        "resolved_safe": "gpt-4o-mini",
+        "fallback_used": false,
+        "reason": null
+      }
+    }
+  }
+}

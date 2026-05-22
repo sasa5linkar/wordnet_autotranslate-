@@ -1,0 +1,597 @@
+{
+  "selector_id": "ENG30-00001740-n",
+  "source_synset": {
+    "id": "ENG30-00001740-n",
+    "english_id": "ENG30-00001740-n",
+    "name": "entity.n.01",
+    "lemmas": [
+      "entity"
+    ],
+    "definition": "that which is perceived or known or inferred to have its own distinct existence (living or nonliving)",
+    "examples": [],
+    "pos": "n",
+    "lexname": "noun.Tops",
+    "relations": {
+      "hypernyms": [],
+      "hyponyms": [
+        {
+          "name": "abstraction.n.06",
+          "definition": "a general concept formed by extracting common features from specific examples"
+        },
+        {
+          "name": "thing.n.08",
+          "definition": "an entity that is not named specifically"
+        },
+        {
+          "name": "physical_entity.n.01",
+          "definition": "an entity that has physical existence"
+        }
+      ],
+      "instance_hypernyms": [],
+      "instance_hyponyms": [],
+      "part_meronyms": [],
+      "part_holonyms": [],
+      "member_meronyms": [],
+      "member_holonyms": [],
+      "substance_meronyms": [],
+      "substance_holonyms": [],
+      "similar_tos": [],
+      "also": [],
+      "lemma_relations": {
+        "entity": {}
+      }
+    },
+    "hypernyms": [],
+    "hyponyms": [
+      {
+        "name": "abstraction.n.06",
+        "definition": "a general concept formed by extracting common features from specific examples"
+      },
+      {
+        "name": "thing.n.08",
+        "definition": "an entity that is not named specifically"
+      },
+      {
+        "name": "physical_entity.n.01",
+        "definition": "an entity that has physical existence"
+      }
+    ],
+    "meronyms": [],
+    "holonyms": [],
+    "similar_synsets": []
+  },
+  "pipelines": {
+    "langgraph": {
+      "translation": "entitet",
+      "definition_translation": "nešto što se percipira ili zna kao da ima jasno postojanje, bilo da je živo ili neživo",
+      "translated_synonyms": [
+        "entitet",
+        "objekat",
+        "pojava",
+        "jedinka",
+        "subjekt",
+        "element",
+        "stvar"
+      ],
+      "target_lang": "sr",
+      "source_lang": "en",
+      "source": {
+        "id": "ENG30-00001740-n",
+        "english_id": "ENG30-00001740-n",
+        "name": "entity.n.01",
+        "lemmas": [
+          "entity"
+        ],
+        "definition": "that which is perceived or known or inferred to have its own distinct existence (living or nonliving)",
+        "examples": [],
+        "pos": "n",
+        "lexname": "noun.Tops",
+        "relations": {
+          "hypernyms": [],
+          "hyponyms": [
+            {
+              "name": "abstraction.n.06",
+              "definition": "a general concept formed by extracting common features from specific examples"
+            },
+            {
+              "name": "thing.n.08",
+              "definition": "an entity that is not named specifically"
+            },
+            {
+              "name": "physical_entity.n.01",
+              "definition": "an entity that has physical existence"
+            }
+          ],
+          "instance_hypernyms": [],
+          "instance_hyponyms": [],
+          "part_meronyms": [],
+          "part_holonyms": [],
+          "member_meronyms": [],
+          "member_holonyms": [],
+          "substance_meronyms": [],
+          "substance_holonyms": [],
+          "similar_tos": [],
+          "also": [],
+          "lemma_relations": {
+            "entity": {}
+          }
+        },
+        "hypernyms": [],
+        "hyponyms": [
+          {
+            "name": "abstraction.n.06",
+            "definition": "a general concept formed by extracting common features from specific examples"
+          },
+          {
+            "name": "thing.n.08",
+            "definition": "an entity that is not named specifically"
+          },
+          {
+            "name": "physical_entity.n.01",
+            "definition": "an entity that has physical existence"
+          }
+        ],
+        "meronyms": [],
+        "holonyms": [],
+        "similar_synsets": []
+      },
+      "examples": [
+        "stena",
+        "životinja",
+        "ideja"
+      ],
+      "notes": "Termin 'ono što' se koristi za opisivanje entiteta sa jasno definisanim postojanjem.",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The term 'ono što se percipira' implies a perception of an entity, which is circular since 'entitet' is one of the synonyms.\"\n    },\n    {\n      \"type\": \"clarity\",\n      \"message\": \"The definition could be clearer by simplifying the phrasing.\"\n    },\n    {\n      \"type\": \"pos_structure\",\n      \"message\": \"The definition does not follow the expected noun-style gloss structure.\"\n    }\n  ],\n  \"revised_definition\": \"nešto što se percipira ili zna kao da ima jasno postojanje, bilo da je živo ili neživo\",\n  \"notes\": \"The definition was revised to avoid circularity and improve clarity while adhering to the expected noun-style gloss structure.\"\n}\n```",
+      "payload": {
+        "sense": {
+          "sense_summary": "This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.",
+          "contrastive_note": "This sense is distinct from other senses of 'entity' that may focus on specific types of entities (e.g., legal entities, abstract entities) or contexts in which entities are discussed.",
+          "key_features": [
+            "perceived existence",
+            "can be living or nonliving",
+            "distinct identity"
+          ],
+          "domain_tags": [],
+          "expected_serbian_pos": "noun",
+          "expected_serbian_gloss_shape": "entitet koji ima sopstveno postojanje",
+          "confidence": "high"
+        },
+        "definition": {
+          "definition_translation": "ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)",
+          "notes": "Termin 'ono što' se koristi za opisivanje entiteta sa jasno definisanim postojanjem.",
+          "examples": [
+            "stena",
+            "životinja",
+            "ideja"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "entitet"
+          ],
+          "alignment": {
+            "entity": "entitet"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "entitet",
+            "objekat",
+            "stvar",
+            "pojava",
+            "jedinka",
+            "subjekt",
+            "element",
+            "subjektivnost"
+          ],
+          "rationale": {
+            "objekat": "odnosi se na fizički ili apstraktni predmet koji ima jasno postojanje.",
+            "stvar": "generalni pojam koji obuhvata sve što može postojati, bilo da je živo ili neživo.",
+            "pojava": "ukazuje na nešto što se može percipirati ili doživeti kao postojano.",
+            "jedinka": "označava pojedinačni entitet sa jasno definisanim postojanjem.",
+            "subjekt": "može se odnositi na entitet koji deluje ili je predmet razmatranja.",
+            "element": "ukazuje na osnovni deo ili komponentu nečega što ima postojanje.",
+            "subjektivnost": "Ovaj termin se odnosi na svojstvo ili stanje nečega što ima sopstveno postojanje ili percepciju, što se uklapa u širu definiciju entiteta kao nečega što može biti prepoznato ili zaključeno."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "entitet": 0,
+            "objekat": 1,
+            "stvar": 1,
+            "pojava": 1,
+            "jedinka": 1,
+            "subjekt": 1,
+            "element": 1,
+            "subjektivnost": 2
+          },
+          "converged": false
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "entitet",
+            "objekat",
+            "stvar",
+            "pojava",
+            "jedinka",
+            "subjekt",
+            "element"
+          ],
+          "confidence_by_word": {
+            "entitet": "high",
+            "objekat": "high",
+            "stvar": "medium",
+            "pojava": "medium",
+            "jedinka": "medium",
+            "subjekt": "medium",
+            "element": "medium"
+          },
+          "removed": [
+            {
+              "word": "subjektivnost",
+              "reason": "too narrow / mismatched sense"
+            }
+          ],
+          "confidence": "medium"
+        },
+        "definition_quality": {
+          "status": "needs_revision",
+          "issues": [
+            {
+              "type": "circular",
+              "message": "The term 'ono što se percipira' implies a perception of an entity, which is circular since 'entitet' is one of the synonyms."
+            },
+            {
+              "type": "clarity",
+              "message": "The definition could be clearer by simplifying the phrasing."
+            },
+            {
+              "type": "pos_structure",
+              "message": "The definition does not follow the expected noun-style gloss structure."
+            }
+          ],
+          "revised_definition": "nešto što se percipira ili zna kao da ima jasno postojanje, bilo da je živo ili neživo",
+          "notes": "The definition was revised to avoid circularity and improve clarity while adhering to the expected noun-style gloss structure."
+        },
+        "auto_quality": {
+          "auto_status": "review",
+          "quality_flags": [
+            "broad_literal_risk"
+          ],
+          "quality_issues": [
+            {
+              "code": "broad_literal_risk",
+              "message": "Selected literal 'objekat' is broad and may be a hypernym.",
+              "severity": "warning"
+            }
+          ],
+          "needs_human_review": true,
+          "needs_domain_check": false
+        },
+        "calls": {
+          "sense": {
+            "stage": "sense_analysis",
+            "prompt": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-00001740-n\n            POS: n\n            Lexname: noun.Tops\n            Topic domains: (none)\n            English lemmas: entity\n            Definition: that which is perceived or known or inferred to have its own distinct existence (living or nonliving)\n            Usage examples:\n            - (no examples)\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed.",
+            "raw_response": "```json\n{\n  \"sense_summary\": \"This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\",\n  \"contrastive_note\": \"This sense is distinct from other senses of 'entity' that may focus on specific types of entities (e.g., legal entities, abstract entities) or contexts in which entities are discussed.\",\n  \"key_features\": [\n    \"perceived existence\",\n    \"can be living or nonliving\",\n    \"distinct identity\"\n  ],\n  \"domain_tags\": [],\n  \"expected_serbian_pos\": \"noun\",\n  \"expected_serbian_gloss_shape\": \"entitet koji ima sopstveno postojanje\",\n  \"confidence\": \"high\"\n}\n```",
+            "payload": {
+              "sense_summary": "This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.",
+              "contrastive_note": "This sense is distinct from other senses of 'entity' that may focus on specific types of entities (e.g., legal entities, abstract entities) or contexts in which entities are discussed.",
+              "key_features": [
+                "perceived existence",
+                "can be living or nonliving",
+                "distinct identity"
+              ],
+              "domain_tags": [],
+              "expected_serbian_pos": "noun",
+              "expected_serbian_gloss_shape": "entitet koji ima sopstveno postojanje",
+              "confidence": "high"
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-00001740-n\n            POS: n\n            Lexname: noun.Tops\n            Topic domains: (none)\n            English lemmas: entity\n            Definition: that which is perceived or known or inferred to have its own distinct existence (living or nonliving)\n            Usage examples:\n            - (no examples)\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection."
+              }
+            ]
+          },
+          "definition": {
+            "stage": "definition_translation",
+            "prompt": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"that which is perceived or known or inferred to have its own distinct existence (living or nonliving)\"\n            Sense summary: This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n            Key features:\n            - perceived existence\n- can be living or nonliving\n- distinct identity\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"definition_translation\": \"ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\",\n  \"notes\": \"Termin 'ono što' se koristi za opisivanje entiteta sa jasno definisanim postojanjem.\",\n  \"examples\": [\"stena\", \"životinja\", \"ideja\"]\n}",
+            "payload": {
+              "definition_translation": "ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)",
+              "notes": "Termin 'ono što' se koristi za opisivanje entiteta sa jasno definisanim postojanjem.",
+              "examples": [
+                "stena",
+                "životinja",
+                "ideja"
+              ]
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"that which is perceived or known or inferred to have its own distinct existence (living or nonliving)\"\n            Sense summary: This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n            Key features:\n            - perceived existence\n- can be living or nonliving\n- distinct identity\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }"
+              }
+            ]
+          },
+          "initial_translation": {
+            "stage": "initial_translation",
+            "prompt": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['entity']\n            Sense summary: This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): entity.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"initial_translations\": [\"entitet\"],\n  \"alignment\": {\"entity\": \"entitet\"}\n}",
+            "payload": {
+              "initial_translations": [
+                "entitet"
+              ],
+              "alignment": {
+                "entity": "entitet"
+              }
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['entity']\n            Sense summary: This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): entity.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }"
+              }
+            ]
+          },
+          "expansion": {
+            "payload": {
+              "expanded_synonyms": [
+                "entitet",
+                "objekat",
+                "stvar",
+                "pojava",
+                "jedinka",
+                "subjekt",
+                "element",
+                "subjektivnost"
+              ],
+              "rationale": {
+                "objekat": "odnosi se na fizički ili apstraktni predmet koji ima jasno postojanje.",
+                "stvar": "generalni pojam koji obuhvata sve što može postojati, bilo da je živo ili neživo.",
+                "pojava": "ukazuje na nešto što se može percipirati ili doživeti kao postojano.",
+                "jedinka": "označava pojedinačni entitet sa jasno definisanim postojanjem.",
+                "subjekt": "može se odnositi na entitet koji deluje ili je predmet razmatranja.",
+                "element": "ukazuje na osnovni deo ili komponentu nečega što ima postojanje.",
+                "subjektivnost": "Ovaj termin se odnosi na svojstvo ili stanje nečega što ima sopstveno postojanje ili percepciju, što se uklapa u širu definiciju entiteta kao nečega što može biti prepoznato ili zaključeno."
+              },
+              "iterations_run": 2,
+              "synonym_provenance": {
+                "entitet": 0,
+                "objekat": 1,
+                "stvar": 1,
+                "pojava": 1,
+                "jedinka": 1,
+                "subjekt": 1,
+                "element": 1,
+                "subjektivnost": 2
+              },
+              "converged": false
+            },
+            "stage": "synonym_expansion",
+            "calls": [
+              {
+                "stage": "expansion_iter_1",
+                "prompt": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n\n            Translated definition (for reference):\n            ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\n\n            Existing Serbian translations:\n            entitet\n\n            Guidelines:\n            - Generate at most 7 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): entity.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }",
+                "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_1. Return valid JSON as instructed.",
+                "raw_response": "{\n  \"expanded_synonyms\": [\"objekat\", \"stvar\", \"pojava\", \"entitet\", \"jedinka\", \"subjekt\", \"element\"],\n  \"rationale\": {\n    \"objekat\": \"odnosi se na fizički ili apstraktni predmet koji ima jasno postojanje.\",\n    \"stvar\": \"generalni pojam koji obuhvata sve što može postojati, bilo da je živo ili neživo.\",\n    \"pojava\": \"ukazuje na nešto što se može percipirati ili doživeti kao postojano.\",\n    \"entitet\": \"već postojeći termin koji se koristi za označavanje nečega što ima sopstveno postojanje.\",\n    \"jedinka\": \"označava pojedinačni entitet sa jasno definisanim postojanjem.\",\n    \"subjekt\": \"može se odnositi na entitet koji deluje ili je predmet razmatranja.\",\n    \"element\": \"ukazuje na osnovni deo ili komponentu nečega što ima postojanje.\"\n  }\n}",
+                "payload": {
+                  "expanded_synonyms": [
+                    "objekat",
+                    "stvar",
+                    "pojava",
+                    "entitet",
+                    "jedinka",
+                    "subjekt",
+                    "element"
+                  ],
+                  "rationale": {
+                    "objekat": "odnosi se na fizički ili apstraktni predmet koji ima jasno postojanje.",
+                    "stvar": "generalni pojam koji obuhvata sve što može postojati, bilo da je živo ili neživo.",
+                    "pojava": "ukazuje na nešto što se može percipirati ili doživeti kao postojano.",
+                    "entitet": "već postojeći termin koji se koristi za označavanje nečega što ima sopstveno postojanje.",
+                    "jedinka": "označava pojedinačni entitet sa jasno definisanim postojanjem.",
+                    "subjekt": "može se odnositi na entitet koji deluje ili je predmet razmatranja.",
+                    "element": "ukazuje na osnovni deo ili komponentu nečega što ima postojanje."
+                  },
+                  "iterations_run": 1,
+                  "synonym_provenance": {},
+                  "converged": false
+                },
+                "messages": [
+                  {
+                    "role": "system",
+                    "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_1. Return valid JSON as instructed."
+                  },
+                  {
+                    "role": "user",
+                    "content": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n\n            Translated definition (for reference):\n            ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\n\n            Existing Serbian translations:\n            entitet\n\n            Guidelines:\n            - Generate at most 7 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): entity.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }"
+                  }
+                ]
+              },
+              {
+                "stage": "expansion_iter_2",
+                "prompt": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n\n            Translated definition (for reference):\n            ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\n\n            Existing Serbian translations:\n            entitet, objekat, stvar, pojava, jedinka, subjekt, element\n\n            Guidelines:\n            - Generate at most 1 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): entity.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }",
+                "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_2. Return valid JSON as instructed.",
+                "raw_response": "```json\n{\n  \"expanded_synonyms\": [\"subjektivnost\"],\n  \"rationale\": {\n    \"subjektivnost\": \"Ovaj termin se odnosi na svojstvo ili stanje nečega što ima sopstveno postojanje ili percepciju, što se uklapa u širu definiciju entiteta kao nečega što može biti prepoznato ili zaključeno.\"\n  }\n}\n```",
+                "payload": {
+                  "expanded_synonyms": [
+                    "subjektivnost"
+                  ],
+                  "rationale": {
+                    "subjektivnost": "Ovaj termin se odnosi na svojstvo ili stanje nečega što ima sopstveno postojanje ili percepciju, što se uklapa u širu definiciju entiteta kao nečega što može biti prepoznato ili zaključeno."
+                  },
+                  "iterations_run": 1,
+                  "synonym_provenance": {},
+                  "converged": false
+                },
+                "messages": [
+                  {
+                    "role": "system",
+                    "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_2. Return valid JSON as instructed."
+                  },
+                  {
+                    "role": "user",
+                    "content": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n\n            Translated definition (for reference):\n            ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\n\n            Existing Serbian translations:\n            entitet, objekat, stvar, pojava, jedinka, subjekt, element\n\n            Guidelines:\n            - Generate at most 1 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): entity.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }"
+                  }
+                ]
+              }
+            ],
+            "response": "Iterative expansion completed in 2 iteration(s)"
+          },
+          "filtering": {
+            "stage": "synonym_filtering",
+            "prompt": "Final validation of Serbian synonym candidates.\n\n            Candidates: entitet, objekat, stvar, pojava, jedinka, subjekt, element, subjektivnost\n\n            Sense summary: This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n            Definition (translated): ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): entity.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"filtered_synonyms\": [\"entitet\", \"objekat\", \"stvar\", \"pojava\", \"jedinka\", \"subjekt\", \"element\"],\n  \"confidence_by_word\": {\n    \"entitet\": \"high\",\n    \"objekat\": \"high\",\n    \"stvar\": \"medium\",\n    \"pojava\": \"medium\",\n    \"jedinka\": \"medium\",\n    \"subjekt\": \"medium\",\n    \"element\": \"medium\"\n  },\n  \"removed\": [\n    {\n      \"word\": \"subjektivnost\",\n      \"reason\": \"too narrow / mismatched sense\"\n    }\n  ],\n  \"confidence\": \"medium\"\n}",
+            "payload": {
+              "filtered_synonyms": [
+                "entitet",
+                "objekat",
+                "stvar",
+                "pojava",
+                "jedinka",
+                "subjekt",
+                "element"
+              ],
+              "confidence_by_word": {
+                "entitet": "high",
+                "objekat": "high",
+                "stvar": "medium",
+                "pojava": "medium",
+                "jedinka": "medium",
+                "subjekt": "medium",
+                "element": "medium"
+              },
+              "removed": [
+                {
+                  "word": "subjektivnost",
+                  "reason": "too narrow / mismatched sense"
+                }
+              ],
+              "confidence": "medium"
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Final validation of Serbian synonym candidates.\n\n            Candidates: entitet, objekat, stvar, pojava, jedinka, subjekt, element, subjektivnost\n\n            Sense summary: This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n            Definition (translated): ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): entity.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }"
+              }
+            ]
+          },
+          "definition_quality": {
+            "stage": "definition_quality",
+            "prompt": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\"\n\n            Synonyms (lemmas):\n            entitet, objekat, stvar, pojava, jedinka, subjekt, element\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed.",
+            "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The term 'ono što se percipira' implies a perception of an entity, which is circular since 'entitet' is one of the synonyms.\"\n    },\n    {\n      \"type\": \"clarity\",\n      \"message\": \"The definition could be clearer by simplifying the phrasing.\"\n    },\n    {\n      \"type\": \"pos_structure\",\n      \"message\": \"The definition does not follow the expected noun-style gloss structure.\"\n    }\n  ],\n  \"revised_definition\": \"nešto što se percipira ili zna kao da ima jasno postojanje, bilo da je živo ili neživo\",\n  \"notes\": \"The definition was revised to avoid circularity and improve clarity while adhering to the expected noun-style gloss structure.\"\n}\n```",
+            "payload": {
+              "status": "needs_revision",
+              "issues": [
+                {
+                  "type": "circular",
+                  "message": "The term 'ono što se percipira' implies a perception of an entity, which is circular since 'entitet' is one of the synonyms."
+                },
+                {
+                  "type": "clarity",
+                  "message": "The definition could be clearer by simplifying the phrasing."
+                },
+                {
+                  "type": "pos_structure",
+                  "message": "The definition does not follow the expected noun-style gloss structure."
+                }
+              ],
+              "revised_definition": "nešto što se percipira ili zna kao da ima jasno postojanje, bilo da je živo ili neživo",
+              "notes": "The definition was revised to avoid circularity and improve clarity while adhering to the expected noun-style gloss structure."
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\"\n\n            Synonyms (lemmas):\n            entitet, objekat, stvar, pojava, jedinka, subjekt, element\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }"
+              }
+            ]
+          }
+        },
+        "logs": {
+          "sense": {
+            "stage": "sense_analysis",
+            "prompt": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-00001740-n\n            POS: n\n            Lexname: noun.Tops\n            Topic domains: (none)\n            English lemmas: entity\n            Definition: that which is perceived or known or inferred to have its own distinct existence (living or nonliving)\n            Usage examples:\n            - (no examples)\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed.",
+            "raw_response_preview": "```json\n{\n  \"sense_summary\": \"This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\",\n  \"contrastive_note\": \"This sense is distinct from other senses of 'entity' that may focus on specific types of entities (e.g., legal entities, abstract entities) or contexts in which entities are discussed.\",\n  \"key_features\": [\n    \"perceived existence\",\n    \"can be living or nonliving\",\n    \"distinct identity\"\n  ],\n  \"domain_tags\": [],\n  \"expected_serbian_pos\":… [truncated]"
+          },
+          "definition": {
+            "stage": "definition_translation",
+            "prompt": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"that which is perceived or known or inferred to have its own distinct existence (living or nonliving)\"\n            Sense summary: This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n            Key features:\n            - perceived existence\n- can be living or nonliving\n- distinct identity\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"definition_translation\": \"ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\",\n  \"notes\": \"Termin 'ono što' se koristi za opisivanje entiteta sa jasno definisanim postojanjem.\",\n  \"examples\": [\"stena\", \"životinja\", \"ideja\"]\n}"
+          },
+          "initial_translation": {
+            "stage": "initial_translation",
+            "prompt": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['entity']\n            Sense summary: This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): entity.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"initial_translations\": [\"entitet\"],\n  \"alignment\": {\"entity\": \"entitet\"}\n}"
+          },
+          "expansion": {
+            "stage": "synonym_expansion",
+            "prompt": null,
+            "system_prompt": null,
+            "raw_response_preview": ""
+          },
+          "filtering": {
+            "stage": "synonym_filtering",
+            "prompt": "Final validation of Serbian synonym candidates.\n\n            Candidates: entitet, objekat, stvar, pojava, jedinka, subjekt, element, subjektivnost\n\n            Sense summary: This sense refers to an entity that is recognized as having a distinct existence, whether it is alive or inanimate. It encompasses both tangible and intangible things that can be perceived or inferred.\n            Definition (translated): ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): entity.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"filtered_synonyms\": [\"entitet\", \"objekat\", \"stvar\", \"pojava\", \"jedinka\", \"subjekt\", \"element\"],\n  \"confidence_by_word\": {\n    \"entitet\": \"high\",\n    \"objekat\": \"high\",\n    \"stvar\": \"medium\",\n    \"pojava\": \"medium\",\n    \"jedinka\": \"medium\",\n    \"subjekt\": \"medium\",\n    \"element\": \"medium\"\n  },\n  \"removed\": [\n    {\n      \"word\": \"subjektivnost\",\n      \"reason\": \"too narrow / mismatched sense\"\n    }\n  ],\n  \"confidence\": \"medium\"\n}"
+          },
+          "definition_quality": {
+            "stage": "definition_quality",
+            "prompt": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"ono što se percipira ili zna ili se zaključuje da ima sopstveno jasno postojanje (živo ili neživo)\"\n\n            Synonyms (lemmas):\n            entitet, objekat, stvar, pojava, jedinka, subjekt, element\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed.",
+            "raw_response_preview": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The term 'ono što se percipira' implies a perception of an entity, which is circular since 'entitet' is one of the synonyms.\"\n    },\n    {\n      \"type\": \"clarity\",\n      \"message\": \"The definition could be clearer by simplifying the phrasing.\"\n    },\n    {\n      \"type\": \"pos_structure\",\n      \"message\": \"The definition does not follow the expected noun-style gloss structure.\"\n    }\n  ],\n  \"revised_definition\": \"nešto što se percipira ili zna kao da ima jasno postojanje, bilo da je živo ili n… [truncated]"
+          }
+        }
+      },
+      "curator_summary": "Representative literal (sr): entitet\nDefinition translation: nešto što se percipira ili zna kao da ima jasno postojanje, bilo da je živo ili neživo\nLexname: noun.Tops\nSynset literals (7 total):\n  • entitet\n  • objekat\n  • pojava\n  • jedinka\n  • subjekt\n  (+2 more literals)\nExample sentences: 3 (showing first)\n  “stena”\nNotes: Termin 'ono što' se koristi za opisivanje entiteta sa jasno definisanim postojanjem.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 8 synonyms\n  3. Filtered results: 7 final literals\n  4. Definition quality: needs_revision (3 issue(s) flagged)\n  5. Auto status: review\n  Quality flags: broad_literal_risk",
+      "lexname": "noun.Tops",
+      "topic_domains": [],
+      "auto_status": "review",
+      "quality_flags": [
+        "broad_literal_risk"
+      ],
+      "quality_issues": [
+        {
+          "code": "broad_literal_risk",
+          "message": "Selected literal 'objekat' is broad and may be a hypernym.",
+          "severity": "warning"
+        }
+      ],
+      "needs_human_review": true,
+      "needs_domain_check": false,
+      "model": {
+        "requested": "gpt-4o-mini",
+        "resolved": "gpt-4o-mini",
+        "resolved_safe": "gpt-4o-mini",
+        "fallback_used": false,
+        "reason": null
+      }
+    }
+  }
+}

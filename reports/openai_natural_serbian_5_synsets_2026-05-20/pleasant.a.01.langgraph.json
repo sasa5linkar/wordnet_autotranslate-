@@ -1,0 +1,685 @@
+{
+  "selector_id": "ENG30-01800349-a",
+  "source_synset": {
+    "id": "ENG30-01800349-a",
+    "english_id": "ENG30-01800349-a",
+    "name": "pleasant.a.01",
+    "lemmas": [
+      "pleasant"
+    ],
+    "definition": "affording pleasure; being in harmony with your taste or likings",
+    "examples": [
+      "we had a pleasant evening together",
+      "a pleasant scene",
+      "pleasant sensations"
+    ],
+    "pos": "a",
+    "lexname": "adj.all",
+    "relations": {
+      "hypernyms": [],
+      "hyponyms": [],
+      "instance_hypernyms": [],
+      "instance_hyponyms": [],
+      "part_meronyms": [],
+      "part_holonyms": [],
+      "member_meronyms": [],
+      "member_holonyms": [],
+      "substance_meronyms": [],
+      "substance_holonyms": [],
+      "similar_tos": [
+        {
+          "name": "beautiful.s.01",
+          "definition": "(of weather) highly enjoyable"
+        },
+        {
+          "name": "enjoyable.s.01",
+          "definition": "affording satisfaction or pleasure"
+        },
+        {
+          "name": "idyllic.s.02",
+          "definition": "suggestive of an idyll; charmingly simple and serene"
+        },
+        {
+          "name": "grateful.s.01",
+          "definition": "affording comfort or pleasure"
+        },
+        {
+          "name": "dulcet.s.01",
+          "definition": "extremely pleasant in a gentle way"
+        }
+      ],
+      "also": [],
+      "attributes": [
+        {
+          "name": "pleasantness.n.02",
+          "definition": "the quality of giving pleasure"
+        }
+      ],
+      "lemma_relations": {
+        "pleasant": {
+          "antonyms": [
+            {
+              "name": "unpleasant.a.01",
+              "definition": "disagreeable to the senses, to the mind, or feelings",
+              "lemma": "unpleasant"
+            }
+          ],
+          "derivationally_related": [
+            {
+              "name": "pleasure.n.01",
+              "definition": "a fundamental feeling that is hard to define but that people desire to experience",
+              "lemma": "pleasance"
+            },
+            {
+              "name": "pleasantness.n.02",
+              "definition": "the quality of giving pleasure",
+              "lemma": "pleasantness"
+            },
+            {
+              "name": "please.v.01",
+              "definition": "give pleasure to or be pleasing to",
+              "lemma": "please"
+            }
+          ]
+        }
+      }
+    },
+    "hypernyms": [],
+    "hyponyms": [],
+    "meronyms": [],
+    "holonyms": [],
+    "similar_synsets": [
+      {
+        "name": "beautiful.s.01",
+        "definition": "(of weather) highly enjoyable"
+      },
+      {
+        "name": "enjoyable.s.01",
+        "definition": "affording satisfaction or pleasure"
+      },
+      {
+        "name": "idyllic.s.02",
+        "definition": "suggestive of an idyll; charmingly simple and serene"
+      },
+      {
+        "name": "grateful.s.01",
+        "definition": "affording comfort or pleasure"
+      },
+      {
+        "name": "dulcet.s.01",
+        "definition": "extremely pleasant in a gentle way"
+      }
+    ]
+  },
+  "pipelines": {
+    "langgraph": {
+      "translation": "prijatan",
+      "definition_translation": "koji je prijatan za doživljaj; koji se dopada",
+      "translated_synonyms": [
+        "prijatan",
+        "ugodan",
+        "sladak",
+        "prijemčiv",
+        "sviđajući",
+        "prijateljski"
+      ],
+      "target_lang": "sr",
+      "source_lang": "en",
+      "source": {
+        "id": "ENG30-01800349-a",
+        "english_id": "ENG30-01800349-a",
+        "name": "pleasant.a.01",
+        "lemmas": [
+          "pleasant"
+        ],
+        "definition": "affording pleasure; being in harmony with your taste or likings",
+        "examples": [
+          "we had a pleasant evening together",
+          "a pleasant scene",
+          "pleasant sensations"
+        ],
+        "pos": "a",
+        "lexname": "adj.all",
+        "relations": {
+          "hypernyms": [],
+          "hyponyms": [],
+          "instance_hypernyms": [],
+          "instance_hyponyms": [],
+          "part_meronyms": [],
+          "part_holonyms": [],
+          "member_meronyms": [],
+          "member_holonyms": [],
+          "substance_meronyms": [],
+          "substance_holonyms": [],
+          "similar_tos": [
+            {
+              "name": "beautiful.s.01",
+              "definition": "(of weather) highly enjoyable"
+            },
+            {
+              "name": "enjoyable.s.01",
+              "definition": "affording satisfaction or pleasure"
+            },
+            {
+              "name": "idyllic.s.02",
+              "definition": "suggestive of an idyll; charmingly simple and serene"
+            },
+            {
+              "name": "grateful.s.01",
+              "definition": "affording comfort or pleasure"
+            },
+            {
+              "name": "dulcet.s.01",
+              "definition": "extremely pleasant in a gentle way"
+            }
+          ],
+          "also": [],
+          "attributes": [
+            {
+              "name": "pleasantness.n.02",
+              "definition": "the quality of giving pleasure"
+            }
+          ],
+          "lemma_relations": {
+            "pleasant": {
+              "antonyms": [
+                {
+                  "name": "unpleasant.a.01",
+                  "definition": "disagreeable to the senses, to the mind, or feelings",
+                  "lemma": "unpleasant"
+                }
+              ],
+              "derivationally_related": [
+                {
+                  "name": "pleasure.n.01",
+                  "definition": "a fundamental feeling that is hard to define but that people desire to experience",
+                  "lemma": "pleasance"
+                },
+                {
+                  "name": "pleasantness.n.02",
+                  "definition": "the quality of giving pleasure",
+                  "lemma": "pleasantness"
+                },
+                {
+                  "name": "please.v.01",
+                  "definition": "give pleasure to or be pleasing to",
+                  "lemma": "please"
+                }
+              ]
+            }
+          }
+        },
+        "hypernyms": [],
+        "hyponyms": [],
+        "meronyms": [],
+        "holonyms": [],
+        "similar_synsets": [
+          {
+            "name": "beautiful.s.01",
+            "definition": "(of weather) highly enjoyable"
+          },
+          {
+            "name": "enjoyable.s.01",
+            "definition": "affording satisfaction or pleasure"
+          },
+          {
+            "name": "idyllic.s.02",
+            "definition": "suggestive of an idyll; charmingly simple and serene"
+          },
+          {
+            "name": "grateful.s.01",
+            "definition": "affording comfort or pleasure"
+          },
+          {
+            "name": "dulcet.s.01",
+            "definition": "extremely pleasant in a gentle way"
+          }
+        ]
+      },
+      "examples": [
+        "prijatan miris",
+        "prijatan razgovor"
+      ],
+      "notes": "Pojam 'prijatan' se odnosi na iskustva ili senzacije koje donose uživanje i usklađene su sa ličnim preferencijama.",
+      "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition contains the lemma 'prijatan', creating a circular definition.\"\n    },\n    {\n      \"type\": \"clarity\",\n      \"message\": \"The definition could be clearer and more concise.\"\n    },\n    {\n      \"type\": \"pos_structure\",\n      \"message\": \"The definition does not fully align with the expected adjectival structure.\"\n    }\n  ],\n  \"revised_definition\": \"koji je prijatan za doživljaj; koji se dopada\",\n  \"notes\": \"The definition was revised to eliminate circularity and improve clarity while maintaining the adjectival structure.\"\n}\n```",
+      "payload": {
+        "sense": {
+          "sense_summary": "This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.",
+          "contrastive_note": "This sense is distinct from other senses of 'pleasant' that may imply mere acceptability or neutrality, focusing instead on the positive emotional response it elicits.",
+          "key_features": [
+            "affords pleasure",
+            "harmonizes with personal taste",
+            "evokes positive emotions"
+          ],
+          "domain_tags": [],
+          "expected_serbian_pos": "adjective",
+          "expected_serbian_gloss_shape": "koji donosi užitak",
+          "confidence": "high"
+        },
+        "definition": {
+          "definition_translation": "koji prija; koji je u skladu sa ličnim ukusom",
+          "notes": "Pojam 'prijatan' se odnosi na iskustva ili senzacije koje donose uživanje i usklađene su sa ličnim preferencijama.",
+          "examples": [
+            "prijatan miris",
+            "prijatan razgovor"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "prijatan"
+          ],
+          "alignment": {
+            "pleasant": "prijatan"
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "prijatan",
+            "ugodan",
+            "sladak",
+            "milostiv",
+            "prijemčiv",
+            "sviđajući",
+            "prijateljski"
+          ],
+          "rationale": {
+            "ugodan": "odnosi se na iskustva koja donose zadovoljstvo i udobnost.",
+            "sladak": "može se koristiti u kontekstu prijatnih senzacija, posebno u vezi sa ukusima.",
+            "milostiv": "odnosi se na prijatnost koja dolazi iz ljubaznosti ili blagonaklonosti.",
+            "prijemčiv": "označava nešto što je lako prihvatljivo ili ugodno za doživljaj.",
+            "sviđajući": "odnosi se na nešto što se dopada ili što izaziva pozitivne emocije.",
+            "prijateljski": "može se koristiti u kontekstu prijatnog ponašanja ili atmosfere."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "prijatan": 0,
+            "ugodan": 1,
+            "sladak": 1,
+            "milostiv": 1,
+            "prijemčiv": 1,
+            "sviđajući": 1,
+            "prijateljski": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "prijatan",
+            "ugodan",
+            "sladak",
+            "prijemčiv",
+            "sviđajući",
+            "prijateljski"
+          ],
+          "confidence_by_word": {
+            "prijatan": "high",
+            "ugodan": "high",
+            "sladak": "medium",
+            "prijemčiv": "medium",
+            "sviđajući": "medium",
+            "prijateljski": "medium"
+          },
+          "removed": [
+            {
+              "word": "milostiv",
+              "reason": "too narrow / mismatched sense"
+            }
+          ],
+          "confidence": "medium"
+        },
+        "definition_quality": {
+          "status": "needs_revision",
+          "issues": [
+            {
+              "type": "circular",
+              "message": "The definition contains the lemma 'prijatan', creating a circular definition."
+            },
+            {
+              "type": "clarity",
+              "message": "The definition could be clearer and more concise."
+            },
+            {
+              "type": "pos_structure",
+              "message": "The definition does not fully align with the expected adjectival structure."
+            }
+          ],
+          "revised_definition": "koji je prijatan za doživljaj; koji se dopada",
+          "notes": "The definition was revised to eliminate circularity and improve clarity while maintaining the adjectival structure."
+        },
+        "auto_quality": {
+          "auto_status": "blocked",
+          "quality_flags": [
+            "literal_in_gloss"
+          ],
+          "quality_issues": [
+            {
+              "code": "literal_in_gloss",
+              "message": "Selected literal 'prijatan' appears in the final gloss.",
+              "severity": "error"
+            }
+          ],
+          "needs_human_review": true,
+          "needs_domain_check": false
+        },
+        "calls": {
+          "sense": {
+            "stage": "sense_analysis",
+            "prompt": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-01800349-a\n            POS: a\n            Lexname: adj.all\n            Topic domains: (none)\n            English lemmas: pleasant\n            Definition: affording pleasure; being in harmony with your taste or likings\n            Usage examples:\n            - we had a pleasant evening together\n- a pleasant scene\n- pleasant sensations\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed.",
+            "raw_response": "```json\n{\n  \"sense_summary\": \"This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\",\n  \"contrastive_note\": \"This sense is distinct from other senses of 'pleasant' that may imply mere acceptability or neutrality, focusing instead on the positive emotional response it elicits.\",\n  \"key_features\": [\n    \"affords pleasure\",\n    \"harmonizes with personal taste\",\n    \"evokes positive emotions\"\n  ],\n  \"domain_tags\": [],\n  \"expected_serbian_pos\": \"adjective\",\n  \"expected_serbian_gloss_shape\": \"koji donosi užitak\",\n  \"confidence\": \"high\"\n}\n```",
+            "payload": {
+              "sense_summary": "This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.",
+              "contrastive_note": "This sense is distinct from other senses of 'pleasant' that may imply mere acceptability or neutrality, focusing instead on the positive emotional response it elicits.",
+              "key_features": [
+                "affords pleasure",
+                "harmonizes with personal taste",
+                "evokes positive emotions"
+              ],
+              "domain_tags": [],
+              "expected_serbian_pos": "adjective",
+              "expected_serbian_gloss_shape": "koji donosi užitak",
+              "confidence": "high"
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-01800349-a\n            POS: a\n            Lexname: adj.all\n            Topic domains: (none)\n            English lemmas: pleasant\n            Definition: affording pleasure; being in harmony with your taste or likings\n            Usage examples:\n            - we had a pleasant evening together\n- a pleasant scene\n- pleasant sensations\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection."
+              }
+            ]
+          },
+          "definition": {
+            "stage": "definition_translation",
+            "prompt": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"affording pleasure; being in harmony with your taste or likings\"\n            Sense summary: This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n            Key features:\n            - affords pleasure\n- harmonizes with personal taste\n- evokes positive emotions\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"definition_translation\": \"koji prija; koji je u skladu sa ličnim ukusom\",\n  \"notes\": \"Pojam 'prijatan' se odnosi na iskustva ili senzacije koje donose uživanje i usklađene su sa ličnim preferencijama.\",\n  \"examples\": [\"prijatan miris\", \"prijatan razgovor\"]\n}",
+            "payload": {
+              "definition_translation": "koji prija; koji je u skladu sa ličnim ukusom",
+              "notes": "Pojam 'prijatan' se odnosi na iskustva ili senzacije koje donose uživanje i usklađene su sa ličnim preferencijama.",
+              "examples": [
+                "prijatan miris",
+                "prijatan razgovor"
+              ]
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"affording pleasure; being in harmony with your taste or likings\"\n            Sense summary: This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n            Key features:\n            - affords pleasure\n- harmonizes with personal taste\n- evokes positive emotions\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }"
+              }
+            ]
+          },
+          "initial_translation": {
+            "stage": "initial_translation",
+            "prompt": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['pleasant']\n            Sense summary: This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adjective (a); source lemma(s): pleasant.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adjective: keep adjective lemmas; reject noun paraphrases and full clauses.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"initial_translations\": [\"prijatan\"],\n  \"alignment\": {\"pleasant\": \"prijatan\"}\n}",
+            "payload": {
+              "initial_translations": [
+                "prijatan"
+              ],
+              "alignment": {
+                "pleasant": "prijatan"
+              }
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['pleasant']\n            Sense summary: This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adjective (a); source lemma(s): pleasant.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adjective: keep adjective lemmas; reject noun paraphrases and full clauses.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }"
+              }
+            ]
+          },
+          "expansion": {
+            "payload": {
+              "expanded_synonyms": [
+                "prijatan",
+                "ugodan",
+                "sladak",
+                "milostiv",
+                "prijemčiv",
+                "sviđajući",
+                "prijateljski"
+              ],
+              "rationale": {
+                "ugodan": "odnosi se na iskustva koja donose zadovoljstvo i udobnost.",
+                "sladak": "može se koristiti u kontekstu prijatnih senzacija, posebno u vezi sa ukusima.",
+                "milostiv": "odnosi se na prijatnost koja dolazi iz ljubaznosti ili blagonaklonosti.",
+                "prijemčiv": "označava nešto što je lako prihvatljivo ili ugodno za doživljaj.",
+                "sviđajući": "odnosi se na nešto što se dopada ili što izaziva pozitivne emocije.",
+                "prijateljski": "može se koristiti u kontekstu prijatnog ponašanja ili atmosfere."
+              },
+              "iterations_run": 2,
+              "synonym_provenance": {
+                "prijatan": 0,
+                "ugodan": 1,
+                "sladak": 1,
+                "milostiv": 1,
+                "prijemčiv": 1,
+                "sviđajući": 1,
+                "prijateljski": 1
+              },
+              "converged": true
+            },
+            "stage": "synonym_expansion",
+            "calls": [
+              {
+                "stage": "expansion_iter_1",
+                "prompt": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n\n            Translated definition (for reference):\n            koji prija; koji je u skladu sa ličnim ukusom\n\n            Existing Serbian translations:\n            prijatan\n\n            Guidelines:\n            - Generate at most 7 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adjective (a); source lemma(s): pleasant.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adjective: keep adjective lemmas; reject noun paraphrases and full clauses.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }",
+                "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_1. Return valid JSON as instructed.",
+                "raw_response": "{\n  \"expanded_synonyms\": [\"ugodan\", \"prijatan\", \"sladak\", \"milostiv\", \"prijemčiv\", \"sviđajući\", \"prijateljski\"],\n  \"rationale\": {\n    \"ugodan\": \"odnosi se na iskustva koja donose zadovoljstvo i udobnost.\",\n    \"prijatan\": \"već postoji kao sinonim, ali se može smatrati da je u skladu sa ličnim ukusom.\",\n    \"sladak\": \"može se koristiti u kontekstu prijatnih senzacija, posebno u vezi sa ukusima.\",\n    \"milostiv\": \"odnosi se na prijatnost koja dolazi iz ljubaznosti ili blagonaklonosti.\",\n    \"prijemčiv\": \"označava nešto što je lako prihvatljivo ili ugodno za doživljaj.\",\n    \"sviđajući\": \"odnosi se na nešto što se dopada ili što izaziva pozitivne emocije.\",\n    \"prijateljski\": \"može se koristiti u kontekstu prijatnog ponašanja ili atmosfere.\"\n  }\n}",
+                "payload": {
+                  "expanded_synonyms": [
+                    "ugodan",
+                    "prijatan",
+                    "sladak",
+                    "milostiv",
+                    "prijemčiv",
+                    "sviđajući",
+                    "prijateljski"
+                  ],
+                  "rationale": {
+                    "ugodan": "odnosi se na iskustva koja donose zadovoljstvo i udobnost.",
+                    "prijatan": "već postoji kao sinonim, ali se može smatrati da je u skladu sa ličnim ukusom.",
+                    "sladak": "može se koristiti u kontekstu prijatnih senzacija, posebno u vezi sa ukusima.",
+                    "milostiv": "odnosi se na prijatnost koja dolazi iz ljubaznosti ili blagonaklonosti.",
+                    "prijemčiv": "označava nešto što je lako prihvatljivo ili ugodno za doživljaj.",
+                    "sviđajući": "odnosi se na nešto što se dopada ili što izaziva pozitivne emocije.",
+                    "prijateljski": "može se koristiti u kontekstu prijatnog ponašanja ili atmosfere."
+                  },
+                  "iterations_run": 1,
+                  "synonym_provenance": {},
+                  "converged": false
+                },
+                "messages": [
+                  {
+                    "role": "system",
+                    "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_1. Return valid JSON as instructed."
+                  },
+                  {
+                    "role": "user",
+                    "content": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n\n            Translated definition (for reference):\n            koji prija; koji je u skladu sa ličnim ukusom\n\n            Existing Serbian translations:\n            prijatan\n\n            Guidelines:\n            - Generate at most 7 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adjective (a); source lemma(s): pleasant.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adjective: keep adjective lemmas; reject noun paraphrases and full clauses.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }"
+                  }
+                ]
+              },
+              {
+                "stage": "expansion_iter_2",
+                "prompt": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n\n            Translated definition (for reference):\n            koji prija; koji je u skladu sa ličnim ukusom\n\n            Existing Serbian translations:\n            prijatan, ugodan, sladak, milostiv, prijemčiv, sviđajući, prijateljski\n\n            Guidelines:\n            - Generate at most 1 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adjective (a); source lemma(s): pleasant.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adjective: keep adjective lemmas; reject noun paraphrases and full clauses.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }",
+                "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_2. Return valid JSON as instructed.",
+                "raw_response": "{\n  \"expanded_synonyms\": [\"prijatan\"],\n  \"rationale\": {\n    \"prijatan\": \"Ovaj izraz se koristi za opisivanje nečega što donosi užitak i zadovoljstvo, što je u skladu sa ličnim ukusom.\"\n  }\n}",
+                "payload": {
+                  "expanded_synonyms": [
+                    "prijatan"
+                  ],
+                  "rationale": {
+                    "prijatan": "Ovaj izraz se koristi za opisivanje nečega što donosi užitak i zadovoljstvo, što je u skladu sa ličnim ukusom."
+                  },
+                  "iterations_run": 1,
+                  "synonym_provenance": {},
+                  "converged": false
+                },
+                "messages": [
+                  {
+                    "role": "system",
+                    "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_2. Return valid JSON as instructed."
+                  },
+                  {
+                    "role": "user",
+                    "content": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n\n            Translated definition (for reference):\n            koji prija; koji je u skladu sa ličnim ukusom\n\n            Existing Serbian translations:\n            prijatan, ugodan, sladak, milostiv, prijemčiv, sviđajući, prijateljski\n\n            Guidelines:\n            - Generate at most 1 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adjective (a); source lemma(s): pleasant.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adjective: keep adjective lemmas; reject noun paraphrases and full clauses.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }"
+                  }
+                ]
+              }
+            ],
+            "response": "Iterative expansion completed in 2 iteration(s)"
+          },
+          "filtering": {
+            "stage": "synonym_filtering",
+            "prompt": "Final validation of Serbian synonym candidates.\n\n            Candidates: prijatan, ugodan, sladak, milostiv, prijemčiv, sviđajući, prijateljski\n\n            Sense summary: This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n            Definition (translated): koji prija; koji je u skladu sa ličnim ukusom\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adjective (a); source lemma(s): pleasant.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adjective: keep adjective lemmas; reject noun paraphrases and full clauses.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"filtered_synonyms\": [\"prijatan\", \"ugodan\", \"sladak\", \"prijemčiv\", \"sviđajući\", \"prijateljski\"],\n  \"confidence_by_word\": {\n    \"prijatan\": \"high\",\n    \"ugodan\": \"high\",\n    \"sladak\": \"medium\",\n    \"prijemčiv\": \"medium\",\n    \"sviđajući\": \"medium\",\n    \"prijateljski\": \"medium\"\n  },\n  \"removed\": [\n    {\"word\": \"milostiv\", \"reason\": \"too narrow / mismatched sense\"}\n  ],\n  \"confidence\": \"medium\"\n}",
+            "payload": {
+              "filtered_synonyms": [
+                "prijatan",
+                "ugodan",
+                "sladak",
+                "prijemčiv",
+                "sviđajući",
+                "prijateljski"
+              ],
+              "confidence_by_word": {
+                "prijatan": "high",
+                "ugodan": "high",
+                "sladak": "medium",
+                "prijemčiv": "medium",
+                "sviđajući": "medium",
+                "prijateljski": "medium"
+              },
+              "removed": [
+                {
+                  "word": "milostiv",
+                  "reason": "too narrow / mismatched sense"
+                }
+              ],
+              "confidence": "medium"
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Final validation of Serbian synonym candidates.\n\n            Candidates: prijatan, ugodan, sladak, milostiv, prijemčiv, sviđajući, prijateljski\n\n            Sense summary: This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n            Definition (translated): koji prija; koji je u skladu sa ličnim ukusom\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adjective (a); source lemma(s): pleasant.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adjective: keep adjective lemmas; reject noun paraphrases and full clauses.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }"
+              }
+            ]
+          },
+          "definition_quality": {
+            "stage": "definition_quality",
+            "prompt": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"koji prija; koji je u skladu sa ličnim ukusom\"\n\n            Synonyms (lemmas):\n            prijatan, ugodan, sladak, prijemčiv, sviđajući, prijateljski\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed.",
+            "raw_response": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition contains the lemma 'prijatan', creating a circular definition.\"\n    },\n    {\n      \"type\": \"clarity\",\n      \"message\": \"The definition could be clearer and more concise.\"\n    },\n    {\n      \"type\": \"pos_structure\",\n      \"message\": \"The definition does not fully align with the expected adjectival structure.\"\n    }\n  ],\n  \"revised_definition\": \"koji je prijatan za doživljaj; koji se dopada\",\n  \"notes\": \"The definition was revised to eliminate circularity and improve clarity while maintaining the adjectival structure.\"\n}\n```",
+            "payload": {
+              "status": "needs_revision",
+              "issues": [
+                {
+                  "type": "circular",
+                  "message": "The definition contains the lemma 'prijatan', creating a circular definition."
+                },
+                {
+                  "type": "clarity",
+                  "message": "The definition could be clearer and more concise."
+                },
+                {
+                  "type": "pos_structure",
+                  "message": "The definition does not fully align with the expected adjectival structure."
+                }
+              ],
+              "revised_definition": "koji je prijatan za doživljaj; koji se dopada",
+              "notes": "The definition was revised to eliminate circularity and improve clarity while maintaining the adjectival structure."
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"koji prija; koji je u skladu sa ličnim ukusom\"\n\n            Synonyms (lemmas):\n            prijatan, ugodan, sladak, prijemčiv, sviđajući, prijateljski\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }"
+              }
+            ]
+          }
+        },
+        "logs": {
+          "sense": {
+            "stage": "sense_analysis",
+            "prompt": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-01800349-a\n            POS: a\n            Lexname: adj.all\n            Topic domains: (none)\n            English lemmas: pleasant\n            Definition: affording pleasure; being in harmony with your taste or likings\n            Usage examples:\n            - we had a pleasant evening together\n- a pleasant scene\n- pleasant sensations\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed.",
+            "raw_response_preview": "```json\n{\n  \"sense_summary\": \"This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\",\n  \"contrastive_note\": \"This sense is distinct from other senses of 'pleasant' that may imply mere acceptability or neutrality, focusing instead on the positive emotional response it elicits.\",\n  \"key_features\": [\n    \"affords pleasure\",\n    \"harmonizes with personal taste\",\n    \"evokes positive emotions\"\n  ],\n  \"domain_tags\": [],\n  \"expected_serbian_pos\": \"adjective\",\n  \"expected_serbian_gloss_shape\": \"koji donosi už… [truncated]"
+          },
+          "definition": {
+            "stage": "definition_translation",
+            "prompt": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"affording pleasure; being in harmony with your taste or likings\"\n            Sense summary: This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n            Key features:\n            - affords pleasure\n- harmonizes with personal taste\n- evokes positive emotions\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"definition_translation\": \"koji prija; koji je u skladu sa ličnim ukusom\",\n  \"notes\": \"Pojam 'prijatan' se odnosi na iskustva ili senzacije koje donose uživanje i usklađene su sa ličnim preferencijama.\",\n  \"examples\": [\"prijatan miris\", \"prijatan razgovor\"]\n}"
+          },
+          "initial_translation": {
+            "stage": "initial_translation",
+            "prompt": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['pleasant']\n            Sense summary: This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adjective (a); source lemma(s): pleasant.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adjective: keep adjective lemmas; reject noun paraphrases and full clauses.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"initial_translations\": [\"prijatan\"],\n  \"alignment\": {\"pleasant\": \"prijatan\"}\n}"
+          },
+          "expansion": {
+            "stage": "synonym_expansion",
+            "prompt": null,
+            "system_prompt": null,
+            "raw_response_preview": ""
+          },
+          "filtering": {
+            "stage": "synonym_filtering",
+            "prompt": "Final validation of Serbian synonym candidates.\n\n            Candidates: prijatan, ugodan, sladak, milostiv, prijemčiv, sviđajući, prijateljski\n\n            Sense summary: This sense of 'pleasant' refers to experiences or sensations that bring enjoyment and align with personal preferences, creating a sense of harmony.\n            Definition (translated): koji prija; koji je u skladu sa ličnim ukusom\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is adjective (a); source lemma(s): pleasant.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is adjective: keep adjective lemmas; reject noun paraphrases and full clauses.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"filtered_synonyms\": [\"prijatan\", \"ugodan\", \"sladak\", \"prijemčiv\", \"sviđajući\", \"prijateljski\"],\n  \"confidence_by_word\": {\n    \"prijatan\": \"high\",\n    \"ugodan\": \"high\",\n    \"sladak\": \"medium\",\n    \"prijemčiv\": \"medium\",\n    \"sviđajući\": \"medium\",\n    \"prijateljski\": \"medium\"\n  },\n  \"removed\": [\n    {\"word\": \"milostiv\", \"reason\": \"too narrow / mismatched sense\"}\n  ],\n  \"confidence\": \"medium\"\n}"
+          },
+          "definition_quality": {
+            "stage": "definition_quality",
+            "prompt": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"koji prija; koji je u skladu sa ličnim ukusom\"\n\n            Synonyms (lemmas):\n            prijatan, ugodan, sladak, prijemčiv, sviđajući, prijateljski\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: adjective.\n- Expected Serbian gloss shape: an adjective-style gloss, usually an adjectival relative clause such as koji/koja/koje or koji se when natural.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed.",
+            "raw_response_preview": "```json\n{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The definition contains the lemma 'prijatan', creating a circular definition.\"\n    },\n    {\n      \"type\": \"clarity\",\n      \"message\": \"The definition could be clearer and more concise.\"\n    },\n    {\n      \"type\": \"pos_structure\",\n      \"message\": \"The definition does not fully align with the expected adjectival structure.\"\n    }\n  ],\n  \"revised_definition\": \"koji je prijatan za doživljaj; koji se dopada\",\n  \"notes\": \"The definition was revised to eliminate circularity and improve clarity whi… [truncated]"
+          }
+        }
+      },
+      "curator_summary": "Representative literal (sr): prijatan\nDefinition translation: koji je prijatan za doživljaj; koji se dopada\nLexname: adj.all\nSynset literals (6 total):\n  • prijatan\n  • ugodan\n  • sladak\n  • prijemčiv\n  • sviđajući\n  (+1 more literals)\nExample sentences: 2 (showing first)\n  “prijatan miris”\nNotes: Pojam 'prijatan' se odnosi na iskustva ili senzacije koje donose uživanje i usklađene su sa ličnim preferencijama.\n\nPipeline stages completed:\n  1. Initial translations: 1 lemmas\n  2. Expanded candidates: 7 synonyms\n  3. Filtered results: 6 final literals\n  4. Definition quality: needs_revision (3 issue(s) flagged)\n  5. Auto status: blocked\n  Quality flags: literal_in_gloss",
+      "lexname": "adj.all",
+      "topic_domains": [],
+      "auto_status": "blocked",
+      "quality_flags": [
+        "literal_in_gloss"
+      ],
+      "quality_issues": [
+        {
+          "code": "literal_in_gloss",
+          "message": "Selected literal 'prijatan' appears in the final gloss.",
+          "severity": "error"
+        }
+      ],
+      "needs_human_review": true,
+      "needs_domain_check": false,
+      "model": {
+        "requested": "gpt-4o-mini",
+        "resolved": "gpt-4o-mini",
+        "resolved_safe": "gpt-4o-mini",
+        "fallback_used": false,
+        "reason": null
+      }
+    }
+  }
+}

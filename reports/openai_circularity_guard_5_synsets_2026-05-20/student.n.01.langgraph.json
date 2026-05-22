@@ -1,0 +1,886 @@
+{
+  "selector_id": "ENG30-10665698-n",
+  "source_synset": {
+    "id": "ENG30-10665698-n",
+    "english_id": "ENG30-10665698-n",
+    "name": "student.n.01",
+    "lemmas": [
+      "student",
+      "pupil",
+      "educatee"
+    ],
+    "definition": "a learner who is enrolled in an educational institution",
+    "examples": [],
+    "pos": "n",
+    "lexname": "noun.person",
+    "relations": {
+      "hypernyms": [
+        {
+          "name": "enrollee.n.01",
+          "definition": "a person who enrolls in (or is enrolled in) a class or course of study"
+        }
+      ],
+      "hyponyms": [
+        {
+          "name": "passer.n.03",
+          "definition": "a student who passes an examination"
+        },
+        {
+          "name": "ivy_leaguer.n.01",
+          "definition": "a student or graduate at an Ivy League school"
+        },
+        {
+          "name": "collegian.n.01",
+          "definition": "a student (or former student) at a college or university"
+        },
+        {
+          "name": "crammer.n.01",
+          "definition": "a student who crams"
+        },
+        {
+          "name": "sixth-former.n.01",
+          "definition": "a student in the sixth form"
+        },
+        {
+          "name": "law_student.n.01",
+          "definition": "a student in law school"
+        },
+        {
+          "name": "withdrawer.n.05",
+          "definition": "a student who withdraws from the educational institution in which he or she was enrolled"
+        },
+        {
+          "name": "wykehamist.n.01",
+          "definition": "a student enrolled in (or graduated from) Winchester College"
+        },
+        {
+          "name": "seminarian.n.01",
+          "definition": "a student at a seminary (especially a Roman Catholic seminary)"
+        },
+        {
+          "name": "medical_student.n.01",
+          "definition": "a student in medical school"
+        },
+        {
+          "name": "underachiever.n.01",
+          "definition": "a student who does not perform as well as expected or as well as the IQ indicates"
+        },
+        {
+          "name": "scholar.n.03",
+          "definition": "a student who holds a scholarship"
+        },
+        {
+          "name": "art_student.n.01",
+          "definition": "someone studying to be an artist"
+        },
+        {
+          "name": "major.n.03",
+          "definition": "a university student who is studying a particular field as the principal subject"
+        },
+        {
+          "name": "etonian.n.01",
+          "definition": "a student enrolled in (or graduated from) Eton College"
+        },
+        {
+          "name": "nonreader.n.01",
+          "definition": "a student who is very slow in learning to read"
+        },
+        {
+          "name": "auditor.n.02",
+          "definition": "a student who attends a course but does not take it for credit"
+        },
+        {
+          "name": "catechumen.n.01",
+          "definition": "a new convert being taught the principles of Christianity by a catechist"
+        },
+        {
+          "name": "overachiever.n.01",
+          "definition": "a student who attains higher standards than the IQ indicated"
+        },
+        {
+          "name": "skipper.n.01",
+          "definition": "a student who fails to attend classes"
+        }
+      ],
+      "instance_hypernyms": [],
+      "instance_hyponyms": [],
+      "part_meronyms": [],
+      "part_holonyms": [],
+      "member_meronyms": [],
+      "member_holonyms": [
+        {
+          "name": "teacher-student_relation.n.01",
+          "definition": "the academic relation between teachers and their students"
+        }
+      ],
+      "substance_meronyms": [],
+      "substance_holonyms": [],
+      "similar_tos": [],
+      "also": [],
+      "lemma_relations": {
+        "student": {
+          "derivationally_related": [
+            {
+              "name": "studentship.n.01",
+              "definition": "the position of student",
+              "lemma": "studentship"
+            },
+            {
+              "name": "study.v.02",
+              "definition": "be a student; follow a course of study; be enrolled at an institute of learning",
+              "lemma": "study"
+            }
+          ]
+        },
+        "pupil": {},
+        "educatee": {
+          "derivationally_related": [
+            {
+              "name": "educate.v.01",
+              "definition": "give an education to",
+              "lemma": "educate"
+            }
+          ]
+        }
+      }
+    },
+    "hypernyms": [
+      {
+        "name": "enrollee.n.01",
+        "definition": "a person who enrolls in (or is enrolled in) a class or course of study"
+      }
+    ],
+    "hyponyms": [
+      {
+        "name": "passer.n.03",
+        "definition": "a student who passes an examination"
+      },
+      {
+        "name": "ivy_leaguer.n.01",
+        "definition": "a student or graduate at an Ivy League school"
+      },
+      {
+        "name": "collegian.n.01",
+        "definition": "a student (or former student) at a college or university"
+      },
+      {
+        "name": "crammer.n.01",
+        "definition": "a student who crams"
+      },
+      {
+        "name": "sixth-former.n.01",
+        "definition": "a student in the sixth form"
+      },
+      {
+        "name": "law_student.n.01",
+        "definition": "a student in law school"
+      },
+      {
+        "name": "withdrawer.n.05",
+        "definition": "a student who withdraws from the educational institution in which he or she was enrolled"
+      },
+      {
+        "name": "wykehamist.n.01",
+        "definition": "a student enrolled in (or graduated from) Winchester College"
+      },
+      {
+        "name": "seminarian.n.01",
+        "definition": "a student at a seminary (especially a Roman Catholic seminary)"
+      },
+      {
+        "name": "medical_student.n.01",
+        "definition": "a student in medical school"
+      },
+      {
+        "name": "underachiever.n.01",
+        "definition": "a student who does not perform as well as expected or as well as the IQ indicates"
+      },
+      {
+        "name": "scholar.n.03",
+        "definition": "a student who holds a scholarship"
+      },
+      {
+        "name": "art_student.n.01",
+        "definition": "someone studying to be an artist"
+      },
+      {
+        "name": "major.n.03",
+        "definition": "a university student who is studying a particular field as the principal subject"
+      },
+      {
+        "name": "etonian.n.01",
+        "definition": "a student enrolled in (or graduated from) Eton College"
+      },
+      {
+        "name": "nonreader.n.01",
+        "definition": "a student who is very slow in learning to read"
+      },
+      {
+        "name": "auditor.n.02",
+        "definition": "a student who attends a course but does not take it for credit"
+      },
+      {
+        "name": "catechumen.n.01",
+        "definition": "a new convert being taught the principles of Christianity by a catechist"
+      },
+      {
+        "name": "overachiever.n.01",
+        "definition": "a student who attains higher standards than the IQ indicated"
+      },
+      {
+        "name": "skipper.n.01",
+        "definition": "a student who fails to attend classes"
+      }
+    ],
+    "meronyms": [],
+    "holonyms": [
+      {
+        "name": "teacher-student_relation.n.01",
+        "definition": "the academic relation between teachers and their students"
+      }
+    ],
+    "similar_synsets": []
+  },
+  "pipelines": {
+    "langgraph": {
+      "translation": "student",
+      "definition_translation": "osoba koja pohađa obrazovni program",
+      "translated_synonyms": [
+        "student",
+        "učenik",
+        "učenica",
+        "školarac",
+        "studentkinja"
+      ],
+      "target_lang": "sr",
+      "source_lang": "en",
+      "source": {
+        "id": "ENG30-10665698-n",
+        "english_id": "ENG30-10665698-n",
+        "name": "student.n.01",
+        "lemmas": [
+          "student",
+          "pupil",
+          "educatee"
+        ],
+        "definition": "a learner who is enrolled in an educational institution",
+        "examples": [],
+        "pos": "n",
+        "lexname": "noun.person",
+        "relations": {
+          "hypernyms": [
+            {
+              "name": "enrollee.n.01",
+              "definition": "a person who enrolls in (or is enrolled in) a class or course of study"
+            }
+          ],
+          "hyponyms": [
+            {
+              "name": "passer.n.03",
+              "definition": "a student who passes an examination"
+            },
+            {
+              "name": "ivy_leaguer.n.01",
+              "definition": "a student or graduate at an Ivy League school"
+            },
+            {
+              "name": "collegian.n.01",
+              "definition": "a student (or former student) at a college or university"
+            },
+            {
+              "name": "crammer.n.01",
+              "definition": "a student who crams"
+            },
+            {
+              "name": "sixth-former.n.01",
+              "definition": "a student in the sixth form"
+            },
+            {
+              "name": "law_student.n.01",
+              "definition": "a student in law school"
+            },
+            {
+              "name": "withdrawer.n.05",
+              "definition": "a student who withdraws from the educational institution in which he or she was enrolled"
+            },
+            {
+              "name": "wykehamist.n.01",
+              "definition": "a student enrolled in (or graduated from) Winchester College"
+            },
+            {
+              "name": "seminarian.n.01",
+              "definition": "a student at a seminary (especially a Roman Catholic seminary)"
+            },
+            {
+              "name": "medical_student.n.01",
+              "definition": "a student in medical school"
+            },
+            {
+              "name": "underachiever.n.01",
+              "definition": "a student who does not perform as well as expected or as well as the IQ indicates"
+            },
+            {
+              "name": "scholar.n.03",
+              "definition": "a student who holds a scholarship"
+            },
+            {
+              "name": "art_student.n.01",
+              "definition": "someone studying to be an artist"
+            },
+            {
+              "name": "major.n.03",
+              "definition": "a university student who is studying a particular field as the principal subject"
+            },
+            {
+              "name": "etonian.n.01",
+              "definition": "a student enrolled in (or graduated from) Eton College"
+            },
+            {
+              "name": "nonreader.n.01",
+              "definition": "a student who is very slow in learning to read"
+            },
+            {
+              "name": "auditor.n.02",
+              "definition": "a student who attends a course but does not take it for credit"
+            },
+            {
+              "name": "catechumen.n.01",
+              "definition": "a new convert being taught the principles of Christianity by a catechist"
+            },
+            {
+              "name": "overachiever.n.01",
+              "definition": "a student who attains higher standards than the IQ indicated"
+            },
+            {
+              "name": "skipper.n.01",
+              "definition": "a student who fails to attend classes"
+            }
+          ],
+          "instance_hypernyms": [],
+          "instance_hyponyms": [],
+          "part_meronyms": [],
+          "part_holonyms": [],
+          "member_meronyms": [],
+          "member_holonyms": [
+            {
+              "name": "teacher-student_relation.n.01",
+              "definition": "the academic relation between teachers and their students"
+            }
+          ],
+          "substance_meronyms": [],
+          "substance_holonyms": [],
+          "similar_tos": [],
+          "also": [],
+          "lemma_relations": {
+            "student": {
+              "derivationally_related": [
+                {
+                  "name": "studentship.n.01",
+                  "definition": "the position of student",
+                  "lemma": "studentship"
+                },
+                {
+                  "name": "study.v.02",
+                  "definition": "be a student; follow a course of study; be enrolled at an institute of learning",
+                  "lemma": "study"
+                }
+              ]
+            },
+            "pupil": {},
+            "educatee": {
+              "derivationally_related": [
+                {
+                  "name": "educate.v.01",
+                  "definition": "give an education to",
+                  "lemma": "educate"
+                }
+              ]
+            }
+          }
+        },
+        "hypernyms": [
+          {
+            "name": "enrollee.n.01",
+            "definition": "a person who enrolls in (or is enrolled in) a class or course of study"
+          }
+        ],
+        "hyponyms": [
+          {
+            "name": "passer.n.03",
+            "definition": "a student who passes an examination"
+          },
+          {
+            "name": "ivy_leaguer.n.01",
+            "definition": "a student or graduate at an Ivy League school"
+          },
+          {
+            "name": "collegian.n.01",
+            "definition": "a student (or former student) at a college or university"
+          },
+          {
+            "name": "crammer.n.01",
+            "definition": "a student who crams"
+          },
+          {
+            "name": "sixth-former.n.01",
+            "definition": "a student in the sixth form"
+          },
+          {
+            "name": "law_student.n.01",
+            "definition": "a student in law school"
+          },
+          {
+            "name": "withdrawer.n.05",
+            "definition": "a student who withdraws from the educational institution in which he or she was enrolled"
+          },
+          {
+            "name": "wykehamist.n.01",
+            "definition": "a student enrolled in (or graduated from) Winchester College"
+          },
+          {
+            "name": "seminarian.n.01",
+            "definition": "a student at a seminary (especially a Roman Catholic seminary)"
+          },
+          {
+            "name": "medical_student.n.01",
+            "definition": "a student in medical school"
+          },
+          {
+            "name": "underachiever.n.01",
+            "definition": "a student who does not perform as well as expected or as well as the IQ indicates"
+          },
+          {
+            "name": "scholar.n.03",
+            "definition": "a student who holds a scholarship"
+          },
+          {
+            "name": "art_student.n.01",
+            "definition": "someone studying to be an artist"
+          },
+          {
+            "name": "major.n.03",
+            "definition": "a university student who is studying a particular field as the principal subject"
+          },
+          {
+            "name": "etonian.n.01",
+            "definition": "a student enrolled in (or graduated from) Eton College"
+          },
+          {
+            "name": "nonreader.n.01",
+            "definition": "a student who is very slow in learning to read"
+          },
+          {
+            "name": "auditor.n.02",
+            "definition": "a student who attends a course but does not take it for credit"
+          },
+          {
+            "name": "catechumen.n.01",
+            "definition": "a new convert being taught the principles of Christianity by a catechist"
+          },
+          {
+            "name": "overachiever.n.01",
+            "definition": "a student who attains higher standards than the IQ indicated"
+          },
+          {
+            "name": "skipper.n.01",
+            "definition": "a student who fails to attend classes"
+          }
+        ],
+        "meronyms": [],
+        "holonyms": [
+          {
+            "name": "teacher-student_relation.n.01",
+            "definition": "the academic relation between teachers and their students"
+          }
+        ],
+        "similar_synsets": []
+      },
+      "examples": [
+        "student na fakultetu",
+        "učenik u osnovnoj školi"
+      ],
+      "notes": "Definicija se odnosi na učenike, obično decu ili mlade.",
+      "raw_response": "{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The term 'osoba koja je upisana' implies the concept of 'student' without using the term directly, but it is still too close to the synonyms.\"\n    }\n  ],\n  \"revised_definition\": \"osoba koja pohađa obrazovni program\",\n  \"notes\": \"The original definition was circular due to the close relation to the synonyms. The revised definition maintains clarity and avoids repetition.\"\n}",
+      "payload": {
+        "sense": {
+          "sense_summary": "A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.",
+          "contrastive_note": "This sense specifically refers to individuals enrolled in formal education, distinguishing it from broader terms like 'learner' which may include informal or self-directed learning contexts.",
+          "key_features": [
+            "enrolled in an educational institution",
+            "actively engaged in learning",
+            "typically refers to children or young adults"
+          ],
+          "domain_tags": [],
+          "expected_serbian_pos": "noun",
+          "expected_serbian_gloss_shape": "osoba koja se obrazuje u obrazovnoj instituciji",
+          "confidence": "high"
+        },
+        "definition": {
+          "definition_translation": "osoba koja je upisana u obrazovnu instituciju",
+          "notes": "Definicija se odnosi na učenike, obično decu ili mlade.",
+          "examples": [
+            "student na fakultetu",
+            "učenik u osnovnoj školi"
+          ]
+        },
+        "initial_translation": {
+          "initial_translations": [
+            "student",
+            "učenik",
+            null
+          ],
+          "alignment": {
+            "student": "student",
+            "pupil": "učenik",
+            "educatee": null
+          }
+        },
+        "expansion": {
+          "expanded_synonyms": [
+            "student",
+            "učenik",
+            "školarac",
+            "učenica",
+            "studentkinja"
+          ],
+          "rationale": {
+            "školarac": "Termin koji se koristi za osobu koja pohađa školu, naglašava aktivno učenje.",
+            "učenica": "Ženski oblik reči učenik, koji se odnosi na osobu koja se obrazuje.",
+            "studentkinja": "Ženski oblik reči student, koji se odnosi na žensku osobu koja je upisana na visoko obrazovanje."
+          },
+          "iterations_run": 2,
+          "synonym_provenance": {
+            "student": 0,
+            "učenik": 0,
+            "školarac": 1,
+            "učenica": 1,
+            "studentkinja": 1
+          },
+          "converged": true
+        },
+        "filtering": {
+          "filtered_synonyms": [
+            "student",
+            "učenik",
+            "učenica",
+            "školarac",
+            "studentkinja"
+          ],
+          "confidence_by_word": {
+            "student": "high",
+            "učenik": "high",
+            "učenica": "high",
+            "školarac": "medium",
+            "studentkinja": "medium"
+          },
+          "removed": [],
+          "confidence": "medium"
+        },
+        "definition_quality": {
+          "status": "needs_revision",
+          "issues": [
+            {
+              "type": "circular",
+              "message": "The term 'osoba koja je upisana' implies the concept of 'student' without using the term directly, but it is still too close to the synonyms."
+            }
+          ],
+          "revised_definition": "osoba koja pohađa obrazovni program",
+          "notes": "The original definition was circular due to the close relation to the synonyms. The revised definition maintains clarity and avoids repetition."
+        },
+        "auto_quality": {
+          "auto_status": "review",
+          "quality_flags": [],
+          "quality_issues": [],
+          "needs_human_review": true,
+          "needs_domain_check": false
+        },
+        "calls": {
+          "sense": {
+            "stage": "sense_analysis",
+            "prompt": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-10665698-n\n            POS: n\n            Lexname: noun.person\n            Topic domains: (none)\n            English lemmas: student, pupil, educatee\n            Definition: a learner who is enrolled in an educational institution\n            Usage examples:\n            - (no examples)\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed.",
+            "raw_response": "```json\n{\n  \"sense_summary\": \"A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\",\n  \"contrastive_note\": \"This sense specifically refers to individuals enrolled in formal education, distinguishing it from broader terms like 'learner' which may include informal or self-directed learning contexts.\",\n  \"key_features\": [\n    \"enrolled in an educational institution\",\n    \"actively engaged in learning\",\n    \"typically refers to children or young adults\"\n  ],\n  \"domain_tags\": [],\n  \"expected_serbian_pos\": \"noun\",\n  \"expected_serbian_gloss_shape\": \"osoba koja se obrazuje u obrazovnoj instituciji\",\n  \"confidence\": \"high\"\n}\n```",
+            "payload": {
+              "sense_summary": "A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.",
+              "contrastive_note": "This sense specifically refers to individuals enrolled in formal education, distinguishing it from broader terms like 'learner' which may include informal or self-directed learning contexts.",
+              "key_features": [
+                "enrolled in an educational institution",
+                "actively engaged in learning",
+                "typically refers to children or young adults"
+              ],
+              "domain_tags": [],
+              "expected_serbian_pos": "noun",
+              "expected_serbian_gloss_shape": "osoba koja se obrazuje u obrazovnoj instituciji",
+              "confidence": "high"
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-10665698-n\n            POS: n\n            Lexname: noun.person\n            Topic domains: (none)\n            English lemmas: student, pupil, educatee\n            Definition: a learner who is enrolled in an educational institution\n            Usage examples:\n            - (no examples)\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection."
+              }
+            ]
+          },
+          "definition": {
+            "stage": "definition_translation",
+            "prompt": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"a learner who is enrolled in an educational institution\"\n            Sense summary: A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n            Key features:\n            - enrolled in an educational institution\n- actively engaged in learning\n- typically refers to children or young adults\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"definition_translation\": \"osoba koja je upisana u obrazovnu instituciju\",\n  \"notes\": \"Definicija se odnosi na učenike, obično decu ili mlade.\",\n  \"examples\": [\"student na fakultetu\", \"učenik u osnovnoj školi\"]\n}",
+            "payload": {
+              "definition_translation": "osoba koja je upisana u obrazovnu instituciju",
+              "notes": "Definicija se odnosi na učenike, obično decu ili mlade.",
+              "examples": [
+                "student na fakultetu",
+                "učenik u osnovnoj školi"
+              ]
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"a learner who is enrolled in an educational institution\"\n            Sense summary: A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n            Key features:\n            - enrolled in an educational institution\n- actively engaged in learning\n- typically refers to children or young adults\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }"
+              }
+            ]
+          },
+          "initial_translation": {
+            "stage": "initial_translation",
+            "prompt": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['student', 'pupil', 'educatee']\n            Sense summary: A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): student, pupil, educatee.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"initial_translations\": [\"student\", \"učenik\", null],\n  \"alignment\": {\n    \"student\": \"student\",\n    \"pupil\": \"učenik\",\n    \"educatee\": null\n  }\n}",
+            "payload": {
+              "initial_translations": [
+                "student",
+                "učenik",
+                null
+              ],
+              "alignment": {
+                "student": "student",
+                "pupil": "učenik",
+                "educatee": null
+              }
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['student', 'pupil', 'educatee']\n            Sense summary: A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): student, pupil, educatee.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }"
+              }
+            ]
+          },
+          "expansion": {
+            "payload": {
+              "expanded_synonyms": [
+                "student",
+                "učenik",
+                "školarac",
+                "učenica",
+                "studentkinja"
+              ],
+              "rationale": {
+                "školarac": "Termin koji se koristi za osobu koja pohađa školu, naglašava aktivno učenje.",
+                "učenica": "Ženski oblik reči učenik, koji se odnosi na osobu koja se obrazuje.",
+                "studentkinja": "Ženski oblik reči student, koji se odnosi na žensku osobu koja je upisana na visoko obrazovanje."
+              },
+              "iterations_run": 2,
+              "synonym_provenance": {
+                "student": 0,
+                "učenik": 0,
+                "školarac": 1,
+                "učenica": 1,
+                "studentkinja": 1
+              },
+              "converged": true
+            },
+            "stage": "synonym_expansion",
+            "calls": [
+              {
+                "stage": "expansion_iter_1",
+                "prompt": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n\n            Translated definition (for reference):\n            osoba koja je upisana u obrazovnu instituciju\n\n            Existing Serbian translations:\n            student, učenik\n\n            Guidelines:\n            - Generate at most 6 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): student, pupil, educatee.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }",
+                "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_1. Return valid JSON as instructed.",
+                "raw_response": "{\n  \"expanded_synonyms\": [\"školarac\", \"učenica\", \"studentkinja\"],\n  \"rationale\": {\n    \"školarac\": \"Termin koji se koristi za osobu koja pohađa školu, naglašava aktivno učenje.\",\n    \"učenica\": \"Ženski oblik reči učenik, koji se odnosi na osobu koja se obrazuje.\",\n    \"studentkinja\": \"Ženski oblik reči student, koji se odnosi na žensku osobu koja je upisana na visoko obrazovanje.\"\n  }\n}",
+                "payload": {
+                  "expanded_synonyms": [
+                    "školarac",
+                    "učenica",
+                    "studentkinja"
+                  ],
+                  "rationale": {
+                    "školarac": "Termin koji se koristi za osobu koja pohađa školu, naglašava aktivno učenje.",
+                    "učenica": "Ženski oblik reči učenik, koji se odnosi na osobu koja se obrazuje.",
+                    "studentkinja": "Ženski oblik reči student, koji se odnosi na žensku osobu koja je upisana na visoko obrazovanje."
+                  },
+                  "iterations_run": 1,
+                  "synonym_provenance": {},
+                  "converged": false
+                },
+                "messages": [
+                  {
+                    "role": "system",
+                    "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_1. Return valid JSON as instructed."
+                  },
+                  {
+                    "role": "user",
+                    "content": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n\n            Translated definition (for reference):\n            osoba koja je upisana u obrazovnu instituciju\n\n            Existing Serbian translations:\n            student, učenik\n\n            Guidelines:\n            - Generate at most 6 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): student, pupil, educatee.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }"
+                  }
+                ]
+              },
+              {
+                "stage": "expansion_iter_2",
+                "prompt": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n\n            Translated definition (for reference):\n            osoba koja je upisana u obrazovnu instituciju\n\n            Existing Serbian translations:\n            student, učenik, školarac, učenica, studentkinja\n\n            Guidelines:\n            - Generate at most 3 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): student, pupil, educatee.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }",
+                "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_2. Return valid JSON as instructed.",
+                "raw_response": "{\n  \"expanded_synonyms\": [\"školarac\", \"učenica\"],\n  \"rationale\": {\n    \"školarac\": \"Termin koji se koristi za učenika osnovne ili srednje škole, što odgovara opisu osobe koja je upisana u obrazovnu instituciju.\",\n    \"učenica\": \"Ženski oblik reči 'učenik', koji se odnosi na devojčicu ili ženu koja je učenik u obrazovnom sistemu.\"\n  }\n}",
+                "payload": {
+                  "expanded_synonyms": [
+                    "školarac",
+                    "učenica"
+                  ],
+                  "rationale": {
+                    "školarac": "Termin koji se koristi za učenika osnovne ili srednje škole, što odgovara opisu osobe koja je upisana u obrazovnu instituciju.",
+                    "učenica": "Ženski oblik reči 'učenik', koji se odnosi na devojčicu ili ženu koja je učenik u obrazovnom sistemu."
+                  },
+                  "iterations_run": 1,
+                  "synonym_provenance": {},
+                  "converged": false
+                },
+                "messages": [
+                  {
+                    "role": "system",
+                    "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: expansion_iter_2. Return valid JSON as instructed."
+                  },
+                  {
+                    "role": "user",
+                    "content": "You are expanding a synonym set for a WordNet synset in Serbian.\n\n            Core meaning (sense summary):\n            A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n\n            Translated definition (for reference):\n            osoba koja je upisana u obrazovnu instituciju\n\n            Existing Serbian translations:\n            student, učenik, školarac, učenica, studentkinja\n\n            Guidelines:\n            - Generate at most 3 additional candidate literal(s); fewer is better.\n            - Generate new synonyms that express **exactly this concept**, not other senses of the same word.\n            - Stay faithful to the described meaning and avoid extensions that fit different senses.\n            - Exclude expressions that refer to locations, titles, or figurative uses unless the definition requires them.\n            - Do not rely on surface similarity to the existing words; reason from the concept itself.\n            - Keep to canonical lemma forms and natural, modern vocabulary.\n            - Do not add explanatory phrases, typical-object phrases, examples, or definitions as literals.\n            - If no additional exact literal exists, return an empty expanded_synonyms list.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): student, pupil, educatee.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return JSON:\n            {\n              \"expanded_synonyms\": [\"lemma1\", \"lemma2\", ...],\n              \"rationale\": {\n                 \"lemma1\": \"explanation of conceptual alignment\",\n                 \"lemma2\": \"explanation of conceptual alignment\"\n              }\n            }"
+                  }
+                ]
+              }
+            ],
+            "response": "Iterative expansion completed in 2 iteration(s)"
+          },
+          "filtering": {
+            "stage": "synonym_filtering",
+            "prompt": "Final validation of Serbian synonym candidates.\n\n            Candidates: student, učenik, školarac, učenica, studentkinja\n\n            Sense summary: A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n            Definition (translated): osoba koja je upisana u obrazovnu instituciju\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): student, pupil, educatee.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed.",
+            "raw_response": "```json\n{\n  \"filtered_synonyms\": [\"student\", \"učenik\", \"učenica\", \"školarac\", \"studentkinja\"],\n  \"confidence_by_word\": {\n    \"student\": \"high\",\n    \"učenik\": \"high\",\n    \"učenica\": \"high\",\n    \"školarac\": \"medium\",\n    \"studentkinja\": \"medium\"\n  },\n  \"removed\": [],\n  \"confidence\": \"medium\"\n}\n```",
+            "payload": {
+              "filtered_synonyms": [
+                "student",
+                "učenik",
+                "učenica",
+                "školarac",
+                "studentkinja"
+              ],
+              "confidence_by_word": {
+                "student": "high",
+                "učenik": "high",
+                "učenica": "high",
+                "školarac": "medium",
+                "studentkinja": "medium"
+              },
+              "removed": [],
+              "confidence": "medium"
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Final validation of Serbian synonym candidates.\n\n            Candidates: student, učenik, školarac, učenica, studentkinja\n\n            Sense summary: A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n            Definition (translated): osoba koja je upisana u obrazovnu instituciju\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): student, pupil, educatee.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }"
+              }
+            ]
+          },
+          "definition_quality": {
+            "stage": "definition_quality",
+            "prompt": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"osoba koja je upisana u obrazovnu instituciju\"\n\n            Synonyms (lemmas):\n            student, učenik, učenica, školarac, studentkinja\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n               Treat every selected lemma above as a forbidden defining term: the\n               revised_definition must not contain any selected literal or transparent\n               Serbian inflection of it.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed.",
+            "raw_response": "{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The term 'osoba koja je upisana' implies the concept of 'student' without using the term directly, but it is still too close to the synonyms.\"\n    }\n  ],\n  \"revised_definition\": \"osoba koja pohađa obrazovni program\",\n  \"notes\": \"The original definition was circular due to the close relation to the synonyms. The revised definition maintains clarity and avoids repetition.\"\n}",
+            "payload": {
+              "status": "needs_revision",
+              "issues": [
+                {
+                  "type": "circular",
+                  "message": "The term 'osoba koja je upisana' implies the concept of 'student' without using the term directly, but it is still too close to the synonyms."
+                }
+              ],
+              "revised_definition": "osoba koja pohađa obrazovni program",
+              "notes": "The original definition was circular due to the close relation to the synonyms. The revised definition maintains clarity and avoids repetition."
+            },
+            "messages": [
+              {
+                "role": "system",
+                "content": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed."
+              },
+              {
+                "role": "user",
+                "content": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"osoba koja je upisana u obrazovnu instituciju\"\n\n            Synonyms (lemmas):\n            student, učenik, učenica, školarac, studentkinja\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n               Treat every selected lemma above as a forbidden defining term: the\n               revised_definition must not contain any selected literal or transparent\n               Serbian inflection of it.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }"
+              }
+            ]
+          }
+        },
+        "logs": {
+          "sense": {
+            "stage": "sense_analysis",
+            "prompt": "Analyse the following WordNet synset carefully.\n\n            Synset ID: ENG30-10665698-n\n            POS: n\n            Lexname: noun.person\n            Topic domains: (none)\n            English lemmas: student, pupil, educatee\n            Definition: a learner who is enrolled in an educational institution\n            Usage examples:\n            - (no examples)\n\n            Return JSON:\n            {\n              \"sense_summary\": \"1–2 sentence English description capturing nuance.\",\n              \"contrastive_note\": \"What distinguishes this sense from other senses of the lemma.\",\n              \"key_features\": [\"short salient features\"],\n              \"domain_tags\": [\"optional topical tags\"],\n              \"expected_serbian_pos\": \"noun|verb|adjective|adverb|other\",\n              \"expected_serbian_gloss_shape\": \"short POS-specific Serbian gloss-shape note\",\n              \"confidence\": \"high|medium|low\"\n            }\n            Focus on *what makes this sense unique*, not just definitional paraphrasing.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: sense_analysis. Return valid JSON as instructed.",
+            "raw_response_preview": "```json\n{\n  \"sense_summary\": \"A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\",\n  \"contrastive_note\": \"This sense specifically refers to individuals enrolled in formal education, distinguishing it from broader terms like 'learner' which may include informal or self-directed learning contexts.\",\n  \"key_features\": [\n    \"enrolled in an educational institution\",\n    \"actively engaged in learning\",\n    \"typically refers to children or young adults\"\n  ],\n  \"domain_tags\": [],\n  \"expected_serbian_pos\": \"noun\"… [truncated]"
+          },
+          "definition": {
+            "stage": "definition_translation",
+            "prompt": "Translate this English WordNet gloss into Serbian.\n\n            Original definition: \"a learner who is enrolled in an educational institution\"\n            Sense summary: A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n            Key features:\n            - enrolled in an educational institution\n- actively engaged in learning\n- typically refers to children or young adults\n\n            Guidelines:\n            - Output must sound like a *dictionary gloss* in Serbian: short, neutral, non-sentence form.\n            - Keep factual and stylistic fidelity.\n            - If uncertain, give literal translation plus clarifying note.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return JSON:\n            {\n              \"definition_translation\": \"gloss in Serbian\",\n              \"notes\": \"optional lexicographer comment\",\n              \"examples\": [\"example1\", \"example2\"]\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_translation. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"definition_translation\": \"osoba koja je upisana u obrazovnu instituciju\",\n  \"notes\": \"Definicija se odnosi na učenike, obično decu ili mlade.\",\n  \"examples\": [\"student na fakultetu\", \"učenik u osnovnoj školi\"]\n}"
+          },
+          "initial_translation": {
+            "stage": "initial_translation",
+            "prompt": "Translate each English lemma into Serbian, preserving one-to-one order.\n\n            English lemmas: ['student', 'pupil', 'educatee']\n            Sense summary: A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n\n            Rules:\n            - Each translation must match *this sense*, not general meaning.\n            - Keep array order aligned to lemmas; use null if no exact equivalent.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): student, pupil, educatee.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\n            Return JSON:\n            {\n              \"initial_translations\": [\"lemma1_translation\", \"lemma2_translation\", ...],\n              \"alignment\": {\"lemma1\": \"translation1\", \"lemma2\": \"translation2\"}\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: initial_translation. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"initial_translations\": [\"student\", \"učenik\", null],\n  \"alignment\": {\n    \"student\": \"student\",\n    \"pupil\": \"učenik\",\n    \"educatee\": null\n  }\n}"
+          },
+          "expansion": {
+            "stage": "synonym_expansion",
+            "prompt": null,
+            "system_prompt": null,
+            "raw_response_preview": ""
+          },
+          "filtering": {
+            "stage": "synonym_filtering",
+            "prompt": "Final validation of Serbian synonym candidates.\n\n            Candidates: student, učenik, školarac, učenica, studentkinja\n\n            Sense summary: A student is an individual who is actively engaged in learning within an educational setting, typically enrolled in a school or institution.\n            Definition (translated): osoba koja je upisana u obrazovnu instituciju\n\n            Guidelines:\n            - Evaluate each candidate strictly against the definition, not surface similarity.\n            - Keep words that express the same central meaning or a culturally natural equivalent.\n                        - Prefer recall for human curation: if a candidate is plausible but slightly broad, keep it with lower confidence.\n                        - Too narrow is worse than slightly broad because it can distort the synset; reject clearly narrow candidates.\n                        - Prefer base lemmas. Reject derivational category shifts that change POS or entry type.\n                        - Keep polysemous words when an established sense plausibly fits this WordNet synset.\n                        - Only remove a generic hypernym when it clearly loses the target concept and better literals remain.\n            - Remove expressions with added modifiers, particles, or typical objects that narrow or\n              shift the intended scope.\n            - Retain idiomatic forms only if they are genuinely used interchangeably with the target concept.\n                        - Return no more than 8 filtered literals, ranked from best to worst.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nPart-of-speech constraints:\n- Source WordNet POS is noun (n); source lemma(s): student, pupil, educatee.\n- Final literals must keep the same lexical entry type as the source synset.\n- Do not infer Serbian POS from suffixes alone; judge by lexical category and dictionary usage.\n- Do not keep definitions, examples, typical-object phrases, or explanatory descriptions as literals.\n- Source POS is noun: keep nouns or established noun phrases naming the concept; do not select Serbian verb lemmas as final noun literals.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n\n            Return structured JSON:\n            {\n              \"filtered_synonyms\": [\"lemma1\", \"lemma2\"],\n              \"confidence_by_word\": {\"lemma1\": \"high\", \"lemma2\": \"medium\"},\n              \"removed\": [{\"word\": \"X\", \"reason\": \"too generic / mismatched sense\"}],\n              \"confidence\": \"high|medium|low\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: synonym_filtering. Return valid JSON as instructed.",
+            "raw_response_preview": "```json\n{\n  \"filtered_synonyms\": [\"student\", \"učenik\", \"učenica\", \"školarac\", \"studentkinja\"],\n  \"confidence_by_word\": {\n    \"student\": \"high\",\n    \"učenik\": \"high\",\n    \"učenica\": \"high\",\n    \"školarac\": \"medium\",\n    \"studentkinja\": \"medium\"\n  },\n  \"removed\": [],\n  \"confidence\": \"medium\"\n}\n```"
+          },
+          "definition_quality": {
+            "stage": "definition_quality",
+            "prompt": "Evaluate the linguistic and stylistic quality of this Serbian dictionary definition.\n\n            Definition:\n            \"osoba koja je upisana u obrazovnu instituciju\"\n\n            Synonyms (lemmas):\n            student, učenik, učenica, školarac, studentkinja\n\n            Tasks:\n            1. **Circularity** — Check if any lemma word or its close inflectional form\n               appears directly in the definition, which would create a circular definition.\n               If this occurs, suggest a neutral rephrasing that avoids repetition.\n               Treat every selected lemma above as a forbidden defining term: the\n               revised_definition must not contain any selected literal or transparent\n               Serbian inflection of it.\n\n                2. **Major wording problems only** — Do not perform a full grammar audit.\n                    Flag only obvious mistranslation, broken machine text, or wording that\n                    changes the WordNet meaning.\n\n                3. **Lexicographic clarity** — Ensure the definition is concise, clear,\n                    and compatible with the selected literal set.\n\n                4. **POS/gloss structure** - Check whether the definition's grammatical\n                    shape matches the source synset POS and the selected Serbian literals.\n                    If it conflicts with the POS, revise it while preserving meaning and\n                    avoiding circularity.\n\n            5. If any issues are detected, produce a corrected version that maintains\n                    the original meaning without attempting broad grammatical rewriting.\n\n\nTarget-language rules:\n- Use standard Serbian Latin script and standard Serbian orthography.\n- Use dictionary lemma forms: infinitive for verbs, nominative singular for nouns.\n- Prefer established Serbian lexical equivalents; do not invent calques or nonstandard spellings.\n- Prefer natural Serbian lexicographic phrasing over word-for-word English gloss translation.\n- Avoid English-like clause structure when Serbian has a shorter dictionary pattern.\n- For Serbian glosses, prefer concise native patterns such as 'ono sto ...', 'osoba koja ...', 'radnja kojom ...', or 'na nacin ...' when they fit the POS and sense.\n- Respect Serbian prefix assimilation and morphology, e.g. avoid nonstandard forms like izpljunuti or izkašljati.\n\n\nSerbian POS/gloss style:\n- Expected Serbian literal category: noun.\n- Expected Serbian gloss shape: a noun-style gloss that usually starts with a broader noun or class term, followed by distinguishing details.\n- Apply only this POS-specific rule for the current synset; do not mix in unrelated POS templates.\n- Treat this as a strong default, not a rigid template; explain justified exceptions in notes.\n- Avoid circular definitions: do not define a literal by repeating that same literal or a close inflection.\n\n            Return structured JSON:\n            {\n              \"status\": \"ok\" | \"needs_revision\",\n              \"issues\": [\n                {\"type\": \"circular\" | \"meaning\" | \"clarity\" | \"pos_structure\", \"message\": \"brief explanation\"},\n              ],\n              \"revised_definition\": \"rewritten definition if revision is required, otherwise original\",\n              \"notes\": \"short summary of evaluation outcome\"\n            }",
+            "system_prompt": "You are an expert lexicographer helping expand WordNet into less resourced languages. Produce faithful, idiomatic translations and keep subtle sense distinctions intact. Return well-structured JSON.\nCurrent stage: definition_quality. Return valid JSON as instructed.",
+            "raw_response_preview": "{\n  \"status\": \"needs_revision\",\n  \"issues\": [\n    {\n      \"type\": \"circular\",\n      \"message\": \"The term 'osoba koja je upisana' implies the concept of 'student' without using the term directly, but it is still too close to the synonyms.\"\n    }\n  ],\n  \"revised_definition\": \"osoba koja pohađa obrazovni program\",\n  \"notes\": \"The original definition was circular due to the close relation to the synonyms. The revised definition maintains clarity and avoids repetition.\"\n}"
+          }
+        }
+      },
+      "curator_summary": "Representative literal (sr): student\nDefinition translation: osoba koja pohađa obrazovni program\nLexname: noun.person\nSynset literals (5 total):\n  • student\n  • učenik\n  • učenica\n  • školarac\n  • studentkinja\nExample sentences: 2 (showing first)\n  “student na fakultetu”\nNotes: Definicija se odnosi na učenike, obično decu ili mlade.\n\nPipeline stages completed:\n  1. Initial translations: 2 lemmas\n  2. Expanded candidates: 5 synonyms\n  3. Filtered results: 5 final literals\n  4. Definition quality: needs_revision (1 issue(s) flagged)\n  5. Auto status: review",
+      "lexname": "noun.person",
+      "topic_domains": [],
+      "auto_status": "review",
+      "quality_flags": [],
+      "quality_issues": [],
+      "needs_human_review": true,
+      "needs_domain_check": false,
+      "model": {
+        "requested": "gpt-4o-mini",
+        "resolved": "gpt-4o-mini",
+        "resolved_safe": "gpt-4o-mini",
+        "fallback_used": false,
+        "reason": null
+      }
+    }
+  }
+}
