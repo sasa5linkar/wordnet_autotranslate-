@@ -2,6 +2,48 @@
 
 A tool for automatic expansion of WordNet in less-resourced languages, with workflows for Serbian synset drafting and side-by-side pipeline comparison.
 
+## Research context and citation
+
+This software supports the Serbian WordNet expansion component of **Saša Petalinkar's doctoral research**: drafting Serbian synset candidates from English WordNet concepts and comparing direct, multi-phase and concept-oriented workflows. The intended result is a candidate for lexicographic assessment, not automatic confirmation that a concept has a suitable Serbian lexical realization.
+
+Related contribution:
+
+> **LLM-Assisted Expansion of Serbian WordNet: Evaluating Prompting Strategies for Synset Candidate Generation** — Saša Z. Petalinkar, Ranka Stanković and Cvetana Krstev. **Accepted abstract for AI Conf 2026** (acceptance confirmed by the author).
+
+This is an accepted abstract, not a claim that a full paper or proceedings item has been published. No DOI has been established. Cite the repository as software using [CITATION.cff](CITATION.cff), and describe the abstract separately with its current status. The software author entry follows the existing project metadata, “WordNet Auto-Translation Contributors”; it does not replace the abstract's named authors.
+
+### The three implemented workflows
+
+The [saved all-pipeline example for `entity.n.01`](reports/openai_all_pipelines_5_synsets_2026-05-20/entity.n.01.all.json) contains all three outputs under `pipelines.baseline`, `pipelines.langgraph` and `pipelines.conceptual`. It illustrates the output structures; a single example is not comparative evaluation evidence.
+
+| Workflow | Input and stages | Saved result fields | Implementation / example |
+| --- | --- | --- | --- |
+| Direct (`baseline`) | English gloss and English literals; direct proposal of a Serbian gloss and equivalents. | `definition_translation`, `translated_synonyms` and the translation payload. | [Direct pipeline](src/wordnet_autotranslate/pipelines/translation_pipeline.py); `pipelines.baseline` in the linked example. |
+| Multi-phase (`langgraph`) | Source synset and available contextual/related-synset information; sense analysis → gloss translation → literal translation → candidate expansion → filtering → assembly. | Proposed gloss and synonyms, intermediate payload, notes and quality/review fields. | [Multi-phase pipeline](src/wordnet_autotranslate/pipelines/langgraph_translation_pipeline.py); `pipelines.langgraph` in the example. |
+| Concept-oriented (`conceptual`) | Source concept with its gloss, literals and available relations; construct a concept package, expand expressions, select Serbian candidates, draft a gloss and validate. | `concept_package`, `expanded_en`, `expanded_sr`, `candidates`, `selection`, `selected_literals_sr`, `final_gloss_sr` and validation fields. | [Concept-oriented pipeline](src/wordnet_autotranslate/pipelines/conceptual_langgraph_pipeline.py); `pipelines.conceptual` in the example. |
+
+The separate [25-synset agent-workflow report](reports/agent_all_25_synsets_no_ollama_2026-04-25/REPORT.md) concerns `agent-baseline`, `agent-multiphase` and `agent-conceptual`. These agent workflows should not be silently equated with the three provider-backed pipeline executions above.
+
+### Archived experiments versus current defaults
+
+| Evidence | What it establishes | Limit |
+| --- | --- | --- |
+| [Five-synset OpenAI-labelled run example](reports/openai_all_pipelines_5_synsets_2026-05-20/entity.n.01.all.json) | The `langgraph.model` record explicitly reports requested/resolved `gpt-4o-mini` and `fallback_used: false` for this saved example. | Do not extend one branch's metadata to every workflow, the entire corpus or the accepted abstract's experiment without a run manifest. |
+| [Full annotation-export summary](reports/annotator_full_openai_20260520/annotation_export_summary.json) and [run metadata](reports/annotator_full_openai_20260520/RUN_METADATA.json) | The raw export reports 579 successful records and 1,737 workflow rows. | The run metadata records timing and workers, not a complete model/prompt/parameter manifest. |
+| [Annotation rows](reports/annotator_full_openai_20260520/annotation_rows.json) | 1,737 rows contain 578 distinct `english_id` values. `ENG30-00883847-v` occurs twice per workflow (six rows total). | This is an annotation template: the checked `gloss_meaning_adequacy_1_5` rating fields are empty. It is not the completed human-review evidence. |
+| Accepted abstract | Describes 578 synsets / 1,734 workflow candidates after duplicate removal, with a manual review of 30 synsets / 90 candidates. | The public raw export still includes the duplicated record. A completed review file and an exact raw-to-deduplicated result manifest were not identified in this documentation check. |
+| [Current model factory](src/wordnet_autotranslate/utils/llm_factory.py) | Default provider `ollama`, default Ollama model `gpt-oss:120b`, default OpenAI model `gpt-4o-mini`, with environment/argument overrides. | These are current program defaults, not proof of the historical experimental settings. |
+
+The 579/578 distinction should be resolved at the source-record level while retaining all three workflows per retained synset. Dropping duplicates solely on `english_id` would incorrectly collapse the three workflow outputs into one. The documentation update does not modify or deduplicate any data.
+
+All generated literals and definitions require **lexicographic review** for sense adequacy, natural Serbian expression, morphology, synonymy, register and appropriate concept boundaries. A machine validation flag, high language-model confidence or fluent translation is not evidence that a candidate is ready for inclusion in Serbian WordNet.
+
+### License and inspected revision
+
+The existing repository [LICENSE](LICENSE) is **CC0-1.0** and remains unchanged. It does not relicense external English/Serbian WordNet data, language-model weights or third-party services. Check resource licenses, model terms and the provenance of generated candidates before redistribution or incorporation into a lexical database. Citation of the software and acknowledgment of the abstract are separate from these conditions.
+
+This map was checked on 23 September 2026 against [`c51fed0899d90e1c5407919c6dee96ad20ef49eb`](https://github.com/sasa5linkar/wordnet_autotranslate-/tree/c51fed0899d90e1c5407919c6dee96ad20ef49eb). This is the inspected code/archive revision, not a verified historical release for the accepted abstract. Existing installation and execution instructions follow below.
+
 ## Overview
 
 This project aims to bridge the gap in WordNet coverage for less-resourced languages by:

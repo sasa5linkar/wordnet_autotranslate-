@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: Please cite this software and identify the repository revision used. The related AI Conf 2026 contribution is an accepted abstract, described separately in the README.
+type: software
+title: WordNet Auto-Translation
+authors:
+- name: WordNet Auto-Translation Contributors
+repository-code: https://github.com/sasa5linkar/wordnet_autotranslate-
+url: https://github.com/sasa5linkar/wordnet_autotranslate-
+license: CC0-1.0
